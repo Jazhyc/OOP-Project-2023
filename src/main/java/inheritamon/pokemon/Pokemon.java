@@ -9,9 +9,9 @@ import inheritamon.data.DataHandler;
  */
 public class Pokemon implements CombatEntity {
 
-    private HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
-    private HashMap<String, String> stringStats = new HashMap<String, String>();
-    private ArrayList<String> moves = new ArrayList<String>();
+    protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
+    protected HashMap<String, String> stringStats = new HashMap<String, String>();
+    protected ArrayList<String> moves = new ArrayList<String>();
 
     /**
      * The attack method, which takes a target as a parameter, returns a random move
