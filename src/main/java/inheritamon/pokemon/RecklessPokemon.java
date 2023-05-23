@@ -1,6 +1,9 @@
 package inheritamon.pokemon;
 import java.util.*;
 
+/**
+ * A pokemon that prioritises damage over all else
+ */
 public class RecklessPokemon extends Pokemon {
 
     public RecklessPokemon(HashMap<String, String> pokemonData) {

@@ -5,14 +5,14 @@ import java.util.HashMap;
 
 public class NormalAbility implements Ability {
 
-    private HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
-    private HashMap<String, String> stringStats = new HashMap<String, String>();
+    protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
+    protected HashMap<String, String> stringStats = new HashMap<String, String>();
 
     public void useMove(Pokemon enemy, Pokemon user) {
 
         // Check if the user has enough MP to use the move
         int mp = user.getNumericalStat("MP");
-        int mpCost = numericalStats.get("MPCost");
+        int mpCost = numericalStats.get("Cost");
 
         if (mp < mpCost) {
             System.out.println("Not enough MP!");

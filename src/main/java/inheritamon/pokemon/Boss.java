@@ -2,6 +2,9 @@ package inheritamon.pokemon;
 
 import java.util.HashMap;
 
+/**
+ * A pokemon that specialises in giving the player a hard time
+ */
 public class Boss extends Pokemon {
 
     public Boss(HashMap<String, String> pokemonData) {

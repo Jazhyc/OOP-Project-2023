@@ -1,6 +1,9 @@
 package inheritamon.pokemon;
 import java.util.*;
 
+/**
+ * A pokemon that plays it safe by healing whenever it is low HP
+ */
 public class AttritionPokemon extends Pokemon {
 
     public AttritionPokemon(HashMap<String, String> pokemonData) {
