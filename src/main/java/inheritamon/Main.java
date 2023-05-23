@@ -1,4 +1,4 @@
-package project19.inheritamon;
+package inheritamon;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package project19.inheritamon.pokemon;
+package inheritamon.pokemon;
 
 /**
  * An interface for all entities that can participate in combat. This includes the player pokemon as well as hostile ones
