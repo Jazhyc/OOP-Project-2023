@@ -120,6 +120,9 @@ public class Pokemon implements CombatEntity {
      * @param mp The amount of MP to gain
      */
     public void gainHP(int hp) {
+
+        System.out.println(stringStats.get("Name") + " gained " + hp + " HP!");
+
         numericalStats.put("HP", numericalStats.get("HP") + hp);
         if (numericalStats.get("HP") > numericalStats.get("MaxHP")) {
             numericalStats.put("HP", numericalStats.get("MaxHP"));
@@ -131,10 +134,25 @@ public class Pokemon implements CombatEntity {
      * @param mp The amount of MP to gain
      */
     public void gainMP(int mp) {
+
+        System.out.println(stringStats.get("Name") + " gained " + mp + " MP!");
+
         numericalStats.put("MP", numericalStats.get("MP") + mp);
         if (numericalStats.get("MP") > numericalStats.get("MaxMP")) {
             numericalStats.put("MP", numericalStats.get("MaxMP"));
         }
+    }
+
+    /**
+     * A method to revitalize the pokemon, sets HP and MP to max
+     * Could be used in the case of a revive item or healing machine
+     */
+    public void revitalize() {
+
+        System.out.println(stringStats.get("Name") + " was revitalized!");
+
+        numericalStats.put("HP", numericalStats.get("MaxHP"));
+        numericalStats.put("MP", numericalStats.get("MaxMP"));
     }
 
     private void faint() {

@@ -25,15 +25,17 @@ public class NormalAbility implements Ability {
         // Take a split of the attack and magic attack by default, used in the case of healing
         int damage = (atk + (mAtk * 2)) / 2 * modifier;
 
-        try {
-            if (type.equals("Physical")) {
-                damage = atk * modifier;
-            } else if (type.equals("Magical")) {
-                damage = mAtk * modifier;
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Unknown type");
+        if (type.equals("Physical")) {
+            damage = atk * modifier;
+        } else if (type.equals("Magical")) {
+            damage = mAtk * modifier;
+        } else if (type.equals("Healing")) {
+            user.gainHP(damage);
+            return;
+        } else {
+            System.out.println("Unknown type!");
         }
+        
 
         enemy.takeDamage(damage, accuracy);
 
