@@ -10,6 +10,15 @@ public class NormalAbility implements Ability {
 
     public void useMove(Pokemon enemy, Pokemon user) {
 
+        // Check if the user has enough MP to use the move
+        int mp = user.getNumericalStat("MP");
+        int mpCost = numericalStats.get("MPCost");
+
+        if (mp < mpCost) {
+            System.out.println("Not enough MP!");
+            return;
+        }
+
         // Obtain the accuracy of the move
         int accuracy = user.getNumericalStat("Acc");
         

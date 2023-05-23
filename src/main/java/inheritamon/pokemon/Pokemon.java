@@ -16,7 +16,7 @@ public class Pokemon implements CombatEntity {
     /**
      * The attack method, which takes a target as a parameter, returns a random move
      * @param targetStats The stats of the target
-     * @return The name of the move use
+     * @return The name of the move used
      */
     public String useMove(HashMap<String, Integer> targetStats) {
 

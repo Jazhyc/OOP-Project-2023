@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 /**
  * An interface for all entities that can participate in combat. This includes the player pokemon as well as hostile ones
- * Only a single method is required, attack, which takes a target as a parameter
  */
 public interface CombatEntity {
 
@@ -20,6 +19,26 @@ public interface CombatEntity {
      * @param damage The amount of damage to take
      */
     public void takeDamage(int damage, int enemyAccuracy);
+
+    /**
+     * A method to gain HP
+     */
+    public void gainHP(int hp);
+
+    /**
+     * A method to gain MP for using abilities
+     */
+    public void gainMP(int mp);
+
+    /**
+     * A method to lose MP for using abilities
+     */
+    public void loseMP(int mp);
+
+    /**
+     * A method to fully restore HP and MP
+     */
+    public void revitalize();
 
 
 }
