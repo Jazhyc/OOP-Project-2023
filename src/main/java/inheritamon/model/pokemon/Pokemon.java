@@ -1,8 +1,8 @@
-package inheritamon.pokemon;
+package inheritamon.model.pokemon;
 
 import java.util.*;
 
-import inheritamon.data.DataHandler;
+import inheritamon.model.data.DataHandler;
 
 /**
  * A class to represent a pokemon, does not possess a sophisticated AI, only returns a random move

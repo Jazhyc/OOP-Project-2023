@@ -1,4 +1,4 @@
-package inheritamon.data;
+package inheritamon.model.data;
 
 import java.util.*;
 

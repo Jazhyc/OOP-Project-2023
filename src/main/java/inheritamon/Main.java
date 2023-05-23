@@ -1,7 +1,7 @@
 package inheritamon;
-import inheritamon.data.*;
-import inheritamon.moves.*;
-import inheritamon.pokemon.*;
+import inheritamon.model.data.*;
+import inheritamon.model.moves.*;
+import inheritamon.model.pokemon.*;
 
 public class Main {
     public static void main(String[] args) {

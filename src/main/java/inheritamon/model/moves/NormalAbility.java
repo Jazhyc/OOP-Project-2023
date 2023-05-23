@@ -1,6 +1,6 @@
-package inheritamon.moves;
+package inheritamon.model.moves;
 
-import inheritamon.pokemon.Pokemon;
+import inheritamon.model.pokemon.Pokemon;
 import java.util.HashMap;
 
 public class NormalAbility implements Ability {

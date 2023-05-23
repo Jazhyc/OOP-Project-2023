@@ -1,6 +1,6 @@
-package inheritamon.moves;
+package inheritamon.model.moves;
 import java.util.*;
-import inheritamon.pokemon.Pokemon;
+import inheritamon.model.pokemon.Pokemon;
 
 /**
  * A class specifically for bosses to use
