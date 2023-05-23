@@ -1,13 +1,18 @@
 package inheritamon.data;
 
 import java.util.*;
-import java.io.*;
 
+/**
+ * A class to handle and load data
+ */
 public class DataHandler {
 
     private HashMap<String, HashMap<String, String>> characterData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> moveData = new HashMap<String, HashMap<String, String>>();
 
+    /**
+     * The constructor for the DataHandler class
+     */
     public DataHandler() {
         loadAllData();
     }
@@ -47,6 +52,11 @@ public class DataHandler {
 
     }
 
+    /**
+     * Returns the data of a character
+     * @param characterName The name of the character
+     * @return The data of the character
+     */
     public HashMap<String, String> getCharacterData(String characterName) {
         try {
             return characterData.get(characterName);
@@ -59,6 +69,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Returns the data of a move
+     * @param moveName The name of the move
+     * @return The data of the move
+     */
     public HashMap<String, String> getMoveData(String moveName) {
         try {
             return moveData.get(moveName);
