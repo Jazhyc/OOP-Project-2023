@@ -17,6 +17,7 @@ public class BossAbility extends NormalAbility {
     public void useMove(Pokemon target, Pokemon user) {
 
         // Use a different damage formula maybe?
+        turnCounter++;
         
 
     }
