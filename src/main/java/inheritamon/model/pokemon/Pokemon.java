@@ -43,10 +43,11 @@ public class Pokemon implements CombatEntity {
 
         // Loop through the data and put it into the correct HashMap
         for (String key : pokemonData.keySet()) {
-            try {
-                numericalStats.put(key, Integer.parseInt(pokemonData.get(key)));
-            } catch (NumberFormatException e) {
-                stringStats.put(key, pokemonData.get(key));
+            String value = pokemonData.get(key);
+            if (DataHandler.isNumeric(value)) {
+                numericalStats.put(key, Integer.parseInt(value));
+            } else {
+                stringStats.put(key, value);
             }
         }
 
