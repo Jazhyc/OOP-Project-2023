@@ -26,29 +26,36 @@ public class DataHandler {
 
     private void loadData(HashMap<String, HashMap<String, String>> data, String fileName) {
 
-        Scanner characterDataScanner = new Scanner(DataHandler.class.getResourceAsStream("/" + fileName));
-
         ArrayList<String> attributes = new ArrayList<String>(); 
+        
+        // Try with resources to automatically close the scanner
+        try (Scanner characterDataScanner = new Scanner(DataHandler.class.getResourceAsStream("/" + fileName))) {
 
-        // Read the first line of the file and put the attributes into the attributes ArrayList
-        String firstLine = characterDataScanner.nextLine();
-        String[] firstLineSplit = firstLine.split(",");
-        for (String attribute : firstLineSplit) {
-            attributes.add(attribute);
-        }
-
-        // Loop through the rest of the file and put the data into the correct HashMap
-        while (characterDataScanner.hasNextLine()) {
-            String line = characterDataScanner.nextLine();
-            String[] lineSplit = line.split(",");
-            HashMap<String, String> characterDataEntry = new HashMap<String, String>();
-            for (int i = 0; i < lineSplit.length; i++) {
-                characterDataEntry.put(attributes.get(i), lineSplit[i]);
+            // Read the first line of the file and put the attributes into the attributes ArrayList
+            String firstLine = characterDataScanner.nextLine();
+            String[] firstLineSplit = firstLine.split(",");
+            for (String attribute : firstLineSplit) {
+                attributes.add(attribute);
             }
-            data.put(lineSplit[0], characterDataEntry);
-        }
 
-        characterDataScanner.close();
+            // Loop through the rest of the file and put the data into the correct HashMap
+            while (characterDataScanner.hasNextLine()) {
+                String line = characterDataScanner.nextLine();
+                String[] lineSplit = line.split(",");
+                HashMap<String, String> characterDataEntry = new HashMap<String, String>();
+                for (int i = 0; i < lineSplit.length; i++) {
+                    characterDataEntry.put(attributes.get(i), lineSplit[i]);
+                }
+                data.put(lineSplit[0], characterDataEntry);
+            }
+
+            characterDataScanner.close();
+            
+        } catch (NullPointerException e) {
+            System.out.println("File not found");
+            Runtime.getRuntime().halt(0);
+        }
+       
 
     }
 
