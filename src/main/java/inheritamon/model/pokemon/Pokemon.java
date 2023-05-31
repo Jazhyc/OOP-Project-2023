@@ -13,6 +13,8 @@ public class Pokemon implements CombatEntity {
     protected HashMap<String, String> stringStats = new HashMap<String, String>();
     protected ArrayList<String> moves = new ArrayList<String>();
 
+    private int BASE_DODGE_CHANCE = 20;
+
     /**
      * The attack method, which takes a target as a parameter, returns a random move
      * @param targetStats The stats of the target
@@ -74,7 +76,7 @@ public class Pokemon implements CombatEntity {
     public void takeDamage(int damage, int enemyAccuracy) {
 
         // Calculate the chance to dodge, simple addition
-        int chanceToDodge = numericalStats.get("Agi") - enemyAccuracy + 100;
+        int chanceToDodge = numericalStats.get("Agi") - enemyAccuracy + BASE_DODGE_CHANCE;
         System.out.println(stringStats.get("Name") + " has a " + chanceToDodge + "% chance to dodge");
 
         // Generate a random number between 0 and 100, if the number is lower than the chance to dodge, set the damage to zero
@@ -168,6 +170,30 @@ public class Pokemon implements CombatEntity {
     public Integer getNumericalStat(String statName) {
 
         return numericalStats.get(statName);
+    }
+
+    /**
+     * A method to directly get the current HP
+     * @return The HP of the pokemon
+     */
+    public Integer getHP() {
+        return numericalStats.get("HP");
+    }
+
+    /**
+     * A method to directly get the current MP
+     * @return The MP of the pokemon
+     */
+    public Integer getMP() {
+        return numericalStats.get("MP");
+    }
+
+    /**
+     * A method to directly get the Name / Species of the pokemon
+     * @return The name of the pokemon
+     */
+    public String getName() {
+        return stringStats.get("Name");
     }
 
     /**

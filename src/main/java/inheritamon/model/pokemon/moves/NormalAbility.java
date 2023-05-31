@@ -1,4 +1,4 @@
-package inheritamon.model.moves;
+package inheritamon.model.pokemon.moves;
 
 import inheritamon.model.pokemon.Pokemon;
 import java.util.HashMap;
@@ -19,10 +19,11 @@ public class NormalAbility implements Ability {
             return;
         }
 
+        // Reduce the user's MP by the cost of the move
+        user.loseMP(mpCost);
+
         // Obtain the accuracy of the move
         int accuracy = user.getNumericalStat("Acc");
-        
-        System.out.println("The move " + stringStats.get("Name") + " was used!");
 
         String type = stringStats.get("Type");
 
@@ -36,8 +37,10 @@ public class NormalAbility implements Ability {
 
         if (type.equals("Physical")) {
             damage = atk * modifier;
+            System.out.println("Physical raw damage: " + damage);
         } else if (type.equals("Magical")) {
             damage = mAtk * modifier;
+            System.out.println("Magical raw damage: " + damage);
         } else if (type.equals("Healing")) {
             user.gainHP(damage);
             return;

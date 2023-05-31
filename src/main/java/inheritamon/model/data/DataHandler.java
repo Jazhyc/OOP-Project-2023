@@ -2,6 +2,8 @@ package inheritamon.model.data;
 
 import java.util.*;
 
+import inheritamon.model.pokemon.moves.*;
+
 /**
  * A class to handle and load data
  */
@@ -96,6 +98,23 @@ public class DataHandler {
             Runtime.getRuntime().halt(0);
             return null;
         }
+    }
+
+    /**
+     * Converts the data of all the moves into an ArrayList of move objects
+     * @return The data of the moves as an Ability
+     */
+    public HashMap<String, NormalAbility> getAllAbilities() {
+            
+            HashMap<String, NormalAbility> abilities = new HashMap<String, NormalAbility>();
+    
+            for (String moveName : moveData.keySet()) {
+                HashMap<String, String> moveData = getMoveData(moveName);
+                NormalAbility ability = new NormalAbility(moveData);
+                abilities.put(moveName, ability);
+            }
+    
+            return abilities;
     }
 
     /**

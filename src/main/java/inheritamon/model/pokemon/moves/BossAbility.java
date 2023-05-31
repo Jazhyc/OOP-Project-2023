@@ -1,4 +1,4 @@
-package inheritamon.model.moves;
+package inheritamon.model.pokemon.moves;
 import java.util.*;
 import inheritamon.model.pokemon.Pokemon;
 
