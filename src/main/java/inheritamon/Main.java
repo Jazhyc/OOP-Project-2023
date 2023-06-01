@@ -1,7 +1,6 @@
 package inheritamon;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
-import inheritamon.model.inventory.Potion;
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
 import inheritamon.view.combat.*;
