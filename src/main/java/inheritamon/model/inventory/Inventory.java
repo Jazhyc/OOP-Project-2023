@@ -31,6 +31,7 @@ public class Inventory {
         System.out.println("Inventory: ");
         for (int i = 0; i < inventory.size(); i++) {
             System.out.print("item " + i + ": " + inventory.get(i).getItemName());
+            System.out.println();
         }
     }
 

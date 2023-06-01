@@ -48,9 +48,9 @@ public class Main {
         Pokemon charizard = new Pokemon(dataHandler.getCharacterData("Charizard"));
 
         BattleHandler battleHandler = new BattleHandler(charizard, groudon, moveData);
-        battleHandler.startBattle();
+        // battleHandler.startBattle();
 
-        Item potion = new Potion();
+        Item potion = new Item(dataHandler.getItemData("Potion"));
         Inventory inventory = new Inventory();
         inventory.addItem(potion);
         inventory.addItem(potion);

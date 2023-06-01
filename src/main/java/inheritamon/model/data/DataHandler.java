@@ -11,6 +11,7 @@ public class DataHandler {
 
     private HashMap<String, HashMap<String, String>> characterData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> moveData = new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, HashMap<String, String>> itemData = new HashMap<String, HashMap<String, String>>();
 
     /**
      * The constructor for the DataHandler class
@@ -28,6 +29,7 @@ public class DataHandler {
 
         loadData(characterData, "monster_stats.csv");
         loadData(moveData, "move_stats.csv");
+        loadData(itemData, "items.csv");
 
     }
 
@@ -93,6 +95,18 @@ public class DataHandler {
             return moveData.get(moveName);
         } catch (NullPointerException e) {
             System.out.println("Move not found");
+
+            // Exit the program, hopefully
+            Runtime.getRuntime().halt(0);
+            return null;
+        }
+    }
+
+    public HashMap<String, String> getItemData(String itemName) {
+        try {
+            return itemData.get(itemName);
+        } catch (NullPointerException e) {
+            System.out.println("Item not found");
 
             // Exit the program, hopefully
             Runtime.getRuntime().halt(0);
