@@ -1,12 +1,12 @@
 package inheritamon;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
-import inheritamon.model.inventory.Potion;
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
 import inheritamon.view.combat.*;
 import inheritamon.model.inventory.Inventory;
 import inheritamon.model.inventory.Item;
+import inheritamon.view.inventory.InventoryPanel;
 
 import java.util.*;
 import javax.swing.*;
@@ -56,5 +56,6 @@ public class Main {
         inventory.addItem(potion);
         inventory.addItem(inheritaball);
         inventory.printInventory();
+
     }
 }

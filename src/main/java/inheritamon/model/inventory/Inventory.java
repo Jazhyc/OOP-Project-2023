@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Inventory {
     private int INITIAL_SIZE = 10;
+
     private int size = INITIAL_SIZE;
 
     ArrayList <Item> inventory = new ArrayList<Item>(size);
