@@ -3,6 +3,7 @@ package inheritamon.view.combat;
 import javax.swing.*;
 
 import inheritamon.controller.*;
+import inheritamon.view.combat.display.BattleDisplayPanel;
 
 import java.awt.*;
 
@@ -12,7 +13,7 @@ import java.awt.*;
 public class BattlePanel extends JPanel{
 
     // Create variables for the panels that will be displayed
-    private PokemonDisplayPanel pokemonDisplayPanel;
+    private BattleDisplayPanel battleDisplayPanel;
     private ChoicePanel choicePanel;
     private ActionPanel actionPanel;
     private DialoguePanel dialoguePanel;
@@ -82,7 +83,7 @@ public class BattlePanel extends JPanel{
     private void addPokemonDisplayPanel() {
         // Put the Pokemon Display Panel in the top half of the screen
         // Red
-        pokemonDisplayPanel = new PokemonDisplayPanel();
+        battleDisplayPanel = new BattleDisplayPanel();
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -90,7 +91,7 @@ public class BattlePanel extends JPanel{
         gbc.gridwidth = 2;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        add(pokemonDisplayPanel, gbc);
+        add(battleDisplayPanel, gbc);
     }
     
 }

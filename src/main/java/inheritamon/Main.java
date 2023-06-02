@@ -34,9 +34,10 @@ public class Main {
         MainMenu mainMenu = new MainMenu(mainMenuController);
         frame.add(mainMenu);
 
-
+        // Prevent the user from resizing the window
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1024, 720);
+        frame.setSize(1366, 768);
         frame.setVisible(true);
 
         Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));

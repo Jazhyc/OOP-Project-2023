@@ -48,6 +48,9 @@ public class ChoicePanel extends JPanel {
             addIcon(i, scaledIcon);
         }
 
+        // Add a border
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+
     }
 
     private void addButton(int i) {
