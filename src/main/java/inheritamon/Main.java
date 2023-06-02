@@ -60,5 +60,6 @@ public class Main {
         inventory.addItem(potion);
         inventory.addItem(inheritaball);
         inventory.printInventory();
+
     }
 }
