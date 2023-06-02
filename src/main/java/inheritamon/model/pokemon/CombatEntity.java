@@ -26,7 +26,7 @@ public interface CombatEntity {
     public void gainHP(int hp);
 
     /**
-     * A method to gain MP for using abilities
+     * A method to gain MP from using items
      */
     public void gainMP(int mp);
 

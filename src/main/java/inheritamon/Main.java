@@ -4,8 +4,9 @@ import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
 import inheritamon.view.combat.*;
-import inheritamon.model.inventory.Inventory;
-import inheritamon.model.inventory.Item;
+import inheritamon.view.world.*;
+import inheritamon.view.menu.*;
+import inheritamon.model.inventory.*;
 
 import java.util.*;
 import javax.swing.*;
@@ -17,11 +18,16 @@ public class Main {
         DataHandler dataHandler = new DataHandler();
         HashMap<String, NormalAbility> moveData = dataHandler.getAllAbilities();
 
-        // Create a frame to display the battle
+
+        // Create a frame to display the game
         JFrame frame = new JFrame("Inheritamon");
 
         // Use a border layout
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+
+        // Create a Panel for the main menu
+        MainMenu mainMenu = new MainMenu();
+        frame.add(mainMenu);
 
         // Create a panel to display the battle
         PokemonBattlePanel pokemonPanel = new PokemonBattlePanel();

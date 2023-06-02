@@ -1,4 +1,4 @@
-package inheritamon.view.combat;
+package inheritamon.view.world;
 
 import javax.swing.*;
 import java.awt.*;
