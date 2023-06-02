@@ -2,6 +2,8 @@ package inheritamon.view.combat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.awt.image.*;
 
 /**
  * The main panel for the battle screen
@@ -39,7 +41,7 @@ public class BattlePanel extends JPanel{
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
-        gbc.weighty = 0.1;
+        gbc.weighty = 0.08;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.BOTH;
         add(dialoguePanel, gbc);
@@ -69,7 +71,7 @@ public class BattlePanel extends JPanel{
         gbc.gridy = 1;
         gbc.gridheight = 2;
         gbc.weighty = 0.25;
-        gbc.weightx = 0.4;
+        gbc.weightx = 0.2;
         gbc.fill = GridBagConstraints.BOTH;
         add(choicePanel, gbc);
     }

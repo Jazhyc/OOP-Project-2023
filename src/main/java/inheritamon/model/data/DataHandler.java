@@ -6,24 +6,37 @@ import javax.imageio.ImageIO;
 
 import inheritamon.model.pokemon.moves.*;
 import java.awt.image.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * A class to handle and load data
  */
 public class DataHandler {
 
+    // Singleton pattern
+    private static DataHandler dataHandler;
+
     private HashMap<String, HashMap<String, String>> characterData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> moveData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> itemData = new HashMap<String, HashMap<String, String>>();
 
     private HashMap<String, HashMap<String, BufferedImage>> characterImages = new HashMap<String, HashMap<String, BufferedImage>>();
+    private HashMap<String, BufferedImage> icons = new HashMap<String, BufferedImage>();
 
     /**
      * The constructor for the DataHandler class
      */
-    public DataHandler() {
+    private DataHandler() {
         loadAllData();
+    }
+
+    public static DataHandler getInstance() {
+        if (dataHandler == null) {
+            dataHandler = new DataHandler();
+        }
+        return dataHandler;
     }
 
     // Obtained from https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
@@ -36,7 +49,8 @@ public class DataHandler {
         loadData(characterData, "monster_stats.csv");
         loadData(moveData, "move_stats.csv");
         loadData(itemData, "items.csv");
-        loadImages();
+        loadCharacterImages();
+        loadIcons();
 
     }
 
@@ -75,7 +89,7 @@ public class DataHandler {
 
     }
 
-    private void loadImages() {
+    private void loadCharacterImages() {
 
         try {
             // Go through all the keys in the characterData HashMap and load the images
@@ -92,6 +106,27 @@ public class DataHandler {
 
     }
 
+    private void loadIcons() {
+
+        try {
+            // Get all file names in the icons folder using File
+            File iconsFolder = new File(DataHandler.class.getResource("/icons/").toURI());
+            File[] iconFiles = iconsFolder.listFiles();
+
+            // Load each icon into the icons hashmap
+            for (File iconFile : iconFiles) {
+                String iconName = iconFile.getName().replace(".png", "");
+                BufferedImage iconImage = ImageIO.read(iconFile);
+                icons.put(iconName, iconImage);
+            }
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        
+
+    }
+
     /**
      * Returns the data of a character
      * @param characterName The name of the character
@@ -99,7 +134,7 @@ public class DataHandler {
      */
     public HashMap<String, String> getCharacterData(String characterName) {
         try {
-            return characterData.get(characterName);
+            return new HashMap<String, String>(characterData.get(characterName));
         } catch (NullPointerException e) {
             System.out.println("Character not found");
 
@@ -116,7 +151,7 @@ public class DataHandler {
      */
     public HashMap<String, String> getMoveData(String moveName) {
         try {
-            return moveData.get(moveName);
+            return new HashMap<String, String>(moveData.get(moveName));
         } catch (NullPointerException e) {
             System.out.println("Move not found");
 
@@ -128,7 +163,7 @@ public class DataHandler {
 
     public HashMap<String, String> getItemData(String itemName) {
         try {
-            return itemData.get(itemName);
+            return new HashMap<String, String>(itemData.get(itemName));
         } catch (NullPointerException e) {
             System.out.println("Item not found");
 
@@ -152,7 +187,7 @@ public class DataHandler {
                 abilities.put(moveName, ability);
             }
     
-            return abilities;
+            return new HashMap<String, NormalAbility>(abilities);
     }
 
     public HashMap<String, HashMap<String, BufferedImage>> getCharacterImages() {
@@ -168,7 +203,11 @@ public class DataHandler {
         
         ArrayList<String> moveSet = new ArrayList<String>(Arrays.asList(nonFormattedString.split(" ")));
 
-        return moveSet;
+        return new ArrayList<String>(moveSet);
+    }
+
+    public HashMap<String, BufferedImage> getIcons() {
+        return icons;
     }
 
 }

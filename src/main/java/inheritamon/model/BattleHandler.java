@@ -2,6 +2,7 @@ package inheritamon.model;
 
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
+import inheritamon.model.data.*;
 
 import java.util.*;
 
@@ -20,10 +21,10 @@ public class BattleHandler {
      * @param playerPokemon The player's pokemon
      * @param enemyPokemon The enemy pokemon
      */
-    public BattleHandler(Pokemon playerPokemon, Pokemon enemyPokemon, HashMap<String, NormalAbility> moveData) {
+    public BattleHandler(Pokemon playerPokemon, Pokemon enemyPokemon) {
         this.playerPokemon = playerPokemon;
         this.enemyPokemon = enemyPokemon;
-        this.moveData = moveData;
+        this.moveData = DataHandler.getInstance().getAllAbilities();
     }
 
     /**

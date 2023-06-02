@@ -20,9 +20,7 @@ public class Main {
     public static void main(String[] args) {
         
         // Create the data object and load all the move data
-        DataHandler dataHandler = new DataHandler();
-        HashMap<String, NormalAbility> moveData = dataHandler.getAllAbilities();
-        HashMap<String, HashMap<String, BufferedImage>> characterImages = dataHandler.getCharacterImages();
+        DataHandler dataHandler = DataHandler.getInstance();
 
 
         // Create a frame to display the game
@@ -44,7 +42,7 @@ public class Main {
         Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));
         Pokemon charizard = new Pokemon(dataHandler.getCharacterData("Charizard"));
 
-        BattleHandler battleHandler = new BattleHandler(charizard, groudon, moveData);
+        BattleHandler battleHandler = new BattleHandler(charizard, groudon);
         // battleHandler.startBattle();
 
         Item potion = new Item(dataHandler.getItemData("Potion"));
