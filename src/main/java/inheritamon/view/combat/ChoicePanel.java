@@ -3,10 +3,12 @@ package inheritamon.view.combat;
 import javax.swing.*;
 
 import inheritamon.model.data.DataHandler;
+import inheritamon.controller.BattleController;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
+
 
 public class ChoicePanel extends JPanel {
 
@@ -14,7 +16,7 @@ public class ChoicePanel extends JPanel {
 
     // Create an array for storing the name of the buttons
     String buttonNames[] = {"Fight", "Items", "Pokemon", "Run"};
-    private int buttonWidth = 32;
+    private int buttonWidth = 40;
 
     private HashMap<String, BufferedImage> buttonIcons = new HashMap<String, BufferedImage>();
 
@@ -23,7 +25,7 @@ public class ChoicePanel extends JPanel {
     // https://www.pngwing.com/en/free-png-iskzk
     // https://www.pngwing.com/en/free-png-xbwgg
 
-    public ChoicePanel() {
+    public ChoicePanel(BattleController controller) {
         
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
@@ -36,6 +38,10 @@ public class ChoicePanel extends JPanel {
             // Resize the image to 50x50
             BufferedImage icon = buttonIcons.get(buttonNames[i]);
             Image scaledIcon = icon.getScaledInstance(buttonWidth, buttonWidth, Image.SCALE_SMOOTH);
+
+            // Make buttons call the choose method in the controller
+            final int index = i;
+            buttons[i].addActionListener(e -> controller.selectChoice(buttonNames[index]));
 
             addButton(i);
             

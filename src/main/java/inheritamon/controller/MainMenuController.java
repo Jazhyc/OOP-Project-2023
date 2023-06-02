@@ -1,12 +1,8 @@
 package inheritamon.controller;
 
-import java.util.HashMap;
-
 import javax.swing.*;
 
-import inheritamon.model.BattleHandler;
 import inheritamon.view.combat.*;
-import java.awt.image.*;
 
 
 public class MainMenuController {

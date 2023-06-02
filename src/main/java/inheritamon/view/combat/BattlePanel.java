@@ -1,9 +1,10 @@
 package inheritamon.view.combat;
 
 import javax.swing.*;
+
+import inheritamon.controller.*;
+
 import java.awt.*;
-import java.util.*;
-import java.awt.image.*;
 
 /**
  * The main panel for the battle screen
@@ -18,12 +19,14 @@ public class BattlePanel extends JPanel{
 
     public BattlePanel() {
 
+        BattleController battleController = new BattleController();
+
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
         
         addPokemonDisplayPanel();
 
-        addChoicePanel();
+        addChoicePanel(battleController);
 
         addActionPanel();
 
@@ -41,7 +44,7 @@ public class BattlePanel extends JPanel{
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
-        gbc.weighty = 0.08;
+        gbc.weighty = 0.04;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.BOTH;
         add(dialoguePanel, gbc);
@@ -61,11 +64,11 @@ public class BattlePanel extends JPanel{
         add(actionPanel, gbc);
     }
 
-    private void addChoicePanel() {
+    private void addChoicePanel(BattleController battleController) {
         GridBagConstraints gbc;
         // Put the Choice Panel in the bottom left of the screen
         // Blue
-        choicePanel = new ChoicePanel();
+        choicePanel = new ChoicePanel(battleController);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
