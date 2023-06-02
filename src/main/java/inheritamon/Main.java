@@ -14,6 +14,7 @@ import inheritamon.controller.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,6 +22,7 @@ public class Main {
         // Create the data object and load all the move data
         DataHandler dataHandler = new DataHandler();
         HashMap<String, NormalAbility> moveData = dataHandler.getAllAbilities();
+        HashMap<String, HashMap<String, BufferedImage>> characterImages = dataHandler.getCharacterImages();
 
 
         // Create a frame to display the game

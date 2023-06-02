@@ -2,7 +2,11 @@ package inheritamon.model.data;
 
 import java.util.*;
 
+import javax.imageio.ImageIO;
+
 import inheritamon.model.pokemon.moves.*;
+import java.awt.image.*;
+import java.io.IOException;
 
 /**
  * A class to handle and load data
@@ -12,6 +16,8 @@ public class DataHandler {
     private HashMap<String, HashMap<String, String>> characterData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> moveData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> itemData = new HashMap<String, HashMap<String, String>>();
+
+    private HashMap<String, HashMap<String, BufferedImage>> characterImages = new HashMap<String, HashMap<String, BufferedImage>>();
 
     /**
      * The constructor for the DataHandler class
@@ -30,6 +36,7 @@ public class DataHandler {
         loadData(characterData, "monster_stats.csv");
         loadData(moveData, "move_stats.csv");
         loadData(itemData, "items.csv");
+        loadImages();
 
     }
 
@@ -65,6 +72,23 @@ public class DataHandler {
             Runtime.getRuntime().halt(0);
         }
        
+
+    }
+
+    private void loadImages() {
+
+        try {
+            // Go through all the keys in the characterData HashMap and load the images
+            for (String characterName : characterData.keySet()) {
+                HashMap<String, BufferedImage> characterImagesEntry = new HashMap<String, BufferedImage>();
+                characterImagesEntry.put("front", ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + ".png")));
+                characterImagesEntry.put("back", ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + "Back.png")));
+                characterImages.put(characterName, characterImagesEntry);
+            }
+        } catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
 
     }
 
@@ -129,6 +153,10 @@ public class DataHandler {
             }
     
             return abilities;
+    }
+
+    public HashMap<String, HashMap<String, BufferedImage>> getCharacterImages() {
+        return characterImages;
     }
 
     /**

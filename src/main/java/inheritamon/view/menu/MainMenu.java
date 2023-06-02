@@ -1,8 +1,6 @@
 package inheritamon.view.menu;
 
 import javax.swing.*;
-
-import inheritamon.Main;
 import inheritamon.controller.MainMenuController;
 
 import java.awt.*;
