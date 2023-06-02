@@ -10,7 +10,7 @@ import inheritamon.model.inventory.Item;
 public class InventoryPanel extends JPanel {
     private JButton addItem(int item) {
         JButton newItem = new JButton();
-        newItem.setIcon(getClass().getResource("item0.png"));
+        // newItem.setIcon(getClass().getResource("item0.png"));, Comment for now
         add(newItem);
         revalidate();
         return newItem;

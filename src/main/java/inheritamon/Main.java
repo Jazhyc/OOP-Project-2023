@@ -1,4 +1,5 @@
 package inheritamon;
+import inheritamon.controller.MainMenuController;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
@@ -7,9 +8,12 @@ import inheritamon.view.combat.*;
 import inheritamon.view.world.*;
 import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
+import inheritamon.view.inventory.*;
+import inheritamon.controller.*;
 
 import java.util.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,22 +30,9 @@ public class Main {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         // Create a Panel for the main menu
-        MainMenu mainMenu = new MainMenu();
+        MainMenuController mainMenuController = new MainMenuController(frame);
+        MainMenu mainMenu = new MainMenu(mainMenuController);
         frame.add(mainMenu);
-
-        // Create a panel to display the battle
-        PokemonBattlePanel pokemonPanel = new PokemonBattlePanel();
-        DialoguePanel dialoguePanel = new DialoguePanel();
-        InventoryPanel inventoryPanel = new InventoryPanel();
-        dialoguePanel.setTextToDisplay("Inventory:");
-        dialoguePanel.setTextToDisplay("A wild Groudon appeared!");
-
-        // Add dialogue panel to the bottom of the screen
-        frame.add(pokemonPanel);
-        frame.add(dialoguePanel);
-
-        // Add inventory panel to the right of the screen
-        frame.add(inventoryPanel);
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

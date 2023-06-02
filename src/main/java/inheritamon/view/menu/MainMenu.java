@@ -1,6 +1,10 @@
 package inheritamon.view.menu;
 
 import javax.swing.*;
+
+import inheritamon.Main;
+import inheritamon.controller.MainMenuController;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -9,7 +13,8 @@ public class MainMenu extends JPanel {
     private JLabel titleLabel;
     private JButton startButton;
 
-    public MainMenu() {
+    public MainMenu(MainMenuController controller) {
+
         setLayout(new GridBagLayout());
 
         titleLabel = new JLabel("Inheritamon");
@@ -25,6 +30,7 @@ public class MainMenu extends JPanel {
                 // Destroy this panel
                 setVisible(false);
                 setEnabled(false);
+                controller.startGame();
             }
         });
 
@@ -55,6 +61,7 @@ public class MainMenu extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;
+        gbc.insets = new Insets(20, 20, 20, 20);
         gbc.weightx = 0.0;
         gbc.weighty = 0.0;
         add(languageButton, gbc);
