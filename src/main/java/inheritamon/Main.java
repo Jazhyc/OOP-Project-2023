@@ -44,7 +44,6 @@ public class Main {
         frame.add(inventoryPanel);
 
 
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1024, 720);
         frame.setVisible(true);
