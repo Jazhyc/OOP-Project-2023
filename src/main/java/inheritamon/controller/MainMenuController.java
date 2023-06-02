@@ -2,6 +2,7 @@ package inheritamon.controller;
 
 import javax.swing.*;
 
+import inheritamon.model.BattleHandler;
 import inheritamon.view.combat.*;
 
 public class MainMenuController {
@@ -13,10 +14,9 @@ public class MainMenuController {
     }
 
     public void startGame() {
-        // Create a Panel for the main menu
-        DialoguePanel dialoguePanel = new DialoguePanel();
-        dialoguePanel.setTextToDisplay("This Works");
-        mainFrame.add(dialoguePanel);
+        // Create a Panel for the main menu, the battle panel constructor will take more arguments
+        BattlePanel battlePanel = new BattlePanel();
+        mainFrame.add(battlePanel);
         mainFrame.revalidate();
     }
     

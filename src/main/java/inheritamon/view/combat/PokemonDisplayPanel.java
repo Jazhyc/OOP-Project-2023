@@ -2,14 +2,14 @@ package inheritamon.view.combat;
 import javax.swing.*;
 import java.awt.*;
 
-public class DialoguePanel extends JPanel {
+public class PokemonDisplayPanel extends JPanel {
 
     private JTextArea textArea;
 
-    public DialoguePanel() {
+    public PokemonDisplayPanel() {
         
         // Change the color to red
-        setBackground(Color.YELLOW);
+        setBackground(Color.RED);
 
     }
 
