@@ -11,10 +11,12 @@ import java.awt.*;
 
 public class SpritePanel extends JPanel {
 
+    private static final int SHADOW_SIZE = 40;
+    private static final int SHADOW_DISPLACEMENT = 10;
     private BufferedImage imageToDisplay;
     private DisplayType type;
-    private int spriteSize = 256;
-    private int yOffset = 25;
+    private static final int SPRITE_SIZE = 256;
+    private static final int Y_OFFSET = 25;
 
     // Reference to the data handler
     private HashMap<String, HashMap<String, BufferedImage>> pokemonImages = new HashMap<String, HashMap<String, BufferedImage>>();
@@ -26,6 +28,8 @@ public class SpritePanel extends JPanel {
         pokemonImages = DataHandler.getInstance().getCharacterImages();
         // setRequiredImage(battleHandler.getCurrentPokemonName(type));
         setUp(battleHandler);
+
+        setOpaque(false);
         
     }
 
@@ -34,15 +38,27 @@ public class SpritePanel extends JPanel {
         super.paintComponent(g);
 
         // Calculate the x and y coordinates to center the image
-        int spriteX = (getWidth() - spriteSize) / 2;
-        int spriteY = (getHeight() - spriteSize) / 2;
+        int spriteX = (getWidth() - SPRITE_SIZE) / 2;
+        int spriteY = (getHeight() - SPRITE_SIZE) / 2;
 
         // If the type is the player, draw the image at the bottom
         if (type == DisplayType.PLAYER) {
-            spriteY = getHeight() - spriteSize;
+            spriteY = getHeight() - SPRITE_SIZE;
         }
 
-        g.drawImage(imageToDisplay, spriteX, spriteY + yOffset, spriteSize, spriteSize, null);
+        // Add a shadow under the image if the type is enemy
+        if (type == DisplayType.ENEMY) {
+            g.setColor(Color.BLACK);
+            
+            // Draw an oval with a gradient
+            g.fillOval(spriteX, spriteY + SPRITE_SIZE - SHADOW_SIZE + SHADOW_DISPLACEMENT, SPRITE_SIZE, SHADOW_SIZE);
+            g.setColor(new Color(0, 0, 0, 0));
+            g.fillOval(spriteX, spriteY + SPRITE_SIZE - SHADOW_SIZE + SHADOW_DISPLACEMENT, SPRITE_SIZE, SHADOW_SIZE);
+
+        }
+
+        g.drawImage(imageToDisplay, spriteX, spriteY + Y_OFFSET, SPRITE_SIZE, SPRITE_SIZE, null);
+
     }
 
     // Useful for the player since they can switch pokemon

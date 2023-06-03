@@ -3,3 +3,4 @@ Punch,1,A basic punch,Physical,0
 Kick,1,A basic kick,Physical,0
 Heal,1,Heal yourself,Healing,3
 Burn,2,Burn your opponent,Magical,5
+Squirt,2,Squirt water at your opponent,Magical,5

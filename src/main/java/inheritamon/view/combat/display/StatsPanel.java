@@ -25,6 +25,7 @@ public class StatsPanel extends JPanel {
     public StatsPanel(DisplayType type, BattleHandler battleHandler) {
         this.type = type;
         setUp(battleHandler);
+        setOpaque(false);
     }
 
     @Override

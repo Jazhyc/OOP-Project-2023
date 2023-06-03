@@ -103,11 +103,13 @@ public class BattleHandler {
         }
 
         if (playerPokemon.getHP() <= 0) {
-            System.out.println("You lost!");
+            notifyDialogueListener(playerPokemon.getName() + " fainted!");
+            wait(WAIT_TIME);
             notifyDialogueListener("You lost!");
             return 1;
         } else if (enemyPokemon.getHP() <= 0) {
-            System.out.println("You won!");
+            notifyDialogueListener(enemyPokemon.getName() + " fainted!");
+            wait(WAIT_TIME);
             notifyDialogueListener("You won!");
             return 2;
         }
