@@ -8,7 +8,7 @@ public class NormalAbility implements Ability {
     protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
     protected HashMap<String, String> stringStats = new HashMap<String, String>();
 
-    public void useMove(Pokemon enemy, Pokemon user) {
+    public int executeMove(Pokemon enemy, Pokemon user) {
 
         // Check if the user has enough MP to use the move
         int mp = user.getNumericalStat("MP");
@@ -16,7 +16,9 @@ public class NormalAbility implements Ability {
 
         if (mp < mpCost) {
             System.out.println("Not enough MP!");
-            return;
+
+            // -1 is used to indicate that the move was not used
+            return -1;
         }
 
         // Reduce the user's MP by the cost of the move
@@ -43,13 +45,15 @@ public class NormalAbility implements Ability {
             System.out.println("Magical raw damage: " + damage);
         } else if (type.equals("Healing")) {
             user.gainHP(damage);
-            return;
+            return -damage;
         } else {
             System.out.println("Unknown type!");
         }
         
 
-        enemy.takeDamage(damage, accuracy);
+        Integer calculatedDamage = enemy.takeDamage(damage, accuracy);
+
+        return calculatedDamage;
 
     }
 

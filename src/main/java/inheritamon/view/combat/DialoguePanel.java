@@ -1,15 +1,19 @@
 package inheritamon.view.combat;
 import javax.swing.*;
+
+import inheritamon.model.BattleHandler;
+
 import java.awt.*;
 
 public class DialoguePanel extends JPanel {
 
     private String textToDisplay = "A wild Pokemon appeared!";
 
-    public DialoguePanel() {
+    public DialoguePanel(BattleHandler battleHandler) {
 
         // Set color to White
         setBackground(Color.WHITE);
+        setUp(battleHandler);
 
     }
 
@@ -45,9 +49,14 @@ public class DialoguePanel extends JPanel {
         g.drawString(textToDisplay, x, y);
     }
 
-    public void setTextToDisplay(String text) {
-        textToDisplay = text;
+    private void setUp(BattleHandler battleHandler) {
+
+        battleHandler.addDialogueListener(e -> {
+            textToDisplay = (String) e.getNewValue();
+            revalidate();
+            repaint();
+        });
+
     }
-    
     
 }

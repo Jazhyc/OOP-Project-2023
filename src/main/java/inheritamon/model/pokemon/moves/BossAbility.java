@@ -14,11 +14,12 @@ public class BossAbility extends NormalAbility {
     }
 
     @Override
-    public void useMove(Pokemon target, Pokemon user) {
+    public int executeMove(Pokemon target, Pokemon user) {
 
         // Use a different damage formula maybe?
         turnCounter++;
         
+        return 0;
 
     }
     

@@ -20,6 +20,8 @@ public class BattleHandler {
     private HashMap<String, NormalAbility> moveData;
 
     private PropertyChangeListener moveListener;
+    private PropertyChangeListener dialogueListener;
+    private final int WAIT_TIME = 1000;
 
     // Create an array of 2 for the statListeners
     private PropertyChangeListener[] statListeners = new PropertyChangeListener[2];
@@ -56,6 +58,10 @@ public class BattleHandler {
         notifyMoveListener();
         notifyPokemonSpriteListener();
 
+        // Beginning of the battle
+        notifyDialogueListener("A wild " + enemyPokemon.getName() + " appeared!");
+        wait(WAIT_TIME);
+
         while (playerPokemon.getHP() > 0 && enemyPokemon.getHP() > 0) {
 
             // Print the HP and MP of both pokemon
@@ -66,6 +72,9 @@ public class BattleHandler {
             attacker = (turn % 2 == 0) ? playerPokemon : enemyPokemon;
             defender = (turn % 2 == 0) ? enemyPokemon : playerPokemon;
 
+            notifyDialogueListener("It's " + attacker.getName() + "'s turn!");
+            wait(WAIT_TIME);
+
             // Get the ability to use
             ability = attacker.useMove(defender.getAllNumericalStats());
 
@@ -75,9 +84,17 @@ public class BattleHandler {
                 continue;
             }
 
+            notifyDialogueListener(attacker.getName() + " used " + ability + "!");
+            wait(WAIT_TIME);
+
             // Use the ability
-            moveData.get(ability).useMove(defender, attacker);
+            Integer damageDealt = moveData.get(ability).executeMove(defender, attacker);
+
+            // Check the damage for display purposes
+            checkDamage(attacker, damageDealt);
+            
             notifyStatListener();
+            wait(WAIT_TIME);
 
             System.out.println("--------------------------------------");
 
@@ -87,13 +104,27 @@ public class BattleHandler {
 
         if (playerPokemon.getHP() <= 0) {
             System.out.println("You lost!");
+            notifyDialogueListener("You lost!");
             return 1;
         } else if (enemyPokemon.getHP() <= 0) {
             System.out.println("You won!");
+            notifyDialogueListener("You won!");
             return 2;
         }
 
         return 0;
+    }
+
+    private void checkDamage(Pokemon attacker, Integer damageDealt) {
+        if (damageDealt == -1) {
+            notifyDialogueListener("But" + attacker.getName() + " doesn't have enough MP!");
+        } else if (damageDealt < 0) {
+            notifyDialogueListener(attacker.getName() + " healed for " + Math.abs(damageDealt) + " HP!");
+        } else if (damageDealt > 0) {
+            notifyDialogueListener(attacker.getName() + " dealt " + damageDealt + " damage!");
+        } else {
+            notifyDialogueListener("But it missed!");
+        }
     }
 
     public void addMoveListener(PropertyChangeListener listener) {
@@ -158,6 +189,14 @@ public class BattleHandler {
         spriteListeners[1].propertyChange(new PropertyChangeEvent(this, "enemySprite", null, enemyPokemon.getName()));
     }
 
+    public void addDialogueListener(PropertyChangeListener listener) {
+        this.dialogueListener = listener;
+    }
+
+    private void notifyDialogueListener(String dialogue) {
+        dialogueListener.propertyChange(new PropertyChangeEvent(this, "dialogue", null, dialogue));
+    }
+
     public String getCurrentPokemonName(DisplayType type) {
         if (type == DisplayType.PLAYER) {
             return playerPokemon.getName();
@@ -168,6 +207,14 @@ public class BattleHandler {
 
     public PlayerPokemon getActivePlayerPokemon() {
         return (PlayerPokemon) playerPokemon;
+    }
+
+    private void wait(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     
 }

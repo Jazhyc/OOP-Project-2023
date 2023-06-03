@@ -18,7 +18,7 @@ public interface CombatEntity {
      * A method to take damage
      * @param damage The amount of damage to take
      */
-    public void takeDamage(int damage, int enemyAccuracy);
+    public int takeDamage(int damage, int enemyAccuracy);
 
     /**
      * A method to gain HP
