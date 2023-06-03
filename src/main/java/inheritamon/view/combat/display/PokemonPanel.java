@@ -18,14 +18,14 @@ public class PokemonPanel extends JPanel {
         int spritePanelY = (type == DisplayType.PLAYER) ? 1 : 0;
 
         // Add the stats panel and sprite panel to the Pokemon panel
-        addStatsPanel(statsPanelY);
+        addStatsPanel(statsPanelY, type);
         addSpritePanel(spritePanelY, type);
 
     }
 
-    private void addStatsPanel(int yPosition) {
+    private void addStatsPanel(int yPosition, DisplayType type) {
 
-        StatsPanel statsPanel = new StatsPanel(10, 10, 10, 10, "Charizard");
+        StatsPanel statsPanel = new StatsPanel(10, 10, 10, 10, "Charizard", type);
 
         // GridBagConstraints, make the stats panel smaller than the sprite panel
         GridBagConstraints gbc = new GridBagConstraints();

@@ -36,6 +36,11 @@ public class SpritePanel extends JPanel {
         int spriteX = (getWidth() - spriteSize) / 2;
         int spriteY = (getHeight() - spriteSize) / 2;
 
+        // If the type is the player, draw the image at the bottom
+        if (type == DisplayType.PLAYER) {
+            spriteY = getHeight() - spriteSize;
+        }
+
         g.drawImage(imageToDisplay, spriteX, spriteY + yOffset, spriteSize, spriteSize, null);
     }
 
