@@ -91,6 +91,7 @@ public class DataHandler {
 
     }
 
+    // Images are obtained from Pokemon
     private void loadCharacterImages() {
 
         try {

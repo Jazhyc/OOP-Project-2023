@@ -1,5 +1,4 @@
 package inheritamon;
-import inheritamon.controller.MainMenuController;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
@@ -30,7 +29,8 @@ public class Main {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         // Create a Panel for the main menu
-        MainMenuController mainMenuController = new MainMenuController(frame);
+        BattleController battleController = new BattleController(); // For now
+        MainMenuController mainMenuController = new MainMenuController(frame, battleController);
         MainMenu mainMenu = new MainMenu(mainMenuController);
         frame.add(mainMenu);
 

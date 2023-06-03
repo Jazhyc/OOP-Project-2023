@@ -3,6 +3,7 @@ package inheritamon.view.combat;
 import javax.swing.*;
 
 import inheritamon.model.data.DataHandler;
+import inheritamon.view.combat.actions.ActionPanel;
 import inheritamon.controller.BattleController;
 
 import java.awt.*;
@@ -25,7 +26,7 @@ public class ChoicePanel extends JPanel {
     // https://www.pngwing.com/en/free-png-iskzk
     // https://www.pngwing.com/en/free-png-xbwgg
 
-    public ChoicePanel(BattleController controller) {
+    public ChoicePanel(BattleController controller, ActionPanel actionPanel) {
         
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
