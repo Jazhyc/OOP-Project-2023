@@ -197,6 +197,14 @@ public class Pokemon implements CombatEntity {
     }
 
     /**
+     * A method to get the moves of the pokemon
+     * @return The moves of the pokemon
+     */
+    public ArrayList<String> getMoves() {
+        return moves;
+    }
+
+    /**
      * A method to get all stats of a pokemon
      * @return The values of all stats
      */

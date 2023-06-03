@@ -3,6 +3,7 @@ package inheritamon.view.combat;
 import javax.swing.*;
 
 import inheritamon.controller.*;
+import inheritamon.model.BattleHandler;
 import inheritamon.view.combat.actions.ActionPanel;
 import inheritamon.view.combat.display.BattleDisplayPanel;
 
@@ -19,14 +20,14 @@ public class BattlePanel extends JPanel{
     private ActionPanel actionPanel;
     private DialoguePanel dialoguePanel;
 
-    public BattlePanel(BattleController battleController) {
+    public BattlePanel(BattleController battleController, BattleHandler battleHandler) {
 
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
         
         addPokemonDisplayPanel();
 
-        addActionPanel();
+        addActionPanel(battleHandler, battleController);
 
         addChoicePanel(battleController, actionPanel);
 
@@ -50,11 +51,11 @@ public class BattlePanel extends JPanel{
         add(dialoguePanel, gbc);
     }
 
-    private void addActionPanel() {
+    private void addActionPanel(BattleHandler battleHandler, BattleController battleController) {
         GridBagConstraints gbc;
         // Put the Action Panel in the bottom right of the screen
         // Black
-        actionPanel = new ActionPanel();
+        actionPanel = new ActionPanel(battleHandler, battleController);
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 2;

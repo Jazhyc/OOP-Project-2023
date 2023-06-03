@@ -4,6 +4,8 @@ import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
 import inheritamon.model.data.*;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.*;
 
 /**
@@ -15,6 +17,8 @@ public class BattleHandler {
     private Pokemon playerPokemon;
     private Pokemon enemyPokemon;
     private HashMap<String, NormalAbility> moveData;
+
+    private PropertyChangeListener moveListener;
 
     /**
      * The constructor for the battle handler
@@ -39,6 +43,9 @@ public class BattleHandler {
         Pokemon attacker;
         Pokemon defender;
 
+        // This only needs to be executed when the pokemon changes
+        notifyMoveListener();
+
         while (playerPokemon.getHP() > 0 && enemyPokemon.getHP() > 0) {
 
             // Print the HP and MP of both pokemon
@@ -51,6 +58,12 @@ public class BattleHandler {
 
             // Get the ability to use
             ability = attacker.useMove(defender.getAllNumericalStats());
+
+            // Check if the ability is not null
+            if (ability == null) {
+                System.out.println("Unknown Error");
+                continue;
+            }
 
             // Use the ability
             moveData.get(ability).useMove(defender, attacker);
@@ -70,6 +83,25 @@ public class BattleHandler {
         }
 
         return 0;
+    }
+
+    public void addMoveListener(PropertyChangeListener listener) {
+        this.moveListener = listener;
+    }
+
+    private void notifyMoveListener() {
+        
+        // Create a string array of the moves
+        String[] moves = new String[playerPokemon.getMoves().size()];
+        for (int i = 0; i < playerPokemon.getMoves().size(); i++) {
+            moves[i] = playerPokemon.getMoves().get(i);
+        }
+
+        moveListener.propertyChange(new PropertyChangeEvent(this, "moves", null, moves));
+    }
+
+    public PlayerPokemon getActivePlayerPokemon() {
+        return (PlayerPokemon) playerPokemon;
     }
     
 }

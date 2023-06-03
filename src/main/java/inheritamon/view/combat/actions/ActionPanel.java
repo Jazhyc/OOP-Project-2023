@@ -1,6 +1,10 @@
 package inheritamon.view.combat.actions;
 
 import javax.swing.*;
+
+import inheritamon.model.BattleHandler;
+import inheritamon.controller.BattleController;
+
 import java.awt.*;
 
 public class ActionPanel extends JPanel {
@@ -8,7 +12,7 @@ public class ActionPanel extends JPanel {
     // Create an array for 3 panels to store the different actions
     private JPanel[] panels = new JPanel[3];
 
-    public ActionPanel() {
+    public ActionPanel(BattleHandler battleHandler, BattleController battleController) {
         
         // Use a grid bag layout for overlapping panels
         setLayout(new GridBagLayout());
@@ -22,7 +26,7 @@ public class ActionPanel extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
 
         // Create the panels for the different actions
-        panels[0] = new MovePanel();
+        panels[0] = new MovePanel(battleHandler, battleController);
         panels[1] = new PokemonSelectionPanel();
         panels[2] = new ItemsPanel();
 

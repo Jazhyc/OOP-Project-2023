@@ -28,9 +28,14 @@ public class Main {
         // Use a border layout
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
+        Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));
+        Pokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
+
+        BattleHandler battleHandler = new BattleHandler(charizard, groudon);
+
         // Create a Panel for the main menu
-        BattleController battleController = new BattleController(); // For now
-        MainMenuController mainMenuController = new MainMenuController(frame, battleController);
+        BattleController battleController = new BattleController(battleHandler); // For now
+        MainMenuController mainMenuController = new MainMenuController(frame, battleController, battleHandler);
         MainMenu mainMenu = new MainMenu(mainMenuController);
         frame.add(mainMenu);
 
@@ -39,12 +44,6 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1366, 768);
         frame.setVisible(true);
-
-        Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));
-        Pokemon charizard = new Pokemon(dataHandler.getCharacterData("Charizard"));
-
-        BattleHandler battleHandler = new BattleHandler(charizard, groudon);
-        // battleHandler.startBattle();
 
         Item potion = new Item(dataHandler.getItemData("Potion"));
         Item inheritaball = new Item(dataHandler.getItemData("Inheritaball"));
