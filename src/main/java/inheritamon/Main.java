@@ -29,7 +29,7 @@ public class Main {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));
-        Pokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
+        Pokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
 
         BattleHandler battleHandler = new BattleHandler(charizard, groudon);
 

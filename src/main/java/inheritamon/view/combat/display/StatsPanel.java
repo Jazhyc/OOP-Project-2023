@@ -32,6 +32,9 @@ public class StatsPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        // Calculate the width of the bars based on the window width
+        barWidth = getWidth() / 2;
+
         // Calculate the center
         int centerX = getWidth() / 2;
         int centerY = getHeight() / 2;

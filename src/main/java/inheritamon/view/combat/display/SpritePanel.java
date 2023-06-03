@@ -11,11 +11,18 @@ import java.awt.*;
 
 public class SpritePanel extends JPanel {
 
+    /**
+     *
+     */
+    private static final double SHADOW_PLACEMENT = 0.85;
+    /**
+     *
+     */
+    private static final double SPRITE_SCALE_FACTOR = 2.5;
     private static final int SHADOW_SIZE = 40;
-    private static final int SHADOW_DISPLACEMENT = 10;
     private BufferedImage imageToDisplay;
     private DisplayType type;
-    private static final int SPRITE_SIZE = 256;
+    private int spriteSize = 256;
     private static final int Y_OFFSET = 25;
 
     // Reference to the data handler
@@ -37,13 +44,16 @@ public class SpritePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        // Calculate sprite size based on window width
+        spriteSize = (int) (getWidth() / SPRITE_SCALE_FACTOR);
+
         // Calculate the x and y coordinates to center the image
-        int spriteX = (getWidth() - SPRITE_SIZE) / 2;
-        int spriteY = (getHeight() - SPRITE_SIZE) / 2;
+        int spriteX = (getWidth() - spriteSize) / 2;
+        int spriteY = (getHeight() - spriteSize) / 2;
 
         // If the type is the player, draw the image at the bottom
         if (type == DisplayType.PLAYER) {
-            spriteY = getHeight() - SPRITE_SIZE;
+            spriteY = getHeight() - spriteSize;
         }
 
         // Add a shadow under the image if the type is enemy
@@ -51,13 +61,13 @@ public class SpritePanel extends JPanel {
             g.setColor(Color.BLACK);
             
             // Draw an oval with a gradient
-            g.fillOval(spriteX, spriteY + SPRITE_SIZE - SHADOW_SIZE + SHADOW_DISPLACEMENT, SPRITE_SIZE, SHADOW_SIZE);
+            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_PLACEMENT), spriteSize, SHADOW_SIZE);
             g.setColor(new Color(0, 0, 0, 0));
-            g.fillOval(spriteX, spriteY + SPRITE_SIZE - SHADOW_SIZE + SHADOW_DISPLACEMENT, SPRITE_SIZE, SHADOW_SIZE);
+            g.fillOval(spriteX, (int) (spriteY + spriteSize * 0.8), spriteSize, SHADOW_SIZE);
 
         }
 
-        g.drawImage(imageToDisplay, spriteX, spriteY + Y_OFFSET, SPRITE_SIZE, SPRITE_SIZE, null);
+        g.drawImage(imageToDisplay, spriteX, spriteY + Y_OFFSET, spriteSize, spriteSize, null);
 
     }
 
