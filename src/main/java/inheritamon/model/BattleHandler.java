@@ -2,6 +2,7 @@ package inheritamon.model;
 
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
+import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
 import inheritamon.model.data.*;
 
 import java.beans.PropertyChangeEvent;
@@ -19,6 +20,12 @@ public class BattleHandler {
     private HashMap<String, NormalAbility> moveData;
 
     private PropertyChangeListener moveListener;
+
+    // Create an array of 2 for the statListeners
+    private PropertyChangeListener[] statListeners = new PropertyChangeListener[2];
+
+    // Same for the sprites
+    private PropertyChangeListener[] spriteListeners = new PropertyChangeListener[2];
 
     /**
      * The constructor for the battle handler
@@ -43,8 +50,11 @@ public class BattleHandler {
         Pokemon attacker;
         Pokemon defender;
 
-        // This only needs to be executed when the pokemon changes
+        notifyStatListener();
+
+        // These only need to be executed when the pokemon changes
         notifyMoveListener();
+        notifyPokemonSpriteListener();
 
         while (playerPokemon.getHP() > 0 && enemyPokemon.getHP() > 0) {
 
@@ -67,6 +77,7 @@ public class BattleHandler {
 
             // Use the ability
             moveData.get(ability).useMove(defender, attacker);
+            notifyStatListener();
 
             System.out.println("--------------------------------------");
 
@@ -98,6 +109,61 @@ public class BattleHandler {
         }
 
         moveListener.propertyChange(new PropertyChangeEvent(this, "moves", null, moves));
+    }
+
+    public void addStatListener(PropertyChangeListener listener) {
+        
+        // Add the listener to the array
+        for (int i = 0; i < statListeners.length; i++) {
+            if (statListeners[i] == null) {
+                statListeners[i] = listener;
+                break;
+            }
+        }
+
+    }
+
+    private void notifyStatListener() {
+
+        // Get the stats for the player pokemon
+        int[] playerStats = getPokemonDisplayStats(playerPokemon);
+        statListeners[0].propertyChange(new PropertyChangeEvent(this, "playerStats", null, playerStats));
+
+        // Get the stats for the enemy pokemon
+        int[] enemyStats = getPokemonDisplayStats(enemyPokemon);
+        statListeners[1].propertyChange(new PropertyChangeEvent(this, "enemyStats", null, enemyStats));
+    }
+
+    private int[] getPokemonDisplayStats(Pokemon pokemon) {
+        int[] stats = new int[4];
+        stats[0] = pokemon.getHP();
+        stats[1] = pokemon.getNumericalStat("MaxHP");
+        stats[2] = pokemon.getMP();
+        stats[3] = pokemon.getNumericalStat("MaxMP");
+        return stats;
+    }
+
+    public void addPokemonSpriteListener(PropertyChangeListener listener) {
+        // Add the listener to the array
+        for (int i = 0; i < spriteListeners.length; i++) {
+            if (spriteListeners[i] == null) {
+                spriteListeners[i] = listener;
+                break;
+            }
+        }
+    }
+
+    private void notifyPokemonSpriteListener() {
+        spriteListeners[0].propertyChange(new PropertyChangeEvent(this, "playerSprite", null, playerPokemon.getName()));
+        spriteListeners[1].propertyChange(new PropertyChangeEvent(this, "enemySprite", null, enemyPokemon.getName()));
+    }
+
+    public String getCurrentPokemonName(DisplayType type) {
+        if (type == DisplayType.PLAYER) {
+            return playerPokemon.getName();
+        } else {
+            return enemyPokemon.getName();
+        }
     }
 
     public PlayerPokemon getActivePlayerPokemon() {

@@ -1,5 +1,6 @@
 package inheritamon.view.combat.display;
 
+import inheritamon.model.BattleHandler;
 import inheritamon.model.data.DataHandler;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
 
@@ -10,7 +11,7 @@ import java.awt.*;
 
 public class SpritePanel extends JPanel {
 
-    private volatile BufferedImage imageToDisplay;
+    private BufferedImage imageToDisplay;
     private DisplayType type;
     private int spriteSize = 256;
     private int yOffset = 25;
@@ -18,13 +19,13 @@ public class SpritePanel extends JPanel {
     // Reference to the data handler
     private HashMap<String, HashMap<String, BufferedImage>> pokemonImages = new HashMap<String, HashMap<String, BufferedImage>>();
 
-    public SpritePanel(String pokemon, DisplayType type) {
+    public SpritePanel(BattleHandler battleHandler, DisplayType type) {
 
         // Set the type
         this.type = type;
         pokemonImages = DataHandler.getInstance().getCharacterImages();
-        setRequiredImage(pokemon);
-        
+        // setRequiredImage(battleHandler.getCurrentPokemonName(type));
+        setUp(battleHandler);
         
     }
 
@@ -57,6 +58,30 @@ public class SpritePanel extends JPanel {
 
         revalidate();
         repaint();
+    }
+
+    private void setUp(BattleHandler battleHandler) {
+
+        battleHandler.addPokemonSpriteListener(e -> {
+
+            // Use a ternary operator to determine what the event name should be based on the type
+            String eventName = type == DisplayType.PLAYER ? "playerSprite" : "enemySprite";
+            
+            // Check if the event is for the right pokemon
+            if (e.getPropertyName().equals(eventName)) {
+
+                // Get the right pokemon name
+                String pokemonName = battleHandler.getCurrentPokemonName(type);
+                System.out.println("Pokemon name: " + pokemonName);
+                setRequiredImage(pokemonName);
+
+                // Repaint the panel
+                revalidate();
+                repaint();
+
+            }
+
+        });
     }
     
 }

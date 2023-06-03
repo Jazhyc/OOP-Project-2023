@@ -1,6 +1,7 @@
 package inheritamon.view.combat.display;
 
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
+import inheritamon.model.BattleHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 public class PokemonPanel extends JPanel {
 
     // Display the pokemon differently depending on whether it is the player's or the enemy's
-    public PokemonPanel(DisplayType type) {
+    public PokemonPanel(DisplayType type, BattleHandler battleHandler) {
 
         // Use a grid bag layout
         setLayout(new GridBagLayout());
@@ -18,14 +19,14 @@ public class PokemonPanel extends JPanel {
         int spritePanelY = (type == DisplayType.PLAYER) ? 1 : 0;
 
         // Add the stats panel and sprite panel to the Pokemon panel
-        addStatsPanel(statsPanelY, type);
-        addSpritePanel(spritePanelY, type);
+        addStatsPanel(statsPanelY, type, battleHandler);
+        addSpritePanel(spritePanelY, type, battleHandler);
 
     }
 
-    private void addStatsPanel(int yPosition, DisplayType type) {
+    private void addStatsPanel(int yPosition, DisplayType type, BattleHandler battleHandler) {
 
-        StatsPanel statsPanel = new StatsPanel(10, 10, 10, 10, "Charizard", type);
+        StatsPanel statsPanel = new StatsPanel(type, battleHandler);
 
         // GridBagConstraints, make the stats panel smaller than the sprite panel
         GridBagConstraints gbc = new GridBagConstraints();
@@ -39,9 +40,9 @@ public class PokemonPanel extends JPanel {
 
     }
 
-    private void addSpritePanel(int yPosition, DisplayType type) {
+    private void addSpritePanel(int yPosition, DisplayType type, BattleHandler battleHandler) {
 
-        SpritePanel spritePanel = new SpritePanel("Charizard", type);
+        SpritePanel spritePanel = new SpritePanel(battleHandler, type);
 
         // GridBagConstraints, make the sprite panel larger than the stats panel
         GridBagConstraints gbc = new GridBagConstraints();

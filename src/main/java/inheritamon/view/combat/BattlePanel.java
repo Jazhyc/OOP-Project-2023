@@ -25,7 +25,7 @@ public class BattlePanel extends JPanel{
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
         
-        addPokemonDisplayPanel();
+        addPokemonDisplayPanel(battleHandler);
 
         addActionPanel(battleHandler, battleController);
 
@@ -80,10 +80,10 @@ public class BattlePanel extends JPanel{
         add(choicePanel, gbc);
     }
 
-    private void addPokemonDisplayPanel() {
+    private void addPokemonDisplayPanel(BattleHandler battleHandler) {
         // Put the Pokemon Display Panel in the top half of the screen
         // Red
-        battleDisplayPanel = new BattleDisplayPanel();
+        battleDisplayPanel = new BattleDisplayPanel(battleHandler);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
