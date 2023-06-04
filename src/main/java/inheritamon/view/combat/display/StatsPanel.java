@@ -107,7 +107,7 @@ public class StatsPanel extends JPanel {
         float difference = newValue - oldValue;
 
         // Calculate the amount to change the value by each frame
-        float changePerFrame = difference / duration;
+        float changePerMoment = difference / duration;
 
         // Create a new timer to tween the value
         Timer timer = new Timer(1, null);
@@ -118,7 +118,7 @@ public class StatsPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Add the change per frame to the old value
-                incrementValue += changePerFrame;
+                incrementValue += changePerMoment;
 
                 // Set the attribute value using reflection
                 try {

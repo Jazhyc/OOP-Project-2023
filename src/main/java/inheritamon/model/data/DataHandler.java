@@ -232,7 +232,11 @@ public class DataHandler {
      * @return The background image
      */
     public BufferedImage getBackground(String backgroundName) {
-        return battleBackgrounds.get(backgroundName);
+        BufferedImage background = battleBackgrounds.get(backgroundName);
+        if (background == null) {
+            throw new IllegalArgumentException("Background not found: " + backgroundName);
+        }
+        return background;
     }
 
 }
