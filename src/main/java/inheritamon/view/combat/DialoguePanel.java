@@ -24,6 +24,12 @@ public class DialoguePanel extends JPanel {
         // Create a border around the panel
         setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
 
+        // Add a gradient background
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setPaint(new GradientPaint(0, 0, Color.WHITE, 0, getHeight(), Color.LIGHT_GRAY));
+        g2.fillRect(0, 0, getWidth(), getHeight());
+        
+
         displayText(g);
 
     }
