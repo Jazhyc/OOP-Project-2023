@@ -2,25 +2,45 @@ package inheritamon;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
-import inheritamon.model.pokemon.moves.*;
-import inheritamon.view.combat.*;
-import inheritamon.view.world.*;
+import inheritamon.view.LanguageSelector;
 import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
-import inheritamon.view.inventory.*;
 import inheritamon.controller.*;
 
 import java.util.*;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+
+import static inheritamon.GameState.LANGUAGE_SELECTION;
+import static inheritamon.controller.TrainerRegion.KANTO;
 
 public class Main {
+    private static Locale currentLocale;
+    private static GameState currentState;
+    public static void setLocale(Locale locale) {
+        currentLocale = locale;
+    }
+    public static void setState(GameState state) {
+        currentState = state;
+    }
+    public GameState getState() {
+       return currentState;
+    }
     public static void main(String[] args) {
+
+        LanguageSelector languageSelector = new LanguageSelector();
+
+        while(currentState == LANGUAGE_SELECTION) {
+        }
+
+//        Locale locale = new Locale("en", "NL"); // set this based on mouse clicks.
+        Discourse textMessages = new Discourse(currentLocale);
+        System.out.println("test");
+        System.out.println(textMessages.getMessage("startMessage")); // replace with graphics.
+
+//        JFrame startScreen = new JFrame("Start Screen");
         
         // Create the data object and load all the move data
         DataHandler dataHandler = DataHandler.getInstance();
-
 
         // Create a frame to display the game
         JFrame frame = new JFrame("Inheritamon");
@@ -52,5 +72,16 @@ public class Main {
         inventory.addItem(inheritaball);
         inventory.printInventory();
 
+        String username = "Ash";
+        TrainerRegion region = KANTO;
+//        TrainerAbility ability = SWIMMING;
+        WorldCoordinates currentLocation = new WorldCoordinates(0,0);
+
+        PokemonTrainer user = new PokemonTrainer(username, region) {
+            @Override
+            public void savePlayerState() {
+                setSaveLocation(currentLocation);
+            }
+        };
     }
 }

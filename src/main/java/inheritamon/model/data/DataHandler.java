@@ -4,7 +4,6 @@ import java.util.*;
 
 import javax.imageio.ImageIO;
 
-import inheritamon.controller.Language;
 import inheritamon.model.pokemon.moves.*;
 import java.awt.image.*;
 import java.io.File;
@@ -24,7 +23,6 @@ public class DataHandler {
     private HashMap<String, HashMap<String, String>> itemData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, BufferedImage>> characterImages = new HashMap<String, HashMap<String, BufferedImage>>();
     private HashMap<String, BufferedImage> icons = new HashMap<String, BufferedImage>();
-    private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
 
     /**
      * The constructor for the DataHandler class

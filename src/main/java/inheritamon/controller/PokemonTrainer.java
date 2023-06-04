@@ -1,14 +1,17 @@
 package inheritamon.controller;
+
+import inheritamon.model.data.WorldCoordinates;
+import inheritamon.model.inventory.Inventory;
+
 public abstract class PokemonTrainer implements Player {
     private String username;
     private TrainerRegion region;
-    private Language language;
     private TrainerAbility ability;
-    PokemonTrainer(String username, TrainerRegion region, Language language) {
+    private Inventory inventory;
+    private WorldCoordinates saveLocation;
+    public PokemonTrainer(String username, TrainerRegion region) {
         this.username = username;
         this.region = region;
-        this.language = language;
-        loadDialogueOptions();
     }
     public String getUsername() {
         return username;
@@ -16,18 +19,12 @@ public abstract class PokemonTrainer implements Player {
     public TrainerRegion getRegion() {
         return region;
     }
-    public void setLanguage(Language language) {
-        this.language = language;
-        loadDialogueOptions();
+    public TrainerAbility getTrainerAbility() {
+        return ability;
     }
-    public Language getLanguage() {
-        return language;
-    }
-
     public void setTrainerAbility() {}
-
-    public void loadDialogueOptions() {
-
+    public void setSaveLocation(WorldCoordinates saveLocation) {
+        this.saveLocation = saveLocation;
     }
 
 }
