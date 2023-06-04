@@ -72,8 +72,10 @@ public class Pokemon implements CombatEntity {
     /**
      * A method to take damage, takes agility and defense into account
      * @param damage The amount of damage to take
+     * @param enemyAccuracy The accuracy of the enemy
+     * @return The amount of damage taken after defense and agility are taken into account
      */
-    public void takeDamage(int damage, int enemyAccuracy) {
+    public int takeDamage(int damage, int enemyAccuracy) {
 
         // Calculate the chance to dodge, simple addition
         int chanceToDodge = numericalStats.get("Agi") - enemyAccuracy + BASE_DODGE_CHANCE;
@@ -103,6 +105,9 @@ public class Pokemon implements CombatEntity {
         if (numericalStats.get("HP") <= 0) {
             faint();
         }
+
+        // Return the damage taken
+        return damageToTake;
 
     }
 

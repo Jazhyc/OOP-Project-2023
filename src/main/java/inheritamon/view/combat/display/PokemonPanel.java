@@ -13,6 +13,9 @@ public class PokemonPanel extends JPanel {
 
         // Use a grid bag layout
         setLayout(new GridBagLayout());
+        
+        // Make this panel transparent
+        setOpaque(false);
 
         // Use a ternary operator to set the y position of the stats panel and sprite panel
         int statsPanelY = (type == DisplayType.PLAYER) ? 0 : 1;

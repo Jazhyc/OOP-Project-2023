@@ -12,8 +12,9 @@ public interface Ability {
     /**
      * The method to use the move
      * @param target The target of the move
+     * @return The damage dealt / health restored
      */
-    public void useMove(Pokemon target, Pokemon user);
+    public int executeMove(Pokemon target, Pokemon user);
 
     /**
      * A method to set up the move

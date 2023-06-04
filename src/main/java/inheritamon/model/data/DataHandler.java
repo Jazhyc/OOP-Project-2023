@@ -23,6 +23,8 @@ public class DataHandler {
     private HashMap<String, HashMap<String, String>> itemData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, BufferedImage>> characterImages = new HashMap<String, HashMap<String, BufferedImage>>();
     private HashMap<String, BufferedImage> icons = new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> battleBackgrounds = new HashMap<String, BufferedImage>();
+    private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
 
     /**
      * The constructor for the DataHandler class
@@ -49,7 +51,8 @@ public class DataHandler {
         loadData(moveData, "move_stats.csv");
         loadData(itemData, "items.csv");
         loadCharacterImages();
-        loadIcons();
+        loadGeneralImages(icons, "icons");
+        loadGeneralImages(battleBackgrounds, "battleBackgrounds");
         // loadConversations(dialogueData, "dialogues.csv");
 
     }
@@ -107,18 +110,18 @@ public class DataHandler {
 
     }
 
-    private void loadIcons() {
+    private void loadGeneralImages(HashMap<String, BufferedImage> images, String folderName) {
 
         try {
             // Get all file names in the icons folder using File
-            File iconsFolder = new File(DataHandler.class.getResource("/icons/").toURI());
+            File iconsFolder = new File(DataHandler.class.getResource("/" + folderName + "/").toURI());
             File[] iconFiles = iconsFolder.listFiles();
 
             // Load each icon into the icons hashmap
             for (File iconFile : iconFiles) {
                 String iconName = iconFile.getName().replace(".png", "");
                 BufferedImage iconImage = ImageIO.read(iconFile);
-                icons.put(iconName, iconImage);
+                images.put(iconName, iconImage);
             }
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
@@ -220,6 +223,19 @@ public class DataHandler {
 
     public HashMap<String, BufferedImage> getIcons() {
         return icons;
+    }
+
+    /**
+     * Returns a single image since there can only be one background at a time
+     * @param backgroundName
+     * @return The background image
+     */
+    public BufferedImage getBackground(String backgroundName) {
+        BufferedImage background = battleBackgrounds.get(backgroundName);
+        if (background == null) {
+            throw new IllegalArgumentException("Background not found: " + backgroundName);
+        }
+        return background;
     }
 
 }

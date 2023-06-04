@@ -31,16 +31,16 @@ public class BattlePanel extends JPanel{
 
         addChoicePanel(battleController, actionPanel);
 
-        addDialoguePanel();
+        addDialoguePanel(battleHandler);
 
 
     }
 
-    private void addDialoguePanel() {
+    private void addDialoguePanel(BattleHandler battleHandler) {
         GridBagConstraints gbc;
         // Put the dialogue Panel in between the Pokemon Display Panel and the Choice Panel
         // Yellow
-        dialoguePanel = new DialoguePanel();
+        dialoguePanel = new DialoguePanel(battleHandler);
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
