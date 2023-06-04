@@ -119,7 +119,7 @@ public class BattleHandler {
 
     private void checkDamage(Pokemon attacker, Integer damageDealt) {
         if (damageDealt == -1) {
-            notifyDialogueListener("But" + attacker.getName() + " doesn't have enough MP!");
+            notifyDialogueListener("But " + attacker.getName() + " doesn't have enough MP!");
         } else if (damageDealt < 0) {
             notifyDialogueListener(attacker.getName() + " healed for " + Math.abs(damageDealt) + " HP!");
         } else if (damageDealt > 0) {

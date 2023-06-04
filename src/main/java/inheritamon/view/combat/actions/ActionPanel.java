@@ -3,16 +3,23 @@ package inheritamon.view.combat.actions;
 import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
+import inheritamon.model.data.DataHandler;
 import inheritamon.controller.BattleController;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class ActionPanel extends JPanel {
 
     // Create an array for 3 panels to store the different actions
     private JPanel[] panels = new JPanel[3];
 
+    private BufferedImage background;
+
     public ActionPanel(BattleHandler battleHandler, BattleController battleController) {
+
+        DataHandler dataHandler = DataHandler.getInstance();
+        background = dataHandler.getBackground("greenPanel");
         
         // Use a grid bag layout for overlapping panels
         setLayout(new GridBagLayout());
@@ -39,6 +46,12 @@ public class ActionPanel extends JPanel {
             add(panel, gbc);
         }
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
     }
     
 }
