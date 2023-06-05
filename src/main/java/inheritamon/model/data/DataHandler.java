@@ -24,7 +24,7 @@ public class DataHandler {
     private HashMap<String, HashMap<String, BufferedImage>> characterImages = new HashMap<String, HashMap<String, BufferedImage>>();
     private HashMap<String, BufferedImage> icons = new HashMap<String, BufferedImage>();
     private HashMap<String, BufferedImage> battleBackgrounds = new HashMap<String, BufferedImage>();
-    private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
+    // private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
 
     /**
      * The constructor for the DataHandler class

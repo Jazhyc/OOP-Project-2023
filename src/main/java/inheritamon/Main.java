@@ -15,7 +15,7 @@ import static inheritamon.controller.TrainerRegion.KANTO;
 
 public class Main {
     private static Locale currentLocale;
-    private static GameState currentState;
+    private static volatile GameState currentState;
     public static void setLocale(Locale locale) {
         currentLocale = locale;
     }
@@ -31,6 +31,8 @@ public class Main {
 
         while(currentState == LANGUAGE_SELECTION) {
         }
+
+        System.out.println(currentLocale.getLanguage() + " " + currentLocale.getCountry());
 
 //        Locale locale = new Locale("en", "NL"); // set this based on mouse clicks.
         Discourse textMessages = new Discourse(currentLocale);
