@@ -3,10 +3,8 @@ package inheritamon.model.tile;
 import inheritamon.model.data.DataHandler;
 import inheritamon.view.world.GamePanel;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 

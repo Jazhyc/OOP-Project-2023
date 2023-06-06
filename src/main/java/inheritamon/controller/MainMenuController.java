@@ -3,9 +3,6 @@ package inheritamon.controller;
 import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
-import inheritamon.model.data.DataHandler;
-import inheritamon.model.pokemon.PlayerPokemon;
-import inheritamon.model.pokemon.Pokemon;
 import inheritamon.view.combat.*;
 
 

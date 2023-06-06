@@ -134,7 +134,7 @@ public class DataHandler {
     }
         
 
-    private void loadConversations() {
+//    private void loadConversations() {
 //        try {
 //            // Go through all localizations and load the corresponding dialogue options.
 //            for (NonPlayerCharacter npc : NPCs) {
@@ -144,7 +144,7 @@ public class DataHandler {
 //            e.printStackTrace();
 //            System.exit(-1);
 //        }
-    }
+//    }
 
     /**
      * Returns the data of a character

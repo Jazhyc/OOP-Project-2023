@@ -1,6 +1,5 @@
 package inheritamon.view.world;
 
-import inheritamon.model.entity.*;
 import inheritamon.model.tile.*;
 import inheritamon.controller.*;
 
@@ -16,8 +15,8 @@ public class GamePanel extends JPanel implements Runnable{ // has all the functi
     public final int tileSize = originalTileSize * scale; // 48x48 tile
     public final int maxScreenCol = 28;
     public final int maxScreenRow = 16;
-    public final int screenWidth = tileSize * maxScreenCol; //768 pixels
-    public final int screenHeight = tileSize * maxScreenRow; //576 pixels
+    public final int screenWidth = tileSize * maxScreenCol;
+    public final int screenHeight = tileSize * maxScreenRow;
 
     //WORLD SETTINGS
     public final int maxWorldCol = 50;
@@ -35,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable{ // has all the functi
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
-    
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);

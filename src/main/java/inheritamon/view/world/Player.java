@@ -3,13 +3,8 @@ package inheritamon.view.world;
 import inheritamon.controller.PlayerKeyHandler;
 import inheritamon.model.entity.Entity;
 import inheritamon.model.data.DataHandler;
-
-import javax.imageio.ImageIO;
-
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Player extends Entity {
 
@@ -57,7 +52,7 @@ public class Player extends Entity {
         left2 = dh.getCharacterTexture("Left 2");
 
     }
-
+    
     public void update(){
 
         if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
