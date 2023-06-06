@@ -48,13 +48,6 @@ public class Main {
         // Create a frame to display the game
         JFrame frame = new JFrame("Inheritamon");
 
-        // Implement the map here for now
-        GamePanel gamePanel = new GamePanel();
-        frame.add(gamePanel);
-        frame.pack();
-
-        gamePanel.startGameThread();
-
         // Use a border layout
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -67,7 +60,7 @@ public class Main {
         BattleController battleController = new BattleController(battleHandler); // For now
         MainMenuController mainMenuController = new MainMenuController(frame, battleController, battleHandler);
         MainMenu mainMenu = new MainMenu(mainMenuController);
-        // frame.add(mainMenu);
+        frame.add(mainMenu);
 
         // Prevent the user from resizing the window
         frame.setResizable(true);
