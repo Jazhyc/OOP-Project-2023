@@ -3,7 +3,8 @@ package inheritamon.controller;
 import inheritamon.model.data.WorldCoordinates;
 import inheritamon.model.inventory.Inventory;
 
-public abstract class PokemonTrainer implements Player {
+// Commented out for now
+public abstract class PokemonTrainer {
     private String username;
     private TrainerRegion region;
     private TrainerAbility ability;
