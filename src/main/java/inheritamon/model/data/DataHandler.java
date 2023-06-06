@@ -146,16 +146,11 @@ public class DataHandler {
 //        }
 //    }
 
-    /**
-     * Returns the data of a character
-     * @param characterName The name of the character
-     * @return The data of the character
-     */
-    public HashMap<String, String> getCharacterData(String characterName) {
+    private HashMap<String, String> getData(HashMap<String, HashMap<String, String>> dataMap, String dataName, String dataType) {
         try {
-            return new HashMap<String, String>(characterData.get(characterName));
+            return new HashMap<String, String>(dataMap.get(dataName));
         } catch (NullPointerException e) {
-            System.out.println("Character not found");
+            System.out.println(dataType + " not found");
 
             // Exit the program, hopefully
             Runtime.getRuntime().halt(0);
@@ -163,33 +158,16 @@ public class DataHandler {
         }
     }
 
-    /**
-     * Returns the data of a move
-     * @param moveName The name of the move
-     * @return The data of the move
-     */
-    public HashMap<String, String> getMoveData(String moveName) {
-        try {
-            return new HashMap<String, String>(moveData.get(moveName));
-        } catch (NullPointerException e) {
-            System.out.println("Move not found");
+    public HashMap<String, String> getCharacterData(String characterName) {
+        return getData(characterData, characterName, "Character");
+    }
 
-            // Exit the program, hopefully
-            Runtime.getRuntime().halt(0);
-            return null;
-        }
+    public HashMap<String, String> getMoveData(String moveName) {
+        return getData(moveData, moveName, "Move");
     }
 
     public HashMap<String, String> getItemData(String itemName) {
-        try {
-            return new HashMap<String, String>(itemData.get(itemName));
-        } catch (NullPointerException e) {
-            System.out.println("Item not found");
-
-            // Exit the program, hopefully
-            Runtime.getRuntime().halt(0);
-            return null;
-        }
+        return getData(itemData, itemName, "Item");
     }
 
     /**
@@ -229,33 +207,24 @@ public class DataHandler {
         return icons;
     }
 
-    /**
-     * Returns a single image since there can only be one background at a time
-     * @param backgroundName
-     * @return The background image
-     */
-    public BufferedImage getBackground(String backgroundName) {
-        BufferedImage background = battleBackgrounds.get(backgroundName);
-        if (background == null) {
-            throw new IllegalArgumentException("Background not found: " + backgroundName);
+    private <T> T getImage(Map<String, T> imageMap, String imageName, String imageType) {
+        T image = imageMap.get(imageName);
+        if (image == null) {
+            throw new IllegalArgumentException(imageType + " not found: " + imageName);
         }
-        return background;
+        return image;
+    }
+
+    public BufferedImage getBackground(String backgroundName) {
+        return getImage(battleBackgrounds, backgroundName, "Background");
     }
 
     public BufferedImage getTileImage(String tileName) {
-        BufferedImage tile = tiles.get(tileName);
-        if (tile == null) {
-            throw new IllegalArgumentException("Tile not found: " + tileName);
-        }
-        return tile;
+        return getImage(tiles, tileName, "Tile");
     }
 
     public BufferedImage getCharacterTexture(String textureName) {
-        BufferedImage texture = characterTextures.get(textureName);
-        if (texture == null) {
-            throw new IllegalArgumentException("Texture not found: " + textureName);
-        }
-        return texture;
+        return getImage(characterTextures, textureName, "Texture");
     }
 
 }
