@@ -24,6 +24,8 @@ public class DataHandler {
     private HashMap<String, HashMap<String, BufferedImage>> characterImages = new HashMap<String, HashMap<String, BufferedImage>>();
     private HashMap<String, BufferedImage> icons = new HashMap<String, BufferedImage>();
     private HashMap<String, BufferedImage> battleBackgrounds = new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> tiles = new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> characterTextures = new HashMap<String, BufferedImage>();
     // private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
 
     /**
@@ -53,6 +55,8 @@ public class DataHandler {
         loadCharacterImages();
         loadGeneralImages(icons, "icons");
         loadGeneralImages(battleBackgrounds, "battleBackgrounds");
+        loadGeneralImages(tiles, "tiles");
+        loadGeneralImages(characterTextures, "characterTextures");
         // loadConversations(dialogueData, "dialogues.csv");
 
     }
@@ -236,6 +240,22 @@ public class DataHandler {
             throw new IllegalArgumentException("Background not found: " + backgroundName);
         }
         return background;
+    }
+
+    public BufferedImage getTileImage(String tileName) {
+        BufferedImage tile = tiles.get(tileName);
+        if (tile == null) {
+            throw new IllegalArgumentException("Tile not found: " + tileName);
+        }
+        return tile;
+    }
+
+    public BufferedImage getCharacterTexture(String textureName) {
+        BufferedImage texture = characterTextures.get(textureName);
+        if (texture == null) {
+            throw new IllegalArgumentException("Texture not found: " + textureName);
+        }
+        return texture;
     }
 
 }

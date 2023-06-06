@@ -1,5 +1,6 @@
 package inheritamon.model.tile;
 
+import inheritamon.model.data.DataHandler;
 import inheritamon.view.world.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -28,18 +29,16 @@ public class TileManager {
 
     public void getTileImage() {
 
-        try {
+        DataHandler dh = DataHandler.getInstance();
 
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/mapTextures/Pass.png"));
 
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/mapTextures/NotPass.png"));
-            tile[1].collision = true;
+        tile[0] = new Tile();
+        tile[0].image = dh.getTileImage("Pass");
 
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+        tile[1] = new Tile();
+        tile[1].image = dh.getTileImage("NotPass");
+        tile[1].collision = true;
+
     }
 
     public void loadMap(String filePath) {

@@ -2,8 +2,10 @@ package inheritamon.view.world;
 
 import inheritamon.controller.PlayerKeyHandler;
 import inheritamon.model.entity.Entity;
+import inheritamon.model.data.DataHandler;
 
 import javax.imageio.ImageIO;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -41,20 +43,19 @@ public class Player extends Entity {
         direction = "down";
     }
     public void getPlayerImage() {
-        try {
-            //load all character sprites
-            up1 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Back 1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Back 2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Front 1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Front 2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Right 1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Right 2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Left 1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/characterTextures/Left 2.png"));
 
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        DataHandler dh = DataHandler.getInstance();
+
+        //load all character sprites
+        up1 = dh.getCharacterTexture("Back 1");
+        up2 = dh.getCharacterTexture("Back 2");
+        down1 = dh.getCharacterTexture("Front 1");
+        down2 = dh.getCharacterTexture("Front 2");
+        right1 = dh.getCharacterTexture("Right 1");
+        right2 = dh.getCharacterTexture("Right 2");
+        left1 = dh.getCharacterTexture("Left 1");
+        left2 = dh.getCharacterTexture("Left 2");
+
     }
 
     public void update(){
