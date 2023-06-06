@@ -26,6 +26,9 @@ public class Main {
     public GameState getState() {
        return currentState;
     }
+
+    public static final int SCREEN_WIDTH = 1366;
+    public static final int SCREEN_HEIGHT = 768;
     public static void main(String[] args) {
 
 //         LanguageSelector languageSelector = new LanguageSelector();
@@ -63,9 +66,9 @@ public class Main {
         frame.add(mainMenu);
 
         // Prevent the user from resizing the window
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1366, 768);
+        frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         frame.setVisible(true);
 
         Item potion = new Item(dataHandler.getItemData("Potion"));

@@ -1,7 +1,7 @@
 package inheritamon.model.tile;
 
 import inheritamon.model.data.DataHandler;
-import inheritamon.view.world.GamePanel;
+import inheritamon.view.world.WorldPanel;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -10,11 +10,11 @@ import java.io.InputStreamReader;
 
 public class TileManager {
 
-    GamePanel gp;
+    WorldPanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
 
-    public TileManager(GamePanel gp) {
+    public TileManager(WorldPanel gp) {
 
         this.gp = gp;
 

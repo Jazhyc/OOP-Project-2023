@@ -1,4 +1,4 @@
-package inheritamon.controller;
+package inheritamon.controller.world;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,6 +15,8 @@ public class PlayerKeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode(); // returns the integer keyCode
+
+        System.out.println("Key pressed: " + code);
 
         if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             upPressed = true;

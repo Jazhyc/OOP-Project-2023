@@ -1,20 +1,20 @@
 package inheritamon.view.world;
 
-import inheritamon.controller.PlayerKeyHandler;
 import inheritamon.model.entity.Entity;
+import inheritamon.controller.world.PlayerKeyHandler;
 import inheritamon.model.data.DataHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
-    GamePanel gp;
+    WorldPanel gp;
     PlayerKeyHandler keyH;
 
     public final int screenX;
     public final int screenY;
 
-    public Player(GamePanel gp, PlayerKeyHandler keyH){
+    public Player(WorldPanel gp, PlayerKeyHandler keyH){
         this.gp = gp;
         this.keyH = keyH;
 

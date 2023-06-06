@@ -4,8 +4,8 @@ import inheritamon.model.entity.*;
 
 public class CollisionChecker {
 
-    GamePanel gp;
-    public CollisionChecker(GamePanel gp) {
+    WorldPanel gp;
+    public CollisionChecker(WorldPanel gp) {
         this.gp = gp;
     }
 
