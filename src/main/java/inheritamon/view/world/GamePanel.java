@@ -2,7 +2,6 @@ package inheritamon.view.world;
 
 import inheritamon.model.entity.*;
 import inheritamon.model.tile.*;
-import inheritamon.model.world.*;
 import inheritamon.controller.*;
 
 import javax.swing.*;
