@@ -5,6 +5,7 @@ import javax.swing.*;
 import inheritamon.model.BattleHandler;
 import inheritamon.view.combat.*;
 import inheritamon.view.world.GamePanel;
+import inheritamon.view.world.Player;
 
 
 public class MainMenuController {
@@ -21,12 +22,14 @@ public class MainMenuController {
 
     public void startGame() {
 
+        PlayerKeyHandler playerKeyHandler = new PlayerKeyHandler();
+
         // Implement the map here for now
-        GamePanel gamePanel = new GamePanel();
+        GamePanel gamePanel = new GamePanel(playerKeyHandler);
         mainFrame.add(gamePanel);
         mainFrame.pack();
-        gamePanel.requestFocusInWindow();
         gamePanel.startGameThread();
+        gamePanel.requestFocusInWindow();
 
         // Create a Panel for the main menu, the battle panel constructor will take more arguments
         // BattlePanel battlePanel = new BattlePanel(battleController, battleHandler);

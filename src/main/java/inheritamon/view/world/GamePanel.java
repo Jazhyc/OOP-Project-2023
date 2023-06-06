@@ -25,26 +25,31 @@ public class GamePanel extends JPanel implements Runnable{ // has all the functi
     public final int worldHeight = tileSize * maxWorldRow;
 
     int FPS = 60; // the FPS of the game
-    TileManager tileM = new TileManager(this);
-    PlayerKeyHandler keyH = new PlayerKeyHandler();
+    TileManager tileM;
+    PlayerKeyHandler keyH;
     Thread gameThread; // game time
-    public CollisionChecker cChecker = new CollisionChecker(this);
-    public Player player = new Player(this,keyH);
+    public CollisionChecker cChecker;
+    public Player player;
     //Default position of the player
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
 
-    public GamePanel() {
+    public GamePanel(PlayerKeyHandler keyH) {
+        
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true); // enabling this can improve game rendering performance
         this.addKeyListener(keyH);
         this.setFocusable(true);
+
+        tileM = new TileManager(this);
+        this.keyH = keyH;
+        cChecker = new CollisionChecker(this);
+        player = new Player(this, keyH);
     }
 
     public void startGameThread() {
-
         gameThread = new Thread(this);
         gameThread.start();
     }
