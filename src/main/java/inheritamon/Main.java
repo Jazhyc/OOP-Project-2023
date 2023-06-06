@@ -28,17 +28,17 @@ public class Main {
     }
     public static void main(String[] args) {
 
-        LanguageSelector languageSelector = new LanguageSelector();
+//         LanguageSelector languageSelector = new LanguageSelector();
 
-        while(currentState == LANGUAGE_SELECTION) {
-        }
+//         while(currentState == LANGUAGE_SELECTION) {
+//         }
 
-        System.out.println(currentLocale.getLanguage() + " " + currentLocale.getCountry());
+//         System.out.println(currentLocale.getLanguage() + " " + currentLocale.getCountry());
 
-//        Locale locale = new Locale("en", "NL"); // set this based on mouse clicks.
-        Discourse textMessages = new Discourse(currentLocale);
-        System.out.println("test");
-        System.out.println(textMessages.getMessage("startMessage")); // replace with graphics.
+// //        Locale locale = new Locale("en", "NL"); // set this based on mouse clicks.
+//         Discourse textMessages = new Discourse(currentLocale);
+//         System.out.println("test");
+//         System.out.println(textMessages.getMessage("startMessage")); // replace with graphics.
 
 //        JFrame startScreen = new JFrame("Start Screen");
         
