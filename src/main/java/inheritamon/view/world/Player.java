@@ -1,16 +1,15 @@
-package inheritamon.model.entity;
+package inheritamon.view.world;
 
 import inheritamon.controller.PlayerKeyHandler;
+import inheritamon.model.entity.Entity;
 
 import javax.imageio.ImageIO;
-
-import inheritamon.view.world.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     GamePanel gp;
     PlayerKeyHandler keyH;
