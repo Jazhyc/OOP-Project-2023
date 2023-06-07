@@ -34,9 +34,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     int playerY = 100;
     int playerSpeed = 4;
 
-    SidePanel sidePanel;
-
-    public WorldPanel() {
+    public WorldPanel(SidePanel sidePanel) {
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -45,7 +43,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         this.requestFocus();
 
         tileM = new TileManager(this);
-        keyH = new PlayerKeyHandler(this);
+        keyH = new PlayerKeyHandler(this, sidePanel);
         cChecker = new CollisionChecker(this);
         player = new Player(this, keyH);
 

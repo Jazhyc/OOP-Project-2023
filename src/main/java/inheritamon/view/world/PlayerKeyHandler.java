@@ -7,7 +7,7 @@ public class PlayerKeyHandler {
 
     private boolean upPressed, downPressed, leftPressed, rightPressed;
 
-    public PlayerKeyHandler(JComponent component) {
+    public PlayerKeyHandler(JComponent component, SidePanel sidePanel) {
         InputMap inputMap = component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = component.getActionMap();
 
@@ -80,6 +80,15 @@ public class PlayerKeyHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 rightPressed = false;
+            }
+        });
+
+        // If escape is pressed, change the visibility of the side panel
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "escape pressed");
+        actionMap.put("escape pressed", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sidePanel.setVisible(!sidePanel.isVisible());
             }
         });
     }
