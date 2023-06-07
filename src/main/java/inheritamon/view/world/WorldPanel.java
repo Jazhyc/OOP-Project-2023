@@ -1,7 +1,6 @@
 package inheritamon.view.world;
 
 import inheritamon.model.tile.*;
-import inheritamon.controller.*;
 import inheritamon.controller.world.PlayerKeyHandler;
 
 import javax.swing.*;
@@ -43,11 +42,11 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true); // enabling this can improve game rendering performance
-        this.addKeyListener(keyH);
         this.setFocusable(true);
+        this.requestFocus();
 
         tileM = new TileManager(this);
-        this.keyH = new PlayerKeyHandler();
+        keyH = new PlayerKeyHandler(this);
         cChecker = new CollisionChecker(this);
         player = new Player(this, keyH);
 

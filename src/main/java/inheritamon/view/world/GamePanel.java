@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import inheritamon.Main;
-import inheritamon.controller.world.PlayerKeyHandler;
 
 public class GamePanel extends JPanel {
 
