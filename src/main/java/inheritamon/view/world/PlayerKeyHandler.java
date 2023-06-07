@@ -17,6 +17,8 @@ public class PlayerKeyHandler {
 
         this.sidePanel = sidePanel;
 
+        // It appears that using a modifier like shift or ctrl is not possible with this method
+
         // Define the key bindings and actions
         Map<Integer, String> keyBindings = new HashMap<>();
         keyBindings.put(KeyEvent.VK_W, "up");
@@ -24,6 +26,12 @@ public class PlayerKeyHandler {
         keyBindings.put(KeyEvent.VK_A, "left");
         keyBindings.put(KeyEvent.VK_D, "right");
         keyBindings.put(KeyEvent.VK_ESCAPE, "escape");
+
+        // Add support for arrow keys as well
+        keyBindings.put(KeyEvent.VK_UP, "up");
+        keyBindings.put(KeyEvent.VK_DOWN, "down");
+        keyBindings.put(KeyEvent.VK_LEFT, "left");
+        keyBindings.put(KeyEvent.VK_RIGHT, "right");
 
         // Bind the keys to their corresponding actions using a loop
         for (Map.Entry<Integer, String> entry : keyBindings.entrySet()) {
@@ -33,6 +41,15 @@ public class PlayerKeyHandler {
             // Bind the key press and release events to their corresponding actions
             inputMap.put(KeyStroke.getKeyStroke(keyCode, 0), actionName + " pressed");
             inputMap.put(KeyStroke.getKeyStroke(keyCode, 0, true), actionName + " released");
+
+            // Account for modifiers as well
+            // Ugly, but it works
+            inputMap.put(KeyStroke.getKeyStroke(keyCode, InputEvent.SHIFT_DOWN_MASK), actionName + " pressed");
+            inputMap.put(KeyStroke.getKeyStroke(keyCode, InputEvent.SHIFT_DOWN_MASK, true), actionName + " released");
+            inputMap.put(KeyStroke.getKeyStroke(keyCode, InputEvent.CTRL_DOWN_MASK), actionName + " pressed");
+            inputMap.put(KeyStroke.getKeyStroke(keyCode, InputEvent.CTRL_DOWN_MASK, true), actionName + " released");
+            inputMap.put(KeyStroke.getKeyStroke(keyCode, InputEvent.ALT_DOWN_MASK), actionName + " pressed");
+            inputMap.put(KeyStroke.getKeyStroke(keyCode, InputEvent.ALT_DOWN_MASK, true), actionName + " released");
 
             // Define the actions for the key press and release events
             actionMap.put(actionName + " pressed", new AbstractAction() {
@@ -54,6 +71,7 @@ public class PlayerKeyHandler {
                 }
             });
         }
+        
     }
 
 private void setKeyState(String actionName, boolean state) {
