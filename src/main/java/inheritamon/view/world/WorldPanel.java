@@ -1,7 +1,6 @@
 package inheritamon.view.world;
 
 import inheritamon.model.tile.*;
-import inheritamon.controller.world.PlayerKeyHandler;
 
 import javax.swing.*;
 import java.awt.*;

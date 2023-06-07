@@ -1,11 +1,11 @@
-package inheritamon.controller.world;
+package inheritamon.view.world;
 
 import javax.swing.*;
 import java.awt.event.*;
 
 public class PlayerKeyHandler {
 
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    private boolean upPressed, downPressed, leftPressed, rightPressed;
 
     public PlayerKeyHandler(JComponent component) {
         InputMap inputMap = component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);

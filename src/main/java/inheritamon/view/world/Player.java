@@ -1,7 +1,6 @@
 package inheritamon.view.world;
 
 import inheritamon.model.entity.Entity;
-import inheritamon.controller.world.PlayerKeyHandler;
 import inheritamon.model.data.DataHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;

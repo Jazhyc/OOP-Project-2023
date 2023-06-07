@@ -2,7 +2,6 @@ package inheritamon.controller;
 
 import javax.swing.*;
 
-import inheritamon.controller.world.PlayerKeyHandler;
 import inheritamon.model.BattleHandler;
 import inheritamon.view.combat.*;
 import inheritamon.view.world.*;
