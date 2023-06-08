@@ -6,7 +6,7 @@ import inheritamon.model.pokemon.types.Pokemon;
 /**
  * A class specifically for bosses to use
  */
-public class BossAbility extends NormalAbility {
+public class BossAbility extends Ability {
 
     private Integer turnCounter = 0;
 

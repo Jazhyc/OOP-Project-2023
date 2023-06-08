@@ -4,10 +4,7 @@ import java.util.HashMap;
 
 import inheritamon.model.pokemon.types.Pokemon;
 
-public class NormalAbility implements Ability {
-
-    protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
-    protected HashMap<String, String> stringStats = new HashMap<String, String>();
+public class NormalAbility extends Ability {
 
     public int executeMove(Pokemon enemy, Pokemon user) {
 
@@ -58,21 +55,8 @@ public class NormalAbility implements Ability {
 
     }
 
-    public void setUp(HashMap<String, String> moveData) {
-        
-        // Loop through the data and put it into the correct HashMap
-        for (String key : moveData.keySet()) {
-            try {
-                numericalStats.put(key, Integer.parseInt(moveData.get(key)));
-            } catch (NumberFormatException e) {
-                stringStats.put(key, moveData.get(key));
-            }
-        }
-
-    }
-
     public NormalAbility(HashMap<String, String> moveData) {
-        setUp(moveData);
+        super(moveData);
     }
     
 }

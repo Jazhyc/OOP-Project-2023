@@ -7,19 +7,35 @@ import inheritamon.model.pokemon.types.Pokemon;
 /**
  * An interface for all moves
  */
-public interface Ability {
+public abstract class Ability {
+
+    protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
+    protected HashMap<String, String> stringStats = new HashMap<String, String>();
 
     /**
      * The method to use the move
      * @param target The target of the move
      * @return The damage dealt / health restored
      */
-    public int executeMove(Pokemon target, Pokemon user);
+    public abstract int executeMove(Pokemon target, Pokemon user);
 
     /**
      * A method to set up the move
      * @param moveData The data of the move
      */
-    public void setUp(HashMap<String, String> moveData);
+    public void setUp(HashMap<String, String> moveData) {
+        // Loop through the data and put it into the correct HashMap
+        for (String key : moveData.keySet()) {
+            try {
+                numericalStats.put(key, Integer.parseInt(moveData.get(key)));
+            } catch (NumberFormatException e) {
+                stringStats.put(key, moveData.get(key));
+            }
+        }
+    }
+
+    public Ability(HashMap<String, String> moveData) {
+        setUp(moveData);
+    }
     
 }
