@@ -33,6 +33,8 @@ public class BattlePanel extends JPanel{
 
         addDialoguePanel(battleHandler);
 
+        setUpListener(battleHandler);
+
 
     }
 
@@ -92,6 +94,14 @@ public class BattlePanel extends JPanel{
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.BOTH;
         add(battleDisplayPanel, gbc);
+    }
+
+    private void setUpListener(BattleHandler battleHandler) {
+        // Add a listener to the battleHandler to update the display
+        battleHandler.addConclusionListener(e -> {
+            // Update the display
+            setVisible(false);
+        });
     }
     
 }

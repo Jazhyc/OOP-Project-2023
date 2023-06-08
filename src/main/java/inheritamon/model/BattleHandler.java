@@ -21,6 +21,7 @@ public class BattleHandler {
     private PropertyChangeListener moveListener;
     private PropertyChangeListener dialogueListener;
     private PropertyChangeListener playerRosterListener;
+    private PropertyChangeListener conclusionListener;
     private final int WAIT_TIME = 1000;
 
     // Create an array of 2 for the statListeners
@@ -141,21 +142,33 @@ public class BattleHandler {
 
         }
 
+        int conclusion;
+
+        conclusion = determineConclusion(playerRoster, enemyPokemon);
+        notifyConclusionListener(conclusion);
+
+        return conclusion;
+    }
+
+    private int determineConclusion(PlayerRoster playerRoster, Pokemon enemyPokemon) {
+        
+        int conclusion;
         if (enemyPokemon.getHP() <= 0) {
             notifyDialogueListener(enemyPokemon.getName() + " fainted!");
             wait(WAIT_TIME);
             notifyDialogueListener("You won!");
-            return 2;
-        }
-
-        if (playerRoster.allFainted()) {
+            conclusion = 2;
+        } else if (playerRoster.allFainted()) {
             notifyDialogueListener("All your pokemon fainted!");
             wait(WAIT_TIME);
             notifyDialogueListener("You lost!");
-            return 1;
+            conclusion = 1;
+        } else {
+            conclusion = 0;
         }
 
-        return 1;
+        wait(WAIT_TIME);
+        return conclusion;
     }
 
     private void getPokemonToSwitchTo(PlayerRoster playerRoster, Pokemon enemyPokemon, String ability) {
@@ -269,6 +282,14 @@ public class BattleHandler {
         Pokemon[] playerRosterArray = playerRoster.getRoster();
 
         playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, playerRosterArray));
+    }
+
+    public void addConclusionListener(PropertyChangeListener listener) {
+        this.conclusionListener = listener;
+    }
+
+    private void notifyConclusionListener(int conclusion) {
+        conclusionListener.propertyChange(new PropertyChangeEvent(this, "conclusion", null, conclusion));
     }
 
     public String getCurrentPokemonName(DisplayType type) {
