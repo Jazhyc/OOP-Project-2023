@@ -37,6 +37,10 @@ public class TileManager {
         tile[1].image = dh.getTileImage("NotPass");
         tile[1].collision = true;
 
+        tile[2] = new Tile();
+        tile[2].image = dh.getCharacterTexture("Front 1");
+        tile[2].collision = true;
+
     }
 
     public void loadMap(String filePath) {

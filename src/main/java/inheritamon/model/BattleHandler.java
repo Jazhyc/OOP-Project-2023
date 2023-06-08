@@ -14,13 +14,11 @@ import java.util.*;
  */
 public class BattleHandler {
 
-    // Reference to required objects
-    private Pokemon playerPokemon;
-    private Pokemon enemyPokemon;
     private HashMap<String, NormalAbility> moveData;
 
     private PropertyChangeListener moveListener;
     private PropertyChangeListener dialogueListener;
+    private PropertyChangeListener playerRosterListener;
     private final int WAIT_TIME = 1000;
 
     // Create an array of 2 for the statListeners
@@ -29,15 +27,32 @@ public class BattleHandler {
     // Same for the sprites
     private PropertyChangeListener[] spriteListeners = new PropertyChangeListener[2];
 
+    private Pokemon playerPokemon;
+    private Pokemon enemyPokemon;
+    private Pokemon[] playerRoster;
+    private int turn;
+
     /**
      * The constructor for the battle handler
-     * @param playerPokemon The player's pokemon
-     * @param enemyPokemon The enemy pokemon
      */
-    public BattleHandler(Pokemon playerPokemon, Pokemon enemyPokemon) {
-        this.playerPokemon = playerPokemon;
-        this.enemyPokemon = enemyPokemon;
+    public BattleHandler() {
         this.moveData = DataHandler.getInstance().getAllAbilities();
+    }
+
+    // Create function that calls battleLoop in a separate thread
+    public void startBattle(Pokemon[] playerPokemons, Pokemon enemyPokemon) {
+
+        // Create a new thread
+        Thread battleThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                battleLoop(playerPokemons, enemyPokemon);
+            }
+        });
+
+        // Start the thread
+        battleThread.start();
+
     }
 
     /**
@@ -45,18 +60,23 @@ public class BattleHandler {
      * @return The result of the battle, can be victory, defeat or a draw
      * 1 = defeat, 2 = victory, 0 = draw
      */
-    public int startBattle() {
+    private int battleLoop(Pokemon[] playerPokemons, Pokemon enemyPokemon) {
 
-        int turn = 0;
+        turn = 0;
         String ability;
         Pokemon attacker;
         Pokemon defender;
 
-        notifyStatListener();
+        playerRoster = playerPokemons;
+        playerPokemon = playerPokemons[0];
+        this.enemyPokemon = enemyPokemon;
+
+        notifyStatListener(playerPokemon, enemyPokemon);
 
         // These only need to be executed when the pokemon changes
-        notifyMoveListener();
-        notifyPokemonSpriteListener();
+        notifyMoveListener(playerPokemon);
+        notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
+        notifyPlayerRosterListener();
 
         // Beginning of the battle
         notifyDialogueListener("A wild " + enemyPokemon.getName() + " appeared!");
@@ -93,7 +113,7 @@ public class BattleHandler {
             // Check the damage for display purposes
             checkDamage(attacker, damageDealt);
             
-            notifyStatListener();
+            notifyStatListener(playerPokemon, enemyPokemon);
             wait(WAIT_TIME);
 
             System.out.println("--------------------------------------");
@@ -133,7 +153,7 @@ public class BattleHandler {
         this.moveListener = listener;
     }
 
-    private void notifyMoveListener() {
+    private void notifyMoveListener(Pokemon playerPokemon) {
         
         // Create a string array of the moves
         String[] moves = new String[playerPokemon.getMoves().size()];
@@ -156,7 +176,7 @@ public class BattleHandler {
 
     }
 
-    private void notifyStatListener() {
+    private void notifyStatListener(Pokemon playerPokemon, Pokemon enemyPokemon) {
 
         // Get the stats for the player pokemon
         int[] playerStats = getPokemonDisplayStats(playerPokemon);
@@ -186,7 +206,7 @@ public class BattleHandler {
         }
     }
 
-    private void notifyPokemonSpriteListener() {
+    private void notifyPokemonSpriteListener(Pokemon playerPokemon, Pokemon enemyPokemon) {
         spriteListeners[0].propertyChange(new PropertyChangeEvent(this, "playerSprite", null, playerPokemon.getName()));
         spriteListeners[1].propertyChange(new PropertyChangeEvent(this, "enemySprite", null, enemyPokemon.getName()));
     }
@@ -197,6 +217,14 @@ public class BattleHandler {
 
     private void notifyDialogueListener(String dialogue) {
         dialogueListener.propertyChange(new PropertyChangeEvent(this, "dialogue", null, dialogue));
+    }
+
+    public void addPlayerRosterListener(PropertyChangeListener listener) {
+        this.playerRosterListener = listener;
+    }
+
+    private void notifyPlayerRosterListener() {
+        playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, playerRoster));
     }
 
     public String getCurrentPokemonName(DisplayType type) {
@@ -217,6 +245,30 @@ public class BattleHandler {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void changeActivePokemon(int index) {
+
+        // Run this on a new thread
+        new Thread(() -> {
+
+            // Get the new pokemon
+            playerPokemon = playerRoster[index];
+
+            // Notify the listeners
+            notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
+            notifyDialogueListener("You sent out " + playerPokemon.getName() + "!");
+            wait(WAIT_TIME);
+            notifyDialogueListener("Select a move!");
+
+        }).start();
+
+    }
+
+    public boolean isPlayerTurn() {
+        
+        return turn % 2 == 0;
+
     }
     
 }

@@ -22,4 +22,14 @@ public class BattleController {
 
     }
 
+    public void selectPokemon(int index) {
+
+        // Check if it's the player's turn
+        if (!battleHandler.isPlayerTurn()) {
+            return;
+        }
+        
+        battleHandler.changeActivePokemon(index);
+    }
+
 }

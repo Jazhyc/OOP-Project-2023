@@ -191,6 +191,10 @@ public class DataHandler {
         return characterImages;
     }
 
+    public HashMap<String, BufferedImage> getPokemonSprite(String pokemonName) {
+        return characterImages.get(pokemonName);
+    }
+
     /**
      * Converts a string of moves into an ArrayList of moves
      * @param nonFormattedString

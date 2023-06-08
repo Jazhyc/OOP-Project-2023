@@ -3,6 +3,7 @@ package inheritamon.view.combat.actions;
 import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
+import inheritamon.model.pokemon.Pokemon;
 import inheritamon.model.data.DataHandler;
 import inheritamon.controller.BattleController;
 
@@ -34,8 +35,8 @@ public class ActionPanel extends JPanel {
 
         // Create the panels for the different actions
         panels[0] = new MovePanel(battleHandler, battleController);
-        panels[1] = new PokemonSelectionPanel();
-        panels[2] = new ItemsPanel();
+        panels[1] = new ItemsPanel();
+        panels[2] = new PokemonSelectionPanel(battleHandler, battleController);
 
         // Make the pokemon selection and items panel invisible
         panels[1].setVisible(false);
@@ -52,6 +53,17 @@ public class ActionPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+    }
+
+    public void changePanelVisibilityTo(int index) {
+            
+            // Make all panels invisible
+            for (JPanel panel : panels) {
+                panel.setVisible(false);
+            }
+    
+            // Make the panel at the given index visible
+            panels[index].setVisible(true);
     }
     
 }

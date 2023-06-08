@@ -55,13 +55,19 @@ public class Main {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));
+        Pokemon blastoise = new Pokemon(dataHandler.getCharacterData("Blastoise"));
         Pokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
 
-        BattleHandler battleHandler = new BattleHandler(charizard, groudon);
+        // Make an array of pokemon called playerpokemons
+        Pokemon[] playerPokemons = new Pokemon[2];
+        playerPokemons[0] = charizard;
+        playerPokemons[1] = blastoise;
+
+        BattleHandler battleHandler = new BattleHandler();
 
         // Create a Panel for the main menu
         BattleController battleController = new BattleController(battleHandler); // For now
-        MainMenuController mainMenuController = new MainMenuController(frame, battleController, battleHandler);
+        MainMenuController mainMenuController = new MainMenuController(frame, battleController, battleHandler, playerPokemons, groudon);
         MainMenu mainMenu = new MainMenu(mainMenuController);
         frame.add(mainMenu);
 

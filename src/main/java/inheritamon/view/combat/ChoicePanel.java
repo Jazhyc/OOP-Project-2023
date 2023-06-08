@@ -103,6 +103,12 @@ public class ChoicePanel extends JPanel {
                     if (bounds.contains(x, y) || imageBounds.contains(x, y)) {
                         
                         System.out.println("Clicked " + buttonNames[i]);
+
+                        // Only if i != 3
+                        if (i != 3) {
+                            // Change the panel to the action panel
+                            actionPanel.changePanelVisibilityTo(i);
+                        }
                         
                     }
                 }
