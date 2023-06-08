@@ -2,6 +2,8 @@ package inheritamon.model;
 
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
+import inheritamon.model.pokemon.types.PlayerPokemon;
+import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
 import inheritamon.model.data.*;
 
@@ -27,9 +29,9 @@ public class BattleHandler {
     // Same for the sprites
     private PropertyChangeListener[] spriteListeners = new PropertyChangeListener[2];
 
-    private Pokemon playerPokemon;
+    private PlayerPokemon playerPokemon;
     private Pokemon enemyPokemon;
-    private Pokemon[] playerRoster;
+    private PlayerRoster playerRoster;
     private int turn;
 
     /**
@@ -40,13 +42,13 @@ public class BattleHandler {
     }
 
     // Create function that calls battleLoop in a separate thread
-    public void startBattle(Pokemon[] playerPokemons, Pokemon enemyPokemon) {
+    public void startBattle(PlayerRoster playerRoster, Pokemon enemyPokemon) {
 
         // Create a new thread
         Thread battleThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                battleLoop(playerPokemons, enemyPokemon);
+                battleLoop(playerRoster, enemyPokemon);
             }
         });
 
@@ -60,15 +62,15 @@ public class BattleHandler {
      * @return The result of the battle, can be victory, defeat or a draw
      * 1 = defeat, 2 = victory, 0 = draw
      */
-    private int battleLoop(Pokemon[] playerPokemons, Pokemon enemyPokemon) {
+    private int battleLoop(PlayerRoster playerRoster, Pokemon enemyPokemon) {
 
         turn = 0;
         String ability;
         Pokemon attacker;
         Pokemon defender;
 
-        playerRoster = playerPokemons;
-        playerPokemon = playerPokemons[0];
+        this.playerRoster = playerRoster;
+        playerPokemon = playerRoster.getPokemon(0);
         this.enemyPokemon = enemyPokemon;
 
         notifyStatListener(playerPokemon, enemyPokemon);
@@ -98,9 +100,10 @@ public class BattleHandler {
             // Get the ability to use
             ability = attacker.useMove(defender.getAllNumericalStats());
 
-            // Check if the ability is not null
-            if (ability == null) {
-                System.out.println("Unknown Error");
+            // Checked if the ability returned starts with switch
+            if (ability.startsWith("switch")) {
+
+                getPokemonToSwitchTo(playerRoster, enemyPokemon, ability);
                 continue;
             }
 
@@ -135,6 +138,24 @@ public class BattleHandler {
         }
 
         return 0;
+    }
+
+    private void getPokemonToSwitchTo(PlayerRoster playerRoster, Pokemon enemyPokemon, String ability) {
+        System.out.println(ability);
+
+        // Get the pokemon index to switch to using regex
+        int pokemonToSwitchTo = Integer.parseInt(ability.replaceAll("[^0-9]", ""));
+        playerPokemon = playerRoster.getPokemon(pokemonToSwitchTo);
+
+        // Notify the listeners
+        notifyMoveListener(playerPokemon);
+        notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
+        notifyStatListener(playerPokemon, enemyPokemon);
+        notifyDialogueListener("Switched to " + playerPokemon.getName() + "!");
+        wait(WAIT_TIME);
+
+        // Skip the rest of the turn
+        turn++;
     }
 
     private void checkDamage(Pokemon attacker, Integer damageDealt) {
@@ -224,7 +245,11 @@ public class BattleHandler {
     }
 
     private void notifyPlayerRosterListener() {
-        playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, playerRoster));
+
+        // Create a pokemon array of the pokemon
+        Pokemon[] playerRosterArray = playerRoster.getRoster();
+
+        playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, playerRosterArray));
     }
 
     public String getCurrentPokemonName(DisplayType type) {
@@ -245,24 +270,6 @@ public class BattleHandler {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public void changeActivePokemon(int index) {
-
-        // Run this on a new thread
-        new Thread(() -> {
-
-            // Get the new pokemon
-            playerPokemon = playerRoster[index];
-
-            // Notify the listeners
-            notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
-            notifyDialogueListener("You sent out " + playerPokemon.getName() + "!");
-            wait(WAIT_TIME);
-            notifyDialogueListener("Select a move!");
-
-        }).start();
-
     }
 
     public boolean isPlayerTurn() {

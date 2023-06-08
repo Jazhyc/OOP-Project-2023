@@ -21,65 +21,6 @@ public class MovePanel extends JPanel {
         setLayout(new GridLayout(4, 1));
         setOpaque(false);
         setUp(battleHandler, battleController);
-
-        // Add a mouse listener for the buttons
-        addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                int x = e.getX();
-                int y = e.getY();
-
-                // Use a for loop to check if the mouse is within the bounds of a button
-                for (int i = 0; i < buttonLabels.size(); i++) {
-
-                    JLabel button = buttonLabels.get(i);
-
-                    // Get the bounds of the button
-                    Rectangle bounds = button.getBounds();
-
-                    // Check if the mouse is within the bounds of the button
-                    if (bounds.contains(x, y)) {
-
-                        // Get the move name
-                        String moveName = moveList[i];
-
-                        // Send the move name to the battle controller
-                        battleController.selectMove(moveName);
-
-                    }
-
-                }
-
-            }
-        });
-
-        addMouseMotionListener(new MouseMotionAdapter() {
-                
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-                int x = e.getX();
-                int y = e.getY();
-
-                // Use a for loop to check if the mouse is within the bounds of a button
-                for (int i = 0; i < buttonLabels.size(); i++) {
-
-                    JLabel button = buttonLabels.get(i);
-
-                    // Get the bounds of the button
-                    Rectangle bounds = button.getBounds();
-
-                    // Check if the mouse is within the bounds of the button
-                    if (bounds.contains(x, y)) {
-                        button.setForeground(Color.YELLOW);
-                    } else {
-                        button.setForeground(Color.WHITE);
-                    }
-                }
-            }
-        });
     };
 
 
@@ -93,6 +34,9 @@ public class MovePanel extends JPanel {
 
                 // Clear the buttons
                 buttonLabels.clear();
+
+                // Clear the panel
+                removeAll();
                 
                 // Get the moves from the event
                 moveList = (String[]) e.getNewValue();
@@ -107,6 +51,28 @@ public class MovePanel extends JPanel {
                     button.setHorizontalAlignment(JLabel.CENTER);
                     button.setFont(new Font("Arial", Font.BOLD, 20));
                     button.setForeground(Color.WHITE);
+
+
+                    // Add a mouse listener to the button
+                    button.addMouseListener(new MouseAdapter() {
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            button.setForeground(Color.YELLOW);
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            button.setForeground(Color.WHITE);
+                        }
+
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            battleController.selectMove(move);
+                        }
+
+                    });
+
                     add(button);
                 }
 

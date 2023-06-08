@@ -6,6 +6,7 @@ import inheritamon.model.BattleHandler;
 import inheritamon.view.combat.*;
 import inheritamon.view.world.*;
 import inheritamon.model.pokemon.*;
+import inheritamon.model.pokemon.types.Pokemon;
 
 
 public class MainMenuController {
@@ -13,16 +14,16 @@ public class MainMenuController {
     private JFrame mainFrame;
     private BattleController battleController;
     private BattleHandler battleHandler;
-    private Pokemon[] playerPokemons;
+    private PlayerRoster playerRoster;
     private Pokemon enemyPokemon;
 
-    public MainMenuController(JFrame frame, BattleController battleController, BattleHandler battleHandler, Pokemon[] playerPokemons, Pokemon enemyPokemon) {
+    public MainMenuController(JFrame frame, BattleController battleController, BattleHandler battleHandler, PlayerRoster playerRoster, Pokemon enemyPokemon) {
         this.mainFrame = frame;
         this.battleController = battleController;
         this.battleHandler = battleHandler;
 
         // This will change
-        this.playerPokemons = playerPokemons;
+        this.playerRoster = playerRoster;
         this.enemyPokemon = enemyPokemon;
     }
 
@@ -40,7 +41,7 @@ public class MainMenuController {
 
         // // Create a thread for the battle to not interfere with the main thread
         // //? Is this the best way to do this?
-        battleHandler.startBattle(playerPokemons, enemyPokemon);
+        battleHandler.startBattle(playerRoster, enemyPokemon);
 
     }
     

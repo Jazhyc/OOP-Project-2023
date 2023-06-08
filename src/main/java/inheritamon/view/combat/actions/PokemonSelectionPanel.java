@@ -4,7 +4,7 @@ import inheritamon.controller.*;
 import inheritamon.model.*;
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.pokemon.*;
-
+import inheritamon.model.pokemon.types.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,27 +19,33 @@ public class PokemonSelectionPanel extends JPanel {
     public PokemonSelectionPanel(BattleHandler battleHandler, BattleController battleController) {
 
         // Use a grid layout
-        setLayout(new GridLayout(1, 5));
+        // Create a variable first
+        GridLayout gridLayout = new GridLayout(2, 3);
+        setLayout(gridLayout);
 
-        setUpListener(battleHandler);
+        setUpListener(battleHandler, battleController);
         
     }
 
-    private void setUpListener(BattleHandler battleHandler) {
+    private void setUpListener(BattleHandler battleHandler, BattleController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
 
         battleHandler.addPlayerRosterListener(e -> {
-            playerPokemon = (Pokemon[]) e.getNewValue();
+            playerPokemon = (PlayerPokemon[]) e.getNewValue();
 
             // Remove all components
             removeAll();
 
             // Loop over the array using index
-            for (int i = 0; i < playerPokemon.length; i++) {
+            for (int i = 0; i < PlayerRoster.MAX_POKEMON; i++) {
 
-                // Skip if null
-                if (playerPokemon[i] == null) {
+                // Skip if i is greater than the length of the array
+                if (i >= playerPokemon.length) {
+
+                    // Add an empty label
+                    add(new JLabel());
+
                     continue;
                 }
 
@@ -47,6 +53,8 @@ public class PokemonSelectionPanel extends JPanel {
 
                 // Create a label with the image and increase the size
                 JLabel label = new JLabel(new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
+                
+
                 final int selectionIndex = i;
 
                 // Add a mouse adapter to the label
@@ -55,7 +63,7 @@ public class PokemonSelectionPanel extends JPanel {
                     public void mouseClicked(MouseEvent e) {
 
                         // Swap the pokemon
-                        battleHandler.changeActivePokemon(selectionIndex);
+                        battleController.selectPokemon(selectionIndex);
 
                     }
                 });

@@ -2,6 +2,8 @@ package inheritamon;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
+import inheritamon.model.pokemon.types.PlayerPokemon;
+import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.view.LanguageSelector;
 import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
@@ -55,13 +57,13 @@ public class Main {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));
-        Pokemon blastoise = new Pokemon(dataHandler.getCharacterData("Blastoise"));
-        Pokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
+        PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
+        PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
 
         // Make an array of pokemon called playerpokemons
-        Pokemon[] playerRoster = new Pokemon[6];
-        playerRoster[0] = charizard;
-        playerRoster[1] = blastoise;
+        PlayerRoster playerRoster = new PlayerRoster();
+        playerRoster.addPokemon(blastoise);
+        playerRoster.addPokemon(charizard);
 
 
         BattleHandler battleHandler = new BattleHandler();

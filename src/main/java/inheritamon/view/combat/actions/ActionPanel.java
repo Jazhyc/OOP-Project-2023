@@ -3,8 +3,8 @@ package inheritamon.view.combat.actions;
 import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
-import inheritamon.model.pokemon.Pokemon;
 import inheritamon.model.data.DataHandler;
+import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.controller.BattleController;
 
 import java.awt.*;

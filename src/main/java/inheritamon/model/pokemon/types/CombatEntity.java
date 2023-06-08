@@ -1,4 +1,4 @@
-package inheritamon.model.pokemon;
+package inheritamon.model.pokemon.types;
 
 import java.util.HashMap;
 

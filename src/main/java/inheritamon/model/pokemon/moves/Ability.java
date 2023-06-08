@@ -2,7 +2,7 @@ package inheritamon.model.pokemon.moves;
 
 import java.util.HashMap;
 
-import inheritamon.model.pokemon.Pokemon;
+import inheritamon.model.pokemon.types.Pokemon;
 
 /**
  * An interface for all moves

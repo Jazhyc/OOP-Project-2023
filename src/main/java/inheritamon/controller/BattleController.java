@@ -1,7 +1,7 @@
 package inheritamon.controller;
 
 import inheritamon.model.BattleHandler;
-import inheritamon.model.pokemon.PlayerPokemon;
+import inheritamon.model.pokemon.types.PlayerPokemon;
 
 public class BattleController {
 
@@ -29,7 +29,8 @@ public class BattleController {
             return;
         }
         
-        battleHandler.changeActivePokemon(index);
+        PlayerPokemon playerPokemon = battleHandler.getActivePlayerPokemon();
+        playerPokemon.selectMove("switch " + index);
     }
 
 }
