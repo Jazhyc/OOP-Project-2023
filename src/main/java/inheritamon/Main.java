@@ -3,7 +3,7 @@ import inheritamon.model.*;
 import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.types.*;
-import inheritamon.view.LanguageSelector;
+import inheritamon.view.combat.BattlePanel;
 import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
 import inheritamon.controller.*;
@@ -12,7 +12,6 @@ import inheritamon.view.world.*;
 import java.util.*;
 import javax.swing.*;
 
-import static inheritamon.GameState.LANGUAGE_SELECTION;
 import static inheritamon.controller.TrainerRegion.KANTO;
 
 public class Main {
@@ -31,31 +30,23 @@ public class Main {
     public static final int SCREEN_WIDTH = 1366;
     public static final int SCREEN_HEIGHT = 768;
     public static void main(String[] args) {
-
-//         LanguageSelector languageSelector = new LanguageSelector();
-
-//         while(currentState == LANGUAGE_SELECTION) {
-//         }
-
-//         System.out.println(currentLocale.getLanguage() + " " + currentLocale.getCountry());
-
-// //        Locale locale = new Locale("en", "NL"); // set this based on mouse clicks.
-//         Discourse textMessages = new Discourse(currentLocale);
-//         System.out.println("test");
-//         System.out.println(textMessages.getMessage("startMessage")); // replace with graphics.
-
-//        JFrame startScreen = new JFrame("Start Screen");
         
         // Create the data object and load all the move data
         DataHandler dataHandler = DataHandler.getInstance();
 
         // Create a frame to display the game
         JFrame frame = new JFrame("Inheritamon");
+        
+        // Prevent the user from resizing the window
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        frame.setVisible(true);
+
 
         // Use a border layout
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-        Pokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
         PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
         PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
 
@@ -68,16 +59,21 @@ public class Main {
         BattleHandler battleHandler = new BattleHandler();
 
         // Create a Panel for the main menu
-        BattleController battleController = new BattleController(battleHandler); // For now
-        MainMenuController mainMenuController = new MainMenuController(frame, battleController, battleHandler, playerRoster, groudon);
-        MainMenu mainMenu = new MainMenu(mainMenuController);
+        BattleController battleController = new BattleController(battleHandler);
+
+        // Create the game panel
+        GamePanel gamePanel = new GamePanel();
+        gamePanel.setVisible(false);
+        frame.add(gamePanel);
+
+        MainMenuController mainMenuController = new MainMenuController();
+        MainMenu mainMenu = new MainMenu(mainMenuController, gamePanel);
         frame.add(mainMenu);
 
-        // Prevent the user from resizing the window
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        frame.setVisible(true);
+        // Create a Panel for the combat screen
+        BattlePanel battlePanel = new BattlePanel(battleController, battleHandler);
+        frame.add(battlePanel);
+        battlePanel.setVisible(false);
 
         Item potion = new Item(dataHandler.getItemData("Potion"));
         Item inheritaball = new Item(dataHandler.getItemData("Inheritaball"));

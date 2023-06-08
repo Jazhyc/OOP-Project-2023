@@ -11,7 +11,7 @@ public class MainMenu extends JPanel {
     private JLabel titleLabel;
     private JButton startButton;
 
-    public MainMenu(MainMenuController controller) {
+    public MainMenu(MainMenuController controller, JPanel gamePanel) {
 
         setLayout(new GridBagLayout());
 
@@ -25,9 +25,11 @@ public class MainMenu extends JPanel {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Destroy this panel
+    
                 setVisible(false);
                 setEnabled(false);
+
+                gamePanel.setVisible(true);
                 controller.startGame();
             }
         });
