@@ -6,7 +6,6 @@ public class PlayerPokemon extends Pokemon {
 
     private volatile boolean awaitingMove = false;
     private String selectedMove;
-    private boolean hasFainted = false;
 
     public PlayerPokemon(HashMap<String, String> data) {
         super(data);
