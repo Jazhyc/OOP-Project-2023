@@ -2,8 +2,7 @@ package inheritamon;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
-import inheritamon.model.pokemon.types.PlayerPokemon;
-import inheritamon.model.pokemon.types.Pokemon;
+import inheritamon.model.pokemon.types.*;
 import inheritamon.view.LanguageSelector;
 import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
@@ -56,7 +55,7 @@ public class Main {
         // Use a border layout
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-        Pokemon groudon = new Pokemon(dataHandler.getCharacterData("Groudon"));
+        Pokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
         PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
         PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
 

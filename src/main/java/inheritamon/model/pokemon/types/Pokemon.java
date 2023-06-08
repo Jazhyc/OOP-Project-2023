@@ -7,7 +7,7 @@ import inheritamon.model.data.DataHandler;
 /**
  * A class to represent a pokemon, does not possess a sophisticated AI, only returns a random move
  */
-public class Pokemon implements CombatEntity {
+public abstract class Pokemon {
 
     protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
     protected HashMap<String, String> stringStats = new HashMap<String, String>();
@@ -21,16 +21,7 @@ public class Pokemon implements CombatEntity {
      * @param targetStats The stats of the target
      * @return The name of the move used
      */
-    public String useMove(HashMap<String, Integer> targetStats) {
-
-        // Return a random move from the moves ArrayList
-        String move = moves.get((int) (Math.random() * moves.size()));
-
-        System.out.println(stringStats.get("Name") + " used " + move + "!");
-
-        return move;
-
-    }
+    public abstract String useMove(HashMap<String, Integer> targetStats);
 
     /**
      * A method to set the stats of the pokemon
