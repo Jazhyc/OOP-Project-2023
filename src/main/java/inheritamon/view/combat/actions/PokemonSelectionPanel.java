@@ -13,12 +13,13 @@ import java.awt.event.*;
 
 public class PokemonSelectionPanel extends JPanel {
 
+    private static final int SPRITE_SIZE = 100;
     private Pokemon[] playerPokemon;
 
     public PokemonSelectionPanel(BattleHandler battleHandler, BattleController battleController) {
 
         // Use a grid layout
-        setLayout(new GridLayout(1, 6));
+        setLayout(new GridLayout(1, 5));
 
         setUpListener(battleHandler);
         
@@ -37,10 +38,15 @@ public class PokemonSelectionPanel extends JPanel {
             // Loop over the array using index
             for (int i = 0; i < playerPokemon.length; i++) {
 
+                // Skip if null
+                if (playerPokemon[i] == null) {
+                    continue;
+                }
+
                 BufferedImage imageToDisplay = dataHandler.getPokemonSprite(playerPokemon[i].getName()).get("front");
 
                 // Create a label with the image and increase the size
-                JLabel label = new JLabel(new ImageIcon(imageToDisplay.getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
+                JLabel label = new JLabel(new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
                 final int selectionIndex = i;
 
                 // Add a mouse adapter to the label

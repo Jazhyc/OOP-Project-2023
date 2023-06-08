@@ -59,15 +59,16 @@ public class Main {
         Pokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
 
         // Make an array of pokemon called playerpokemons
-        Pokemon[] playerPokemons = new Pokemon[2];
-        playerPokemons[0] = charizard;
-        playerPokemons[1] = blastoise;
+        Pokemon[] playerRoster = new Pokemon[6];
+        playerRoster[0] = charizard;
+        playerRoster[1] = blastoise;
+
 
         BattleHandler battleHandler = new BattleHandler();
 
         // Create a Panel for the main menu
         BattleController battleController = new BattleController(battleHandler); // For now
-        MainMenuController mainMenuController = new MainMenuController(frame, battleController, battleHandler, playerPokemons, groudon);
+        MainMenuController mainMenuController = new MainMenuController(frame, battleController, battleHandler, playerRoster, groudon);
         MainMenu mainMenu = new MainMenu(mainMenuController);
         frame.add(mainMenu);
 
