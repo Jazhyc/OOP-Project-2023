@@ -84,7 +84,7 @@ public class BattleHandler {
         notifyDialogueListener("A wild " + enemyPokemon.getName() + " appeared!");
         wait(WAIT_TIME);
 
-        while (playerPokemon.getHP() > 0 && enemyPokemon.getHP() > 0) {
+        while (!playerRoster.allFainted() && enemyPokemon.getHP() > 0) {
 
             // Print the HP and MP of both pokemon
             System.out.println(playerPokemon.getName() + " HP: " + playerPokemon.getHP() + " MP: " + playerPokemon.getMP());
@@ -119,25 +119,43 @@ public class BattleHandler {
             notifyStatListener(playerPokemon, enemyPokemon);
             wait(WAIT_TIME);
 
+            // If the player pokemon fainted, notify the listeners
+            if (playerPokemon.isFainted()) {
+                notifyDialogueListener(playerPokemon.getName() + " fainted!");
+                wait(WAIT_TIME);
+                
+                // Get the next pokemon if there is one
+                if (!playerRoster.allFainted()) {
+                    getPokemonToSwitchTo(playerRoster, enemyPokemon, "switch" + playerRoster.getNextPokemon());
+                }
+
+                // Notify the roster listener
+                notifyPlayerRosterListener();
+
+                continue;
+            }
+
             System.out.println("--------------------------------------");
 
             turn++;
 
         }
 
-        if (playerPokemon.getHP() <= 0) {
-            notifyDialogueListener(playerPokemon.getName() + " fainted!");
-            wait(WAIT_TIME);
-            notifyDialogueListener("You lost!");
-            return 1;
-        } else if (enemyPokemon.getHP() <= 0) {
+        if (enemyPokemon.getHP() <= 0) {
             notifyDialogueListener(enemyPokemon.getName() + " fainted!");
             wait(WAIT_TIME);
             notifyDialogueListener("You won!");
             return 2;
         }
 
-        return 0;
+        if (playerRoster.allFainted()) {
+            notifyDialogueListener("All your pokemon fainted!");
+            wait(WAIT_TIME);
+            notifyDialogueListener("You lost!");
+            return 1;
+        }
+
+        return 1;
     }
 
     private void getPokemonToSwitchTo(PlayerRoster playerRoster, Pokemon enemyPokemon, String ability) {
@@ -168,6 +186,7 @@ public class BattleHandler {
         } else {
             notifyDialogueListener("But it missed!");
         }
+
     }
 
     public void addMoveListener(PropertyChangeListener listener) {

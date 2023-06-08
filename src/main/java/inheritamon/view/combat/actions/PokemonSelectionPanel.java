@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
+import java.awt.color.*;
 
 public class PokemonSelectionPanel extends JPanel {
 
@@ -51,22 +52,30 @@ public class PokemonSelectionPanel extends JPanel {
 
                 BufferedImage imageToDisplay = dataHandler.getPokemonSprite(playerPokemon[i].getName()).get("front");
 
+                // If the pokemon fainted, make the image black and white. Use colorConvertOp
+                if (playerPokemon[i].isFainted()) {
+
+                    imageToDisplay = convertToGrayscale(imageToDisplay);
+
+                }
+
                 // Create a label with the image and increase the size
                 JLabel label = new JLabel(new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
-                
 
-                final int selectionIndex = i;
+                if (!playerPokemon[i].isFainted()) {
+                    final int selectionIndex = i;
 
-                // Add a mouse adapter to the label
-                label.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
+                    // Add a mouse adapter to the label
+                    label.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
 
-                        // Swap the pokemon
-                        battleController.selectPokemon(selectionIndex);
+                            // Swap the pokemon
+                            battleController.selectPokemon(selectionIndex);
 
-                    }
-                });
+                        }
+                    });
+                }
 
                 // Add the button to the panel
                 add(label);
@@ -74,6 +83,22 @@ public class PokemonSelectionPanel extends JPanel {
             }
         });
 
+    }
+
+    private BufferedImage convertToGrayscale(BufferedImage imageToDisplay) {
+        
+        // Make the image transparent
+        BufferedImage newImage = new BufferedImage(imageToDisplay.getWidth(), imageToDisplay.getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+        // Create a color convert op
+        ColorConvertOp colorConvertOp = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+
+        // Use the filter to convert the image
+        colorConvertOp.filter(imageToDisplay, newImage);
+
+        // Set the image to the new image
+        imageToDisplay = newImage;
+        return imageToDisplay;
     }
 
     

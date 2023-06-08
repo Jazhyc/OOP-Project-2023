@@ -61,5 +61,36 @@ public class PlayerRoster {
         }
 
     }
+
+    public boolean allFainted() {
+            
+        // Loop over the roster
+        for (PlayerPokemon pokemon : roster) {
+
+            // Check if the pokemon is fainted
+            if (!pokemon.isFainted()) {
+                return false;
+            }
+
+        }
+
+        return true;
+    
+    }
+
+    public int getNextPokemon() {
+            
+        // Loop over the roster
+        for (int i = 0; i < roster.size(); i++) {
+
+            // Check if the pokemon is fainted
+            if (!roster.get(i).isFainted()) {
+                return i;
+            }
+
+        }
+
+        return -1;
+    }
     
 }

@@ -12,6 +12,7 @@ public class Pokemon implements CombatEntity {
     protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
     protected HashMap<String, String> stringStats = new HashMap<String, String>();
     protected ArrayList<String> moves = new ArrayList<String>();
+    private boolean hasFainted = false;
 
     private int BASE_DODGE_CHANCE = 20;
 
@@ -161,10 +162,13 @@ public class Pokemon implements CombatEntity {
 
         numericalStats.put("HP", numericalStats.get("MaxHP"));
         numericalStats.put("MP", numericalStats.get("MaxMP"));
+
+        hasFainted = false;
     }
 
     private void faint() {
         System.out.println(stringStats.get("Name") + " has fainted!");
+        hasFainted = true;
     }
 
     /**
@@ -216,6 +220,10 @@ public class Pokemon implements CombatEntity {
     public HashMap<String, Integer> getAllNumericalStats() {
 
         return new HashMap<String, Integer>(numericalStats);
+    }
+
+    public boolean isFainted() {
+        return hasFainted;
     }
     
 }

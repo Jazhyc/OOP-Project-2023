@@ -1,5 +1,5 @@
 Name,MaxHP,MaxMP,Atk,Def,Agi,Acc,M.Atk,M.Def,Level,EXP,MoveSet
-Groudon,20,10,12,5,8,6,9,3,5,500,Punch Kick Heal Burn
+Groudon,20,10,120,5,8,600,9,3,5,500,Punch Kick Heal Burn
 Charizard,20,10,12,5,8,6,9,3,5,500,Punch Kick Heal Burn
 Blastoise,20,10,12,5,8,6,9,3,5,500,Punch Kick Heal Squirt
 Sceptile,20,10,12,5,8,6,9,3,5,500,Punch Kick Heal Burn

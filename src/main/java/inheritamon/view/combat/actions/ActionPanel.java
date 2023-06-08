@@ -4,7 +4,6 @@ import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
 import inheritamon.model.data.DataHandler;
-import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.controller.BattleController;
 
 import java.awt.*;
