@@ -3,7 +3,7 @@ package inheritamon.view.menu;
 import javax.swing.*;
 
 import inheritamon.controller.MainMenuController;
-import inheritamon.language.*;
+import inheritamon.model.language.*;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -3,7 +3,7 @@ package inheritamon.view.world;
 import javax.swing.*;
 
 import inheritamon.controller.BattleController;
-import inheritamon.language.*;
+import inheritamon.model.language.*;
 import inheritamon.view.combat.BattlePanel;
 
 import java.awt.event.*;

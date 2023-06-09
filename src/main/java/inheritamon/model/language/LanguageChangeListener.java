@@ -1,4 +1,4 @@
-package inheritamon.language;
+package inheritamon.model.language;
 
 public interface LanguageChangeListener {
 

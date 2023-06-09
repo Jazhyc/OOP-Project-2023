@@ -1,4 +1,4 @@
-package inheritamon.language;
+package inheritamon.model.language;
 
 import java.util.*;
 import java.beans.*;
@@ -9,7 +9,6 @@ public class LanguageConfiguration {
     // Singleton pattern
     private static LanguageConfiguration instance = null;
 
-    // get instance
     public static LanguageConfiguration getInstance() {
         if (instance == null) {
             instance = new LanguageConfiguration();

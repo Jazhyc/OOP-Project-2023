@@ -3,9 +3,9 @@ package inheritamon.view.combat;
 import javax.swing.*;
 
 import inheritamon.model.data.DataHandler;
+import inheritamon.model.language.*;
 import inheritamon.view.combat.actions.ActionPanel;
 import inheritamon.controller.BattleController;
-import inheritamon.language.*;
 
 import java.awt.*;
 import java.awt.event.*;
