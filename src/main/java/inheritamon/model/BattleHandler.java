@@ -1,6 +1,5 @@
 package inheritamon.model;
 
-import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.pokemon.types.Pokemon;
