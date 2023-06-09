@@ -6,6 +6,7 @@ import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.model.pokemon.types.RandomPokemon;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
+import inheritamon.language.LanguageConfiguration;
 import inheritamon.model.data.*;
 
 import java.beans.PropertyChangeEvent;
@@ -101,8 +102,12 @@ public class BattleHandler {
         notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
         notifyPlayerRosterListener();
 
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+
         // Beginning of the battle
-        notifyDialogueListener("A wild " + enemyPokemon.getName() + " appeared!");
+        // Get the BattleStart string from language config
+        String formattedString = String.format(config.getText("BattleStart"), enemyPokemon.getName());
+        notifyDialogueListener(formattedString);
         wait(WAIT_TIME);
 
         while (!playerRoster.allFainted() && enemyPokemon.getHP() > 0) {
@@ -115,7 +120,8 @@ public class BattleHandler {
             attacker = (turn % 2 == 0) ? playerPokemon : enemyPokemon;
             defender = (turn % 2 == 0) ? enemyPokemon : playerPokemon;
 
-            notifyDialogueListener("It's " + attacker.getName() + "'s turn!");
+            formattedString = String.format(config.getText("TurnStart"), attacker.getName());
+            notifyDialogueListener(formattedString);
             wait(WAIT_TIME);
 
             // Get the ability to use
@@ -128,7 +134,8 @@ public class BattleHandler {
                 continue;
             }
 
-            notifyDialogueListener(attacker.getName() + " used " + ability + "!");
+            formattedString = String.format(config.getText("Attack"), attacker.getName(), ability);
+            notifyDialogueListener(formattedString);
             wait(WAIT_TIME);
 
             // Use the ability
@@ -142,7 +149,8 @@ public class BattleHandler {
 
             // If the player pokemon fainted, notify the listeners
             if (playerPokemon.isFainted()) {
-                notifyDialogueListener(playerPokemon.getName() + " fainted!");
+                formattedString = String.format(config.getText("Fainted"), playerPokemon.getName());
+                notifyDialogueListener(formattedString);
                 wait(WAIT_TIME);
                 
                 // Get the next pokemon if there is one
@@ -171,17 +179,21 @@ public class BattleHandler {
     }
 
     private int determineConclusion(PlayerRoster playerRoster, Pokemon enemyPokemon) {
+
+        String formattedString;
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
         
         int conclusion;
         if (enemyPokemon.getHP() <= 0) {
-            notifyDialogueListener(enemyPokemon.getName() + " fainted!");
+            formattedString = String.format(config.getText("Fainted"), enemyPokemon.getName());
+            notifyDialogueListener(formattedString);
             wait(WAIT_TIME);
-            notifyDialogueListener("You won!");
+            notifyDialogueListener(config.getText("Victory"));
             conclusion = 2;
         } else if (playerRoster.allFainted()) {
-            notifyDialogueListener("All your pokemon fainted!");
+            notifyDialogueListener(config.getText("AllFainted"));
             wait(WAIT_TIME);
-            notifyDialogueListener("You lost!");
+            notifyDialogueListener(config.getText("Defeat"));
             conclusion = 1;
         } else {
             conclusion = 0;
@@ -202,7 +214,10 @@ public class BattleHandler {
         notifyMoveListener(playerPokemon);
         notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
         notifyStatListener(playerPokemon, enemyPokemon);
-        notifyDialogueListener("Switched to " + playerPokemon.getName() + "!");
+
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+        String formattedString = String.format(config.getText("Switch"), playerPokemon.getName());
+        notifyDialogueListener(formattedString);
         wait(WAIT_TIME);
 
         // Skip the rest of the turn
@@ -210,14 +225,22 @@ public class BattleHandler {
     }
 
     private void checkDamage(Pokemon attacker, Integer damageDealt) {
+
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+        String formattedString;
+
         if (damageDealt == -1) {
-            notifyDialogueListener("But " + attacker.getName() + " doesn't have enough MP!");
+            formattedString = String.format(config.getText("LackOfMP"), attacker.getName());
+            notifyDialogueListener(formattedString);
         } else if (damageDealt < 0) {
-            notifyDialogueListener(attacker.getName() + " healed for " + Math.abs(damageDealt) + " HP!");
+            formattedString = String.format(config.getText("Heal"), attacker.getName(), Math.abs(damageDealt));
+            notifyDialogueListener(formattedString);
         } else if (damageDealt > 0) {
-            notifyDialogueListener(attacker.getName() + " dealt " + damageDealt + " damage!");
+            formattedString = String.format(config.getText("Damage"), attacker.getName(), damageDealt);
+            notifyDialogueListener(formattedString);
         } else {
-            notifyDialogueListener("But it missed!");
+            formattedString = String.format(config.getText("Miss"), attacker.getName());
+            notifyDialogueListener(formattedString);
         }
 
     }

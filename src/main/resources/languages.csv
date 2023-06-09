@@ -3,3 +3,14 @@ SidePanel,Array,Items;Pokemon;Save;Minimize Menu;Exit Game,Artikileren;Pokemon;R
 ChoicePanel,Array,Fight;Items;Pokemon;Run,Aanval;Artikelen;Pokemon;Vlucht
 MainMenu,String,Start,Aanvang
 Attack,String,%s used %s!,%s gebruikte %s!
+BattleStart,String,A wild %s appeared!,Een wilde %s verscheen!
+TurnStart,String,It's %s's turn!,Het is %s's beurt!
+Fainted,String,%s fainted!,%s viel flauw!
+Victory,String,You won!,Je hebt gewonnen!
+AllFainted,String,All your Pokemon have fainted!,Al je Pokemon zijn flauwgevallen!
+Defeat,String,You lost!,Je hebt verloren!
+Switch,String,Switched to %s!,Gewisseld naar %s!
+LackOfMP,String,%s doesn't have enough MP!,%s heeft niet genoeg MP!
+Heal,String,%s recovered %d HP!,%s herstelde %d HP!
+Damage,String,%s dealt %d damage,%s deed %d schade
+Miss,String,%s missed!,%s miste!
