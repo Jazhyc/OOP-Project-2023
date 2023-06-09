@@ -36,7 +36,7 @@ public class Main {
 
         // Create a frame to display the game
         JFrame frame = new JFrame("Inheritamon");
-        
+
         // Prevent the user from resizing the window
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,16 +49,15 @@ public class Main {
 
         PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
         PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
+        RandomPokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
 
-        // Make an array of pokemon called playerpokemons
+        // Make an array of player pokemon
         PlayerRoster playerRoster = new PlayerRoster();
         playerRoster.addPokemon(blastoise);
         playerRoster.addPokemon(charizard);
 
-
         BattleHandler battleHandler = new BattleHandler();
 
-        // Create a Panel for the main menu
         BattleController battleController = new BattleController(battleHandler);
 
         // Create the game panel

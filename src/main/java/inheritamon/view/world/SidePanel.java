@@ -1,23 +1,31 @@
 package inheritamon.view.world;
 
 import javax.swing.*;
+
+import inheritamon.language.*;
+
 import java.awt.event.*;
 import java.util.*;
 import java.awt.*;
 
-public class SidePanel extends JPanel {
+public class SidePanel extends JPanel implements LanguageChangeListener {
 
-    private String[] options = {"Items", "Pokemon", "Save", "Minimize Menu", "Exit Game"};
+    private ArrayList<String> options = new ArrayList<String>();
     private ArrayList<JLabel> buttonLabels = new ArrayList<JLabel>();
 
     public SidePanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        addLanguageListener();
 
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+
+        options.addAll(Arrays.asList(config.getOptions("SidePanel")));
+        
         // Create a font for the menu
         Font font = new Font("Arial", Font.BOLD, 40);
 
         // Add The text "Menu" to the top of the panel
-        JLabel menuLabel = new JLabel("Menu");
+        JLabel menuLabel = new JLabel("Inheritamon");
         menuLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         menuLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         menuLabel.setForeground(Color.WHITE);
@@ -133,6 +141,23 @@ public class SidePanel extends JPanel {
 
 
         });
+    }
+
+    public void addLanguageListener() {
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+
+        config.addLanguageChangeListener(e -> {
+            options.clear();
+            
+            // Combine these two lines into one
+            options.addAll(Arrays.asList(config.getOptions("SidePanel")));
+
+            // Update the labels
+            for (int i = 0; i < options.size(); i++) {
+                buttonLabels.get(i).setText(options.get(i));
+            }
+        });
+
     }
     
 }

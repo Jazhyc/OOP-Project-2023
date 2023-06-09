@@ -1,6 +1,7 @@
 package inheritamon.model.pokemon.moves;
 
 import java.util.HashMap;
+import inheritamon.model.data.DataHandler;
 
 import inheritamon.model.pokemon.types.Pokemon;
 
@@ -26,11 +27,14 @@ public abstract class Ability {
     public void setUp(HashMap<String, String> moveData) {
         // Loop through the data and put it into the correct HashMap
         for (String key : moveData.keySet()) {
-            try {
+            
+            // Use the isNumeric method to check if the value is a number
+            if (DataHandler.isNumeric(moveData.get(key))) {
                 numericalStats.put(key, Integer.parseInt(moveData.get(key)));
-            } catch (NumberFormatException e) {
+            } else {
                 stringStats.put(key, moveData.get(key));
             }
+
         }
     }
 

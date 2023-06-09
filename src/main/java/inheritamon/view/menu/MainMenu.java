@@ -1,7 +1,10 @@
 package inheritamon.view.menu;
 
 import javax.swing.*;
+
 import inheritamon.controller.MainMenuController;
+import inheritamon.language.LanguageConfiguration;
+import inheritamon.language.LanguageConfiguration.Language;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -14,6 +17,9 @@ public class MainMenu extends JPanel {
     public MainMenu(MainMenuController controller, JPanel gamePanel) {
 
         setLayout(new GridBagLayout());
+
+        // Get the configuration object
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
 
         titleLabel = new JLabel("Inheritamon");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
@@ -47,8 +53,13 @@ public class MainMenu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (languageButton.getText().equals("EN")) {
                     languageButton.setText("NL");
+                    
+                    // Set the language to Dutch
+                    config.setLanguage(Language.NL);
+
                 } else {
                     languageButton.setText("EN");
+                    config.setLanguage(Language.EN);
                 }
             }
         });

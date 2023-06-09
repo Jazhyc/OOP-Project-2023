@@ -26,6 +26,7 @@ public class DataHandler {
     private HashMap<String, BufferedImage> battleBackgrounds = new HashMap<String, BufferedImage>();
     private HashMap<String, BufferedImage> tiles = new HashMap<String, BufferedImage>();
     private HashMap<String, BufferedImage> characterTextures = new HashMap<String, BufferedImage>();
+    private HashMap<String, HashMap<String, String>> languageData = new HashMap<String, HashMap<String, String>>();
     // private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
 
     /**
@@ -52,6 +53,7 @@ public class DataHandler {
         loadData(characterData, "monster_stats.csv");
         loadData(moveData, "move_stats.csv");
         loadData(itemData, "items.csv");
+        loadData(languageData, "languages.csv");
         loadCharacterImages();
         loadGeneralImages(icons, "icons");
         loadGeneralImages(battleBackgrounds, "battleBackgrounds");
@@ -171,6 +173,14 @@ public class DataHandler {
     }
 
     /**
+     * Gets the data of all menus
+     * @return The data of all menus
+     */
+    public HashMap<String, HashMap<String, String>> getLanguageData() {
+        return new HashMap<String, HashMap<String, String>>(languageData);
+    }
+
+    /**
      * Converts the data of all the moves into an ArrayList of move objects
      * @return The data of the moves as an Ability
      */
@@ -202,7 +212,7 @@ public class DataHandler {
      */
     public static ArrayList<String> convertMoveSetToString(String nonFormattedString) {
         
-        ArrayList<String> moveSet = new ArrayList<String>(Arrays.asList(nonFormattedString.split(" ")));
+        ArrayList<String> moveSet = new ArrayList<String>(Arrays.asList(nonFormattedString.split(";")));
 
         return new ArrayList<String>(moveSet);
     }
