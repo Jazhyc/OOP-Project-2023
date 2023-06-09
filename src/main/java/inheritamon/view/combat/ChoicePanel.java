@@ -114,6 +114,9 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                         if (i != 3) {
                             // Change the panel to the action panel
                             actionPanel.changePanelVisibilityTo(i);
+                        } else {
+                            // Run away
+                            controller.selectMove("Run");
                         }
                         
                     }

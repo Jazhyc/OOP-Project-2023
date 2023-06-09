@@ -127,6 +127,15 @@ public class BattleHandler {
             // Get the ability to use
             ability = attacker.useMove(defender.getAllNumericalStats());
 
+            // Check if the ability is Run
+            if (ability.equals("Run")) {
+                formattedString = String.format(config.getText("Run"));
+                notifyDialogueListener(formattedString);
+                wait(WAIT_TIME);
+                notifyConclusionListener(0);
+                return 0;
+            }
+
             // Checked if the ability returned starts with switch
             if (ability.startsWith("switch")) {
 
@@ -149,18 +158,7 @@ public class BattleHandler {
 
             // If the player pokemon fainted, notify the listeners
             if (playerPokemon.isFainted()) {
-                formattedString = String.format(config.getText("Fainted"), playerPokemon.getName());
-                notifyDialogueListener(formattedString);
-                wait(WAIT_TIME);
-                
-                // Get the next pokemon if there is one
-                if (!playerRoster.allFainted()) {
-                    getPokemonToSwitchTo(playerRoster, enemyPokemon, "switch" + playerRoster.getNextPokemon());
-                }
-
-                // Notify the roster listener
-                notifyPlayerRosterListener();
-
+                handleFaint(playerRoster, enemyPokemon, config);
                 continue;
             }
 
@@ -176,6 +174,21 @@ public class BattleHandler {
         notifyConclusionListener(conclusion);
 
         return conclusion;
+    }
+
+    private void handleFaint(PlayerRoster playerRoster, Pokemon enemyPokemon, LanguageConfiguration config) {
+        String formattedString;
+        formattedString = String.format(config.getText("Fainted"), playerPokemon.getName());
+        notifyDialogueListener(formattedString);
+        wait(WAIT_TIME);
+        
+        // Get the next pokemon if there is one
+        if (!playerRoster.allFainted()) {
+            getPokemonToSwitchTo(playerRoster, enemyPokemon, "switch" + playerRoster.getNextPokemon());
+        }
+
+        // Notify the roster listener
+        notifyPlayerRosterListener();
     }
 
     private int determineConclusion(PlayerRoster playerRoster, Pokemon enemyPokemon) {

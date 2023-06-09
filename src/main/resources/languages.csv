@@ -14,3 +14,4 @@ LackOfMP,String,%s doesn't have enough MP!,%s heeft niet genoeg MP!
 Heal,String,%s recovered %d HP!,%s herstelde %d HP!
 Damage,String,%s dealt %d damage,%s deed %d schade
 Miss,String,%s missed!,%s miste!
+Run,String,You ran away!,Je bent weggerend!
