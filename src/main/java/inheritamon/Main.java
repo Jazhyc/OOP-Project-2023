@@ -1,8 +1,6 @@
 package inheritamon;
 import inheritamon.model.*;
 import inheritamon.model.data.*;
-import inheritamon.model.pokemon.*;
-import inheritamon.model.pokemon.types.*;
 import inheritamon.view.combat.*;
 import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
@@ -10,23 +8,9 @@ import inheritamon.controller.*;
 import inheritamon.view.world.*;
 import inheritamon.view.SoundHandler;
 
-import java.util.*;
 import javax.swing.*;
 
-import static inheritamon.controller.TrainerRegion.KANTO;
-
 public class Main {
-    private static Locale currentLocale;
-    private static volatile GameState currentState;
-    public static void setLocale(Locale locale) {
-        currentLocale = locale;
-    }
-    public static void setState(GameState state) {
-        currentState = state;
-    }
-    public GameState getState() {
-       return currentState;
-    }
 
     public static final int SCREEN_WIDTH = 1366;
     public static final int SCREEN_HEIGHT = 768;
@@ -79,22 +63,5 @@ public class Main {
         inventory.addItem(inheritaball);
         inventory.printInventory();
 
-        // Debug code to switch to the game screen
-        // mainMenu.setVisible(false);
-        // battlePanel.setVisible(true);
-        // battleHandler.startBattle(playerRoster, groudon);
-
-        String username = "Ash";
-        TrainerRegion region = KANTO;
-//        TrainerAbility ability = SWIMMING;
-        WorldCoordinates currentLocation = new WorldCoordinates(0,0);
-
-        // Comment for now
-        // PokemonTrainer user = new PokemonTrainer(username, region) {
-        //     @Override
-        //     public void savePlayerState() {
-        //         setSaveLocation(currentLocation);
-        //     }
-        // };
     }
 }

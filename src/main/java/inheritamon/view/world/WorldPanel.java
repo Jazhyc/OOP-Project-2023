@@ -76,6 +76,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
             }
         }
     }
+    
     public void update() {
 
         player.update();
