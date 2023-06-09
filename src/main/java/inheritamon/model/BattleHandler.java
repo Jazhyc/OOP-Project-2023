@@ -7,6 +7,7 @@ import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.model.pokemon.types.RandomPokemon;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
 import inheritamon.model.data.*;
+import inheritamon.model.inventory.PlayerRoster;
 import inheritamon.model.language.LanguageConfiguration;
 
 import java.beans.PropertyChangeEvent;

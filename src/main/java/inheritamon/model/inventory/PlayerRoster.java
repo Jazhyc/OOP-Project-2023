@@ -1,4 +1,4 @@
-package inheritamon.model.pokemon;
+package inheritamon.model.inventory;
 
 import java.util.ArrayList;
 import inheritamon.model.pokemon.types.PlayerPokemon;

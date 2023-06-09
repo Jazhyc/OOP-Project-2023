@@ -12,10 +12,15 @@ import java.awt.event.*;
 public class MainMenu extends JPanel implements LanguageChangeListener {
 
     private JLabel titleLabel;
-    private JButton startButton;
     private SoundHandler soundHandler;
+    private JPanel gamePanel;
+
+    private JButton[] buttons = new JButton[3];
 
     public MainMenu(MainMenuController controller, JPanel gamePanel) {
+
+        this.gamePanel = gamePanel;
+        addLanguageListener();
 
         setLayout(new GridBagLayout());
 
@@ -28,25 +33,8 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         addTitle();
-        
-        String startMessage = config.getText("MainMenu");
-        startButton = new JButton(startMessage);
-        addLanguageListener();
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-    
-                setVisible(false);
-                setEnabled(false);
-
-                gamePanel.setVisible(true);
-                controller.startGame();
-                soundHandler.playSound("select");
-            }
-        });
-
-        addStartButton();
+        addButtons(config, controller);
 
         // Set the background color
         setBackground(Color.WHITE);
@@ -84,19 +72,53 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
         add(languageButton, gbc);
     }
 
-    private void addStartButton() {
-        // Set the size of the start button
+    private void addButtons(LanguageConfiguration config, MainMenuController controller) {
+        
+        // Get the strings from config
+        String[] buttonStrings = config.getOptions("MainMenu");
+
+        // Create a new GridBagConstraints object
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.weightx = 1.0;
+        gbc.insets = new Insets(20, 20, 20, 20);
+        gbc.weightx = 0.0;
         gbc.weighty = 0.0;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.insets = new Insets(10, 0, 50, 0);
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.ipadx = 50;
-        gbc.ipady = 10;
-        add(startButton, gbc);
+
+        // Create the buttons and add them one after the other
+        for (int i = 0; i < buttonStrings.length; i++) {
+            buttons[i] = new JButton(buttonStrings[i]);
+
+            final int index = i;
+
+            buttons[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    soundHandler.playSound("select");
+                    // Use case statement and i to determine which button was pressed
+                    switch (index) {
+                        case 0:
+                            controller.startGame();
+                            setVisible(false);
+                            gamePanel.setVisible(true);
+                            break;
+                        case 1:
+                            // Continue button
+                            break;
+                        case 2:
+                            // Exit button
+                            System.exit(0);
+                            break;
+                    }
+                }
+            });
+
+            // Change gbc to add the button to the panel
+            gbc.gridy++;
+
+            add(buttons[i], gbc);
+        }
+
     }
 
     private void addTitle() {
@@ -115,7 +137,10 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
         
         config.addLanguageChangeListener(e -> {
             System.out.println("Language changed");
-            startButton.setText(config.getText("MainMenu"));
+            String[] buttonStrings = config.getOptions("MainMenu");
+            for (int i = 0; i < buttonStrings.length; i++) {
+                buttons[i].setText(buttonStrings[i]);
+            }
         });
     }
     
