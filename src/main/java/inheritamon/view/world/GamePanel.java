@@ -4,13 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 
 import inheritamon.Main;
+import inheritamon.controller.BattleController;
+import inheritamon.view.combat.BattlePanel;
 
 public class GamePanel extends JPanel {
 
     WorldPanel worldPanel;
     SidePanel sidePanel;
+    BattlePanel battlePanel;
 
-    public GamePanel() {
+    public GamePanel(BattleController battleController) {
 
         int screenWidth = Main.SCREEN_WIDTH;
         int screenHeight = Main.SCREEN_HEIGHT;
@@ -22,8 +25,8 @@ public class GamePanel extends JPanel {
         JLayeredPane layeredPane = new JLayeredPane();
 
         // Add the game panel and side panel, game panel is 4 times wider than the side panel
-        SidePanel sidePanel = new SidePanel();
-        WorldPanel worldPanel = new WorldPanel(sidePanel);
+        sidePanel = new SidePanel(battleController);
+        worldPanel = new WorldPanel(sidePanel);
 
         // Add the panels to the layered pane and set the side panel to be 1/4 of the width of the game panel
         layeredPane.add(worldPanel, 0);
@@ -43,6 +46,11 @@ public class GamePanel extends JPanel {
         // Add the layered pane to the game panel
         add(layeredPane);
 
+    }
+
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
+        sidePanel.setBattlePanel(battlePanel);
     }
     
 }

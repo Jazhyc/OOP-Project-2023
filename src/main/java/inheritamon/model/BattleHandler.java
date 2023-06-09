@@ -4,6 +4,7 @@ import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.moves.*;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.pokemon.types.Pokemon;
+import inheritamon.model.pokemon.types.RandomPokemon;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
 import inheritamon.model.data.*;
 
@@ -40,6 +41,25 @@ public class BattleHandler {
      */
     public BattleHandler() {
         this.moveData = DataHandler.getInstance().getAllAbilities();
+    }
+
+    // This is a temporary method to test the battle
+    public void testBattle() {
+
+        DataHandler dataHandler = DataHandler.getInstance();
+
+        PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
+        PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
+
+        // Make an array of player pokemon
+        PlayerRoster playerRoster = new PlayerRoster();
+        playerRoster.addPokemon(blastoise);
+        playerRoster.addPokemon(charizard);
+
+        RandomPokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
+
+        startBattle(playerRoster, groudon);
+
     }
 
     // Create function that calls battleLoop in a separate thread

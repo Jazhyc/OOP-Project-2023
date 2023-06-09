@@ -5,6 +5,7 @@ import javax.swing.*;
 import inheritamon.controller.*;
 import inheritamon.model.BattleHandler;
 import inheritamon.view.combat.actions.ActionPanel;
+import inheritamon.view.world.GamePanel;
 import inheritamon.view.combat.display.BattleDisplayPanel;
 
 import java.awt.*;
@@ -19,8 +20,11 @@ public class BattlePanel extends JPanel{
     private ChoicePanel choicePanel;
     private ActionPanel actionPanel;
     private DialoguePanel dialoguePanel;
+    private GamePanel gamePanel;
 
-    public BattlePanel(BattleController battleController, BattleHandler battleHandler) {
+    public BattlePanel(BattleController battleController, BattleHandler battleHandler, GamePanel gamePanel) {
+
+        this.gamePanel = gamePanel;
 
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
@@ -34,7 +38,6 @@ public class BattlePanel extends JPanel{
         addDialoguePanel(battleHandler);
 
         setUpListener(battleHandler);
-
 
     }
 
@@ -101,7 +104,13 @@ public class BattlePanel extends JPanel{
         battleHandler.addConclusionListener(e -> {
             // Update the display
             setVisible(false);
+            gamePanel.setVisible(true);
         });
+    }
+
+    public void setUpBattleView() {
+        setVisible(true);
+        gamePanel.setVisible(false);
     }
     
 }

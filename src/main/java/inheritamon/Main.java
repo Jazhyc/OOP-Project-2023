@@ -3,7 +3,7 @@ import inheritamon.model.*;
 import inheritamon.model.data.*;
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.types.*;
-import inheritamon.view.combat.BattlePanel;
+import inheritamon.view.combat.*;
 import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
 import inheritamon.controller.*;
@@ -47,21 +47,12 @@ public class Main {
         // Use a border layout
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-        PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
-        PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
-        RandomPokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
-
-        // Make an array of player pokemon
-        PlayerRoster playerRoster = new PlayerRoster();
-        playerRoster.addPokemon(blastoise);
-        playerRoster.addPokemon(charizard);
-
         BattleHandler battleHandler = new BattleHandler();
 
         BattleController battleController = new BattleController(battleHandler);
 
         // Create the game panel
-        GamePanel gamePanel = new GamePanel();
+        GamePanel gamePanel = new GamePanel(battleController);
         gamePanel.setVisible(false);
         frame.add(gamePanel);
 
@@ -70,9 +61,12 @@ public class Main {
         frame.add(mainMenu);
 
         // Create a Panel for the combat screen
-        BattlePanel battlePanel = new BattlePanel(battleController, battleHandler);
+        BattlePanel battlePanel = new BattlePanel(battleController, battleHandler, gamePanel);
         frame.add(battlePanel);
         battlePanel.setVisible(false);
+
+        // Set the battle panel since it was initialized after the game panel
+        gamePanel.setBattlePanel(battlePanel);
 
         Item potion = new Item(dataHandler.getItemData("Potion"));
         Item inheritaball = new Item(dataHandler.getItemData("Inheritaball"));

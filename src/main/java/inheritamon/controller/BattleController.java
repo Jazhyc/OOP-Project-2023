@@ -33,4 +33,8 @@ public class BattleController {
         playerPokemon.selectMove("switch " + index);
     }
 
+    public void beginBattle() {
+        battleHandler.testBattle();
+    }
+
 }
