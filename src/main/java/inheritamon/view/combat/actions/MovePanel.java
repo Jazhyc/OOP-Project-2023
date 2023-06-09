@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
 import inheritamon.controller.*;
+import inheritamon.view.*;
 
 import java.awt.*;
 import java.util.*;
@@ -15,12 +16,15 @@ public class MovePanel extends JPanel {
     private ArrayList<JLabel> buttonLabels = new ArrayList<JLabel>();
     private String[] moveList;
 
+    private SoundHandler soundHandler;
+
     public MovePanel(BattleHandler battleHandler, BattleController battleController) {
 
         // Use a grid layout with a scroll pane
         setLayout(new GridLayout(4, 1));
         setOpaque(false);
         setUp(battleHandler, battleController);
+        soundHandler = SoundHandler.getInstance();
     };
 
 
@@ -69,6 +73,7 @@ public class MovePanel extends JPanel {
                         @Override
                         public void mouseClicked(MouseEvent e) {
                             battleController.selectMove(move);
+                            soundHandler.playSound("select");
                         }
 
                     });

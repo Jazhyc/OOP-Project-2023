@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import inheritamon.controller.BattleController;
 import inheritamon.model.language.*;
+import inheritamon.view.SoundHandler;
 import inheritamon.view.combat.BattlePanel;
 
 import java.awt.event.*;
@@ -17,9 +18,13 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
     private BattlePanel battlePanel;
 
+    private SoundHandler soundHandler;
+
     public SidePanel(BattleController battleController) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addLanguageListener();
+
+        soundHandler = SoundHandler.getInstance();
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -110,6 +115,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                     if (bounds.contains(x, y)) {
                         
                         handleButtonPress(i);
+                        soundHandler.playSound("select");
 
                     }
                 }
@@ -121,6 +127,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                     case 0:
                         // Open the items menu
                         System.out.println("Items");
+                        soundHandler.playMusic("Battle");
                         battlePanel.setUpBattleView();
                         battleController.beginBattle();
                         break;

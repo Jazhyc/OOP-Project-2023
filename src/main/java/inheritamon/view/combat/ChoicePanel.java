@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.language.*;
+import inheritamon.view.SoundHandler;
 import inheritamon.view.combat.actions.ActionPanel;
 import inheritamon.controller.BattleController;
 
@@ -19,6 +20,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
     JLabel icons[] = new JLabel[4];
 
     private BufferedImage backgroundImage;
+    private SoundHandler soundHandler;
 
     // Create an array for storing the name of the buttons
     String buttonNames[];
@@ -36,6 +38,8 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
         DataHandler dataHandler = DataHandler.getInstance();
         backgroundImage = dataHandler.getBackground("choiceMenu");
+
+        soundHandler = SoundHandler.getInstance();
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
         buttonNames = config.getOptions("ChoicePanel");
@@ -109,6 +113,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                     if (bounds.contains(x, y) || imageBounds.contains(x, y)) {
                         
                         System.out.println("Clicked " + buttonNames[i]);
+                        soundHandler.playSound("select");
 
                         // Only if i != 3
                         if (i != 3) {

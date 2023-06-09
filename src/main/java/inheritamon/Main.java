@@ -8,6 +8,7 @@ import inheritamon.view.menu.*;
 import inheritamon.model.inventory.*;
 import inheritamon.controller.*;
 import inheritamon.view.world.*;
+import inheritamon.view.SoundHandler;
 
 import java.util.*;
 import javax.swing.*;
@@ -33,6 +34,9 @@ public class Main {
         
         // Create the data object and load all the move data
         DataHandler dataHandler = DataHandler.getInstance();
+
+        SoundHandler soundHandler = SoundHandler.getInstance();
+        soundHandler.playMusic("StartMenu");
 
         // Create a frame to display the game
         JFrame frame = new JFrame("Inheritamon");

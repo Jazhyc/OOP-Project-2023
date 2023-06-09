@@ -3,12 +3,13 @@ package inheritamon.model.data;
 import java.util.*;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 
 import inheritamon.model.pokemon.moves.*;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.net.*;
 
 /**
  * A class to handle and load data
@@ -28,6 +29,10 @@ public class DataHandler {
     private HashMap<String, BufferedImage> characterTextures = new HashMap<String, BufferedImage>();
     private HashMap<String, HashMap<String, String>> languageData = new HashMap<String, HashMap<String, String>>();
     // private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
+
+    // Create a hashmap for sounds and music
+    private HashMap<String, AudioInputStream> sounds = new HashMap<String, AudioInputStream>();
+    private HashMap<String, AudioInputStream> music = new HashMap<String, AudioInputStream>();
 
     /**
      * The constructor for the DataHandler class
@@ -60,6 +65,8 @@ public class DataHandler {
         loadGeneralImages(tiles, "tiles");
         loadGeneralImages(characterTextures, "characterTextures");
         // loadConversations(dialogueData, "dialogues.csv");
+        loadAudio(sounds, "sounds");
+        loadAudio(music, "music");
 
     }
 
@@ -132,6 +139,35 @@ public class DataHandler {
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
             System.exit(-1);
+        }
+    }
+
+    private void loadAudio(HashMap<String, AudioInputStream> audios, String folderName) {
+        try {
+            // Get the URL of the folder containing the audio files
+            URL folderUrl = getClass().getResource("/" + folderName + "/");
+
+            // Create a file object from the folder URL
+            File folder = new File(folderUrl.toURI());
+
+            // Get a list of all the files in the folder
+            File[] files = folder.listFiles();
+
+            // Load each audio file into the HashMap
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(".wav")) {
+                    // Get the name of the audio file without the extension
+                    String name = file.getName().substring(0, file.getName().lastIndexOf("."));
+
+                    // Load the audio file into an AudioInputStream
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+
+                    // Add the audio stream to the HashMap
+                    audios.put(name, audioStream);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
         
@@ -239,6 +275,18 @@ public class DataHandler {
 
     public BufferedImage getCharacterTexture(String textureName) {
         return getImage(characterTextures, textureName, "Texture");
+    }
+
+    public HashMap<String, AudioInputStream> getAudios(String audioType) {
+        
+        if (audioType.equals("Music")) {
+            return music;
+        } else if (audioType.equals("Sounds")) {
+            return sounds;
+        } else {
+            throw new IllegalArgumentException("Audio type not found: " + audioType);
+        }
+
     }
 
 }

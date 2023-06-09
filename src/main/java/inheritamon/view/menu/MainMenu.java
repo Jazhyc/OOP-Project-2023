@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import inheritamon.controller.MainMenuController;
 import inheritamon.model.language.*;
+import inheritamon.view.SoundHandler;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -12,10 +13,13 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
 
     private JLabel titleLabel;
     private JButton startButton;
+    private SoundHandler soundHandler;
 
     public MainMenu(MainMenuController controller, JPanel gamePanel) {
 
         setLayout(new GridBagLayout());
+
+        soundHandler = SoundHandler.getInstance();
 
         // Get the configuration object
         LanguageConfiguration config = LanguageConfiguration.getInstance();
@@ -38,6 +42,7 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
 
                 gamePanel.setVisible(true);
                 controller.startGame();
+                soundHandler.playSound("select");
             }
         });
 
@@ -61,6 +66,7 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
                 } else {
                     languageButton.setText("EN");
                 }
+                soundHandler.playSound("select");
             }
         });
 

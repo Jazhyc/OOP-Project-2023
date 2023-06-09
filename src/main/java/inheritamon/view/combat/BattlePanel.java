@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import inheritamon.controller.*;
 import inheritamon.model.BattleHandler;
+import inheritamon.view.SoundHandler;
 import inheritamon.view.combat.actions.ActionPanel;
 import inheritamon.view.world.GamePanel;
 import inheritamon.view.combat.display.BattleDisplayPanel;
@@ -21,6 +22,7 @@ public class BattlePanel extends JPanel{
     private ActionPanel actionPanel;
     private DialoguePanel dialoguePanel;
     private GamePanel gamePanel;
+    private SoundHandler soundHandler;
 
     public BattlePanel(BattleController battleController, BattleHandler battleHandler, GamePanel gamePanel) {
 
@@ -38,6 +40,8 @@ public class BattlePanel extends JPanel{
         addDialoguePanel(battleHandler);
 
         setUpListener(battleHandler);
+
+        soundHandler = SoundHandler.getInstance();
 
     }
 
@@ -105,6 +109,7 @@ public class BattlePanel extends JPanel{
             // Update the display
             setVisible(false);
             gamePanel.setVisible(true);
+            soundHandler.playMusic("StartMenu");
         });
     }
 

@@ -5,6 +5,7 @@ import inheritamon.model.*;
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.pokemon.*;
 import inheritamon.model.pokemon.types.*;
+import inheritamon.view.SoundHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ public class PokemonSelectionPanel extends JPanel {
 
     private static final int SPRITE_SIZE = 100;
     private Pokemon[] playerPokemon;
+    private SoundHandler soundHandler;
 
     public PokemonSelectionPanel(BattleHandler battleHandler, BattleController battleController) {
 
@@ -25,6 +27,7 @@ public class PokemonSelectionPanel extends JPanel {
         setLayout(gridLayout);
 
         setUpListener(battleHandler, battleController);
+        soundHandler = SoundHandler.getInstance();
         
     }
 
@@ -72,6 +75,7 @@ public class PokemonSelectionPanel extends JPanel {
 
                             // Swap the pokemon
                             battleController.selectPokemon(selectionIndex);
+                            soundHandler.playSound("select");
 
                         }
                     });

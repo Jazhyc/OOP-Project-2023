@@ -1,6 +1,9 @@
 package inheritamon.view.world;
 
 import javax.swing.*;
+
+import inheritamon.view.SoundHandler;
+
 import java.awt.event.*;
 import java.util.*;
 
@@ -10,10 +13,14 @@ public class PlayerKeyHandler {
 
     SidePanel sidePanel;
 
+    private SoundHandler soundHandler;
+
     
     public PlayerKeyHandler(JComponent component, SidePanel sidePanel) {
         InputMap inputMap = component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = component.getActionMap();
+
+        soundHandler = SoundHandler.getInstance();
 
         this.sidePanel = sidePanel;
 
@@ -90,6 +97,7 @@ private void setKeyState(String actionName, boolean state) {
             break;
         case "escape":
             sidePanel.setVisible(!sidePanel.isVisible());
+            soundHandler.playSound("select");
             break;
     }
 }
