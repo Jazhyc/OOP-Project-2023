@@ -3,13 +3,12 @@ package inheritamon.view.menu;
 import javax.swing.*;
 
 import inheritamon.controller.MainMenuController;
-import inheritamon.language.LanguageConfiguration;
-import inheritamon.language.LanguageConfiguration.Language;
+import inheritamon.language.*;
 
 import java.awt.*;
 import java.awt.event.*;
 
-public class MainMenu extends JPanel {
+public class MainMenu extends JPanel implements LanguageChangeListener {
 
     private JLabel titleLabel;
     private JButton startButton;
@@ -26,7 +25,9 @@ public class MainMenu extends JPanel {
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         addTitle();
         
-        startButton = new JButton("Start");
+        String startMessage = config.getText("MainMenu");
+        startButton = new JButton(startMessage);
+        addLanguageListener();
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -51,15 +52,14 @@ public class MainMenu extends JPanel {
             @Override
             // Add more code for implementing the language switch
             public void actionPerformed(ActionEvent e) {
-                if (languageButton.getText().equals("EN")) {
-                    languageButton.setText("NL");
-                    
-                    // Set the language to Dutch
-                    config.setLanguage(Language.NL);
+                config.switchLanguage();
 
+                // Switch the text of the button
+                String buttonText = languageButton.getText();
+                if (buttonText.equals("EN")) {
+                    languageButton.setText("NL");
                 } else {
                     languageButton.setText("EN");
-                    config.setLanguage(Language.EN);
                 }
             }
         });
@@ -102,6 +102,15 @@ public class MainMenu extends JPanel {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         add(titleLabel, gbc);
+    }
+
+    public void addLanguageListener() {
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+        
+        config.addLanguageChangeListener(e -> {
+            System.out.println("Language changed");
+            startButton.setText(config.getText("MainMenu"));
+        });
     }
     
 }

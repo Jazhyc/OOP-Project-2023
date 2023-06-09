@@ -1,4 +1,5 @@
 Menu,Type,EN,NL
 SidePanel,Array,Items;Pokemon;Save;Minimize Menu;Exit Game,Artikileren;Pokemon;Redden;Menu Minimaliseren;Verlaat het spel
 ChoicePanel,Array,Fight;Items;Pokemon;Run,Aanval;Artikelen;Pokemon;Vlucht
+MainMenu,String,Start,Aanvang
 Attack,String,%s used %s!,%s gebruikte %s!

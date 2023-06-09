@@ -58,11 +58,17 @@ public class LanguageConfiguration {
 
     }
 
-    // Function to set the language
-    public void setLanguage(Language language) {
-        selectedLanguage = language;
-        System.out.println("Language set to " + language);
-        notifyListeners(new PropertyChangeEvent(this, "language", null, language));
+    public void switchLanguage() {
+
+        // If en switch to nl and vice versa
+        if (selectedLanguage == Language.EN) {
+            selectedLanguage = Language.NL;
+        } else {
+            selectedLanguage = Language.EN;
+        }
+
+        notifyListeners(new PropertyChangeEvent(this, "Language", null, selectedLanguage.toString()));
+
     }
 
     public void addLanguageChangeListener(PropertyChangeListener listener) {
@@ -80,6 +86,10 @@ public class LanguageConfiguration {
     public String[] getOptions(String key) {
         String[] options = optionMap.get(key).get(selectedLanguage.toString());
         return Arrays.copyOf(options, options.length);
+    }
+
+    public String getText(String key) {
+        return stringMap.get(key).get(selectedLanguage.toString());
     }
     
 }
