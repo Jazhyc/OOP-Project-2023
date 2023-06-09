@@ -15,7 +15,7 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
     private SoundHandler soundHandler;
     private JPanel gamePanel;
 
-    private JButton[] buttons = new JButton[3];
+    private JLabel[] buttons = new JLabel[3];
 
     public MainMenu(MainMenuController controller, JPanel gamePanel) {
 
@@ -87,29 +87,30 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
 
         // Create the buttons and add them one after the other
         for (int i = 0; i < buttonStrings.length; i++) {
-            buttons[i] = new JButton(buttonStrings[i]);
+            
+            // Use JLabel instead of JButton
+            buttons[i] = new JLabel(buttonStrings[i]);
+
+            // Set the font
+            buttons[i].setFont(new Font("Arial", Font.BOLD, 24));
 
             final int index = i;
 
-            buttons[i].addActionListener(new ActionListener() {
+            // Add a mouse listener to the button
+            buttons[i].addMouseListener(new MouseAdapter() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    soundHandler.playSound("select");
-                    // Use case statement and i to determine which button was pressed
-                    switch (index) {
-                        case 0:
-                            controller.startGame();
-                            setVisible(false);
-                            gamePanel.setVisible(true);
-                            break;
-                        case 1:
-                            // Continue button
-                            break;
-                        case 2:
-                            // Exit button
-                            System.exit(0);
-                            break;
-                    }
+                public void mouseEntered(MouseEvent e) {
+                    buttons[index].setForeground(Color.RED);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    buttons[index].setForeground(Color.BLACK);
+                }
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    handleClick(index, controller);
                 }
             });
 
@@ -119,6 +120,32 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
             add(buttons[i], gbc);
         }
 
+    }
+
+    private void handleClick(int index, MainMenuController controller) {
+
+        soundHandler.playSound("select");
+
+        switch (index) {
+            case 0:
+                // Start game
+                controller.startGame();
+                setVisible(false);
+                gamePanel.setVisible(true);
+                break;
+            case 1:
+                // Continue game
+                controller.continueGame();
+                break;
+            case 2:
+                // Exit game
+                System.out.println("Exit game");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid button");
+                break;
+        }
     }
 
     private void addTitle() {

@@ -8,5 +8,9 @@ public class MainMenuController {
     public void startGame() {
 
     }
+
+    public void continueGame() {
+        
+    }
     
 }
