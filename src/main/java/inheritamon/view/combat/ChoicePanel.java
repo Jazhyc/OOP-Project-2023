@@ -5,6 +5,7 @@ import javax.swing.*;
 import inheritamon.model.data.DataHandler;
 import inheritamon.view.combat.actions.ActionPanel;
 import inheritamon.controller.BattleController;
+import inheritamon.language.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -12,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 
 
-public class ChoicePanel extends JPanel {
+public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
     JLabel labels[] = new JLabel[4];
     JLabel icons[] = new JLabel[4];
@@ -20,9 +21,10 @@ public class ChoicePanel extends JPanel {
     private BufferedImage backgroundImage;
 
     // Create an array for storing the name of the buttons
-    String buttonNames[] = {"Fight", "Items", "Pokemon", "Run"};
+    String buttonNames[];
     private int buttonWidth = 40;
 
+    private String[] buttonIconNames = {"Fight", "Items", "Pokemon", "Run"};
     private HashMap<String, BufferedImage> buttonIcons = new HashMap<String, BufferedImage>();
 
     // Icons obtained from 
@@ -34,6 +36,10 @@ public class ChoicePanel extends JPanel {
 
         DataHandler dataHandler = DataHandler.getInstance();
         backgroundImage = dataHandler.getBackground("choiceMenu");
+
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+        buttonNames = config.getOptions("ChoicePanel");
+        addLanguageListener();
         
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
@@ -45,7 +51,7 @@ public class ChoicePanel extends JPanel {
             labels[i] = new JLabel(buttonNames[i]);
             // Add the image before the button
             // Resize the image to 50x50
-            BufferedImage icon = buttonIcons.get(buttonNames[i]);
+            BufferedImage icon = buttonIcons.get(buttonIconNames[i]);
             Image scaledIcon = icon.getScaledInstance(buttonWidth, buttonWidth, Image.SCALE_SMOOTH);
 
             addJLabel(i);
@@ -164,6 +170,20 @@ public class ChoicePanel extends JPanel {
         icons[i] = new JLabel(new ImageIcon(scaledIcon));
         // Add the image to the panel
         add(icons[i], gbc);
+    }
+
+    public void addLanguageListener() {
+
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+        
+        config.addLanguageChangeListener(e -> {
+            // Get the new button names
+            buttonNames = config.getOptions("ChoicePanel");
+            // Change the text of the buttons
+            for (int i = 0; i < 4; i++) {
+                labels[i].setText(buttonNames[i]);
+            }
+        });
     }
     
 }

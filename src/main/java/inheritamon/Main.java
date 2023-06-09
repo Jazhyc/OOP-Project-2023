@@ -81,6 +81,11 @@ public class Main {
         inventory.addItem(inheritaball);
         inventory.printInventory();
 
+        // Debug code to switch to the game screen
+        // mainMenu.setVisible(false);
+        // battlePanel.setVisible(true);
+        // battleHandler.startBattle(playerRoster, groudon);
+
         String username = "Ash";
         TrainerRegion region = KANTO;
 //        TrainerAbility ability = SWIMMING;
