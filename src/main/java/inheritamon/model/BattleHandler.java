@@ -5,11 +5,11 @@ import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 
 import inheritamon.model.data.DataHandler;
+import inheritamon.model.data.language.LanguageConfiguration;
 import inheritamon.model.inventory.Inventory;
 import inheritamon.model.inventory.Item;
 import inheritamon.model.inventory.PlayerData;
 import inheritamon.model.inventory.PlayerRoster;
-import inheritamon.model.language.LanguageConfiguration;
 import inheritamon.model.pokemon.moves.NormalAbility;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.pokemon.types.Pokemon;

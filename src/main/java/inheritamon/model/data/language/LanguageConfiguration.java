@@ -1,4 +1,4 @@
-package inheritamon.model.language;
+package inheritamon.model.data.language;
 
 import java.util.*;
 import java.beans.*;
