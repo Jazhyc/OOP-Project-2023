@@ -30,7 +30,7 @@ public class ItemsPanel extends JPanel {
 
         DataHandler dataHandler = DataHandler.getInstance();
 
-        battleHandler.addInventoryListener(e -> {
+        battleHandler.addListener("inventory", e -> {
             inventory = (Inventory) e.getNewValue();
 
             // Remove all components

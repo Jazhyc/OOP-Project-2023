@@ -61,7 +61,7 @@ public class DialoguePanel extends JPanel {
 
     private void setUp(BattleHandler battleHandler) {
 
-        battleHandler.addDialogueListener(e -> {
+        battleHandler.addListener("dialogue", e -> {
             textToDisplay = (String) e.getNewValue();
             revalidate();
             repaint();

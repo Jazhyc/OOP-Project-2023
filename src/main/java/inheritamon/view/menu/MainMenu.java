@@ -3,7 +3,7 @@ package inheritamon.view.menu;
 import javax.swing.*;
 
 import inheritamon.controller.MainMenuController;
-import inheritamon.model.language.*;
+import inheritamon.model.data.language.*;
 import inheritamon.view.SoundHandler;
 
 import java.awt.*;

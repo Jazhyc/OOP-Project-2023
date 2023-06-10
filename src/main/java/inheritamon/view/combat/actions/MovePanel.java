@@ -35,7 +35,7 @@ public class MovePanel extends JPanel {
     private void setUp(BattleHandler battleHandler, BattleController battleController) {
 
         // Add a move listener to the battle handler
-        battleHandler.addMoveListener(e -> {
+        battleHandler.addListener("moves", e -> {
             
             // Print the moves if e contains the moves attribute which is an array of strings
             if (e.getPropertyName().equals("moves")) {
