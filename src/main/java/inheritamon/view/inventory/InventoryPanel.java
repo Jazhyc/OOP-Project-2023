@@ -7,6 +7,10 @@ import java.awt.*;
 import inheritamon.model.inventory.Inventory;
 import inheritamon.model.inventory.Item;
 
+/**
+ * @author Jona Janssen
+ * Controls inventory view
+ */
 public class InventoryPanel extends JPanel {
     private JButton addItem(int item) {
         JButton newItem = new JButton();

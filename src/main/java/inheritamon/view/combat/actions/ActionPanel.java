@@ -34,7 +34,7 @@ public class ActionPanel extends JPanel {
 
         // Create the panels for the different actions
         panels[0] = new MovePanel(battleHandler, battleController);
-        panels[1] = new ItemsPanel();
+        panels[1] = new ItemsPanel(battleHandler, battleController);
         panels[2] = new PokemonSelectionPanel(battleHandler, battleController);
 
         // Make the pokemon selection and items panel invisible
