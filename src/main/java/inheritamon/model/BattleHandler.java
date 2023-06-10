@@ -3,7 +3,6 @@ package inheritamon.model;
 import inheritamon.model.pokemon.moves.*;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.pokemon.types.Pokemon;
-import inheritamon.model.pokemon.types.RandomPokemon;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
 import inheritamon.model.data.*;
 import inheritamon.model.inventory.*;

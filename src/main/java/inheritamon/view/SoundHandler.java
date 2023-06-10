@@ -61,6 +61,7 @@ public class SoundHandler {
             currentMusic.stop();
         }
         currentMusic = musicClips.get(key);
+        currentMusic.setFramePosition(0);
 
         // Lower volume
         FloatControl gainControl = (FloatControl) currentMusic.getControl(FloatControl.Type.MASTER_GAIN);
