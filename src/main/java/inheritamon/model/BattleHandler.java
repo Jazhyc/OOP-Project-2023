@@ -77,7 +77,7 @@ public class BattleHandler {
         this.playerRoster = playerData.getRoster();
         playerPokemon = playerRoster.getPokemon(0);
         this.enemyPokemon = enemyPokemon;
-        this.playerInventory = playerData.getItems();
+        this.playerInventory = playerData.getInventory();
 
         notifyStatListener(playerPokemon, enemyPokemon);
 
@@ -85,6 +85,7 @@ public class BattleHandler {
         notifyMoveListener(playerPokemon);
         notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
         notifyPlayerRosterListener();
+        notifyInventoryListener();
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -122,6 +123,12 @@ public class BattleHandler {
                 wait(WAIT_TIME);
                 notifyConclusionListener(0);
                 return 0;
+            }
+
+            // Add item functionality
+            if (ability.startsWith("item")) {
+                handleItemUse(ability);
+                continue;
             }
 
             // Checked if the ability returned starts with switch
@@ -243,6 +250,36 @@ public class BattleHandler {
             formattedString = String.format(config.getText("Miss"), attacker.getName());
             notifyDialogueListener(formattedString);
         }
+
+    }
+
+    private void handleItemUse(String ability) {
+
+
+        // Get the item index to use using regex
+        int itemToUse = Integer.parseInt(ability.replaceAll("[^0-9]", ""));
+
+        // Get the item
+        Item item = playerInventory.getItem(itemToUse);
+
+        // Use the item
+        item.useItem(enemyPokemon, playerPokemon);
+
+        // Remove the item from the inventory
+        playerInventory.removeItem(itemToUse);
+
+        // Notify the listeners
+        notifyInventoryListener();
+        notifyStatListener(playerPokemon, enemyPokemon);
+
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+        String formattedString = String.format(config.getText("Item"), item.getItemName());
+        notifyDialogueListener(formattedString);
+        notifyInventoryListener();
+        wait(WAIT_TIME);
+
+        // Skip the rest of the turn
+        turn++;
 
     }
 

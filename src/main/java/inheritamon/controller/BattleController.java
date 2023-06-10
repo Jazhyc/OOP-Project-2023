@@ -36,6 +36,12 @@ public class BattleController {
         playerPokemon.selectMove("switch " + index);
     }
 
+    public void selectItem(Integer item) {
+        System.out.println("You selected " + item);
+        PlayerPokemon playerPokemon = battleHandler.getActivePlayerPokemon();
+        playerPokemon.selectMove("item " + item);
+    }
+
     public void beginBattle() {
         gameModel.startBattle();
     }

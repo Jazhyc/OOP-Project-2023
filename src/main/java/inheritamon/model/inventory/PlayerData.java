@@ -17,7 +17,7 @@ public class PlayerData {
         return roster;
     }
 
-    public Inventory getItems() {
+    public Inventory getInventory() {
         return inventory;
     }
     

@@ -1,6 +1,8 @@
 package inheritamon.model.inventory;
 import java.util.ArrayList;
 
+import inheritamon.model.data.DataHandler;
+
 /**
  * @author Jona Janssen
  * Class that controls player inventory. Items are stored in an array
@@ -10,10 +12,24 @@ public class Inventory {
 
     private int size = INITIAL_SIZE;
 
-    ArrayList <Item> inventory = new ArrayList<Item>(size);
+    ArrayList <Item> inventory = new ArrayList<Item>();
+
+    public Inventory() {
+
+        DataHandler dataHandler = DataHandler.getInstance();
+        
+        Item potion = new Item(dataHandler.getItemData("Potion"));
+        Item inheritaball = new Item(dataHandler.getItemData("Inheritaball"));
+        addItem(potion);
+        addItem(inheritaball);
+
+    }
 
     public int getSize() {
-        return size;
+        
+        // Return the number of items in the arraylist
+        return inventory.size();
+
     }
 
     private void setSize(int newSize) {
@@ -30,6 +46,10 @@ public class Inventory {
         } else {
             inventory.remove(index);
         }
+    }
+
+    public Item getItem(int index) {
+        return inventory.get(index);
     }
 
     public void printInventory() {

@@ -28,6 +28,7 @@ public class DataHandler {
     private HashMap<String, BufferedImage> tiles = new HashMap<String, BufferedImage>();
     private HashMap<String, BufferedImage> characterTextures = new HashMap<String, BufferedImage>();
     private HashMap<String, HashMap<String, String>> languageData = new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, BufferedImage> inventorySprites = new HashMap<String, BufferedImage>();
     // private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
 
     // Create a hashmap for sounds and music
@@ -64,6 +65,7 @@ public class DataHandler {
         loadGeneralImages(battleBackgrounds, "battleBackgrounds");
         loadGeneralImages(tiles, "tiles");
         loadGeneralImages(characterTextures, "characterTextures");
+        loadGeneralImages(inventorySprites, "inventorySprites");
         // loadConversations(dialogueData, "dialogues.csv");
         loadAudio(sounds, "sounds");
         loadAudio(music, "music");
@@ -275,6 +277,10 @@ public class DataHandler {
 
     public BufferedImage getCharacterTexture(String textureName) {
         return getImage(characterTextures, textureName, "Texture");
+    }
+
+    public BufferedImage getItemSprite(String spriteName) {
+        return getImage(inventorySprites, spriteName, "Inventory Sprite");
     }
 
     public HashMap<String, AudioInputStream> getAudios(String audioType) {

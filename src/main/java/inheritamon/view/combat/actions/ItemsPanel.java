@@ -3,19 +3,13 @@ package inheritamon.view.combat.actions;
 import inheritamon.controller.BattleController;
 import inheritamon.model.BattleHandler;
 import inheritamon.model.data.DataHandler;
-import inheritamon.model.inventory.Inventory;
-import inheritamon.model.inventory.PlayerRoster;
-import inheritamon.model.pokemon.types.PlayerPokemon;
-import inheritamon.model.pokemon.types.Pokemon;
+import inheritamon.model.inventory.*;
 import inheritamon.view.SoundHandler;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.color.ColorSpace;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
+import java.awt.event.*;
+import java.awt.image.*;
 
 public class ItemsPanel extends JPanel {
     private static final int SPRITE_SIZE = 100;
@@ -45,57 +39,36 @@ public class ItemsPanel extends JPanel {
             // Loop over the array using index
             for (int i = 0; i < inventory.getSize(); i++) {
 
+                Item item = inventory.getItem(i);
+
+                // Get the name of the sprite
+                String spriteName = item.getItemSprite();
+
+                // Get the sprite from the data handler
+                BufferedImage imageToDisplay = dataHandler.getItemSprite(spriteName);
+
                 // Skip if i is greater than the length of the array
-                if (i >= inventory.getSize()) {
+                if (i < inventory.getSize()) {
 
-                    // Add an empty label
-                    add(new JLabel());
+                    // Add the label with the sprite
+                    JLabel label = new JLabel(new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
+                    add(label);
 
-                    continue;
-                }
+                    final int selectionIndex = i;
 
-                // image to display: How?
-
-                // Create a label with the image and increase the size
-                JLabel label = new JLabel(); //needs image ;)
-
-
-                final int selectionIndex = i;
-
-                // Add a mouse adapter to the label
-                label.addMouseListener(new MouseAdapter() {
+                    label.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        // Use the item if clicked
-                        // ???
-                    }
-                });
+                        battleController.selectItem(selectionIndex);
+                        }
+                    });
 
-                // Add the button to the panel
-                //add(label);
+                }
+
             }
         });
 
     }
 
-    private BufferedImage convertToGrayscale(BufferedImage imageToDisplay) {
 
-        // Make the image transparent
-        BufferedImage newImage = new BufferedImage(imageToDisplay.getWidth(), imageToDisplay.getHeight(), BufferedImage.TYPE_INT_ARGB);
-
-        // Create a color convert op
-        ColorConvertOp colorConvertOp = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
-
-        // Use the filter to convert the image
-        colorConvertOp.filter(imageToDisplay, newImage);
-
-        // Set the image to the new image
-        imageToDisplay = newImage;
-        return imageToDisplay;
-    }
-
-
-}
-
-    
 }

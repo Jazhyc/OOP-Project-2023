@@ -56,12 +56,5 @@ public class Main {
         // Set the battle panel since it was initialized after the game panel
         gamePanel.setBattlePanel(battlePanel);
 
-        Item potion = new Item(dataHandler.getItemData("Potion"));
-        Item inheritaball = new Item(dataHandler.getItemData("Inheritaball"));
-        Inventory inventory = new Inventory();
-        inventory.addItem(potion);
-        inventory.addItem(inheritaball);
-        inventory.printInventory();
-
     }
 }
