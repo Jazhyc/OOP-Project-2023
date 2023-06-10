@@ -59,6 +59,7 @@ public class ItemsPanel extends JPanel {
                     label.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
+                        soundHandler.playSound("select");
                         battleController.selectItem(selectionIndex);
                         }
                     });
