@@ -211,6 +211,10 @@ public class DataHandler {
         return getData(itemData, itemName, "Item");
     }
 
+    public HashMap<String, HashMap<String, String>> getAllItems() {
+        return new HashMap<String, HashMap<String, String>>(itemData);
+    }
+
     /**
      * Gets the data of all menus
      * @return The data of all menus

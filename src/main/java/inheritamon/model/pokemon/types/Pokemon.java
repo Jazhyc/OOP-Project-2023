@@ -217,5 +217,9 @@ public abstract class Pokemon {
     public boolean isFainted() {
         return hasFainted;
     }
+
+    public String getLoot() {
+        return stringStats.get("Loot");
+    }
     
 }

@@ -203,6 +203,8 @@ public class BattleHandler {
             notifyDialogueListener(formattedString);
             wait(WAIT_TIME);
             notifyDialogueListener(config.getText("Victory"));
+            wait(WAIT_TIME);
+            handleLoot();
             conclusion = "Victory";
         } else if (playerRoster.allFainted()) {
             notifyDialogueListener(config.getText("AllFainted"));
@@ -215,6 +217,23 @@ public class BattleHandler {
 
         wait(WAIT_TIME);
         return conclusion;
+    }
+
+    private void handleLoot() {
+
+        DataHandler dataHandler = DataHandler.getInstance();
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+
+        // Get the loot from the enemy pokemon
+        String loot = enemyPokemon.getLoot();
+        Item item = new Item(dataHandler.getItemData(loot));
+        playerInventory.addItem(item);
+
+
+        String formattedString = String.format(config.getText("Loot"), item.getItemName());
+        notifyDialogueListener(formattedString);
+        wait(WAIT_TIME);
+
     }
 
     private void getPokemonToSwitchTo(PlayerRoster playerRoster, Pokemon enemyPokemon, String ability) {

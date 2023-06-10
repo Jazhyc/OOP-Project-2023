@@ -16,3 +16,4 @@ Damage,String,%s dealt %d damage,%s deed %d schade
 Miss,String,%s missed!,%s miste!
 Run,String,You ran away!,Je bent weggerend!
 Item,String,You used %s!,Je gebruikte %s!
+Loot,String,You found %s!,Je vond %s!
