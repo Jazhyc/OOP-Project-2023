@@ -1,6 +1,7 @@
 package inheritamon.controller;
 
 import inheritamon.model.GameModel;
+import inheritamon.view.menu.RegionSelectionWindow;
 
 /**
  * @author Jeremias
@@ -15,6 +16,7 @@ public class MainMenuController {
     }
 
     public void startGame() {
+        RegionSelectionWindow regionSelectionWindow = new RegionSelectionWindow(gameModel);
         gameModel.startNewGame();
     }
 

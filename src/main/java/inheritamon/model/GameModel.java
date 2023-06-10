@@ -1,13 +1,19 @@
 package inheritamon.model;
 
+import inheritamon.controller.PokemonTrainer;
+import inheritamon.controller.TrainerAbility;
+import inheritamon.controller.TrainerRegion;
 import inheritamon.model.inventory.PlayerData;
 import inheritamon.model.pokemon.types.RandomPokemon;
 import inheritamon.model.data.DataHandler;
+import inheritamon.view.menu.RegionSelectionWindow;
 
 public class GameModel {
 
     private PlayerData playerData;
     private BattleHandler battleHandler;
+
+    private PokemonTrainer player;
 
     // Constructor for a new game
     public GameModel(BattleHandler battleHandler) {
@@ -15,7 +21,13 @@ public class GameModel {
     }
 
     public void startNewGame() {
+        RegionSelectionWindow regionSelectionWindow = new RegionSelectionWindow(this);
         playerData = new PlayerData();
+    }
+
+    public void spawnPlayer(String username, TrainerRegion region, TrainerAbility ability) {
+        player = new PokemonTrainer(username, region) {
+        };
     }
 
     public void startBattle() {
