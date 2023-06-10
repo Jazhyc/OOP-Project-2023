@@ -39,7 +39,7 @@ public class Main {
         gamePanel.setVisible(false);
         frame.add(gamePanel);
 
-        MainMenuController mainMenuController = new MainMenuController();
+        MainMenuController mainMenuController = new MainMenuController(gameModel);
         MainMenu mainMenu = new MainMenu(mainMenuController, gamePanel);
         frame.add(mainMenu);
 

@@ -5,7 +5,6 @@ import javax.swing.*;
 import inheritamon.controller.BattleController;
 import inheritamon.model.language.*;
 import inheritamon.view.SoundHandler;
-import inheritamon.view.combat.BattlePanel;
 
 import java.awt.event.*;
 import java.util.*;

@@ -11,13 +11,11 @@ public class GameModel {
 
     // Constructor for a new game
     public GameModel(BattleHandler battleHandler) {
-        this(new PlayerData(), battleHandler);
+        this.battleHandler = battleHandler;
     }
 
-    // Constructor for a loaded game
-    public GameModel(PlayerData playerData, BattleHandler battleHandler) {
-        this.playerData = playerData;
-        this.battleHandler = battleHandler;
+    public void startNewGame() {
+        playerData = new PlayerData();
     }
 
     public void startBattle() {
@@ -28,7 +26,7 @@ public class GameModel {
             System.out.println("All pokemon fainted");
             return;
         }
-        
+
         battleHandler.startBattle(playerData, groudon);
     }
     
