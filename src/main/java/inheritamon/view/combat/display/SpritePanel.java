@@ -86,7 +86,7 @@ public class SpritePanel extends JPanel {
 
     private void setUp(BattleHandler battleHandler) {
 
-        battleHandler.addPokemonSpriteListener(e -> {
+        battleHandler.addListener("pokemonSprite", e -> {
 
             // Use a ternary operator to determine what the event name should be based on the type
             String eventName = type == DisplayType.PLAYER ? "playerSprite" : "enemySprite";

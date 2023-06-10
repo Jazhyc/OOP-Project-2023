@@ -106,7 +106,7 @@ public class BattlePanel extends JPanel{
 
     private void setUpListener(BattleHandler battleHandler) {
         // Add a listener to the battleHandler to update the display
-        battleHandler.addBattleStateListener(e -> {
+        battleHandler.addListener("battleState", e -> {
 
             // Get the value of e
             String battleState = (String) e.getNewValue();

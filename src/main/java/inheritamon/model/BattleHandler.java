@@ -1,19 +1,23 @@
 package inheritamon.model;
 
-import inheritamon.model.pokemon.moves.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.HashMap;
+
+import inheritamon.model.data.DataHandler;
+import inheritamon.model.inventory.Inventory;
+import inheritamon.model.inventory.Item;
+import inheritamon.model.inventory.PlayerData;
+import inheritamon.model.inventory.PlayerRoster;
+import inheritamon.model.language.LanguageConfiguration;
+import inheritamon.model.pokemon.moves.NormalAbility;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
-import inheritamon.model.data.*;
-import inheritamon.model.inventory.*;
-import inheritamon.model.language.LanguageConfiguration;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.*;
 
 /**
- * A class to handle battles, takes the player's pokemon and the enemy pokemon as parameters
+ * @author Jeremias
+ * A class to handle battles, takes the player and the enemy pokemon as parameters
  */
 public class BattleHandler {
 
@@ -308,8 +312,60 @@ public class BattleHandler {
 
     }
 
-    public void addMoveListener(PropertyChangeListener listener) {
-        this.moveListener = listener;
+    private int[] getPokemonDisplayStats(Pokemon pokemon) {
+        int[] stats = new int[4];
+        stats[0] = pokemon.getHP();
+        stats[1] = pokemon.getNumericalStat("MaxHP");
+        stats[2] = pokemon.getMP();
+        stats[3] = pokemon.getNumericalStat("MaxMP");
+        return stats;
+    }
+
+    private void addListener(PropertyChangeListener[] listeners, PropertyChangeListener newListener) {
+        // Add the listener to the array
+        for (int i = 0; i < listeners.length; i++) {
+            if (listeners[i] == null) {
+                listeners[i] = newListener;
+                break;
+            }
+        }
+    }
+
+    public void addListener(String listenerType, PropertyChangeListener listener) {
+        switch (listenerType) {
+            case "pokemonSprite":
+                addListener(spriteListeners, listener);
+                break;
+            case "stat":
+                addListener(statListeners, listener);
+                break;
+            case "playerRoster":
+                this.playerRosterListener = listener;
+                break;
+            case "inventory":
+                this.inventoryListener = listener;
+                break;
+            case "battleState":
+                this.battleStateListener = listener;
+                break;
+            case "dialogue":
+                this.dialogueListener = listener;
+                break;
+            case "moves":
+                this.moveListener = listener;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid listener type: " + listenerType);
+        }
+    }
+
+    private void notifyDialogueListener(String dialogue) {
+        dialogueListener.propertyChange(new PropertyChangeEvent(this, "dialogue", null, dialogue));
+    }
+
+    private void notifyPokemonSpriteListener(Pokemon playerPokemon, Pokemon enemyPokemon) {
+        spriteListeners[0].propertyChange(new PropertyChangeEvent(this, "playerSprite", null, playerPokemon.getName()));
+        spriteListeners[1].propertyChange(new PropertyChangeEvent(this, "enemySprite", null, enemyPokemon.getName()));
     }
 
     private void notifyMoveListener(Pokemon playerPokemon) {
@@ -323,18 +379,6 @@ public class BattleHandler {
         moveListener.propertyChange(new PropertyChangeEvent(this, "moves", null, moves));
     }
 
-    public void addStatListener(PropertyChangeListener listener) {
-        
-        // Add the listener to the array
-        for (int i = 0; i < statListeners.length; i++) {
-            if (statListeners[i] == null) {
-                statListeners[i] = listener;
-                break;
-            }
-        }
-
-    }
-
     private void notifyStatListener(Pokemon playerPokemon, Pokemon enemyPokemon) {
 
         // Get the stats for the player pokemon
@@ -344,46 +388,6 @@ public class BattleHandler {
         // Get the stats for the enemy pokemon
         int[] enemyStats = getPokemonDisplayStats(enemyPokemon);
         statListeners[1].propertyChange(new PropertyChangeEvent(this, "enemyStats", null, enemyStats));
-    }
-
-    private int[] getPokemonDisplayStats(Pokemon pokemon) {
-        int[] stats = new int[4];
-        stats[0] = pokemon.getHP();
-        stats[1] = pokemon.getNumericalStat("MaxHP");
-        stats[2] = pokemon.getMP();
-        stats[3] = pokemon.getNumericalStat("MaxMP");
-        return stats;
-    }
-
-    public void addPokemonSpriteListener(PropertyChangeListener listener) {
-        // Add the listener to the array
-        for (int i = 0; i < spriteListeners.length; i++) {
-            if (spriteListeners[i] == null) {
-                spriteListeners[i] = listener;
-                break;
-            }
-        }
-    }
-
-    private void notifyPokemonSpriteListener(Pokemon playerPokemon, Pokemon enemyPokemon) {
-        spriteListeners[0].propertyChange(new PropertyChangeEvent(this, "playerSprite", null, playerPokemon.getName()));
-        spriteListeners[1].propertyChange(new PropertyChangeEvent(this, "enemySprite", null, enemyPokemon.getName()));
-    }
-
-    public void addDialogueListener(PropertyChangeListener listener) {
-        this.dialogueListener = listener;
-    }
-
-    private void notifyDialogueListener(String dialogue) {
-        dialogueListener.propertyChange(new PropertyChangeEvent(this, "dialogue", null, dialogue));
-    }
-
-    public void addPlayerRosterListener(PropertyChangeListener listener) {
-        this.playerRosterListener = listener;
-    }
-
-    public void addInventoryListener(PropertyChangeListener listener) {
-        this.inventoryListener = listener;
     }
 
     private void notifyPlayerRosterListener() {
@@ -397,10 +401,6 @@ public class BattleHandler {
         // Create a copy of the player's inventory
         Inventory inventory = playerInventory;
         inventoryListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, inventory));
-    }
-
-    public void addBattleStateListener(PropertyChangeListener listener) {
-        this.battleStateListener = listener;
     }
 
     private void notifyBattleStateListener(String conclusion) {

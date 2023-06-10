@@ -40,7 +40,7 @@ public class PokemonSelectionPanel extends JPanel {
 
         DataHandler dataHandler = DataHandler.getInstance();
 
-        battleHandler.addPlayerRosterListener(e -> {
+        battleHandler.addListener("playerRoster", e -> {
             playerPokemon = (PlayerPokemon[]) e.getNewValue();
 
             // Remove all components

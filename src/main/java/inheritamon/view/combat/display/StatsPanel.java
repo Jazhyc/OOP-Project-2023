@@ -69,7 +69,7 @@ public class StatsPanel extends JPanel {
 
     private void setUp(BattleHandler battleHandler) {
 
-        battleHandler.addStatListener(e -> {
+        battleHandler.addListener("stat", e -> {
 
             // Use a ternary operator to determine what the event name should be based on the type
             String eventName = type == DisplayType.PLAYER ? "playerStats" : "enemyStats";

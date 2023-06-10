@@ -4,6 +4,10 @@ import inheritamon.model.inventory.PlayerData;
 import inheritamon.model.pokemon.types.RandomPokemon;
 import inheritamon.model.data.DataHandler;
 
+/**
+ * @author Jeremias
+ * A class to represent the main logic of the game
+ */
 public class GameModel {
 
     private PlayerData playerData;
