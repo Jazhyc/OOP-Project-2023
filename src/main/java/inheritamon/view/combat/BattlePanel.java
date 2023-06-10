@@ -12,6 +12,7 @@ import inheritamon.view.combat.display.BattleDisplayPanel;
 import java.awt.*;
 
 /**
+ * @author Jeremias
  * The main panel for the battle screen
  */
 public class BattlePanel extends JPanel{

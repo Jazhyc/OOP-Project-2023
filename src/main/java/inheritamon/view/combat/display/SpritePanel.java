@@ -9,15 +9,13 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 
+/**
+ * @author Jeremias
+ * The SpritePanel class is responsible for displaying the sprites of the pokemon during battle
+ */
 public class SpritePanel extends JPanel {
 
-    /**
-     *
-     */
     private static final double SHADOW_PLACEMENT = 0.85;
-    /**
-     *
-     */
     private static final double SPRITE_SCALE_FACTOR = 2.5;
     private static final int SHADOW_SIZE = 40;
     private BufferedImage imageToDisplay;

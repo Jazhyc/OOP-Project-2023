@@ -9,6 +9,10 @@ import inheritamon.view.SoundHandler;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @author Jeremias
+ * The main menu of the game
+ */
 public class MainMenu extends JPanel implements LanguageChangeListener {
 
     private JLabel titleLabel;

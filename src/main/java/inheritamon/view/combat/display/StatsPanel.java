@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.lang.reflect.*;
 
-
+/**
+ * @author Jeremias
+ */
 public class StatsPanel extends JPanel {
     
     // Set default values to represent a full bar

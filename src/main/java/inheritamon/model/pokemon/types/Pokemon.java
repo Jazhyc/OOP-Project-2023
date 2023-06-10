@@ -5,7 +5,8 @@ import java.util.*;
 import inheritamon.model.data.DataHandler;
 
 /**
- * A class to represent a pokemon, does not possess a sophisticated AI, only returns a random move
+ * @author Jeremias
+ * A class to represent a pokemon, does not possess an AI
  */
 public abstract class Pokemon {
 

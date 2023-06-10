@@ -3,6 +3,7 @@ package inheritamon.model.pokemon.types;
 import java.util.HashMap;
 
 /**
+ * @author Jeremias
  * A pokemon that specialises in giving the player a hard time
  */
 public class Boss extends Pokemon {

@@ -2,6 +2,7 @@ package inheritamon.model.pokemon.types;
 import java.util.*;
 
 /**
+ * @author Jeremias
  * A pokemon that plays it safe by healing whenever it is low HP
  */
 public class AttritionPokemon extends Pokemon {

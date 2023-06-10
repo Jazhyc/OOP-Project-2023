@@ -1,5 +1,9 @@
 package inheritamon.controller;
 
+/**
+ * @author Jeremias
+ * Controller for the main menu
+ */
 public class MainMenuController {
 
     public MainMenuController() {

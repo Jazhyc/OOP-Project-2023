@@ -7,6 +7,9 @@ import inheritamon.Main;
 import inheritamon.controller.BattleController;
 import inheritamon.view.combat.BattlePanel;
 
+/**
+ * @author Jeremias
+ */
 public class GamePanel extends JPanel {
 
     WorldPanel worldPanel;
@@ -33,6 +36,8 @@ public class GamePanel extends JPanel {
         layeredPane.add(sidePanel, 1);
         sidePanel.setBounds(0, 0, screenWidth / 4, screenHeight);
         worldPanel.setBounds(0, 0, screenWidth, screenHeight);
+
+        // This should be removed
         worldPanel.startGameThread();
 
         // Set the layers of the panels so that the side panel is on top of the game panel

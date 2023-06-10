@@ -2,6 +2,7 @@ package inheritamon.model.pokemon.types;
 import java.util.*;
 
 /**
+ * @author Jeremias
  * A pokemon that prioritises damage over all else
  */
 public class RecklessPokemon extends Pokemon {

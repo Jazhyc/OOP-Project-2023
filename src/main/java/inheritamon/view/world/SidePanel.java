@@ -11,6 +11,9 @@ import java.awt.event.*;
 import java.util.*;
 import java.awt.*;
 
+/**
+ * @author Jeremias
+ */
 public class SidePanel extends JPanel implements LanguageChangeListener {
 
     private ArrayList<String> options = new ArrayList<String>();

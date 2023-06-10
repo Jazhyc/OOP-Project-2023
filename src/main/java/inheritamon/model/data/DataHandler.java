@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.net.*;
 
 /**
- * A class to handle and load data
+ * @author Jeremias
+ * A class to handle and load data with the appropriate exceptions
  */
 public class DataHandler {
 

@@ -4,6 +4,10 @@ import inheritamon.model.BattleHandler;
 import inheritamon.model.GameModel;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 
+/**
+ * @Author Jeremias
+ * Controller for the battle
+ */
 public class BattleController {
 
     private BattleHandler battleHandler;

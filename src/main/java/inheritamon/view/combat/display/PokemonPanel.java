@@ -6,6 +6,10 @@ import inheritamon.model.BattleHandler;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Jeremias
+ * A panel to display various details of the player's and enemy's pokemon
+ */
 public class PokemonPanel extends JPanel {
 
     // Display the pokemon differently depending on whether it is the player's or the enemy's

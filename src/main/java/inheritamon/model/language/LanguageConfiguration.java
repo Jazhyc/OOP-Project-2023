@@ -4,6 +4,10 @@ import java.util.*;
 import java.beans.*;
 import inheritamon.model.data.DataHandler;
 
+/**
+ * @Author Jeremias
+ * A class to handle the language configuration of the game
+ */
 public class LanguageConfiguration {
 
     // Singleton pattern

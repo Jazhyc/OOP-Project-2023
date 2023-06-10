@@ -13,7 +13,10 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
-
+/**
+ * @author Jeremias
+ * The ChoicePanel class is responsible for displaying the types of actions in the battle
+ */
 public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
     JLabel labels[] = new JLabel[4];

@@ -2,6 +2,10 @@ package inheritamon.model.pokemon.types;
 
 import java.util.*;
 
+/**
+ * @author Jeremias
+ * A class to represent the player's pokemon, awaits input from the player
+ */
 public class PlayerPokemon extends Pokemon {
 
     private static final int WAIT_TIME = 50;

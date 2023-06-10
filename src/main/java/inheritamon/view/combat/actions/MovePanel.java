@@ -10,6 +10,10 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
+/**
+ * @author Jeremias
+ * The MovePanel class is responsible for displaying the moves of the current pokemon
+ */
 public class MovePanel extends JPanel {
 
     // Create an arrayList for the buttons

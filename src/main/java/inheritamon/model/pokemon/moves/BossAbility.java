@@ -4,7 +4,8 @@ import java.util.*;
 import inheritamon.model.pokemon.types.Pokemon;
 
 /**
- * A class specifically for bosses to use
+ * @author Jeremias
+ * A class specifically for bosses to use. Implements more complex logic than the other moves.
  */
 public class BossAbility extends Ability {
 

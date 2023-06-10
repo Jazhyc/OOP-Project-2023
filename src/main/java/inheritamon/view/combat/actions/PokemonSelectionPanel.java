@@ -13,6 +13,11 @@ import java.awt.image.*;
 import java.awt.event.*;
 import java.awt.color.*;
 
+/**
+ * @author Jeremias
+ * The PokemonSelectionPanel class is responsible for displaying the pokemon in the player's roster
+ * Allows the player to select a pokemon
+ */
 public class PokemonSelectionPanel extends JPanel {
 
     private static final int SPRITE_SIZE = 100;

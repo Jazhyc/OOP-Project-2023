@@ -9,6 +9,10 @@ import inheritamon.controller.BattleController;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Jeremias
+ * The panel for the different actions
+ */
 public class ActionPanel extends JPanel {
 
     // Create an array for 3 panels to store the different actions

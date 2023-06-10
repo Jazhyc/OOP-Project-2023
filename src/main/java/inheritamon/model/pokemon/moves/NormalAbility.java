@@ -4,6 +4,10 @@ import java.util.HashMap;
 
 import inheritamon.model.pokemon.types.Pokemon;
 
+/**
+ * @author Jeremias
+ * A normal ability that deals damage based on the user's attack and magic attack
+ */
 public class NormalAbility extends Ability {
 
     public int executeMove(Pokemon enemy, Pokemon user) {

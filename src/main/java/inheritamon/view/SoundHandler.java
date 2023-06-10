@@ -5,6 +5,11 @@ import javax.sound.sampled.*;
 
 import inheritamon.model.data.DataHandler;
 
+/**
+ * @author Jeremias
+ * The SoundHandler class is responsible for loading and playing all the sounds
+ * and music in the game.
+ */
 public class SoundHandler {
 
     // Singleton instance for now at least

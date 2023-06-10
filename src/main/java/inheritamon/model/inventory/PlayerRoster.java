@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.data.DataHandler;
 
+/**
+ * @author Jeremias
+ * A class to represent the player's pokemon roster
+ */
 public class PlayerRoster {
 
     // Define an arraylist of pokemon

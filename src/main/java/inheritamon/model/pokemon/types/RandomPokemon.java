@@ -2,6 +2,10 @@ package inheritamon.model.pokemon.types;
 
 import java.util.*;
 
+/**
+ * @author Jeremias
+ * A pokemon that selects a random move to use
+ */
 public class RandomPokemon extends Pokemon {
 
     public RandomPokemon(HashMap<String, String> data) {

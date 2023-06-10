@@ -5,6 +5,10 @@ import inheritamon.model.BattleHandler;
 
 import java.awt.*;
 
+/**
+ * @author Jeremias
+ * This class is responsible for displaying the dialogue in the combat screen
+ */
 public class DialoguePanel extends JPanel {
 
     private String textToDisplay = "A wild Pokemon appeared!";

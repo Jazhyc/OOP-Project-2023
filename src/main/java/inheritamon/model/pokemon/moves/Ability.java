@@ -6,7 +6,8 @@ import inheritamon.model.data.DataHandler;
 import inheritamon.model.pokemon.types.Pokemon;
 
 /**
- * An interface for all moves
+ * @Author Jeremias
+ * An abstract class for all moves
  */
 public abstract class Ability {
 

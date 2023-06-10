@@ -7,6 +7,11 @@ import inheritamon.model.data.DataHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Jeremias
+ * The BattleDisplayPanel class is responsible for displaying the pokemon during battle
+ * It splits the screen into two halves, one for the player and one for the enemy
+ */
 public class BattleDisplayPanel extends JPanel {
 
     private BufferedImage backgroundImage;

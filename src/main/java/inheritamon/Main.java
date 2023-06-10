@@ -1,9 +1,7 @@
 package inheritamon;
 import inheritamon.model.*;
-import inheritamon.model.data.*;
 import inheritamon.view.combat.*;
 import inheritamon.view.menu.*;
-import inheritamon.model.inventory.*;
 import inheritamon.controller.*;
 import inheritamon.view.world.*;
 import inheritamon.view.SoundHandler;
@@ -15,9 +13,6 @@ public class Main {
     public static final int SCREEN_WIDTH = 1366;
     public static final int SCREEN_HEIGHT = 768;
     public static void main(String[] args) {
-        
-        // Create the data object and load all the move data
-        DataHandler dataHandler = DataHandler.getInstance();
 
         SoundHandler soundHandler = SoundHandler.getInstance();
         soundHandler.playMusic("StartMenu");
