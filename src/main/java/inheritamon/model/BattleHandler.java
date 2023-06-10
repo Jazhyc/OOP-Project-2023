@@ -42,7 +42,6 @@ public class BattleHandler {
 
     private Inventory playerInventory;
     private int turn;
-    private String result;
 
     /**
      * The constructor for the battle handler
@@ -51,30 +50,27 @@ public class BattleHandler {
         this.moveData = DataHandler.getInstance().getAllAbilities();
     }
 
-    // Create function that calls battleLoop in a separate thread
-    public String startBattle(PlayerData playerData, Pokemon enemyPokemon) {
+    /**
+     * A method to start the battle on a different thread
+     * @return The result of the battle, can be victory, defeat or a draw
+     * 1 = defeat, 2 = victory, 0 = draw
+     */
+    public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
 
         // Create a new thread
         Thread battleThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                result = battleLoop(playerData, enemyPokemon);
+                battleLoop(playerData, enemyPokemon);
             }
         });
 
         // Start the thread
         battleThread.start();
 
-        return result;
-
     }
 
-    /**
-     * A method to start the battle
-     * @return The result of the battle, can be victory, defeat or a draw
-     * 1 = defeat, 2 = victory, 0 = draw
-     */
-    private String battleLoop(PlayerData playerData, Pokemon enemyPokemon) {
+    private void battleLoop(PlayerData playerData, Pokemon enemyPokemon) {
 
         turn = 0;
         String ability;
@@ -89,8 +85,6 @@ public class BattleHandler {
         this.playerInventory = playerData.getInventory();
 
         notifyStatListener(playerPokemon, enemyPokemon);
-
-        // These only need to be executed when the pokemon changes
         notifyMoveListener(playerPokemon);
         notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
         notifyPlayerRosterListener();
@@ -132,7 +126,7 @@ public class BattleHandler {
                 notifyDialogueListener(formattedString);
                 wait(WAIT_TIME);
                 notifyBattleStateListener("Draw");
-                return "Draw";
+                return;
             }
 
             // Add item functionality
@@ -178,7 +172,7 @@ public class BattleHandler {
         conclusion = determineConclusion(playerRoster, enemyPokemon);
         notifyBattleStateListener(conclusion);
 
-        return conclusion;
+        // Notify a listener in the model here
     }
 
     private void handleFaint(PlayerRoster playerRoster, Pokemon enemyPokemon, LanguageConfiguration config) {
