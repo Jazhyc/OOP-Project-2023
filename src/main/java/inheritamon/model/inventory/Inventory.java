@@ -32,6 +32,10 @@ public class Inventory {
 
     }
 
+    public int getMaxSize() {
+        return size;
+    }
+
     private void setSize(int newSize) {
         size = newSize;
     }

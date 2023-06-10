@@ -12,7 +12,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 
 public class ItemsPanel extends JPanel {
-    private static final int SPRITE_SIZE = 100;
+    private static final int SPRITE_SIZE = 50;
     private Inventory inventory;
     private SoundHandler soundHandler;
 
@@ -37,7 +37,16 @@ public class ItemsPanel extends JPanel {
             removeAll();
 
             // Loop over the array using index
-            for (int i = 0; i < inventory.getSize(); i++) {
+            for (int i = 0; i < inventory.getMaxSize(); i++) {
+
+                // Skip if i is greater than the length of the array
+                if (i >= inventory.getSize()) {
+
+                    // Add an empty label
+                    add(new JLabel());
+
+                    continue;
+                }
 
                 Item item = inventory.getItem(i);
 
