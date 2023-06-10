@@ -23,6 +23,12 @@ public class GameModel {
     public void startBattle() {
         DataHandler dataHandler = DataHandler.getInstance();
         RandomPokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
+
+        if (playerData.getRoster().allFainted()) {
+            System.out.println("All pokemon fainted");
+            return;
+        }
+        
         battleHandler.startBattle(playerData, groudon);
     }
     

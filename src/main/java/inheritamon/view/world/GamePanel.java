@@ -52,10 +52,5 @@ public class GamePanel extends JPanel {
         add(layeredPane);
 
     }
-
-    public void setBattlePanel(BattlePanel battlePanel) {
-        this.battlePanel = battlePanel;
-        sidePanel.setBattlePanel(battlePanel);
-    }
     
 }

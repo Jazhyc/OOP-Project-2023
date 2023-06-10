@@ -93,7 +93,7 @@ public class PlayerRoster {
     
     }
 
-    public int getNextPokemon() {
+    public int getAlivePokemon() {
             
         // Loop over the roster
         for (int i = 0; i < roster.size(); i++) {

@@ -106,17 +106,30 @@ public class BattlePanel extends JPanel{
 
     private void setUpListener(BattleHandler battleHandler) {
         // Add a listener to the battleHandler to update the display
-        battleHandler.addConclusionListener(e -> {
-            // Update the display
-            setVisible(false);
-            gamePanel.setVisible(true);
-            soundHandler.playMusic("StartMenu");
+        battleHandler.addBattleStateListener(e -> {
+
+            // Get the value of e
+            String battleState = (String) e.getNewValue();
+
+            if (battleState == "Start") {
+                setUpBattleView();
+            } else {
+                setUpGameView();
+            }
+            
         });
     }
 
     public void setUpBattleView() {
+        soundHandler.playMusic("Battle");
         setVisible(true);
         gamePanel.setVisible(false);
+    }
+
+    public void setUpGameView() {
+        setVisible(false);
+        gamePanel.setVisible(true);
+        soundHandler.playMusic("StartMenu");
     }
     
 }

@@ -23,7 +23,7 @@ public class BattleHandler {
     private PropertyChangeListener dialogueListener;
     private PropertyChangeListener playerRosterListener;
     private PropertyChangeListener inventoryListener;
-    private PropertyChangeListener conclusionListener;
+    private PropertyChangeListener battleStateListener;
     private final int WAIT_TIME = 1000;
 
     // Create an array of 2 for the statListeners
@@ -38,6 +38,7 @@ public class BattleHandler {
 
     private Inventory playerInventory;
     private int turn;
+    private String result;
 
     /**
      * The constructor for the battle handler
@@ -47,18 +48,20 @@ public class BattleHandler {
     }
 
     // Create function that calls battleLoop in a separate thread
-    public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
+    public String startBattle(PlayerData playerData, Pokemon enemyPokemon) {
 
         // Create a new thread
         Thread battleThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                battleLoop(playerData, enemyPokemon);
+                result = battleLoop(playerData, enemyPokemon);
             }
         });
 
         // Start the thread
         battleThread.start();
+
+        return result;
 
     }
 
@@ -67,7 +70,7 @@ public class BattleHandler {
      * @return The result of the battle, can be victory, defeat or a draw
      * 1 = defeat, 2 = victory, 0 = draw
      */
-    private int battleLoop(PlayerData playerData, Pokemon enemyPokemon) {
+    private String battleLoop(PlayerData playerData, Pokemon enemyPokemon) {
 
         turn = 0;
         String ability;
@@ -75,7 +78,9 @@ public class BattleHandler {
         Pokemon defender;
 
         this.playerRoster = playerData.getRoster();
-        playerPokemon = playerRoster.getPokemon(0);
+
+        int playerPokemonIndex = playerRoster.getAlivePokemon();
+        playerPokemon = playerRoster.getPokemon(playerPokemonIndex);
         this.enemyPokemon = enemyPokemon;
         this.playerInventory = playerData.getInventory();
 
@@ -86,6 +91,7 @@ public class BattleHandler {
         notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
         notifyPlayerRosterListener();
         notifyInventoryListener();
+        notifyBattleStateListener("Start");
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -121,8 +127,8 @@ public class BattleHandler {
                 formattedString = String.format(config.getText("Run"));
                 notifyDialogueListener(formattedString);
                 wait(WAIT_TIME);
-                notifyConclusionListener(0);
-                return 0;
+                notifyBattleStateListener("Draw");
+                return "Draw";
             }
 
             // Add item functionality
@@ -163,10 +169,10 @@ public class BattleHandler {
 
         }
 
-        int conclusion;
+        String conclusion;
 
         conclusion = determineConclusion(playerRoster, enemyPokemon);
-        notifyConclusionListener(conclusion);
+        notifyBattleStateListener(conclusion);
 
         return conclusion;
     }
@@ -179,32 +185,32 @@ public class BattleHandler {
         
         // Get the next pokemon if there is one
         if (!playerRoster.allFainted()) {
-            getPokemonToSwitchTo(playerRoster, enemyPokemon, "switch" + playerRoster.getNextPokemon());
+            getPokemonToSwitchTo(playerRoster, enemyPokemon, "switch" + playerRoster.getAlivePokemon());
         }
 
         // Notify the roster listener
         notifyPlayerRosterListener();
     }
 
-    private int determineConclusion(PlayerRoster playerRoster, Pokemon enemyPokemon) {
+    private String determineConclusion(PlayerRoster playerRoster, Pokemon enemyPokemon) {
 
         String formattedString;
         LanguageConfiguration config = LanguageConfiguration.getInstance();
         
-        int conclusion;
+        String conclusion;
         if (enemyPokemon.getHP() <= 0) {
             formattedString = String.format(config.getText("Fainted"), enemyPokemon.getName());
             notifyDialogueListener(formattedString);
             wait(WAIT_TIME);
             notifyDialogueListener(config.getText("Victory"));
-            conclusion = 2;
+            conclusion = "Victory";
         } else if (playerRoster.allFainted()) {
             notifyDialogueListener(config.getText("AllFainted"));
             wait(WAIT_TIME);
             notifyDialogueListener(config.getText("Defeat"));
-            conclusion = 1;
+            conclusion = "Defeat";
         } else {
-            conclusion = 0;
+            conclusion = "Draw";
         }
 
         wait(WAIT_TIME);
@@ -374,12 +380,12 @@ public class BattleHandler {
         inventoryListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, inventory));
     }
 
-    public void addConclusionListener(PropertyChangeListener listener) {
-        this.conclusionListener = listener;
+    public void addBattleStateListener(PropertyChangeListener listener) {
+        this.battleStateListener = listener;
     }
 
-    private void notifyConclusionListener(int conclusion) {
-        conclusionListener.propertyChange(new PropertyChangeEvent(this, "conclusion", null, conclusion));
+    private void notifyBattleStateListener(String conclusion) {
+        battleStateListener.propertyChange(new PropertyChangeEvent(this, "conclusion", null, conclusion));
     }
 
     public String getCurrentPokemonName(DisplayType type) {

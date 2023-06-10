@@ -19,8 +19,6 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
     private ArrayList<String> options = new ArrayList<String>();
     private ArrayList<JLabel> buttonLabels = new ArrayList<JLabel>();
 
-    private BattlePanel battlePanel;
-
     private SoundHandler soundHandler;
 
     public SidePanel(BattleController battleController) {
@@ -130,8 +128,6 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                     case 0:
                         // Open the items menu
                         System.out.println("Items");
-                        soundHandler.playMusic("Battle");
-                        battlePanel.setUpBattleView();
                         battleController.beginBattle();
                         break;
                     case 1:
@@ -174,11 +170,6 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
             }
         });
 
-    }
-
-    // Temporary method to test the panel
-    public void setBattlePanel(BattlePanel battlePanel) {
-        this.battlePanel = battlePanel;
     }
     
 }

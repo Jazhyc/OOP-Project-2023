@@ -48,8 +48,5 @@ public class Main {
         frame.add(battlePanel);
         battlePanel.setVisible(false);
 
-        // Set the battle panel since it was initialized after the game panel
-        gamePanel.setBattlePanel(battlePanel);
-
     }
 }
