@@ -23,6 +23,7 @@ public class BattleHandler {
     private PropertyChangeListener moveListener;
     private PropertyChangeListener dialogueListener;
     private PropertyChangeListener playerRosterListener;
+    private PropertyChangeListener inventoryListener;
     private PropertyChangeListener conclusionListener;
     private final int WAIT_TIME = 1000;
 
@@ -35,6 +36,8 @@ public class BattleHandler {
     private PlayerPokemon playerPokemon;
     private Pokemon enemyPokemon;
     private PlayerRoster playerRoster;
+
+    private Inventory playerInventory;
     private int turn;
 
     /**
@@ -75,6 +78,7 @@ public class BattleHandler {
         this.playerRoster = playerData.getRoster();
         playerPokemon = playerRoster.getPokemon(0);
         this.enemyPokemon = enemyPokemon;
+        this.playerInventory = playerData.getItems();
 
         notifyStatListener(playerPokemon, enemyPokemon);
 
@@ -317,12 +321,21 @@ public class BattleHandler {
         this.playerRosterListener = listener;
     }
 
+    public void addInventoryListener(PropertyChangeListener listener) {
+        this.inventoryListener = listener;
+    }
+
     private void notifyPlayerRosterListener() {
 
         // Create a pokemon array of the pokemon
         Pokemon[] playerRosterArray = playerRoster.getRoster();
 
-        playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, playerRosterArray));
+        playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerInventory", null, playerRosterArray));
+    }
+    private void notifyInventoryListener() {
+        // Create a copy of the player's inventory
+        Inventory inventory = playerInventory;
+        inventoryListener.propertyChange(new PropertyChangeEvent(this, "playerRoster", null, inventory));
     }
 
     public void addConclusionListener(PropertyChangeListener listener) {
@@ -358,5 +371,5 @@ public class BattleHandler {
         return turn % 2 == 0;
 
     }
-    
+
 }

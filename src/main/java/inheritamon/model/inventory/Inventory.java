@@ -1,8 +1,12 @@
 package inheritamon.model.inventory;
 import java.util.ArrayList;
 
+/**
+ * @author Jona Janssen
+ * Class that controls player inventory. Items are stored in an array
+ */
 public class Inventory {
-    private int INITIAL_SIZE = 10;
+    private int INITIAL_SIZE = 6;
 
     private int size = INITIAL_SIZE;
 
@@ -12,7 +16,7 @@ public class Inventory {
         return size;
     }
 
-    public void setSize(int newSize) {
+    private void setSize(int newSize) {
         size = newSize;
     }
 
