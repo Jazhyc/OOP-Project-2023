@@ -28,7 +28,6 @@ public class Item {
         itemSprite = itemData.get("Sprite");
     }
 
-    //? Maybe an abstract class would be better for items? We could use it to make a distinction between normal items and balls
     /**
      * Method that uses an item on a pokemon
      * @param enemyPokemon
