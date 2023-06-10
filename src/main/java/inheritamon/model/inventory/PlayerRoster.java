@@ -1,7 +1,9 @@
 package inheritamon.model.inventory;
 
 import java.util.ArrayList;
+
 import inheritamon.model.pokemon.types.PlayerPokemon;
+import inheritamon.model.data.DataHandler;
 
 public class PlayerRoster {
 
@@ -9,8 +11,17 @@ public class PlayerRoster {
     private ArrayList<PlayerPokemon> roster;
     public final static int MAX_POKEMON = 6;
 
+    // Constructor for a new game
+    //? We don't need one when continuing a game?
     public PlayerRoster() {
         roster = new ArrayList<PlayerPokemon>();
+
+        // Add groudon and blastoise to the roster, will replace this once pokemon selection is implemented
+        DataHandler dataHandler = DataHandler.getInstance();
+        PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
+        PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
+        addPokemon(charizard);
+        addPokemon(blastoise);
     }
 
     // Function to add a pokemon to the roster

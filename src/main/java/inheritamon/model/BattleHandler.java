@@ -6,7 +6,7 @@ import inheritamon.model.pokemon.types.Pokemon;
 import inheritamon.model.pokemon.types.RandomPokemon;
 import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
 import inheritamon.model.data.*;
-import inheritamon.model.inventory.PlayerRoster;
+import inheritamon.model.inventory.*;
 import inheritamon.model.language.LanguageConfiguration;
 
 import java.beans.PropertyChangeEvent;
@@ -44,33 +44,14 @@ public class BattleHandler {
         this.moveData = DataHandler.getInstance().getAllAbilities();
     }
 
-    // This is a temporary method to test the battle
-    public void testBattle() {
-
-        DataHandler dataHandler = DataHandler.getInstance();
-
-        PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
-        PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Charizard"));
-
-        // Make an array of player pokemon
-        PlayerRoster playerRoster = new PlayerRoster();
-        playerRoster.addPokemon(blastoise);
-        playerRoster.addPokemon(charizard);
-
-        RandomPokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
-
-        startBattle(playerRoster, groudon);
-
-    }
-
     // Create function that calls battleLoop in a separate thread
-    public void startBattle(PlayerRoster playerRoster, Pokemon enemyPokemon) {
+    public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
 
         // Create a new thread
         Thread battleThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                battleLoop(playerRoster, enemyPokemon);
+                battleLoop(playerData, enemyPokemon);
             }
         });
 
@@ -84,14 +65,14 @@ public class BattleHandler {
      * @return The result of the battle, can be victory, defeat or a draw
      * 1 = defeat, 2 = victory, 0 = draw
      */
-    private int battleLoop(PlayerRoster playerRoster, Pokemon enemyPokemon) {
+    private int battleLoop(PlayerData playerData, Pokemon enemyPokemon) {
 
         turn = 0;
         String ability;
         Pokemon attacker;
         Pokemon defender;
 
-        this.playerRoster = playerRoster;
+        this.playerRoster = playerData.getRoster();
         playerPokemon = playerRoster.getPokemon(0);
         this.enemyPokemon = enemyPokemon;
 
@@ -122,7 +103,11 @@ public class BattleHandler {
 
             formattedString = String.format(config.getText("TurnStart"), attacker.getName());
             notifyDialogueListener(formattedString);
-            wait(WAIT_TIME);
+
+            // Only wait if it's not the player's turn
+            if (turn % 2 != 0) {
+                wait(WAIT_TIME);
+            }
 
             // Get the ability to use
             ability = attacker.useMove(defender.getAllNumericalStats());

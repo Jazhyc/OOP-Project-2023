@@ -72,6 +72,10 @@ public class SoundHandler {
     public void playSound(String key) {
         Clip clip = soundClips.get(key);
         clip.setFramePosition(0);
+        
+        // Lower volume
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-10.0f);
         clip.start();
     }
     

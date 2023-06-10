@@ -1,14 +1,17 @@
 package inheritamon.controller;
 
 import inheritamon.model.BattleHandler;
+import inheritamon.model.GameModel;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 
 public class BattleController {
 
     private BattleHandler battleHandler;
+    private GameModel gameModel;
     
-    public BattleController(BattleHandler battleHandler) {
+    public BattleController(BattleHandler battleHandler, GameModel gameModel) {
         this.battleHandler = battleHandler;
+        this.gameModel = gameModel;
     }
 
     public void selectChoice(String choice) {
@@ -34,7 +37,7 @@ public class BattleController {
     }
 
     public void beginBattle() {
-        battleHandler.testBattle();
+        gameModel.startBattle();
     }
 
 }

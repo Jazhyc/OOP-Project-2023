@@ -4,6 +4,7 @@ import java.util.*;
 
 public class PlayerPokemon extends Pokemon {
 
+    private static final int WAIT_TIME = 50;
     private volatile boolean awaitingMove = false;
     private String selectedMove;
 
@@ -18,7 +19,7 @@ public class PlayerPokemon extends Pokemon {
 
         while (awaitingMove) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(WAIT_TIME);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
