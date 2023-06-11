@@ -1,6 +1,6 @@
 package inheritamon.model;
 
-import inheritamon.model.pokemon.types.RandomPokemon;
+import inheritamon.model.pokemon.types.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -51,7 +51,7 @@ public class GameModel {
 
     public void startBattle() {
         DataHandler dataHandler = DataHandler.getInstance();
-        RandomPokemon groudon = new RandomPokemon(dataHandler.getPokemonData("Groudon"));
+        Pokemon groudon = new AttritionPokemon(dataHandler.getPokemonData("Groudon"));
 
         if (playerData.getRoster().allFainted()) {
             System.out.println("All pokemon fainted");

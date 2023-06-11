@@ -1,6 +1,8 @@
 package inheritamon.model.pokemon.types;
 import java.util.*;
 
+import inheritamon.model.data.DataHandler;
+
 /**
  * @author Jeremias
  * A pokemon that prioritises damage over all else
@@ -14,10 +16,25 @@ public class RecklessPokemon extends Pokemon {
     @Override
     public String useMove(HashMap<String, Integer> targetStats) {
 
-        // Return a random move from the moves ArrayList
-        String move = moves.get((int) (Math.random() * moves.size()));
+        // Always use the move with the highest modifier
+        String move = "";
 
-        System.out.println(stringStats.get("Name") + " used " + move + "!");
+        // Get the highest modifier
+        Integer highestModifier = 0;
+        DataHandler dataHandler = DataHandler.getInstance();
+
+        for (String moveName : this.moves) {
+
+            HashMap<String, String> moveData = dataHandler.getMoveData(moveName);
+
+            Integer modifier = Integer.parseInt(moveData.get("Modifier"));
+
+            if (modifier > highestModifier && !moveData.get("Type").equals("Healing")) {
+                highestModifier = modifier;
+                move = moveName;
+            }
+
+        }
 
         return move;
 
