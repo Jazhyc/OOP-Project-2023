@@ -20,6 +20,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
     private SoundHandler soundHandler;
     private JPanel pokemonDataPanel;
+    private GameController gameController;
 
     public SidePanel(GameController gameController, JPanel pokemonDataPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -27,6 +28,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
         soundHandler = SoundHandler.getInstance();
         this.pokemonDataPanel = pokemonDataPanel;
+        this.gameController = gameController;
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -123,45 +125,47 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                 }
             }
 
-            private void handleButtonPress(int i) {
+        });
+    }
+
+    private void handleButtonPress(int i) {
                 // Use a switch statement to check which button was clicked
                 switch (i) {
                     case 0:
+                        System.out.println("Demo Battle");
+                        gameController.beginBattle();
+                    case 1:
                         // Open the items menu
                         System.out.println("Items");
-                        gameController.beginBattle();
                         break;
-                    case 1:
+                    case 2:
                         // Open the pokemon menu
                         System.out.println("Pokemon");
                         pokemonDataPanel.setVisible(!pokemonDataPanel.isVisible());
                         break;
-                    case 2:
+                    case 3:
                         // Save the game
                         System.out.println("Save");
                         gameController.saveGame();
                         break;
-                    case 3:
+                    case 4:
                         // Minimize the menu
                         System.out.println("Minimize Menu");
                         setVisible(false);
                         break;
-                    case 4:
+                    case 5:
                         System.out.println("To Title");
                         setVisible(false);
                         gameController.returnToMainMenu();
                         break;
-                    case 5:
+                    case 6:
                         // Exit the game
                         System.out.println("Exit Game");
+                        gameController.saveGame();
                         System.exit(0);
                         break;
                 }
             }
-
-
-        });
-    }
 
     public void addLanguageListener() {
         LanguageConfiguration config = LanguageConfiguration.getInstance();

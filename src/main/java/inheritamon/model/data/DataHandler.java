@@ -196,7 +196,7 @@ public class DataHandler {
             System.out.println("Serialized data is loaded from " + fileName + ".ser");
             return data;
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println(fileName + ".ser does not exist");;
+            System.out.println(fileName + "File is corrupted or does not exist");;
         }
 
         return null;
