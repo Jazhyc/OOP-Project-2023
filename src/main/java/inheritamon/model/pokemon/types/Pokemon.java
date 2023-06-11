@@ -1,6 +1,8 @@
 package inheritamon.model.pokemon.types;
 
 import java.util.*;
+import java.awt.image.*;
+
 import java.io.Serializable;
 
 import inheritamon.model.data.DataHandler;
@@ -213,6 +215,12 @@ public abstract class Pokemon implements Serializable {
     public HashMap<String, Integer> getAllNumericalStats() {
 
         return new HashMap<String, Integer>(numericalStats);
+    }
+
+    public BufferedImage getSpeciesImage() {
+        DataHandler dataHandler = DataHandler.getInstance();
+        BufferedImage speciesImage = dataHandler.getPokemonSprite(stringStats.get("Species")).get("front");
+        return speciesImage;
     }
 
     public boolean isFainted() {

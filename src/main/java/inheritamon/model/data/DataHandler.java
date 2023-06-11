@@ -22,7 +22,7 @@ public class DataHandler {
     private HashMap<String, HashMap<String, String>> characterData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> moveData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> itemData = new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, BufferedImage>> characterImages = new HashMap<String, HashMap<String, BufferedImage>>();
+    private HashMap<String, HashMap<String, BufferedImage>> characterSprites = new HashMap<String, HashMap<String, BufferedImage>>();
     private HashMap<String, BufferedImage> icons = new HashMap<String, BufferedImage>();
     private HashMap<String, BufferedImage> battleBackgrounds = new HashMap<String, BufferedImage>();
     private HashMap<String, BufferedImage> tiles = new HashMap<String, BufferedImage>();
@@ -115,7 +115,7 @@ public class DataHandler {
                 HashMap<String, BufferedImage> characterImagesEntry = new HashMap<String, BufferedImage>();
                 characterImagesEntry.put("front", ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + ".png")));
                 characterImagesEntry.put("back", ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + "Back.png")));
-                characterImages.put(characterName, characterImagesEntry);
+                characterSprites.put(characterName, characterImagesEntry);
             }
         } catch (IOException e) {
 			e.printStackTrace();
@@ -269,12 +269,12 @@ public class DataHandler {
             return new HashMap<String, NormalAbility>(abilities);
     }
 
-    public HashMap<String, HashMap<String, BufferedImage>> getCharacterImages() {
-        return characterImages;
+    public HashMap<String, HashMap<String, BufferedImage>> getCharacterSprites() {
+        return characterSprites;
     }
 
     public HashMap<String, BufferedImage> getPokemonSprite(String pokemonName) {
-        return characterImages.get(pokemonName);
+        return characterSprites.get(pokemonName);
     }
 
     /**

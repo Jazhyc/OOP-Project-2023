@@ -17,7 +17,6 @@ public class PlayerRoster implements Serializable {
     public final static int MAX_POKEMON = 6;
 
     // Constructor for a new game
-    //? We don't need one when continuing a game?
     public PlayerRoster() {
         roster = new ArrayList<PlayerPokemon>();
 
@@ -59,7 +58,7 @@ public class PlayerRoster implements Serializable {
      * Get the roster as an array
      * @return The roster as an array
      */
-    public PlayerPokemon[] getRoster() {
+    public PlayerPokemon[] getArray() {
         return roster.toArray(new PlayerPokemon[roster.size()]);
     }
 

@@ -1,4 +1,4 @@
-package inheritamon.view.world;
+package inheritamon.view.world.sidebar;
 
 import javax.swing.*;
 
@@ -19,12 +19,14 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
     private ArrayList<JLabel> buttonLabels = new ArrayList<JLabel>();
 
     private SoundHandler soundHandler;
+    private JPanel pokemonDataPanel;
 
-    public SidePanel(GameController gameController) {
+    public SidePanel(GameController gameController, JPanel pokemonDataPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addLanguageListener();
 
         soundHandler = SoundHandler.getInstance();
+        this.pokemonDataPanel = pokemonDataPanel;
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -132,6 +134,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                     case 1:
                         // Open the pokemon menu
                         System.out.println("Pokemon");
+                        pokemonDataPanel.setVisible(!pokemonDataPanel.isVisible());
                         break;
                     case 2:
                         // Save the game

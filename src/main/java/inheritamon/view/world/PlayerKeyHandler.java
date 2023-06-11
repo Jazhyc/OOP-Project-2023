@@ -3,6 +3,7 @@ package inheritamon.view.world;
 import javax.swing.*;
 
 import inheritamon.view.SoundHandler;
+import inheritamon.view.world.sidebar.SidePanel;
 
 import java.awt.event.*;
 import java.util.*;

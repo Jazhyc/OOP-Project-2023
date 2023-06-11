@@ -21,6 +21,7 @@ public class GameModel {
     private PlayerData playerData;
     private BattleHandler battleHandler;
     private ArrayList<PropertyChangeListener> gameStateListeners = new ArrayList<>();
+    private PropertyChangeListener rosterListener;
 
     // Constructor for a new game
     public GameModel(BattleHandler battleHandler) {
@@ -64,10 +65,15 @@ public class GameModel {
     public void addStarterData(String pokemon, String perk) {
         playerData.addStarterData(pokemon, perk);
         notifyGameStateListeners(GameState.GAME_START);
+        notifyRosterListener();
     }
 
     public void addGameStateListener(PropertyChangeListener listener) {
         gameStateListeners.add(listener);
+    }
+
+    public void addRosterListener(PropertyChangeListener listener) {
+        rosterListener = listener;
     }
 
     public void notifyGameStateListeners(GameState event) {
@@ -77,6 +83,10 @@ public class GameModel {
             listener.propertyChange(new PropertyChangeEvent(this, "gameState", null, event));
 
         }
+    }
+
+    public void notifyRosterListener() {
+        rosterListener.propertyChange(new PropertyChangeEvent(this, "roster", null, playerData.getRoster().getArray()));
     }
 
     public void saveGame() {

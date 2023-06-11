@@ -388,7 +388,7 @@ public class BattleHandler {
     private void notifyPlayerRosterListener() {
 
         // Create a pokemon array of the pokemon
-        Pokemon[] playerRosterArray = playerRoster.getRoster();
+        Pokemon[] playerRosterArray = playerRoster.getArray();
 
         playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerInventory", null, playerRosterArray));
     }

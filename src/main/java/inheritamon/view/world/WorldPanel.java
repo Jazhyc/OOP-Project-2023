@@ -1,6 +1,7 @@
 package inheritamon.view.world;
 
 import inheritamon.model.tile.*;
+import inheritamon.view.world.sidebar.SidePanel;
 
 import javax.swing.*;
 import java.awt.*;
