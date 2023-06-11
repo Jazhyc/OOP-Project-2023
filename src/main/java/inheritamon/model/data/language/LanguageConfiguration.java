@@ -2,6 +2,7 @@ package inheritamon.model.data.language;
 
 
 import java.util.*;
+
 import java.beans.*;
 import inheritamon.model.data.DataHandler;
 
@@ -94,6 +95,13 @@ public class LanguageConfiguration {
 
     public String getText(String key) {
         return stringMap.get(key).get(selectedLanguage.toString());
+    }
+
+    public String getLocalMoveName(String moveName) {
+        
+        HashMap<String, String> moveData = DataHandler.getInstance().getMoveData(moveName);
+        return moveData.get(selectedLanguage.toString());
+
     }
     
 }

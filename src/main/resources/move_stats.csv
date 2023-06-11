@@ -1,6 +1,6 @@
-Name,Modifier,Description,Type,Cost
-Punch,1,A basic punch,Physical,0
-Kick,1,A basic kick,Physical,0
-Heal,1,Heal yourself,Healing,3
-Burn,2,Burn your opponent,Magical,5
-Squirt,2,Squirt water at your opponent,Magical,5
+Name,Modifier,Description,Type,Cost,EN,NL
+Punch,1,A basic punch,Physical,0,Punch,Stoot
+Kick,1,A basic kick,Physical,0,Kick,Schop
+Heal,1,Heal yourself,Healing,3,Heal,Genees
+Burn,2,Burn your opponent,Magical,5,Burn,Brand
+Squirt,2,Squirt water at your opponent,Magical,5,Squirt,Spuit

@@ -141,7 +141,8 @@ public class BattleHandler {
                 continue;
             }
 
-            formattedString = String.format(config.getText("Attack"), attacker.getName(), ability);
+            String localAbilityName = config.getLocalMoveName(ability);
+            formattedString = String.format(config.getText("Attack"), attacker.getName(), localAbilityName);
             notifyDialogueListener(formattedString);
             wait(WAIT_TIME);
 

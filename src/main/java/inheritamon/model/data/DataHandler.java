@@ -66,7 +66,6 @@ public class DataHandler {
         loadGeneralImages(tiles, "tiles");
         loadGeneralImages(characterTextures, "characterTextures");
         loadGeneralImages(inventorySprites, "inventorySprites");
-        // loadConversations(dialogueData, "dialogues.csv");
         loadAudio(sounds, "sounds");
         loadAudio(music, "music");
 
