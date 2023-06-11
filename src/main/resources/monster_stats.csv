@@ -1,5 +1,5 @@
 Name,MaxHP,MaxMP,Atk,Def,Agi,Acc,M.Atk,M.Def,Level,EXP,MoveSet,Loot,Coins
-Groudon,20,10,120,5,8,600,9,3,5,500,Punch;Kick;Heal;Burn,Cookie,200
+Groudon,20,10,120,5,8,600,50,3,5,500,Punch;Kick;Heal;Earth Quake,Cookie,200
 Charizard,20,10,12,5,8,6,9,3,5,500,Punch;Kick;Heal;Burn,Potion,50
 Blastoise,20,10,12,5,8,6,9,3,5,500,Punch;Kick;Heal;Squirt,Potion,50
-Sceptile,20,10,12,5,8,6,9,3,5,500,Punch;Kick;Heal;Burn,Cookie,50
+Sceptile,20,10,12,5,8,6,9,3,5,500,Punch;Kick;Heal;Razor Leaf,Cookie,50

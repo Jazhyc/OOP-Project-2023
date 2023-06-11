@@ -4,3 +4,5 @@ Kick,1,A basic kick,Physical,0,Kick,Schop
 Heal,1,Heal yourself,Healing,3,Heal,Genees
 Burn,2,Burn your opponent,Magical,5,Burn,Brand
 Squirt,2,Squirt water at your opponent,Magical,5,Squirt,Spuit
+Razor Leaf,2,Attack your opponent with leaves,Magical,5,Razor Leaf,Razierblad
+Earth Quake,3,Attack your opponent with an earthquake,Magical,5,Earth Quake,Aardbeving

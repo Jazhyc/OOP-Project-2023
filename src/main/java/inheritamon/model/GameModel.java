@@ -51,7 +51,7 @@ public class GameModel {
 
     public void startBattle() {
         DataHandler dataHandler = DataHandler.getInstance();
-        Pokemon groudon = new AttritionPokemon(dataHandler.getPokemonData("Groudon"));
+        Pokemon groudon = new RandomPokemon(dataHandler.getPokemonData("Groudon"));
 
         if (playerData.getRoster().allFainted()) {
             System.out.println("All pokemon fainted");
