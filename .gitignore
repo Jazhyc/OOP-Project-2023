@@ -69,3 +69,6 @@ target
 *.zip
 *.tar.gz
 *.rar
+
+# Custom files
+*.ser
