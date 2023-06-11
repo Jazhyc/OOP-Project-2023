@@ -38,7 +38,12 @@ public class PlayerData implements Serializable {
     }
 
     public void addAbility(TrainerAbility ability) {
-        abilities.add(ability);
+        
+        // Only add if the ability is not already in the list
+        if (!abilities.contains(ability)) {
+            abilities.add(ability);
+        }
+
     }
 
     public void addStarterData(String pokemon, String perk) {
