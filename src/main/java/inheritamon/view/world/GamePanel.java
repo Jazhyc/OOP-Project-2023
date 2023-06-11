@@ -63,6 +63,8 @@ public class GamePanel extends JPanel {
         
             if (e.getNewValue() == GameState.GAME_START) {
                 setVisible(true);
+            } else {
+                setVisible(false);
             }
 
         });

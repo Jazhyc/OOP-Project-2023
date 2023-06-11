@@ -54,4 +54,8 @@ public class GameController {
         gameModel.saveGame();
     }
 
+    public void returnToMainMenu() {
+        gameModel.returnToMainMenu();
+    }
+
 }

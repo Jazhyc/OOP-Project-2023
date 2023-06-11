@@ -33,7 +33,7 @@ public class Main {
         frame.add(gamePanel);
 
         MenuController menuController = new MenuController(gameModel);
-        MainMenuPanel mainMenu = new MainMenuPanel(menuController);
+        MainMenuPanel mainMenu = new MainMenuPanel(menuController, gameModel);
         frame.add(mainMenu);
 
         ClassSelectionPanel classSelectionPanel = new ClassSelectionPanel(gameModel, menuController);

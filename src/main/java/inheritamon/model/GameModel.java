@@ -15,7 +15,7 @@ import inheritamon.model.data.DataHandler;
 public class GameModel {
 
     public static enum GameState {
-        SELECT_STARTER, GAME_START, Battle, Menu
+        SELECT_STARTER, GAME_START, BATTLE, MAIN_MENU
     }
 
     private PlayerData playerData;
@@ -35,6 +35,15 @@ public class GameModel {
     public void continueGame() {
         DataHandler dataHandler = DataHandler.getInstance();
         playerData = (PlayerData) dataHandler.loadState("playerData");
+
+
+        // Check if player data is null
+        if (playerData == null) {
+            System.out.println("Player data is null!");
+            notifyGameStateListeners(GameState.MAIN_MENU);
+            return;
+        }
+
         notifyGameStateListeners(GameState.GAME_START);
 
         // Load world later
@@ -75,6 +84,10 @@ public class GameModel {
         dataHandler.saveState(playerData, "playerData");
 
         // Save the world data later
+    }
+
+    public void returnToMainMenu() {
+        notifyGameStateListeners(GameState.MAIN_MENU);
     }
     
 }

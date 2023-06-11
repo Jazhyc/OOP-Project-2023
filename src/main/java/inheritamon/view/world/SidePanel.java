@@ -144,6 +144,11 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                         setVisible(false);
                         break;
                     case 4:
+                        System.out.println("To Title");
+                        setVisible(false);
+                        gameController.returnToMainMenu();
+                        break;
+                    case 5:
                         // Exit the game
                         System.out.println("Exit Game");
                         System.exit(0);

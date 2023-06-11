@@ -6,7 +6,6 @@ import inheritamon.model.pokemon.types.PlayerPokemon;
 
 import java.io.Serializable;
 import java.util.*;
-import java.io.*;
 
 /**
  * Class that holds all the data of the player

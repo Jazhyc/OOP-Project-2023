@@ -3,11 +3,13 @@ package inheritamon.view.menu;
 import javax.swing.*;
 
 import inheritamon.controller.MenuController;
+import inheritamon.model.GameModel;
 import inheritamon.model.data.language.*;
 import inheritamon.view.SoundHandler;
 
 import java.awt.*;
 import java.awt.event.*;
+
 
 /**
  * @author Jeremias
@@ -20,13 +22,14 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
     private JLabel[] buttons = new JLabel[3];
 
-    public MainMenuPanel(MenuController controller) {
+    public MainMenuPanel(MenuController controller, GameModel model) {
 
         addLanguageListener();
 
         setLayout(new GridBagLayout());
 
         soundHandler = SoundHandler.getInstance();
+        addGameStateListener(model);
 
         // Get the configuration object
         LanguageConfiguration config = LanguageConfiguration.getInstance();
@@ -132,13 +135,10 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
             case 0:
                 // Start game
                 controller.startGame();
-                setVisible(false);
-                // gamePanel.setVisible(true);
                 break;
             case 1:
                 // Continue game
                 controller.continueGame();
-                setVisible(false);
                 break;
             case 2:
                 // Exit game
@@ -170,6 +170,17 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
             String[] buttonStrings = config.getOptions("MainMenu");
             for (int i = 0; i < buttonStrings.length; i++) {
                 buttons[i].setText(buttonStrings[i]);
+            }
+        });
+    }
+
+    public void addGameStateListener(GameModel model) {
+
+        model.addGameStateListener(e -> {
+            if (e.getNewValue() == GameModel.GameState.MAIN_MENU) {
+                setVisible(true);
+            } else {
+                setVisible(false);
             }
         });
     }
