@@ -26,6 +26,7 @@ public class GameModel {
     // Constructor for a new game
     public GameModel(BattleHandler battleHandler) {
         this.battleHandler = battleHandler;
+        setUpBattleConclusionListener();
     }
 
     public void startNewGame() {
@@ -98,6 +99,15 @@ public class GameModel {
 
     public void returnToMainMenu() {
         notifyGameStateListeners(GameState.MAIN_MENU);
+    }
+
+    public void setUpBattleConclusionListener() {
+        battleHandler.addListener("battleState", e -> {
+
+            // Implement more functionality later
+            notifyRosterListener();
+
+        });
     }
     
 }

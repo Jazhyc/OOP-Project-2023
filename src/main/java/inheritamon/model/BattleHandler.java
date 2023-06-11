@@ -2,7 +2,7 @@ package inheritamon.model;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.HashMap;
+import java.util.*;
 
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.data.language.LanguageConfiguration;
@@ -26,14 +26,17 @@ public class BattleHandler {
     private PropertyChangeListener dialogueListener;
     private PropertyChangeListener playerRosterListener;
     private PropertyChangeListener inventoryListener;
-    private PropertyChangeListener battleStateListener;
     private final int WAIT_TIME = 1000;
 
     // Create an array of 2 for the statListeners
+    // We use a constant size to distinguish between the player and enemy pokemon
     private PropertyChangeListener[] statListeners = new PropertyChangeListener[2];
 
     // Same for the sprites
     private PropertyChangeListener[] spriteListeners = new PropertyChangeListener[2];
+
+    // Same for the battle state, one for the view and another for the model
+    private PropertyChangeListener[] battleStateListeners = new PropertyChangeListener[2];
 
     private PlayerPokemon playerPokemon;
     private Pokemon enemyPokemon;
@@ -341,7 +344,7 @@ public class BattleHandler {
                 this.inventoryListener = listener;
                 break;
             case "battleState":
-                this.battleStateListener = listener;
+                addListener(battleStateListeners, listener);
                 break;
             case "dialogue":
                 this.dialogueListener = listener;
@@ -399,7 +402,10 @@ public class BattleHandler {
     }
 
     private void notifyBattleStateListener(String conclusion) {
-        battleStateListener.propertyChange(new PropertyChangeEvent(this, "conclusion", null, conclusion));
+        // Loop over the listeners and notify them
+        for (PropertyChangeListener listener : battleStateListeners) {
+            listener.propertyChange(new PropertyChangeEvent(this, "conclusion", null, conclusion));
+        }
     }
 
     public String getCurrentPokemonName(DisplayType type) {

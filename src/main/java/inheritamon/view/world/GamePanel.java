@@ -41,8 +41,9 @@ public class GamePanel extends JPanel {
         layeredPane.add(sidePanel, 1);
         layeredPane.add(pokemonDataPanel, 1);
 
-        sidePanel.setBounds(0, 0, screenWidth / 4, screenHeight);
-        pokemonDataPanel.setBounds(screenWidth / 4, 0, screenWidth / 2, screenHeight);
+        int sidePanelWidth = screenWidth / 4;
+        sidePanel.setBounds(0, 0, sidePanelWidth, screenHeight);
+        pokemonDataPanel.setBounds(sidePanelWidth, 0, screenWidth - sidePanelWidth, screenHeight);
 
         worldPanel.setBounds(0, 0, screenWidth, screenHeight);
 
