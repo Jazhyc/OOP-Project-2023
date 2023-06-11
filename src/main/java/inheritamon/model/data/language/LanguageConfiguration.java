@@ -1,5 +1,6 @@
 package inheritamon.model.data.language;
 
+
 import java.util.*;
 import java.beans.*;
 import inheritamon.model.data.DataHandler;

@@ -13,6 +13,7 @@ public class Inventory {
     private int size = INITIAL_SIZE;
 
     ArrayList <Item> inventory = new ArrayList<Item>();
+    private int coins = 0;
 
     public Inventory() {
 
@@ -62,6 +63,10 @@ public class Inventory {
             System.out.print("item " + i + ": " + inventory.get(i).getItemName());
             System.out.println(" - " + inventory.get(i).getItemDescription());
         }
+    }
+
+    public void addCoins(int amount) {
+        coins += amount;
     }
 
 }

@@ -5,6 +5,8 @@ import java.awt.*;
 
 import inheritamon.Main;
 import inheritamon.controller.BattleController;
+import inheritamon.model.GameModel;
+import inheritamon.model.GameModel.GameState;
 import inheritamon.view.combat.BattlePanel;
 
 /**
@@ -16,7 +18,7 @@ public class GamePanel extends JPanel {
     SidePanel sidePanel;
     BattlePanel battlePanel;
 
-    public GamePanel(BattleController battleController) {
+    public GamePanel(BattleController battleController, GameModel gameModel) {
 
         int screenWidth = Main.SCREEN_WIDTH;
         int screenHeight = Main.SCREEN_HEIGHT;
@@ -50,6 +52,20 @@ public class GamePanel extends JPanel {
 
         // Add the layered pane to the game panel
         add(layeredPane);
+
+        setUpListener(gameModel);
+
+    }
+
+    private void setUpListener(GameModel gameModel) {
+
+        gameModel.addGameStateListener(e -> {
+        
+            if (e.getNewValue() == GameState.GAME_START) {
+                setVisible(true);
+            }
+
+        });
 
     }
     

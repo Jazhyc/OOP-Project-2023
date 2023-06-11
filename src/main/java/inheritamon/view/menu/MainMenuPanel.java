@@ -2,7 +2,7 @@ package inheritamon.view.menu;
 
 import javax.swing.*;
 
-import inheritamon.controller.MainMenuController;
+import inheritamon.controller.MenuController;
 import inheritamon.model.data.language.*;
 import inheritamon.view.SoundHandler;
 
@@ -13,17 +13,15 @@ import java.awt.event.*;
  * @author Jeremias
  * The main menu of the game
  */
-public class MainMenu extends JPanel implements LanguageChangeListener {
+public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
     private JLabel titleLabel;
     private SoundHandler soundHandler;
-    private JPanel gamePanel;
 
     private JLabel[] buttons = new JLabel[3];
 
-    public MainMenu(MainMenuController controller, JPanel gamePanel) {
+    public MainMenuPanel(MenuController controller) {
 
-        this.gamePanel = gamePanel;
         addLanguageListener();
 
         setLayout(new GridBagLayout());
@@ -76,7 +74,7 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
         add(languageButton, gbc);
     }
 
-    private void addButtons(LanguageConfiguration config, MainMenuController controller) {
+    private void addButtons(LanguageConfiguration config, MenuController controller) {
         
         // Get the strings from config
         String[] buttonStrings = config.getOptions("MainMenu");
@@ -126,7 +124,7 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
 
     }
 
-    private void handleClick(int index, MainMenuController controller) {
+    private void handleClick(int index, MenuController controller) {
 
         soundHandler.playSound("select");
 
@@ -135,7 +133,7 @@ public class MainMenu extends JPanel implements LanguageChangeListener {
                 // Start game
                 controller.startGame();
                 setVisible(false);
-                gamePanel.setVisible(true);
+                // gamePanel.setVisible(true);
                 break;
             case 1:
                 // Continue game

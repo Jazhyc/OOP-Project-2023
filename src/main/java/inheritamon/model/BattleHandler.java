@@ -8,7 +8,6 @@ import inheritamon.model.data.DataHandler;
 import inheritamon.model.data.language.LanguageConfiguration;
 import inheritamon.model.inventory.Inventory;
 import inheritamon.model.inventory.Item;
-import inheritamon.model.inventory.PlayerData;
 import inheritamon.model.inventory.PlayerRoster;
 import inheritamon.model.pokemon.moves.NormalAbility;
 import inheritamon.model.pokemon.types.PlayerPokemon;

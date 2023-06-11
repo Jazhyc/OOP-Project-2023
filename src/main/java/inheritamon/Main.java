@@ -28,13 +28,17 @@ public class Main {
         BattleController battleController = new BattleController(battleHandler, gameModel);
 
         // Create the game panel
-        GamePanel gamePanel = new GamePanel(battleController);
+        GamePanel gamePanel = new GamePanel(battleController, gameModel);
         gamePanel.setVisible(false);
         frame.add(gamePanel);
 
-        MainMenuController mainMenuController = new MainMenuController(gameModel);
-        MainMenu mainMenu = new MainMenu(mainMenuController, gamePanel);
+        MenuController menuController = new MenuController(gameModel);
+        MainMenuPanel mainMenu = new MainMenuPanel(menuController);
         frame.add(mainMenu);
+
+        ClassSelectionPanel classSelectionPanel = new ClassSelectionPanel(gameModel, menuController);
+        frame.add(classSelectionPanel);
+        classSelectionPanel.setVisible(false);
 
         // Create a Panel for the combat screen
         BattlePanel battlePanel = new BattlePanel(battleController, battleHandler, gamePanel);

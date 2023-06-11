@@ -199,7 +199,7 @@ public class DataHandler {
         }
     }
 
-    public HashMap<String, String> getCharacterData(String characterName) {
+    public HashMap<String, String> getPokemonData(String characterName) {
         return getData(characterData, characterName, "Character");
     }
 

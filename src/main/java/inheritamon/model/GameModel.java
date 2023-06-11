@@ -1,12 +1,12 @@
 package inheritamon.model;
 
-import inheritamon.controller.PokemonTrainer;
-import inheritamon.controller.TrainerAbility;
-import inheritamon.controller.TrainerRegion;
-import inheritamon.model.inventory.PlayerData;
 import inheritamon.model.pokemon.types.RandomPokemon;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+
 import inheritamon.model.data.DataHandler;
-import inheritamon.view.menu.RegionSelectionWindow;
 
 /**
  * @author Jeremias
@@ -14,10 +14,13 @@ import inheritamon.view.menu.RegionSelectionWindow;
  */
 public class GameModel {
 
+    public static enum GameState {
+        SELECT_STARTER, GAME_START, Battle, Menu
+    }
+
     private PlayerData playerData;
     private BattleHandler battleHandler;
-
-    private PokemonTrainer player;
+    private ArrayList<PropertyChangeListener> gameStateListeners = new ArrayList<>();
 
     // Constructor for a new game
     public GameModel(BattleHandler battleHandler) {
@@ -25,18 +28,13 @@ public class GameModel {
     }
 
     public void startNewGame() {
-        RegionSelectionWindow regionSelectionWindow = new RegionSelectionWindow(this);
         playerData = new PlayerData();
-    }
-
-    public void spawnPlayer(String username, TrainerRegion region, TrainerAbility ability) {
-        player = new PokemonTrainer(username, region) {
-        };
+        notifyGameStateListeners(GameState.SELECT_STARTER);
     }
 
     public void startBattle() {
         DataHandler dataHandler = DataHandler.getInstance();
-        RandomPokemon groudon = new RandomPokemon(dataHandler.getCharacterData("Groudon"));
+        RandomPokemon groudon = new RandomPokemon(dataHandler.getPokemonData("Groudon"));
 
         if (playerData.getRoster().allFainted()) {
             System.out.println("All pokemon fainted");
@@ -44,6 +42,24 @@ public class GameModel {
         }
 
         battleHandler.startBattle(playerData, groudon);
+    }
+
+    public void addStarterData(String pokemon, String perk) {
+        playerData.addStarterData(pokemon, perk);
+        notifyGameStateListeners(GameState.GAME_START);
+    }
+
+    public void addGameStateListener(PropertyChangeListener listener) {
+        gameStateListeners.add(listener);
+    }
+
+    public void notifyGameStateListeners(GameState event) {
+        for (PropertyChangeListener listener : gameStateListeners) {
+            
+            // Pass the event to the listener
+            listener.propertyChange(new PropertyChangeEvent(this, "gameState", null, event));
+
+        }
     }
     
 }

@@ -20,12 +20,10 @@ public class PlayerRoster {
     public PlayerRoster() {
         roster = new ArrayList<PlayerPokemon>();
 
-        // Add groudon and blastoise to the roster, will replace this once pokemon selection is implemented
+        // Add groudon to the roster, will replace this once pokemon selection is implemented
         DataHandler dataHandler = DataHandler.getInstance();
-        PlayerPokemon charizard = new PlayerPokemon(dataHandler.getCharacterData("Groudon"));
-        PlayerPokemon blastoise = new PlayerPokemon(dataHandler.getCharacterData("Blastoise"));
-        addPokemon(charizard);
-        addPokemon(blastoise);
+        PlayerPokemon groudon = new PlayerPokemon(dataHandler.getPokemonData("Groudon"));
+        addPokemon(groudon);
     }
 
     // Function to add a pokemon to the roster
