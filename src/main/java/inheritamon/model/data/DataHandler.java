@@ -7,8 +7,7 @@ import javax.sound.sampled.*;
 
 import inheritamon.model.pokemon.moves.*;
 import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
 
 /**
@@ -172,6 +171,37 @@ public class DataHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveState(Object data, String fileName) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(fileName + ".ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(data);
+            out.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved in " +  fileName + ".ser");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Object loadState(String fileName) {
+
+        try {
+            FileInputStream fileIn = new FileInputStream(fileName + ".ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Object data = in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Serialized data is loaded from " + fileName + ".ser");
+            return data;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+        
     }
         
 

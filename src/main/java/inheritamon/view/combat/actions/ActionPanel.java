@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
 import inheritamon.model.data.DataHandler;
-import inheritamon.controller.BattleController;
+import inheritamon.controller.GameController;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,7 +20,7 @@ public class ActionPanel extends JPanel {
 
     private BufferedImage background;
 
-    public ActionPanel(BattleHandler battleHandler, BattleController battleController) {
+    public ActionPanel(BattleHandler battleHandler, GameController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
         background = dataHandler.getBackground("greenPanel");

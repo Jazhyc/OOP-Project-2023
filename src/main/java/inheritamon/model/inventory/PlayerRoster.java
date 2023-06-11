@@ -1,6 +1,7 @@
 package inheritamon.model.inventory;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 import inheritamon.model.pokemon.types.PlayerPokemon;
 import inheritamon.model.data.DataHandler;
@@ -9,7 +10,7 @@ import inheritamon.model.data.DataHandler;
  * @author Jeremias
  * A class to represent the player's pokemon roster
  */
-public class PlayerRoster {
+public class PlayerRoster implements Serializable {
 
     // Define an arraylist of pokemon
     private ArrayList<PlayerPokemon> roster;

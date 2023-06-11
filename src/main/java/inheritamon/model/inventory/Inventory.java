@@ -1,5 +1,7 @@
 package inheritamon.model.inventory;
+
 import java.util.ArrayList;
+import java.io.Serializable;
 
 import inheritamon.model.data.DataHandler;
 
@@ -7,7 +9,7 @@ import inheritamon.model.data.DataHandler;
  * @author Jona Janssen
  * Class that controls player inventory. Items are stored in an array
  */
-public class Inventory {
+public class Inventory implements Serializable {
     private int INITIAL_SIZE = 6;
 
     private int size = INITIAL_SIZE;
@@ -67,6 +69,19 @@ public class Inventory {
 
     public void addCoins(int amount) {
         coins += amount;
+    }
+
+    public void removeCoins(int amount) {
+        
+        // Only remove coins if the player has enough coins
+        if (coins >= amount) {
+            coins -= amount;
+        }
+
+    }
+
+    public int getCoins() {
+        return coins;
     }
 
 }

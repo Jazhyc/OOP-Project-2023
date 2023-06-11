@@ -1,6 +1,6 @@
 package inheritamon.view.combat.actions;
 
-import inheritamon.controller.BattleController;
+import inheritamon.controller.GameController;
 import inheritamon.model.BattleHandler;
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.inventory.*;
@@ -16,7 +16,7 @@ public class ItemsPanel extends JPanel {
     private Inventory inventory;
     private SoundHandler soundHandler;
 
-    public ItemsPanel(BattleHandler battleHandler, BattleController battleController) {
+    public ItemsPanel(BattleHandler battleHandler, GameController battleController) {
 
         GridLayout gridLayout = new GridLayout(2, 3);
         setLayout(gridLayout);
@@ -26,7 +26,7 @@ public class ItemsPanel extends JPanel {
 
     }
 
-    private void setUpListener(BattleHandler battleHandler, BattleController battleController) {
+    private void setUpListener(BattleHandler battleHandler, GameController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
 

@@ -32,6 +32,14 @@ public class GameModel {
         notifyGameStateListeners(GameState.SELECT_STARTER);
     }
 
+    public void continueGame() {
+        DataHandler dataHandler = DataHandler.getInstance();
+        playerData = (PlayerData) dataHandler.loadState("playerData");
+        notifyGameStateListeners(GameState.GAME_START);
+
+        // Load world later
+    }
+
     public void startBattle() {
         DataHandler dataHandler = DataHandler.getInstance();
         RandomPokemon groudon = new RandomPokemon(dataHandler.getPokemonData("Groudon"));
@@ -60,6 +68,13 @@ public class GameModel {
             listener.propertyChange(new PropertyChangeEvent(this, "gameState", null, event));
 
         }
+    }
+
+    public void saveGame() {
+        DataHandler dataHandler = DataHandler.getInstance();
+        dataHandler.saveState(playerData, "playerData");
+
+        // Save the world data later
     }
     
 }

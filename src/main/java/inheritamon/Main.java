@@ -25,7 +25,7 @@ public class Main {
 
         BattleHandler battleHandler = new BattleHandler();
         GameModel gameModel = new GameModel(battleHandler);
-        BattleController battleController = new BattleController(battleHandler, gameModel);
+        GameController battleController = new GameController(battleHandler, gameModel);
 
         // Create the game panel
         GamePanel gamePanel = new GamePanel(battleController, gameModel);

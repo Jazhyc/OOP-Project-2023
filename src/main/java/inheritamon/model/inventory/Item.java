@@ -1,13 +1,14 @@
 package inheritamon.model.inventory;
 
 import java.util.HashMap;
+import java.io.Serializable;
 import inheritamon.model.pokemon.types.*;
 
 /**
  * @author Jona Janssen
  * Item class. Items have names, descriptions and data, which is stored in a csv file (items.csv)
  */
-public class Item {
+public class Item implements Serializable {
     String itemName = new String();
     public String getItemName() {
         return itemName;

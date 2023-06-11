@@ -138,6 +138,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
             case 1:
                 // Continue game
                 controller.continueGame();
+                setVisible(false);
                 break;
             case 2:
                 // Exit game

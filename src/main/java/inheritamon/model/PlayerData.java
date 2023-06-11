@@ -4,12 +4,14 @@ import inheritamon.model.data.DataHandler;
 import inheritamon.model.inventory.*;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 
+import java.io.Serializable;
 import java.util.*;
+import java.io.*;
 
 /**
  * Class that holds all the data of the player
  */
-public class PlayerData {
+public class PlayerData implements Serializable {
 
     public static enum TrainerAbility {
         CLIMBER, SWIMMER, RICH;

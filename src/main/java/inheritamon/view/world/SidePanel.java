@@ -2,7 +2,7 @@ package inheritamon.view.world;
 
 import javax.swing.*;
 
-import inheritamon.controller.BattleController;
+import inheritamon.controller.GameController;
 import inheritamon.model.data.language.*;
 import inheritamon.view.SoundHandler;
 
@@ -20,7 +20,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
     private SoundHandler soundHandler;
 
-    public SidePanel(BattleController battleController) {
+    public SidePanel(GameController gameController) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addLanguageListener();
 
@@ -127,7 +127,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                     case 0:
                         // Open the items menu
                         System.out.println("Items");
-                        battleController.beginBattle();
+                        gameController.beginBattle();
                         break;
                     case 1:
                         // Open the pokemon menu
@@ -136,6 +136,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                     case 2:
                         // Save the game
                         System.out.println("Save");
+                        gameController.saveGame();
                         break;
                     case 3:
                         // Minimize the menu

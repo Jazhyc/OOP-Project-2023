@@ -8,12 +8,12 @@ import inheritamon.model.pokemon.types.PlayerPokemon;
  * @Author Jeremias
  * Controller for the battle
  */
-public class BattleController {
+public class GameController {
 
     private BattleHandler battleHandler;
     private GameModel gameModel;
     
-    public BattleController(BattleHandler battleHandler, GameModel gameModel) {
+    public GameController(BattleHandler battleHandler, GameModel gameModel) {
         this.battleHandler = battleHandler;
         this.gameModel = gameModel;
     }
@@ -48,6 +48,10 @@ public class BattleController {
 
     public void beginBattle() {
         gameModel.startBattle();
+    }
+
+    public void saveGame() {
+        gameModel.saveGame();
     }
 
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import inheritamon.Main;
-import inheritamon.controller.BattleController;
+import inheritamon.controller.GameController;
 import inheritamon.model.GameModel;
 import inheritamon.model.GameModel.GameState;
 import inheritamon.view.combat.BattlePanel;
@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
     SidePanel sidePanel;
     BattlePanel battlePanel;
 
-    public GamePanel(BattleController battleController, GameModel gameModel) {
+    public GamePanel(GameController battleController, GameModel gameModel) {
 
         int screenWidth = Main.SCREEN_WIDTH;
         int screenHeight = Main.SCREEN_HEIGHT;

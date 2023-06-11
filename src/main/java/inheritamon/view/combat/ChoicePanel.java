@@ -6,7 +6,7 @@ import inheritamon.model.data.DataHandler;
 import inheritamon.model.data.language.*;
 import inheritamon.view.SoundHandler;
 import inheritamon.view.combat.actions.ActionPanel;
-import inheritamon.controller.BattleController;
+import inheritamon.controller.GameController;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -37,7 +37,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
     // https://www.pngwing.com/en/free-png-iskzk
     // https://www.pngwing.com/en/free-png-xbwgg
 
-    public ChoicePanel(BattleController controller, ActionPanel actionPanel) {
+    public ChoicePanel(GameController controller, ActionPanel actionPanel) {
 
         DataHandler dataHandler = DataHandler.getInstance();
         backgroundImage = dataHandler.getBackground("choiceMenu");

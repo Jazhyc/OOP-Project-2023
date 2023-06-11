@@ -22,7 +22,7 @@ public class MovePanel extends JPanel {
 
     private SoundHandler soundHandler;
 
-    public MovePanel(BattleHandler battleHandler, BattleController battleController) {
+    public MovePanel(BattleHandler battleHandler, GameController battleController) {
 
         // Use a grid layout with a scroll pane
         setLayout(new GridLayout(4, 1));
@@ -32,7 +32,7 @@ public class MovePanel extends JPanel {
     };
 
 
-    private void setUp(BattleHandler battleHandler, BattleController battleController) {
+    private void setUp(BattleHandler battleHandler, GameController battleController) {
 
         // Add a move listener to the battle handler
         battleHandler.addListener("moves", e -> {

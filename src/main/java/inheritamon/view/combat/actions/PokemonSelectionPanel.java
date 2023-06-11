@@ -24,7 +24,7 @@ public class PokemonSelectionPanel extends JPanel {
     private Pokemon[] playerPokemon;
     private SoundHandler soundHandler;
 
-    public PokemonSelectionPanel(BattleHandler battleHandler, BattleController battleController) {
+    public PokemonSelectionPanel(BattleHandler battleHandler, GameController battleController) {
 
         // Use a grid layout
         // Create a variable first
@@ -36,7 +36,7 @@ public class PokemonSelectionPanel extends JPanel {
         
     }
 
-    private void setUpListener(BattleHandler battleHandler, BattleController battleController) {
+    private void setUpListener(BattleHandler battleHandler, GameController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
 

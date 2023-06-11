@@ -1,6 +1,7 @@
 package inheritamon.model.pokemon.types;
 
 import java.util.*;
+import java.io.Serializable;
 
 import inheritamon.model.data.DataHandler;
 
@@ -8,7 +9,7 @@ import inheritamon.model.data.DataHandler;
  * @author Jeremias
  * A class to represent a pokemon, does not possess an AI
  */
-public abstract class Pokemon {
+public abstract class Pokemon implements Serializable {
 
     protected HashMap<String, Integer> numericalStats = new HashMap<String, Integer>();
     protected HashMap<String, String> stringStats = new HashMap<String, String>();
