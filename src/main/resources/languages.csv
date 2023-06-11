@@ -16,7 +16,7 @@ Damage,String,%s dealt %d damage,%s deed %d schade
 Miss,String,%s missed!,%s miste!
 Run,String,You ran away!,Je bent weggerend!
 Item,String,You used %s!,Je gebruikte %s!
-Loot,String,You found %s!,Je vond %s!
+Loot,String,You found %s and %d coins!,Je vond %s en %d munten!
 ClimberDescription,String,You can easily climb vertical surfaces!,Je kan makkelijk verticale oppervlakken beklimmen!
 SwimmerDescription,String,You can swim like a fish!,Je kan zwemmen als een vis!
 RichDescription,String,You won the lottery!,Je hebt de loterij gewonnen!

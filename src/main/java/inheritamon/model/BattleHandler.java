@@ -223,11 +223,12 @@ public class BattleHandler {
 
         // Get the loot from the enemy pokemon
         String loot = enemyPokemon.getLoot();
+        Integer coins = enemyPokemon.getNumericalStat("Coins");
         Item item = new Item(dataHandler.getItemData(loot));
         playerInventory.addItem(item);
+        playerInventory.addCoins(coins);
 
-
-        String formattedString = String.format(config.getText("Loot"), item.getItemName());
+        String formattedString = String.format(config.getText("Loot"), item.getItemName(), coins);
         notifyDialogueListener(formattedString);
         wait(WAIT_TIME);
 

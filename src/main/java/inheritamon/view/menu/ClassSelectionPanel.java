@@ -33,7 +33,7 @@ public class ClassSelectionPanel extends JPanel {
 
             final int selectionIndex = i;
 
-            // Add a mouse adapter to each panel and give a template for reacting on click
+            // Add a mouse adapter to each panel
             classPanels[i].addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent evt) {
