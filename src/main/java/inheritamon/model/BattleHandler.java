@@ -62,8 +62,7 @@ public class BattleHandler {
     public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
 
         // Check if the battle is already active
-        // This is necessary when spaghetti code is involved
-        // I'm looking at you @StanIvanov1235
+        // This is necessary because the world code calls this method several times in a row
         if (battleActive) {
             return;
         }
