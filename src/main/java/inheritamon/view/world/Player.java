@@ -58,6 +58,11 @@ public class Player extends Entity {
         boolean downPressed = keyH.isDownPressed();
         boolean leftPressed = keyH.isLeftPressed();
         boolean rightPressed = keyH.isRightPressed();
+        boolean interactPressed = keyH.isInteractPressed();
+
+        if (interactPressed) {
+            gp.cChecker.checkInteraction(this);
+        }
 
         if(upPressed == true || downPressed == true || leftPressed == true || rightPressed == true) {
             if (upPressed == true) {

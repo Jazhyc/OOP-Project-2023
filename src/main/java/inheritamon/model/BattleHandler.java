@@ -45,6 +45,8 @@ public class BattleHandler {
     private Inventory playerInventory;
     private int turn;
 
+    private boolean battleActive = false;
+
     /**
      * The constructor for the battle handler
      */
@@ -58,6 +60,15 @@ public class BattleHandler {
      * 1 = defeat, 2 = victory, 0 = draw
      */
     public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
+
+        // Check if the battle is already active
+        // This is necessary when spaghetti code is involved
+        // I'm looking at you @StanIvanov1235
+        if (battleActive) {
+            return;
+        }
+
+        battleActive = true;
 
         // Create a new thread
         Thread battleThread = new Thread(new Runnable() {
@@ -174,8 +185,7 @@ public class BattleHandler {
 
         conclusion = determineConclusion(playerRoster, enemyPokemon);
         notifyBattleStateListener(conclusion);
-
-        // Notify a listener in the model here
+        battleActive = false;
     }
 
     private void handleFaint(PlayerRoster playerRoster, Pokemon enemyPokemon, LanguageConfiguration config) {

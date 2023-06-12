@@ -2,6 +2,10 @@ package inheritamon.model.tile;
 
 import inheritamon.model.data.DataHandler;
 import inheritamon.view.world.WorldPanel;
+import inheritamon.model.BattleHandler;
+import inheritamon.model.GameModel;
+import inheritamon.model.PlayerData;
+import inheritamon.model.pokemon.types.*;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -13,6 +17,9 @@ public class TileManager {
     WorldPanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
+
+    private PlayerData playerData;
+    private BattleHandler battleHandler;
 
     public TileManager(WorldPanel gp) {
 
@@ -29,18 +36,25 @@ public class TileManager {
 
         DataHandler dh = DataHandler.getInstance();
 
+        tile[0] = new Tile(dh.getTileImage("Pass"), false, false);
 
-        tile[0] = new Tile();
-        tile[0].image = dh.getTileImage("Pass");
+        tile[1] = new Tile(dh.getTileImage("NotPass"), true, false);
 
-        tile[1] = new Tile();
-        tile[1].image = dh.getTileImage("NotPass");
-        tile[1].collision = true;
+        tile[2] = new Tile(dh.getCharacterTexture("Front 1"), true, true) {
+            @Override
+            public void interact() {
+                System.out.println("Interacting with Entity");
+                setIsInteracting(true);
 
-        tile[2] = new Tile();
-        tile[2].image = dh.getCharacterTexture("Front 1");
-        tile[2].collision = true;
-        tile[2].interactable = true;
+                // Emergency fix
+                battleHandler = GameModel.getBattleHandler();
+                playerData = GameModel.getPlayerData();
+
+                Pokemon enemyPokemon = new RandomPokemon(DataHandler.getInstance().getPokemonData("Groudon"));
+                battleHandler.startBattle(playerData, enemyPokemon);
+
+            }
+        };
 
     }
 

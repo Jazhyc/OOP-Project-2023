@@ -10,9 +10,9 @@ import java.util.*;
 
 public class PlayerKeyHandler {
 
-    private boolean upPressed, downPressed, leftPressed, rightPressed;
+    private boolean upPressed, downPressed, leftPressed, rightPressed, interactPressed;
 
-    SidePanel sidePanel;
+    private SidePanel sidePanel;
 
     private SoundHandler soundHandler;
 
@@ -40,6 +40,12 @@ public class PlayerKeyHandler {
         keyBindings.put(KeyEvent.VK_DOWN, "down");
         keyBindings.put(KeyEvent.VK_LEFT, "left");
         keyBindings.put(KeyEvent.VK_RIGHT, "right");
+
+        // Add keybinds for interact, left mouse click and z
+        keyBindings.put(KeyEvent.VK_E, "interact");
+        keyBindings.put(KeyEvent.VK_Z, "interact");
+        keyBindings.put(KeyEvent.VK_SPACE, "interact");
+        keyBindings.put(KeyEvent.VK_ENTER, "interact");
 
         // Bind the keys to their corresponding actions using a loop
         for (Map.Entry<Integer, String> entry : keyBindings.entrySet()) {
@@ -70,7 +76,7 @@ public class PlayerKeyHandler {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    // Ignore if escape is released
+                    // Ignore if certain buttons are pressed to prevent two actions from occuring at once
                     if (actionName.equals("escape")) {
                         return;
                     }
@@ -101,6 +107,9 @@ private void setKeyState(String actionName, boolean state) {
             sidePanel.hidePokemonDataPanel();
             soundHandler.playSound("select");
             break;
+        case "interact":
+            interactPressed = state;
+            break;
     }
 }
     public boolean isUpPressed() {
@@ -117,5 +126,9 @@ private void setKeyState(String actionName, boolean state) {
 
     public boolean isRightPressed() {
         return !sidePanel.isVisible() && rightPressed;
+    }
+
+    public boolean isInteractPressed() {
+        return !sidePanel.isVisible() && interactPressed;
     }
 }

@@ -14,19 +14,29 @@ import inheritamon.model.data.DataHandler;
  */
 public class GameModel {
 
+    // Emergency code to account for the world not adhering to the MVC pattern
+    private static PlayerData playerData;
+    public static PlayerData getPlayerData() {
+        return playerData;
+    }
+
+    // Same for the battle handler
+    private static BattleHandler battleHandler;
+    public static BattleHandler getBattleHandler() {
+        return battleHandler;
+    }
+
     public static enum GameState {
         SELECT_STARTER, GAME_START, BATTLE, MAIN_MENU
     }
 
-    private PlayerData playerData;
-    private BattleHandler battleHandler;
     private ArrayList<PropertyChangeListener> gameStateListeners = new ArrayList<>();
     private PropertyChangeListener rosterListener;
 
     // Constructor for a new game
-    public GameModel(BattleHandler battleHandler) {
-        this.battleHandler = battleHandler;
-        setUpBattleConclusionListener();
+    public GameModel(BattleHandler battleHandlerObject) {
+        battleHandler = battleHandlerObject;
+        setUpBattleStateListener();
     }
 
     public void startNewGame() {
@@ -101,7 +111,7 @@ public class GameModel {
         notifyGameStateListeners(GameState.MAIN_MENU);
     }
 
-    public void setUpBattleConclusionListener() {
+    public void setUpBattleStateListener() {
         battleHandler.addListener("battleState", e -> {
 
             // Implement more functionality later
