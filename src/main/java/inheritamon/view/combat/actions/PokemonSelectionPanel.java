@@ -24,6 +24,11 @@ public class PokemonSelectionPanel extends JPanel {
     private Pokemon[] playerPokemon;
     private SoundHandler soundHandler;
 
+    /**
+     * Constructor for the PokemonSelectionPanel class
+     * @param battleHandler The battle handler
+     * @param battleController The battle controller
+     */
     public PokemonSelectionPanel(BattleHandler battleHandler, GameController battleController) {
 
         // Use a grid layout

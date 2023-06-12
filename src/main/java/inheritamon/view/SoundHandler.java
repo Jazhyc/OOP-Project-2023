@@ -54,6 +54,10 @@ public class SoundHandler {
 
     }
 
+    /**
+     * Returns the instance of the SoundHandler
+     * @return The instance of the SoundHandler
+     */
     public static SoundHandler getInstance() {
         if (soundHandler == null) {
             soundHandler = new SoundHandler();
@@ -61,6 +65,10 @@ public class SoundHandler {
         return soundHandler;
     }
 
+    /**
+     * Plays the music with the given key
+     * @param key The name of the music to play
+     */
     public void playMusic(String key) {
         if (currentMusic != null) {
             currentMusic.stop();
@@ -75,6 +83,10 @@ public class SoundHandler {
         currentMusic.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
+    /**
+     * Plays the sound effect with the given key
+     * @param key The name of the sound effect to play
+     */
     public void playSound(String key) {
         Clip clip = soundClips.get(key);
         clip.setFramePosition(0);

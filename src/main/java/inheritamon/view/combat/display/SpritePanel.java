@@ -15,17 +15,21 @@ import java.awt.*;
  */
 public class SpritePanel extends JPanel {
 
-    private static final double SHADOW_PLACEMENT = 0.85;
-    private static final double SPRITE_SCALE_FACTOR = 2.5;
-    private static final int SHADOW_SIZE = 40;
+    private final double SHADOW_PLACEMENT = 0.85;
+    private final double SPRITE_SCALE_FACTOR = 2.5;
+    private final int SHADOW_SIZE = 40;
     private BufferedImage imageToDisplay;
     private DisplayType type;
-    private int spriteSize = 256;
-    private static final int Y_OFFSET = 25;
+    private final int Y_OFFSET = 25;
 
     // Reference to the data handler
     private HashMap<String, HashMap<String, BufferedImage>> pokemonImages = new HashMap<String, HashMap<String, BufferedImage>>();
 
+    /**
+     * Constructor for the SpritePanel class
+     * @param battleHandler The battle handler
+     * @param type Whether the panel is for the player or the enemy
+     */
     public SpritePanel(BattleHandler battleHandler, DisplayType type) {
 
         // Set the type
@@ -43,7 +47,7 @@ public class SpritePanel extends JPanel {
         super.paintComponent(g);
 
         // Calculate sprite size based on window width
-        spriteSize = (int) (getWidth() / SPRITE_SCALE_FACTOR);
+        int spriteSize = (int) (getWidth() / SPRITE_SCALE_FACTOR);
 
         // Calculate the x and y coordinates to center the image
         int spriteX = (getWidth() - spriteSize) / 2;
@@ -70,7 +74,7 @@ public class SpritePanel extends JPanel {
     }
 
     // Useful for the player since they can switch pokemon
-    public void setRequiredImage(String pokemon) {
+    private void setRequiredImage(String pokemon) {
 
         // If the type is enemy, simply get the front image.
         // Otherwise get the back image.
@@ -95,7 +99,7 @@ public class SpritePanel extends JPanel {
             if (e.getPropertyName().equals(eventName)) {
 
                 // Get the right pokemon name
-                String pokemonName = battleHandler.getCurrentPokemonName(type);
+                String pokemonName = e.getNewValue().toString();
                 System.out.println("Pokemon name: " + pokemonName);
                 setRequiredImage(pokemonName);
 

@@ -22,6 +22,11 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
 
     private SoundHandler soundHandler;
 
+    /**
+     * Constructor for the MovePanel class
+     * @param battleHandler The battle handler
+     * @param battleController The battle controller
+     */
     public MovePanel(BattleHandler battleHandler, GameController battleController) {
 
         // Use a grid layout with a scroll pane
@@ -98,6 +103,9 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
 
     }
 
+    /**
+     * Add a language listener to the panel
+     */
     public void addLanguageListener() {
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();

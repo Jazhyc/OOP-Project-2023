@@ -18,7 +18,7 @@ public abstract class Pokemon implements Serializable {
     protected ArrayList<String> moves = new ArrayList<String>();
     private boolean hasFainted = false;
 
-    private int BASE_DODGE_CHANCE = 20;
+    private final int BASE_DODGE_CHANCE = 20;
 
     /**
      * The attack method, which takes a target as a parameter, returns a random move
@@ -217,16 +217,28 @@ public abstract class Pokemon implements Serializable {
         return new HashMap<String, Integer>(numericalStats);
     }
 
+    /**
+     * Gets the image of the pokemon
+     * @return The image of the pokemon
+     */
     public BufferedImage getSpeciesImage() {
         DataHandler dataHandler = DataHandler.getInstance();
         BufferedImage speciesImage = dataHandler.getPokemonSprite(stringStats.get("Species")).get("front");
         return speciesImage;
     }
 
+    /**
+     * Checks if the pokemon has fainted
+     * @return Whether or not the pokemon has fainted
+     */
     public boolean isFainted() {
         return hasFainted;
     }
 
+    /**
+     * Gets the loot of the pokemon
+     * @return The loot of the pokemon
+     */
     public String getLoot() {
         return stringStats.get("Loot");
     }

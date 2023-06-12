@@ -7,10 +7,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
 
+/**
+ * @Author Jeremias
+ * Panel for displaying certain stats of the player's pokemon data
+ */
 public class PokemonDataPanel extends JPanel {
 
     private static String[] statNames = new String[] {"Atk", "Def", "Agi", "Acc", "M.Atk", "M.Def"};
 
+    /**
+     * Constructor for the PokemonDataPanel
+     * @param gameModel The game model
+     */
     public PokemonDataPanel(GameModel gameModel) {
         
         // Make the background black

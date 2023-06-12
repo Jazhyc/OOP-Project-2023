@@ -15,6 +15,10 @@ public class LanguageConfiguration {
     // Singleton pattern
     private static LanguageConfiguration instance = null;
 
+    /**
+     * Returns the instance of the language configuration
+     * @return The instance of the language configuration
+     */
     public static LanguageConfiguration getInstance() {
         if (instance == null) {
             instance = new LanguageConfiguration();
@@ -22,6 +26,9 @@ public class LanguageConfiguration {
         return instance;
     }
 
+    /**
+     * Enum to represent the languages that the game can be in
+     */
     public enum Language {
         EN, NL
     }
@@ -63,6 +70,10 @@ public class LanguageConfiguration {
 
     }
 
+    /**
+     * Switches the language and notifies the listeners
+     * Used by the language button in the main menu
+     */
     public void switchLanguage() {
 
         // If en switch to nl and vice versa
@@ -76,6 +87,10 @@ public class LanguageConfiguration {
 
     }
 
+    /**
+     * Adds a listener to the list of listeners
+     * @param listener The listener to add
+     */
     public void addLanguageChangeListener(PropertyChangeListener listener) {
         
         listeners.add(listener);
@@ -88,15 +103,30 @@ public class LanguageConfiguration {
         }
     }
 
+    /**
+     * Used to get an array of options for menus with multiple strings to display
+     * @param key The key of the menu to get the options for
+     * @return An array of options
+     */
     public String[] getOptions(String key) {
         String[] options = optionMap.get(key).get(selectedLanguage.toString());
         return Arrays.copyOf(options, options.length);
     }
 
+    /**
+     * Used to get a string to display
+     * @param key The key of the string to get
+     * @return The string to display
+     */
     public String getText(String key) {
         return stringMap.get(key).get(selectedLanguage.toString());
     }
 
+    /**
+     * Used to get the name of pokemon's move in the selected language
+     * @param moveName The name of the move
+     * @return The name of the move in the selected language
+     */
     public String getLocalMoveName(String moveName) {
         
         HashMap<String, String> moveData = DataHandler.getInstance().getMoveData(moveName);

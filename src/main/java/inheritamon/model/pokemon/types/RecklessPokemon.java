@@ -9,10 +9,18 @@ import inheritamon.model.data.DataHandler;
  */
 public class RecklessPokemon extends Pokemon {
 
+    /**
+     * Constructor for the RecklessPokemon class
+     * @param pokemonData The data of the pokemon
+     */
     public RecklessPokemon(HashMap<String, String> pokemonData) {
         super(pokemonData);
     }
 
+    /**
+     * Uses a move based on the pokemon's current stats
+     * @param targetStats The stats of the target pokemon
+     */
     @Override
     public String useMove(HashMap<String, Integer> targetStats) {
 

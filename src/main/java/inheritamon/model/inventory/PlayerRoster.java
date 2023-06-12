@@ -17,6 +17,9 @@ public class PlayerRoster implements Serializable {
     public final static int MAX_POKEMON = 6;
 
     // Constructor for a new game
+    /**
+     * Constructor for the PlayerRoster class
+     */
     public PlayerRoster() {
         roster = new ArrayList<PlayerPokemon>();
 
@@ -28,6 +31,10 @@ public class PlayerRoster implements Serializable {
     }
 
     // Function to add a pokemon to the roster
+    /**
+     * Adds a pokemon to the roster
+     * @param pokemon The pokemon to add
+     */
     public void addPokemon(PlayerPokemon pokemon) {
 
         // Check if the roster is full
@@ -42,6 +49,11 @@ public class PlayerRoster implements Serializable {
     }
 
     // Function to get a pokemon from the roster
+    /**
+     * Get a pokemon from the roster
+     * @param index The index of the pokemon
+     * @return The pokemon at the index
+     */
     public PlayerPokemon getPokemon(int index) {
 
         // Check if the index is valid
@@ -64,6 +76,9 @@ public class PlayerRoster implements Serializable {
     }
 
     // Function to revitalize all pokemon
+    /**
+     * Revitalize all pokemon in the roster, fully healing them
+     */
     public void revitalizeAll() {
 
         // Loop over the roster
@@ -76,6 +91,10 @@ public class PlayerRoster implements Serializable {
 
     }
 
+    /**
+     * Check if all pokemon in the roster are fainted
+     * @return True if all pokemon are fainted, false otherwise
+     */
     public boolean allFainted() {
             
         // Loop over the roster
@@ -92,6 +111,10 @@ public class PlayerRoster implements Serializable {
     
     }
 
+    /**
+     * Get the index of the first alive pokemon
+     * @return
+     */
     public int getAlivePokemon() {
             
         // Loop over the roster

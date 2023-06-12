@@ -12,6 +12,7 @@ import java.awt.*;
 
 /**
  * @author Jeremias
+ * The SidePanel class is responsible for displaying the menu on the left side in game
  */
 public class SidePanel extends JPanel implements LanguageChangeListener {
 
@@ -22,6 +23,11 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
     private JPanel pokemonDataPanel;
     private GameController gameController;
 
+    /**
+     * Constructor for the SidePanel class
+     * @param gameController The game controller
+     * @param pokemonDataPanel The panel that displays the pokemon data
+     */
     public SidePanel(GameController gameController, JPanel pokemonDataPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addLanguageListener();
@@ -168,7 +174,10 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                         break;
                 }
             }
-
+    
+    /**
+     * Add a language change listener to the side panel
+     */
     public void addLanguageListener() {
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -186,6 +195,9 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
     }
 
+    /**
+     * Hide the pokemon data panel
+     */
     public void hidePokemonDataPanel() {
         pokemonDataPanel.setVisible(false);
     }

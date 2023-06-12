@@ -10,9 +10,7 @@ import inheritamon.model.inventory.Inventory;
 import inheritamon.model.inventory.Item;
 import inheritamon.model.inventory.PlayerRoster;
 import inheritamon.model.pokemon.moves.NormalAbility;
-import inheritamon.model.pokemon.types.PlayerPokemon;
-import inheritamon.model.pokemon.types.Pokemon;
-import inheritamon.view.combat.display.BattleDisplayPanel.DisplayType;
+import inheritamon.model.pokemon.types.*;
 
 /**
  * @author Jeremias
@@ -41,10 +39,10 @@ public class BattleHandler {
     private PlayerPokemon playerPokemon;
     private Pokemon enemyPokemon;
     private PlayerRoster playerRoster;
-
     private Inventory playerInventory;
     private int turn;
 
+    // Variable to prevent multiple battles from starting at the same time
     private boolean battleActive = false;
 
     /**
@@ -84,50 +82,23 @@ public class BattleHandler {
 
     private void battleLoop(PlayerData playerData, Pokemon enemyPokemon) {
 
+        LanguageConfiguration config = LanguageConfiguration.getInstance();
+
         turn = 0;
         String ability;
         Pokemon attacker;
         Pokemon defender;
 
-        this.playerRoster = playerData.getRoster();
-
-        int playerPokemonIndex = playerRoster.getAlivePokemon();
-        playerPokemon = playerRoster.getPokemon(playerPokemonIndex);
-        this.enemyPokemon = enemyPokemon;
-        this.playerInventory = playerData.getInventory();
-
-        notifyStatListener(playerPokemon, enemyPokemon);
-        notifyMoveListener(playerPokemon);
-        notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
-        notifyPlayerRosterListener();
-        notifyInventoryListener();
-        notifyBattleStateListener("Start");
-
-        LanguageConfiguration config = LanguageConfiguration.getInstance();
-
-        // Beginning of the battle
-        // Get the BattleStart string from language config
-        String formattedString = String.format(config.getText("BattleStart"), enemyPokemon.getName());
-        notifyDialogueListener(formattedString);
-        wait(WAIT_TIME);
+        String formattedString;
+        setUpBattle(playerData, enemyPokemon, config);
 
         while (!playerRoster.allFainted() && enemyPokemon.getHP() > 0) {
-
-            // Print the HP and MP of both pokemon
-            System.out.println(playerPokemon.getName() + " HP: " + playerPokemon.getHP() + " MP: " + playerPokemon.getMP());
-            System.out.println(enemyPokemon.getName() + " HP: " + enemyPokemon.getHP() + " MP: " + enemyPokemon.getMP());
-            System.out.println("--------------------------------------");
 
             attacker = (turn % 2 == 0) ? playerPokemon : enemyPokemon;
             defender = (turn % 2 == 0) ? enemyPokemon : playerPokemon;
 
             formattedString = String.format(config.getText("TurnStart"), attacker.getName());
             notifyDialogueListener(formattedString);
-
-            // Only wait if it's not the player's turn
-            if (turn % 2 != 0) {
-                wait(WAIT_TIME);
-            }
 
             // Get the ability to use
             ability = attacker.useMove(defender.getAllNumericalStats());
@@ -185,6 +156,28 @@ public class BattleHandler {
         conclusion = determineConclusion(playerRoster, enemyPokemon);
         notifyBattleStateListener(conclusion);
         battleActive = false;
+    }
+
+    private void setUpBattle(PlayerData playerData, Pokemon enemyPokemon, LanguageConfiguration config) {
+        this.playerRoster = playerData.getRoster();
+
+        int playerPokemonIndex = playerRoster.getAlivePokemon();
+        playerPokemon = playerRoster.getPokemon(playerPokemonIndex);
+        this.enemyPokemon = enemyPokemon;
+        this.playerInventory = playerData.getInventory();
+
+        notifyStatListener(playerPokemon, enemyPokemon);
+        notifyMoveListener(playerPokemon);
+        notifyPokemonSpriteListener(playerPokemon, enemyPokemon);
+        notifyPlayerRosterListener();
+        notifyInventoryListener();
+        notifyBattleStateListener("Start");
+
+        // Beginning of the battle
+        // Get the BattleStart string from language config
+        String formattedString = String.format(config.getText("BattleStart"), enemyPokemon.getName());
+        notifyDialogueListener(formattedString);
+        wait(WAIT_TIME);
     }
 
     private void handleFaint(PlayerRoster playerRoster, Pokemon enemyPokemon, LanguageConfiguration config) {
@@ -338,6 +331,11 @@ public class BattleHandler {
         }
     }
 
+    /**
+     * Adds a listener to the battle for a certain parameter
+     * @param listenerType The type of listener to add
+     * @param listener The listener to add
+     */
     public void addListener(String listenerType, PropertyChangeListener listener) {
         switch (listenerType) {
             case "pokemonSprite":
@@ -416,15 +414,11 @@ public class BattleHandler {
             listener.propertyChange(new PropertyChangeEvent(this, "conclusion", null, conclusion));
         }
     }
-
-    public String getCurrentPokemonName(DisplayType type) {
-        if (type == DisplayType.PLAYER) {
-            return playerPokemon.getName();
-        } else {
-            return enemyPokemon.getName();
-        }
-    }
-
+    
+    /**
+     * Gets the player's active pokemon
+     * @return The player's active pokemon
+     */
     public PlayerPokemon getActivePlayerPokemon() {
         return (PlayerPokemon) playerPokemon;
     }
@@ -437,6 +431,10 @@ public class BattleHandler {
         }
     }
 
+    /**
+     * Returns whether or not it is the player's turn
+     * @return Whether or not it is the player's turn
+     */
     public boolean isPlayerTurn() {
         
         return turn % 2 == 0;

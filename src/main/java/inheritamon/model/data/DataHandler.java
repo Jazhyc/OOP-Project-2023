@@ -13,11 +13,10 @@ import java.net.*;
 /**
  * @author Jeremias
  * A class to handle and load data with the appropriate exceptions
+ * We use csv files to store certain data regarding the game
+ * Singleton class
  */
 public class DataHandler {
-
-    // Singleton pattern
-    private static DataHandler dataHandler;
 
     private HashMap<String, HashMap<String, String>> characterData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String>> moveData = new HashMap<String, HashMap<String, String>>();
@@ -42,6 +41,13 @@ public class DataHandler {
         loadAllData();
     }
 
+    // Singleton pattern
+    private static DataHandler dataHandler;
+
+    /**
+     * Get an instance of the DataHandler class
+     * @return the DataHandler instance
+     */
     public static DataHandler getInstance() {
         if (dataHandler == null) {
             dataHandler = new DataHandler();
@@ -50,6 +56,11 @@ public class DataHandler {
     }
 
     // Obtained from https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
+    /**
+     * Check if a string is numeric
+     * @param str The string to check
+     * @return Whether the string is numeric
+     */
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
@@ -172,6 +183,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Save the state of the game
+     * @param data The object to save
+     * @param fileName The name of the file to save to
+     */
     public void saveState(Object data, String fileName) {
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName + ".ser");
@@ -185,6 +201,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Load the state of the game
+     * @param fileName The name of the file to load from
+     * @return The object that was loaded
+     */
     public Object loadState(String fileName) {
 
         try {
@@ -202,19 +223,6 @@ public class DataHandler {
         return null;
         
     }
-        
-
-//    private void loadConversations() {
-//        try {
-//            // Go through all localizations and load the corresponding dialogue options.
-//            for (NonPlayerCharacter npc : NPCs) {
-//                dialogueData.put(npc, dialogues?);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.exit(-1);
-//        }
-//    }
 
     private HashMap<String, String> getData(HashMap<String, HashMap<String, String>> dataMap, String dataName, String dataType) {
         try {
@@ -228,24 +236,43 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Gets the data of a specific pokemon
+     * @param characterName The name of the pokemon
+     * @return The data of the pokemon as a HashMap
+     */
     public HashMap<String, String> getPokemonData(String characterName) {
         return getData(characterData, characterName, "Character");
     }
 
+    /**
+     * Gets the data of a specific move
+     * @param moveName The name of the move
+     * @return The data of the move as a HashMap
+     */
     public HashMap<String, String> getMoveData(String moveName) {
         return getData(moveData, moveName, "Move");
     }
 
+    /**
+     * Gets the data of a specific item
+     * @param itemName The name of the item
+     * @return The data of the item as a HashMap
+     */
     public HashMap<String, String> getItemData(String itemName) {
         return getData(itemData, itemName, "Item");
     }
 
+    /**
+     * Get data of all items in the game
+     * @return The data of all items
+     */
     public HashMap<String, HashMap<String, String>> getAllItems() {
         return new HashMap<String, HashMap<String, String>>(itemData);
     }
 
     /**
-     * Gets the data of all menus
+     * Gets the data of all language configurations of the menus
      * @return The data of all menus
      */
     public HashMap<String, HashMap<String, String>> getLanguageData() {
@@ -269,10 +296,19 @@ public class DataHandler {
             return new HashMap<String, NormalAbility>(abilities);
     }
 
+    /**
+     * Gets the sprites of entities that are displayed on the map
+     * @return The sprites of entities that are displayed on the map
+     */
     public HashMap<String, HashMap<String, BufferedImage>> getAllCharacterSprites() {
         return characterSprites;
     }
 
+    /**
+     * Gets the two sprites of a specific pokemon
+     * @param pokemonName The name of the pokemon
+     * @return The sprites of the pokemon
+     */
     public HashMap<String, BufferedImage> getPokemonSprite(String pokemonName) {
         return characterSprites.get(pokemonName);
     }
@@ -289,6 +325,10 @@ public class DataHandler {
         return new ArrayList<String>(moveSet);
     }
 
+    /**
+     * Gets the icons of certain UI elements
+     * @return The icons of certain UI elements
+     */
     public HashMap<String, BufferedImage> getIcons() {
         return icons;
     }
@@ -301,22 +341,47 @@ public class DataHandler {
         return image;
     }
 
+    /**
+     * Gets the background of a specific battle
+     * @param backgroundName The name of the background
+     * @return The background of the battle
+     */
     public BufferedImage getBackground(String backgroundName) {
         return getImage(battleBackgrounds, backgroundName, "Background");
     }
 
+    /**
+     * Gets the image of a specific tile
+     * @param tileName The name of the tile
+     * @return The image of the tile
+     */
     public BufferedImage getTileImage(String tileName) {
         return getImage(tiles, tileName, "Tile");
     }
 
+    /**
+     * Gets a specific texture of a character displayed on the map
+     * @param textureName The name of the texture
+     * @return The texture of the character
+     */
     public BufferedImage getCharacterTexture(String textureName) {
         return getImage(characterTextures, textureName, "Texture");
     }
 
+    /**
+     * Gets the sprite of a specific item
+     * @param spriteName The name of the item
+     * @return The sprite of the item
+     */
     public BufferedImage getItemSprite(String spriteName) {
         return getImage(inventorySprites, spriteName, "Inventory Sprite");
     }
 
+    /**
+     * Gets all audio files of a specific type
+     * @param audioType The type of audio files
+     * @return All audio files of a specific type
+     */
     public HashMap<String, AudioInputStream> getAudios(String audioType) {
         
         if (audioType.equals("Music")) {

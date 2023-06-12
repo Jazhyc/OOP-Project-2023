@@ -9,6 +9,7 @@ import java.util.*;
 
 /**
  * Class that holds all the data of the player
+ * Will either be loaded from a save file or created from scratch
  */
 public class PlayerData implements Serializable {
 
@@ -20,23 +21,41 @@ public class PlayerData implements Serializable {
     private Inventory inventory;
     private ArrayList<TrainerAbility> abilities = new ArrayList<TrainerAbility>();
 
+    /**
+     * Constructor for the PlayerData
+     */
     public PlayerData() {
         roster = new PlayerRoster();
         inventory = new Inventory();
     }
 
+    /**
+     * Returns the player roster
+     * @return The player roster
+     */
     public PlayerRoster getRoster() {
         return roster;
     }
 
+    /**
+     * Returns the player inventory
+     * @return
+     */
     public Inventory getInventory() {
         return inventory;
     }
 
+    /**
+     * Returns the player abilities
+     */
     public ArrayList<TrainerAbility> getAbilities() {
         return abilities;
     }
 
+    /**
+     * Adds an ability to the player
+     * @param ability The ability to add
+     */
     public void addAbility(TrainerAbility ability) {
         
         // Only add if the ability is not already in the list
@@ -46,6 +65,11 @@ public class PlayerData implements Serializable {
 
     }
 
+    /**
+     * Adds starter data to the player like a starter pokemon and a perk
+     * @param pokemon
+     * @param perk
+     */
     public void addStarterData(String pokemon, String perk) {
 
         DataHandler dataHandler = DataHandler.getInstance();

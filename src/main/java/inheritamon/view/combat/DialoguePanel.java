@@ -13,6 +13,10 @@ public class DialoguePanel extends JPanel {
 
     private String textToDisplay = "A wild Pokemon appeared!";
 
+    /**
+     * Constructor for the DialoguePanel class
+     * @param battleHandler The battle handler
+     */
     public DialoguePanel(BattleHandler battleHandler) {
 
         // Set color to White

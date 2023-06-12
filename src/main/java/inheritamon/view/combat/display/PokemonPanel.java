@@ -13,6 +13,11 @@ import java.awt.*;
 public class PokemonPanel extends JPanel {
 
     // Display the pokemon differently depending on whether it is the player's or the enemy's
+    /**
+     * Constructor for the PokemonPanel class, consists of a StatsPanel and a SpritePanel
+     * @param type Whether the panel is for the player or the enemy
+     * @param battleHandler The battle handler
+     */
     public PokemonPanel(DisplayType type, BattleHandler battleHandler) {
 
         // Use a grid bag layout

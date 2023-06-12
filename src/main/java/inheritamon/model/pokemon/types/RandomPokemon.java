@@ -8,10 +8,18 @@ import java.util.*;
  */
 public class RandomPokemon extends Pokemon {
 
+    /**
+     * Constructor for the RandomPokemon class
+     * @param data The data of the pokemon
+     */
     public RandomPokemon(HashMap<String, String> data) {
         super(data);
     }
 
+    /**
+     * Uses a move based on the pokemon's current stats
+     * @param targetStats The stats of the target pokemon
+     */
     @Override
     public String useMove(HashMap<String, Integer> targetStats) {
 

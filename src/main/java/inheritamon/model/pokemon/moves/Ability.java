@@ -39,6 +39,10 @@ public abstract class Ability {
         }
     }
 
+    /**
+     * The constructor for the Move class
+     * @param moveData The data of the move
+     */
     public Ability(HashMap<String, String> moveData) {
         setUp(moveData);
     }

@@ -37,6 +37,11 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
     // https://www.pngwing.com/en/free-png-iskzk
     // https://www.pngwing.com/en/free-png-xbwgg
 
+    /**
+     * Constructor for the ChoicePanel class
+     * @param controller The game controller
+     * @param actionPanel The panel that displays the actions
+     */
     public ChoicePanel(GameController controller, ActionPanel actionPanel) {
 
         DataHandler dataHandler = DataHandler.getInstance();
@@ -183,6 +188,9 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
         add(icons[i], gbc);
     }
 
+    /**
+     * Add a language listener to the panel
+     */
     public void addLanguageListener() {
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();

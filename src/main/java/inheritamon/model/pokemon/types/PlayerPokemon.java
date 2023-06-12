@@ -8,14 +8,21 @@ import java.util.*;
  */
 public class PlayerPokemon extends Pokemon {
 
-    private static final int WAIT_TIME = 50;
+    private final int WAIT_TIME = 50;
     private volatile boolean awaitingMove = false;
     private String selectedMove;
 
+    /**
+     * Constructor for the PlayerPokemon class
+     * @param data The data of the pokemon
+     */
     public PlayerPokemon(HashMap<String, String> data) {
         super(data);
     }
 
+    /**
+     * Uses a move according to the player's input
+     */
     @Override
     public String useMove(HashMap<String, Integer> targetStats) {
 
@@ -34,6 +41,10 @@ public class PlayerPokemon extends Pokemon {
         return selectedMove;
     }
 
+    /**
+     * Selects a move for the pokemon, called by the GUI
+     * @param move The move to select
+     */
     public void selectMove(String move) {
         awaitingMove = false;
         selectedMove = move;

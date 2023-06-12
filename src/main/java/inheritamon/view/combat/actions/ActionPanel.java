@@ -20,6 +20,11 @@ public class ActionPanel extends JPanel {
 
     private BufferedImage background;
 
+    /**
+     * Constructor for the ActionPanel class
+     * @param battleHandler The battle handler
+     * @param battleController The battle controller
+     */
     public ActionPanel(BattleHandler battleHandler, GameController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
@@ -58,6 +63,10 @@ public class ActionPanel extends JPanel {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
     }
 
+    /**
+     * Change the panel visibility to the given index and make all other panels invisible
+     * @param index The index of the panel to make visible
+     */
     public void changePanelVisibilityTo(int index) {
             
             // Make all panels invisible

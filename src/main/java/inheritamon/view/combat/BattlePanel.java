@@ -25,6 +25,12 @@ public class BattlePanel extends JPanel{
     private GamePanel gamePanel;
     private SoundHandler soundHandler;
 
+    /**
+     * Constructor for the BattlePanel class
+     * @param battleController The game controller
+     * @param battleHandler The battle handler
+     * @param gamePanel The game panel
+     */
     public BattlePanel(GameController battleController, BattleHandler battleHandler, GamePanel gamePanel) {
 
         this.gamePanel = gamePanel;
@@ -120,12 +126,18 @@ public class BattlePanel extends JPanel{
         });
     }
 
+    /**
+     * Sets up the battle view by making the battle panel visible and the game panel invisible
+     */
     public void setUpBattleView() {
         soundHandler.playMusic("Battle");
         setVisible(true);
         gamePanel.setVisible(false);
     }
 
+    /**
+     * Sets up the game view by making the battle panel invisible and the game panel visible
+     */
     public void setUpGameView() {
         setVisible(false);
         gamePanel.setVisible(true);

@@ -10,6 +10,7 @@ import java.lang.reflect.*;
 
 /**
  * @author Jeremias
+ * Panel for displaying the HP and MP of the player and the enemy
  */
 public class StatsPanel extends JPanel {
     
@@ -18,12 +19,11 @@ public class StatsPanel extends JPanel {
     private float HPRatio = 1;
     private float MPRatio = 1;
 
-    private int yOffset = 10;
-    private int barWidth = 300;
-    private int barHeight = 20;
-    private int borderPadding = 1;
-    private float thickness = 3;
-    private int labelOffset = 18;
+    private final int Y_OFFSET = 10;
+    private final int BAR_HEIGHT = 20;
+    private final int BORDER_PADDING = 1;
+    private final float BORDER_THICKNESS = 3;
+    private final int LABEL_OFFSET = 18;
     private DisplayType type;
 
     public StatsPanel(DisplayType type, BattleHandler battleHandler) {
@@ -37,7 +37,7 @@ public class StatsPanel extends JPanel {
         super.paintComponent(g);
 
         // Calculate the width of the bars based on the window width
-        barWidth = getWidth() / 2;
+        int barWidth = getWidth() / 2;
 
         // Calculate the center
         int centerX = getWidth() / 2;
@@ -49,21 +49,21 @@ public class StatsPanel extends JPanel {
 
         // Add a border around the bars
         Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(thickness));
+        g2.setStroke(new BasicStroke(BORDER_THICKNESS));
         g.setColor(Color.BLACK);
-        g.drawRect(hpBarCenterX - borderPadding, centerY - barHeight + yOffset - borderPadding, barWidth + borderPadding, barHeight * 2 + borderPadding);
+        g.drawRect(hpBarCenterX - BORDER_PADDING, centerY - BAR_HEIGHT + Y_OFFSET - BORDER_PADDING, barWidth + BORDER_PADDING, BAR_HEIGHT * 2 + BORDER_PADDING);
 
         // Draw the bars
         g.setColor(Color.GREEN);
-        g.fillRect(hpBarCenterX, centerY - barHeight + yOffset, (int) (barWidth * HPRatio), barHeight);
+        g.fillRect(hpBarCenterX, centerY - BAR_HEIGHT + Y_OFFSET, (int) (barWidth * HPRatio), BAR_HEIGHT);
         g.setColor(Color.BLUE);
-        g.fillRect(mpBarCenterX, centerY + yOffset, (int) (barWidth * MPRatio), (barHeight));
+        g.fillRect(mpBarCenterX, centerY + Y_OFFSET, (int) (barWidth * MPRatio), (BAR_HEIGHT));
 
         // Add labels HP and MP to the bars
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("HP", hpBarCenterX + 10, centerY - barHeight + yOffset + labelOffset);
-        g.drawString("MP", mpBarCenterX + 10, centerY + yOffset + labelOffset);
+        g.drawString("HP", hpBarCenterX + 10, centerY - BAR_HEIGHT + Y_OFFSET + LABEL_OFFSET);
+        g.drawString("MP", mpBarCenterX + 10, centerY + Y_OFFSET + LABEL_OFFSET);
 
     }
 

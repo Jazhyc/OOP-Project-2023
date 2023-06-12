@@ -6,22 +6,27 @@ import inheritamon.model.pokemon.types.PlayerPokemon;
 
 /**
  * @Author Jeremias
- * Controller for the battle
+ * Controller for the general game state and battle
  */
 public class GameController {
 
     private BattleHandler battleHandler;
     private GameModel gameModel;
     
+    /**
+     * Constructor for the GameController
+     * @param battleHandler The battle handler
+     * @param gameModel The game model
+     */
     public GameController(BattleHandler battleHandler, GameModel gameModel) {
         this.battleHandler = battleHandler;
         this.gameModel = gameModel;
     }
 
-    public void selectChoice(String choice) {
-        System.out.println("You selected " + choice);
-    }
-
+    /**
+     * Selects a move for the player and passes it to the battle handler
+     * @param move The move to select in the form of a string
+     */
     public void selectMove(String move) {
        
         PlayerPokemon playerPokemon = battleHandler.getActivePlayerPokemon();
@@ -29,31 +34,43 @@ public class GameController {
 
     }
 
+    /**
+     * Selects a pokemon for the player and passes it to the battle handler, used for switching pokemon
+     * @param index The index of the pokemon to switch to
+     */
     public void selectPokemon(int index) {
-
-        // Check if it's the player's turn
-        if (!battleHandler.isPlayerTurn()) {
-            return;
-        }
         
         PlayerPokemon playerPokemon = battleHandler.getActivePlayerPokemon();
         playerPokemon.selectMove("switch " + index);
     }
 
+    /**
+     * Selects an item for the player and passes it to the battle handler
+     * @param item The item to select in the form of a string
+     */
     public void selectItem(Integer item) {
         System.out.println("You selected " + item);
         PlayerPokemon playerPokemon = battleHandler.getActivePlayerPokemon();
         playerPokemon.selectMove("item " + item);
     }
 
+    /**
+     * Begins the battle
+     */
     public void beginBattle() {
         gameModel.startBattle();
     }
 
+    /**
+     * Requests the model to save the game
+     */
     public void saveGame() {
         gameModel.saveGame();
     }
 
+    /**
+     * Requests the model to change the game state to the main menu
+     */
     public void returnToMainMenu() {
         gameModel.returnToMainMenu();
     }

@@ -22,6 +22,11 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
     private JLabel[] buttons = new JLabel[3];
 
+    /**
+     * Constructor for the MainMenuPanel
+     * @param controller The menu controller
+     * @param model The game model
+     */
     public MainMenuPanel(MenuController controller, GameModel model) {
 
         addLanguageListener();
@@ -162,6 +167,9 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
         add(titleLabel, gbc);
     }
 
+    /**
+     * Add a language change listener to the panel
+     */
     public void addLanguageListener() {
         LanguageConfiguration config = LanguageConfiguration.getInstance();
         
@@ -174,6 +182,10 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
         });
     }
 
+    /**
+     * Add a game state listener to the panel
+     * @param model The game model
+     */
     public void addGameStateListener(GameModel model) {
 
         model.addGameStateListener(e -> {

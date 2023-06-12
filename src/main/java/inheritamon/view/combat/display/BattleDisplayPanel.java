@@ -17,10 +17,17 @@ public class BattleDisplayPanel extends JPanel {
     private BufferedImage backgroundImage;
 
     // Display the pokemon differently depending on whether it is the player's or the enemy's
+    /**
+     * The DisplayType enum is used to determine whether the pokemon is the player's or the enemy's
+     */
     public static enum DisplayType {
         PLAYER, ENEMY
     }
 
+    /**
+     * Constructor for the BattleDisplayPanel class
+     * @param battleHandler The battle handler
+     */
     public BattleDisplayPanel(BattleHandler battleHandler) {
         
         // Use a 2x1 grid layout
@@ -49,6 +56,10 @@ public class BattleDisplayPanel extends JPanel {
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
     }
 
+    /**
+     * Set the background image of the panel
+     * @param backgroundName The name of the background image
+     */
     public void setBackground(String backgroundName) {
         DataHandler dataHandler = DataHandler.getInstance();
         backgroundImage = dataHandler.getBackground(backgroundName);
