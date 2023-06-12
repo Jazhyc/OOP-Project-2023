@@ -27,7 +27,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
     // Create an array for storing the name of the buttons
     String buttonNames[];
-    private int buttonWidth = 40;
+    private final int BUTTON_WIDTH = 40;
 
     private String[] buttonIconNames = {"Fight", "Items", "Pokemon", "Run"};
     private HashMap<String, BufferedImage> buttonIcons = new HashMap<String, BufferedImage>();
@@ -64,7 +64,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
             // Add the image before the button
             // Resize the image to 50x50
             BufferedImage icon = buttonIcons.get(buttonIconNames[i]);
-            Image scaledIcon = icon.getScaledInstance(buttonWidth, buttonWidth, Image.SCALE_SMOOTH);
+            Image scaledIcon = icon.getScaledInstance(BUTTON_WIDTH, BUTTON_WIDTH, Image.SCALE_SMOOTH);
 
             addJLabel(i);
             addIcon(i, scaledIcon);

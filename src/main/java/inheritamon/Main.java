@@ -10,8 +10,20 @@ import javax.swing.*;
 
 public class Main {
 
+    /**
+     * The width of the screen
+     */
     public static final int SCREEN_WIDTH = 1366;
+
+    /**
+     * The height of the screen
+     */
     public static final int SCREEN_HEIGHT = 768;
+
+    /**
+     * The main method which starts the game
+     * @param args
+     */
     public static void main(String[] args) {
 
         SoundHandler soundHandler = SoundHandler.getInstance();

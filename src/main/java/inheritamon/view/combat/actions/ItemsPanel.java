@@ -12,7 +12,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 
 public class ItemsPanel extends JPanel {
-    private static final int SPRITE_SIZE = 80;
+    private final int SPRITE_SIZE = 80;
     private Inventory inventory;
     private SoundHandler soundHandler;
 

@@ -20,7 +20,7 @@ import java.awt.color.*;
  */
 public class PokemonSelectionPanel extends JPanel {
 
-    private static final int SPRITE_SIZE = 100;
+    private final int SPRITE_SIZE = 100;
     private Pokemon[] playerPokemon;
     private SoundHandler soundHandler;
 

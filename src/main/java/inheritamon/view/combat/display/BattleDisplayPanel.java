@@ -19,6 +19,7 @@ public class BattleDisplayPanel extends JPanel {
     // Display the pokemon differently depending on whether it is the player's or the enemy's
     /**
      * The DisplayType enum is used to determine whether the pokemon is the player's or the enemy's
+     * Used across the entire package
      */
     public static enum DisplayType {
         PLAYER, ENEMY

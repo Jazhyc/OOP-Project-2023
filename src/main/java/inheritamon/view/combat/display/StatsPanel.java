@@ -15,7 +15,6 @@ import java.lang.reflect.*;
 public class StatsPanel extends JPanel {
     
     // Set default values to represent a full bar
-    // The user won't notice
     private float HPRatio = 1;
     private float MPRatio = 1;
 
