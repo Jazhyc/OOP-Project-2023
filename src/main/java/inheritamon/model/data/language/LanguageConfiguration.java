@@ -9,6 +9,7 @@ import inheritamon.model.data.DataHandler;
 /**
  * @Author Jeremias
  * A class to handle the language configuration of the game
+ * Uses the singleton pattern
  */
 public class LanguageConfiguration {
 

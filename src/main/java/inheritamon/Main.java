@@ -12,11 +12,13 @@ public class Main {
 
     /**
      * The width of the screen
+     * Used for frame size by the main method and for the game panel
      */
     public static final int SCREEN_WIDTH = 1366;
 
     /**
      * The height of the screen
+     * Used for frame size by the main method and for the game panel
      */
     public static final int SCREEN_HEIGHT = 768;
 

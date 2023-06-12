@@ -54,8 +54,6 @@ public class BattleHandler {
 
     /**
      * A method to start the battle on a different thread
-     * @return The result of the battle, can be victory, defeat or a draw
-     * 1 = defeat, 2 = victory, 0 = draw
      */
     public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
 
