@@ -15,6 +15,7 @@ import inheritamon.model.data.DataHandler;
 public class GameModel {
 
     // Emergency code to account for the world not adhering to the MVC pattern
+    // This should be removed in the future when the world refactor is complete
     private static PlayerData playerData;
     public static PlayerData getPlayerData() {
         return playerData;

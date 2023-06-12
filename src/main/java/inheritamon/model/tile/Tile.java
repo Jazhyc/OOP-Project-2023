@@ -1,6 +1,8 @@
 package inheritamon.model.tile;
 
 import java.awt.image.BufferedImage;
+import java.awt.event.*;
+import javax.swing.*;
 
 // This needs to be encapsulated in a class
 // No publics attributes
@@ -26,7 +28,4 @@ public class Tile {
         return canInteract && !isInteracting;
     }
 
-    public void setIsInteracting(boolean isInteracting) {
-        this.isInteracting = isInteracting;
-    }
 }

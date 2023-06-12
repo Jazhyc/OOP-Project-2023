@@ -13,19 +13,18 @@ public class PlayerKeyHandler {
     private boolean upPressed, downPressed, leftPressed, rightPressed, interactPressed;
 
     private SidePanel sidePanel;
-
     private SoundHandler soundHandler;
+    private CollisionChecker cChecker;
 
     
-    public PlayerKeyHandler(JComponent component, SidePanel sidePanel) {
+    public PlayerKeyHandler(JComponent component, SidePanel sidePanel, CollisionChecker cChecker) {
         InputMap inputMap = component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = component.getActionMap();
 
         soundHandler = SoundHandler.getInstance();
 
         this.sidePanel = sidePanel;
-
-        // It appears that using a modifier like shift or ctrl is not possible with this method
+        this.cChecker = cChecker;
 
         // Define the key bindings and actions
         Map<Integer, String> keyBindings = new HashMap<>();
@@ -108,7 +107,7 @@ private void setKeyState(String actionName, boolean state) {
             soundHandler.playSound("select");
             break;
         case "interact":
-            interactPressed = state;
+            cChecker.checkPlayerInteraction();
             break;
     }
 }

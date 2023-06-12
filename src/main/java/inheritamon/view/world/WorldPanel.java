@@ -44,9 +44,10 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         this.requestFocus();
 
         tileM = new TileManager(this);
-        keyH = new PlayerKeyHandler(this, sidePanel);
-        cChecker = new CollisionChecker(this);
+        cChecker = new CollisionChecker(tileM);
+        keyH = new PlayerKeyHandler(this, sidePanel, cChecker);
         player = new Player(this, keyH);
+        cChecker.setPlayer(player);
 
     }
 

@@ -44,7 +44,6 @@ public class TileManager {
             @Override
             public void interact() {
                 System.out.println("Interacting with Entity");
-                setIsInteracting(true);
 
                 // Emergency fix
                 battleHandler = GameModel.getBattleHandler();
