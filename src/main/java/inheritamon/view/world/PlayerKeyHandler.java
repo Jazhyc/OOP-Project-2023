@@ -98,6 +98,7 @@ private void setKeyState(String actionName, boolean state) {
             break;
         case "escape":
             sidePanel.setVisible(!sidePanel.isVisible());
+            sidePanel.hidePokemonDataPanel();
             soundHandler.playSound("select");
             break;
     }

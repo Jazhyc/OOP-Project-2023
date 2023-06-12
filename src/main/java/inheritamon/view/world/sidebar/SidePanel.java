@@ -152,10 +152,12 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                         // Minimize the menu
                         System.out.println("Minimize Menu");
                         setVisible(false);
+                        pokemonDataPanel.setVisible(false);
                         break;
                     case 5:
                         System.out.println("To Title");
                         setVisible(false);
+                        pokemonDataPanel.setVisible(false);
                         gameController.returnToMainMenu();
                         break;
                     case 6:
@@ -182,6 +184,10 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
             }
         });
 
+    }
+
+    public void hidePokemonDataPanel() {
+        pokemonDataPanel.setVisible(false);
     }
     
 }
