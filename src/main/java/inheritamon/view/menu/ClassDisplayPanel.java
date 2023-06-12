@@ -1,7 +1,10 @@
 package inheritamon.view.menu;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.*;
 
+import inheritamon.model.data.DataHandler;
 import inheritamon.model.data.language.*;
 
 public class ClassDisplayPanel extends JPanel implements LanguageChangeListener {
@@ -14,10 +17,24 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
 
         this.perk = perk;
 
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new GridLayout(4,1));
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
+        DataHandler dataHandler = DataHandler.getInstance();
+        BufferedImage pokemonImage = dataHandler.getPokemonSprite(pokemon).get("front");
+
+        // Create the image label
+        JLabel imageLabel = new JLabel(new ImageIcon(pokemonImage.getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+
+        // Center the image
+        imageLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+        // Set the font to use
+        Font font = new Font("Arial", Font.BOLD, 20);
+
+        // Create the labels with the font
+        
         JLabel pokemonLabel = new JLabel(pokemon);
         JLabel perkLabel = new JLabel(config.getText(perk));
         JLabel perkDescription = new JLabel(config.getText(perk + "Description"));
@@ -27,14 +44,17 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
         labels[1] = perkLabel;
         labels[2] = perkDescription;
 
-        // Put the labels in the center of the panel
-        pokemonLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        perkLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        perkDescription.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-
+        add(imageLabel);
         add(pokemonLabel);
         add(perkLabel);
         add(perkDescription);
+
+        // Center the labels
+        for (JLabel label : labels) {
+            label.setHorizontalAlignment(JLabel.CENTER);
+            label.setFont(font);
+            label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        }
 
         addLanguageListener();
 

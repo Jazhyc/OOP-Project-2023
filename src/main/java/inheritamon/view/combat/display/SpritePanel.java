@@ -30,7 +30,7 @@ public class SpritePanel extends JPanel {
 
         // Set the type
         this.type = type;
-        pokemonImages = DataHandler.getInstance().getCharacterSprites();
+        pokemonImages = DataHandler.getInstance().getAllCharacterSprites();
         // setRequiredImage(battleHandler.getCurrentPokemonName(type));
         setUp(battleHandler);
 

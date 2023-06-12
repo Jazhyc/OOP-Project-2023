@@ -17,7 +17,7 @@ Miss,String,%s missed!,%s miste!
 Run,String,You ran away!,Je bent weggerend!
 Item,String,You used %s!,Je gebruikte %s!
 Loot,String,You found a %s and %d coins!,Je vond een %s en %d munten!
-ClimberDescription,String,You can easily climb vertical surfaces!,Je kan makkelijk verticale oppervlakken beklimmen!
+ClimberDescription,String,You can easily climb vertical surfaces!,Je kan verticale oppervlakken beklimmen!
 SwimmerDescription,String,You can swim like a fish!,Je kan zwemmen als een vis!
 RichDescription,String,You won the lottery!,Je hebt de loterij gewonnen!
 Climber,String,Climber,Beklimmer

@@ -269,7 +269,7 @@ public class DataHandler {
             return new HashMap<String, NormalAbility>(abilities);
     }
 
-    public HashMap<String, HashMap<String, BufferedImage>> getCharacterSprites() {
+    public HashMap<String, HashMap<String, BufferedImage>> getAllCharacterSprites() {
         return characterSprites;
     }
 
