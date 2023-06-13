@@ -14,6 +14,9 @@ import java.util.*;
  */
 public class PlayerData implements Serializable {
 
+    /**
+     * Enum for the trainer abilities
+     */
     public static enum TrainerAbility {
         CLIMBER, SWIMMER, RICH;
     }

@@ -41,7 +41,7 @@ public class GameModel {
         SELECT_STARTER, GAME_START, BATTLE, MAIN_MENU
     }
 
-    private ArrayList<PropertyChangeListener> gameStateListeners = new ArrayList<>();
+    private ArrayList<PropertyChangeListener> gameStateListeners = new ArrayList<PropertyChangeListener>();
     private PropertyChangeListener rosterListener;
 
     /**
