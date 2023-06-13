@@ -1,16 +1,21 @@
 package inheritamon.view.world;
 
+import inheritamon.model.PlayerData;
 import inheritamon.model.entity.*;
 import inheritamon.model.tile.TileManager;
+
+import java.util.ArrayList;
 
 public class CollisionChecker {
 
     private TileManager tileM;
     private Player player;
+    private ArrayList <PlayerData.TrainerAbility> abilities;
     private int tileSize = 48;
 
-    public CollisionChecker(TileManager tileM) {
+    public CollisionChecker(TileManager tileM, ArrayList <PlayerData.TrainerAbility> abilities) {
         this.tileM = tileM;
+        this.abilities = abilities;
     }
 
     public void setPlayer(Player player) {
@@ -36,6 +41,7 @@ public class CollisionChecker {
                 entityTopRow = (entityTopWorldY - player.speed)/tileSize;
                 tileNum1 = tileM.mapTileNum[entityLeftCol][entityTopRow];
                 if(tileM.tile[tileNum1].canInteract()) {
+                    player.collisionOn = true;
                     
                     // Call the interact method of the tile
                     tileM.tile[tileNum1].interact();
