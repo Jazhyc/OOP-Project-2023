@@ -37,7 +37,7 @@ public class LanguageConfiguration {
     private Language selectedLanguage;
 
     // Arraylist of listeners
-    private ArrayList<PropertyChangeListener> listeners = new ArrayList<>();
+    private ArrayList<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
 
     private HashMap<String, HashMap<String, String>> stringMap = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, HashMap<String, String[]>> optionMap = new HashMap<String, HashMap<String, String[]>>();
