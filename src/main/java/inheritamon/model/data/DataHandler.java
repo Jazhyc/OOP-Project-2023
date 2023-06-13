@@ -31,6 +31,7 @@ public class DataHandler {
     private HashMap<String, BufferedImage> characterTextures = new HashMap<String, BufferedImage>();
     private HashMap<String, HashMap<String, String>> languageData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, BufferedImage> inventorySprites = new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> objectSprites = new HashMap<String, BufferedImage>();
     // private HashMap<String, HashMap<Language, String[]>> dialogueData = new
     // HashMap<String, HashMap<Language, String[]>>();
 
@@ -84,6 +85,7 @@ public class DataHandler {
         loadGeneralImages(tiles, "tiles");
         loadGeneralImages(characterTextures, "characterTextures");
         loadGeneralImages(inventorySprites, "inventorySprites");
+        loadGeneralImages(objectSprites, "objects");
         loadAudio(sounds, "sounds");
         loadAudio(music, "music");
 
@@ -411,6 +413,10 @@ public class DataHandler {
      */
     public BufferedImage getItemSprite(String spriteName) {
         return getImage(inventorySprites, spriteName, "Inventory Sprite");
+    }
+
+    public BufferedImage getObjectSprite(String spriteName) {
+        return getImage(objectSprites, spriteName, "Object Sprite");
     }
 
     /**
