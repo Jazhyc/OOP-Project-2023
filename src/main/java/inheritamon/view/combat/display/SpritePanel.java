@@ -11,7 +11,8 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- * The SpritePanel class is responsible for displaying the sprites of the pokemon during battle
+ *         The SpritePanel class is responsible for displaying the sprites of
+ *         the pokemon during battle
  */
 public class SpritePanel extends JPanel {
 
@@ -27,8 +28,9 @@ public class SpritePanel extends JPanel {
 
     /**
      * Constructor for the SpritePanel class
+     * 
      * @param battleHandler The battle handler
-     * @param type Whether the panel is for the player or the enemy
+     * @param type          Whether the panel is for the player or the enemy
      */
     public SpritePanel(BattleHandler battleHandler, DisplayType type) {
 
@@ -39,7 +41,7 @@ public class SpritePanel extends JPanel {
         setUp(battleHandler);
 
         setOpaque(false);
-        
+
     }
 
     @Override
@@ -61,7 +63,7 @@ public class SpritePanel extends JPanel {
         // Add a shadow under the image if the type is enemy
         if (type == DisplayType.ENEMY) {
             g.setColor(Color.BLACK);
-            
+
             // Draw an oval with a gradient
             g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_PLACEMENT), spriteSize, SHADOW_SIZE);
             g.setColor(new Color(0, 0, 0, 0));
@@ -92,9 +94,10 @@ public class SpritePanel extends JPanel {
 
         battleHandler.addListener("pokemonSprite", e -> {
 
-            // Use a ternary operator to determine what the event name should be based on the type
+            // Use a ternary operator to determine what the event name should be based on
+            // the type
             String eventName = type == DisplayType.PLAYER ? "playerSprite" : "enemySprite";
-            
+
             // Check if the event is for the right pokemon
             if (e.getPropertyName().equals(eventName)) {
 
@@ -111,5 +114,5 @@ public class SpritePanel extends JPanel {
 
         });
     }
-    
+
 }

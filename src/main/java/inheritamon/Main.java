@@ -1,4 +1,5 @@
 package inheritamon;
+
 import inheritamon.model.*;
 import inheritamon.view.combat.*;
 import inheritamon.view.menu.*;
@@ -24,6 +25,7 @@ public class Main {
 
     /**
      * The main method which starts the game
+     * 
      * @param args
      */
     public static void main(String[] args) {

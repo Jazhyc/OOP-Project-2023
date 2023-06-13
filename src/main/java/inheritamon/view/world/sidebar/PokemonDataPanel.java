@@ -9,18 +9,19 @@ import java.awt.image.*;
 
 /**
  * @Author Jeremias
- * Panel for displaying certain stats of the player's pokemon data
+ *         Panel for displaying certain stats of the player's pokemon data
  */
 public class PokemonDataPanel extends JPanel {
 
-    private static String[] statNames = new String[] {"Atk", "Def", "Agi", "Acc", "M.Atk", "M.Def"};
+    private String[] statNames = new String[] { "Atk", "Def", "Agi", "Acc", "M.Atk", "M.Def" };
 
     /**
      * Constructor for the PokemonDataPanel
+     * 
      * @param gameModel The game model
      */
     public PokemonDataPanel(GameModel gameModel) {
-        
+
         // Make the background black
         setBackground(Color.BLACK);
         setUpListener(gameModel);
@@ -31,7 +32,7 @@ public class PokemonDataPanel extends JPanel {
     }
 
     private void setUpListener(GameModel gameModel) {
-        
+
         gameModel.addRosterListener(e -> {
 
             PlayerPokemon[] roster = (PlayerPokemon[]) e.getNewValue();
@@ -56,11 +57,12 @@ public class PokemonDataPanel extends JPanel {
                 System.out.println(pokemon.getName());
 
                 gbc.gridy = i + 1;
-                
+
                 gbc.gridx = 0;
                 BufferedImage pokemonImage = pokemon.getSpeciesImage();
                 Integer spriteSize = 100;
-                JLabel imageLabel = new JLabel(new ImageIcon(pokemonImage.getScaledInstance(spriteSize, spriteSize, Image.SCALE_DEFAULT)));
+                JLabel imageLabel = new JLabel(
+                        new ImageIcon(pokemonImage.getScaledInstance(spriteSize, spriteSize, Image.SCALE_DEFAULT)));
                 add(imageLabel, gbc);
 
                 // Configure the name
@@ -79,9 +81,7 @@ public class PokemonDataPanel extends JPanel {
                     addStat(j + 4, gbc, pokemon.getNumericalStat(statNames[j]));
                 }
 
-
             }
-
 
         });
     }
@@ -116,9 +116,9 @@ public class PokemonDataPanel extends JPanel {
 
     private void addHeaders(GridBagConstraints gbc) {
 
-        String[] additionalHeaders = new String[] {"Name", "HP", "MP"};
+        String[] additionalHeaders = new String[] { "Name", "HP", "MP" };
 
-        // We don't add a header for the image
+        // We don't add a header for the image, so we start at 1
         gbc.gridx = 1;
 
         // Add the additional headers
@@ -149,5 +149,5 @@ public class PokemonDataPanel extends JPanel {
         statLabel.setForeground(Color.WHITE);
         statLabel.setFont(new Font("Arial", Font.BOLD, 20));
     }
-    
+
 }

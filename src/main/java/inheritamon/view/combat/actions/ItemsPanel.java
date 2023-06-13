@@ -60,16 +60,17 @@ public class ItemsPanel extends JPanel {
                 if (i < inventory.getSize()) {
 
                     // Add the label with the sprite
-                    JLabel label = new JLabel(new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
+                    JLabel label = new JLabel(new ImageIcon(
+                            imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
                     add(label);
 
                     final int selectionIndex = i;
 
                     label.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        soundHandler.playSound("select");
-                        battleController.selectItem(selectionIndex);
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            soundHandler.playSound("select");
+                            battleController.selectItem(selectionIndex);
                         }
                     });
 
@@ -79,6 +80,5 @@ public class ItemsPanel extends JPanel {
         });
 
     }
-
 
 }

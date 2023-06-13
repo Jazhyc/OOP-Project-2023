@@ -15,7 +15,8 @@ import java.util.*;
 
 /**
  * @author Jeremias
- * The ChoicePanel class is responsible for displaying the types of actions in the battle
+ *         The ChoicePanel class is responsible for displaying the types of
+ *         actions in the battle
  */
 public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
@@ -29,17 +30,19 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
     String buttonNames[];
     private final int BUTTON_WIDTH = 40;
 
-    private String[] buttonIconNames = {"Fight", "Items", "Pokemon", "Run"};
+    private String[] buttonIconNames = { "Fight", "Items", "Pokemon", "Run" };
     private HashMap<String, BufferedImage> buttonIcons = new HashMap<String, BufferedImage>();
 
-    // Icons obtained from 
-    // <a href="https://www.flaticon.com/free-icons/fight" title="fight icons">Fight icons created by dDara - Flaticon</a>
+    // Icons obtained from
+    // <a href="https://www.flaticon.com/free-icons/fight" title="fight icons">Fight
+    // icons created by dDara - Flaticon</a>
     // https://www.pngwing.com/en/free-png-iskzk
     // https://www.pngwing.com/en/free-png-xbwgg
 
     /**
      * Constructor for the ChoicePanel class
-     * @param controller The game controller
+     * 
+     * @param controller  The game controller
      * @param actionPanel The panel that displays the actions
      */
     public ChoicePanel(GameController controller, ActionPanel actionPanel) {
@@ -52,7 +55,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
         LanguageConfiguration config = LanguageConfiguration.getInstance();
         buttonNames = config.getOptions("ChoicePanel");
         addLanguageListener();
-        
+
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
         buttonIcons = DataHandler.getInstance().getIcons();
@@ -73,14 +76,15 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
         // Add a mouse listener to handle the movements and clicks
         // Override the default methods in swing
         addMouseMotionListener(new MouseMotionAdapter() {
-            
+
             @Override
             public void mouseMoved(MouseEvent e) {
                 // Get the position of the mouse
                 int x = e.getX();
                 int y = e.getY();
 
-                // split the panel into 4 parts and change the color of the button depending on which part the mouse is in
+                // split the panel into 4 parts and change the color of the button depending on
+                // which part the mouse is in
                 // Use a loop
                 for (int i = 0; i < 4; i++) {
                     // Get the bounds of the button, it contains both the label and the image
@@ -103,7 +107,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
         });
 
         addMouseListener(new MouseAdapter() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
 
@@ -111,7 +115,8 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                 int x = e.getX();
                 int y = e.getY();
 
-                // split the panel into 4 parts and change the color of the button depending on which part the mouse is in
+                // split the panel into 4 parts and change the color of the button depending on
+                // which part the mouse is in
                 // Use a loop
                 for (int i = 0; i < 4; i++) {
                     // Get the bounds of the button
@@ -119,7 +124,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                     Rectangle imageBounds = icons[i].getBounds();
                     // Check if the mouse is in the bounds
                     if (bounds.contains(x, y) || imageBounds.contains(x, y)) {
-                        
+
                         System.out.println("Clicked " + buttonNames[i]);
                         soundHandler.playSound("select");
 
@@ -131,7 +136,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                             // Run away
                             controller.selectMove("Run");
                         }
-                        
+
                     }
                 }
 
@@ -181,7 +186,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
         gbc.weightx = 0.15;
         gbc.weighty = 0.25;
         gbc.fill = GridBagConstraints.BOTH;
-        
+
         // Create a new label for the image
         icons[i] = new JLabel(new ImageIcon(scaledIcon));
         // Add the image to the panel
@@ -194,7 +199,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
     public void addLanguageListener() {
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
-        
+
         config.addLanguageChangeListener(e -> {
             // Get the new button names
             buttonNames = config.getOptions("ChoicePanel");
@@ -204,5 +209,5 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
             }
         });
     }
-    
+
 }

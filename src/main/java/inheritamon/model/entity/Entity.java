@@ -17,5 +17,3 @@ public class Entity {
         return direction;
     }
 }
-
-

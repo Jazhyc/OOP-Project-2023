@@ -8,7 +8,7 @@ import inheritamon.model.data.DataHandler;
 
 /**
  * @author Jeremias
- * A class to represent the player's pokemon roster
+ *         A class to represent the player's pokemon roster
  */
 public class PlayerRoster implements Serializable {
 
@@ -23,7 +23,8 @@ public class PlayerRoster implements Serializable {
     public PlayerRoster() {
         roster = new ArrayList<PlayerPokemon>();
 
-        // Add groudon to the roster, will replace this once pokemon selection is implemented
+        // Add groudon to the roster, will replace this once pokemon selection is
+        // implemented
         DataHandler dataHandler = DataHandler.getInstance();
         PlayerPokemon groudon = new PlayerPokemon(dataHandler.getPokemonData("Groudon"));
         addPokemon(groudon);
@@ -33,6 +34,7 @@ public class PlayerRoster implements Serializable {
     // Function to add a pokemon to the roster
     /**
      * Adds a pokemon to the roster
+     * 
      * @param pokemon The pokemon to add
      */
     public void addPokemon(PlayerPokemon pokemon) {
@@ -51,6 +53,7 @@ public class PlayerRoster implements Serializable {
     // Function to get a pokemon from the roster
     /**
      * Get a pokemon from the roster
+     * 
      * @param index The index of the pokemon
      * @return The pokemon at the index
      */
@@ -69,6 +72,7 @@ public class PlayerRoster implements Serializable {
 
     /**
      * Get the roster as an array
+     * 
      * @return The roster as an array
      */
     public PlayerPokemon[] getArray() {
@@ -93,10 +97,11 @@ public class PlayerRoster implements Serializable {
 
     /**
      * Check if all pokemon in the roster are fainted
+     * 
      * @return True if all pokemon are fainted, false otherwise
      */
     public boolean allFainted() {
-            
+
         // Loop over the roster
         for (PlayerPokemon pokemon : roster) {
 
@@ -108,15 +113,16 @@ public class PlayerRoster implements Serializable {
         }
 
         return true;
-    
+
     }
 
     /**
      * Get the index of the first alive pokemon
+     * 
      * @return
      */
     public int getAlivePokemon() {
-            
+
         // Loop over the roster
         for (int i = 0; i < roster.size(); i++) {
 
@@ -129,5 +135,5 @@ public class PlayerRoster implements Serializable {
 
         return -1;
     }
-    
+
 }

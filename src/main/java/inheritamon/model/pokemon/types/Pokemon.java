@@ -9,7 +9,7 @@ import inheritamon.model.data.DataHandler;
 
 /**
  * @author Jeremias
- * A class to represent a pokemon, does not possess an AI
+ *         A class to represent a pokemon, does not possess an AI
  */
 public abstract class Pokemon implements Serializable {
 
@@ -22,6 +22,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * The attack method, which takes a target as a parameter, returns a random move
+     * 
      * @param targetStats The stats of the target
      * @return The name of the move used
      */
@@ -29,6 +30,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to set the stats of the pokemon
+     * 
      * @param pokemonData The data of the pokemon
      */
     public void setUp(HashMap<String, String> pokemonData) {
@@ -54,11 +56,12 @@ public abstract class Pokemon implements Serializable {
         numericalStats.put("HP", numericalStats.get("MaxHP"));
         numericalStats.put("MP", numericalStats.get("MaxMP"));
         stringStats.put("Species", stringStats.get("Name"));
-        
+
     }
 
     /**
      * Constructor for the Pokemon class
+     * 
      * @param pokemonData
      */
     public Pokemon(HashMap<String, String> pokemonData) {
@@ -67,9 +70,11 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to take damage, takes agility and defense into account
-     * @param damage The amount of damage to take
+     * 
+     * @param damage        The amount of damage to take
      * @param enemyAccuracy The accuracy of the enemy
-     * @return The amount of damage taken after defense and agility are taken into account
+     * @return The amount of damage taken after defense and agility are taken into
+     *         account
      */
     public int takeDamage(int damage, int enemyAccuracy) {
 
@@ -77,7 +82,8 @@ public abstract class Pokemon implements Serializable {
         int chanceToDodge = numericalStats.get("Agi") - enemyAccuracy + BASE_DODGE_CHANCE;
         System.out.println(stringStats.get("Name") + " has a " + chanceToDodge + "% chance to dodge");
 
-        // Generate a random number between 0 and 100, if the number is lower than the chance to dodge, set the damage to zero
+        // Generate a random number between 0 and 100, if the number is lower than the
+        // chance to dodge, set the damage to zero
         if ((int) (Math.random() * 100) < chanceToDodge) {
             damage = 0;
             System.out.println(stringStats.get("Name") + " dodged the attack!");
@@ -112,6 +118,7 @@ public abstract class Pokemon implements Serializable {
     /**
      * A method to lose MP, caps at 0
      * The cap would be useful in the case of drain attacks
+     * 
      * @param mp The amount of MP to gain
      */
     public void loseMP(int mp) {
@@ -123,6 +130,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to gain MP, caps at max MP
+     * 
      * @param mp The amount of MP to gain
      */
     public void gainHP(int hp) {
@@ -137,6 +145,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to gain MP, caps at max MP
+     * 
      * @param mp The amount of MP to gain
      */
     public void gainMP(int mp) {
@@ -170,6 +179,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to get a particular integer stat
+     * 
      * @param statName The name of the stat
      * @return The value of the stat
      */
@@ -180,6 +190,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to directly get the current HP
+     * 
      * @return The HP of the pokemon
      */
     public Integer getHP() {
@@ -188,6 +199,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to directly get the current MP
+     * 
      * @return The MP of the pokemon
      */
     public Integer getMP() {
@@ -196,6 +208,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to directly get the Name / Species of the pokemon
+     * 
      * @return The name of the pokemon
      */
     public String getName() {
@@ -204,6 +217,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to get the moves of the pokemon
+     * 
      * @return The moves of the pokemon
      */
     public ArrayList<String> getMoves() {
@@ -212,6 +226,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * A method to get all stats of a pokemon
+     * 
      * @return The values of all stats
      */
     public HashMap<String, Integer> getAllNumericalStats() {
@@ -221,6 +236,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * Gets the image of the pokemon
+     * 
      * @return The image of the pokemon
      */
     public BufferedImage getSpeciesImage() {
@@ -231,6 +247,7 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * Checks if the pokemon has fainted
+     * 
      * @return Whether or not the pokemon has fainted
      */
     public boolean isFainted() {
@@ -239,10 +256,11 @@ public abstract class Pokemon implements Serializable {
 
     /**
      * Gets the loot of the pokemon
+     * 
      * @return The loot of the pokemon
      */
     public String getLoot() {
         return stringStats.get("Loot");
     }
-    
+
 }

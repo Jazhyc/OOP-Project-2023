@@ -4,12 +4,13 @@ import java.util.*;
 
 /**
  * @author Jeremias
- * A pokemon that selects a random move to use
+ *         A pokemon that selects a random move to use
  */
 public class RandomPokemon extends Pokemon {
 
     /**
      * Constructor for the RandomPokemon class
+     * 
      * @param data The data of the pokemon
      */
     public RandomPokemon(HashMap<String, String> data) {
@@ -18,6 +19,7 @@ public class RandomPokemon extends Pokemon {
 
     /**
      * Uses a move based on the pokemon's current stats
+     * 
      * @param targetStats The stats of the target pokemon
      */
     @Override
@@ -31,5 +33,5 @@ public class RandomPokemon extends Pokemon {
         return move;
 
     }
-    
+
 }

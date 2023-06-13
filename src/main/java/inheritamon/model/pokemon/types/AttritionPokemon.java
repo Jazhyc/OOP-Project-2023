@@ -5,12 +5,13 @@ import inheritamon.model.data.DataHandler;
 
 /**
  * @author Jeremias
- * A pokemon that plays it safe by healing whenever it is low HP
+ *         A pokemon that plays it safe by healing whenever it is low HP
  */
 public class AttritionPokemon extends Pokemon {
 
     /**
      * Constructor for the AttritionPokemon class
+     * 
      * @param pokemonData The data of the pokemon
      */
     public AttritionPokemon(HashMap<String, String> pokemonData) {
@@ -19,6 +20,7 @@ public class AttritionPokemon extends Pokemon {
 
     /**
      * Uses a move based on the pokemon's current stats
+     * 
      * @param targetStats The stats of the target pokemon
      */
     @Override
@@ -50,5 +52,5 @@ public class AttritionPokemon extends Pokemon {
         return move;
 
     }
-    
+
 }

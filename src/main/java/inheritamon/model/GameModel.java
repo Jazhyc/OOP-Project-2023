@@ -10,7 +10,7 @@ import inheritamon.model.data.DataHandler;
 
 /**
  * @author Jeremias
- * A class to represent the main logic of the game
+ *         A class to represent the main logic of the game
  */
 public class GameModel {
 
@@ -29,6 +29,7 @@ public class GameModel {
 
     /**
      * Creates a new game model
+     * 
      * @param battleHandlerObject The battle handler
      */
     public GameModel(BattleHandler battleHandlerObject) {
@@ -37,7 +38,8 @@ public class GameModel {
     }
 
     /**
-     * Creates a a new player and notifies the listeners that the game state has changed
+     * Creates a a new player and notifies the listeners that the game state has
+     * changed
      */
     public void startNewGame() {
         playerData = new PlayerData();
@@ -45,12 +47,12 @@ public class GameModel {
     }
 
     /**
-     * Loads the player data and notifies the listeners that the game state has changed
+     * Loads the player data and notifies the listeners that the game state has
+     * changed
      */
     public void continueGame() {
         DataHandler dataHandler = DataHandler.getInstance();
         playerData = (PlayerData) dataHandler.loadState("playerData");
-
 
         // Check if player data is null
         if (playerData == null) {
@@ -66,8 +68,9 @@ public class GameModel {
 
     /**
      * Adds the starting pokemon and perk to the player data
+     * 
      * @param pokemon The starting pokemon
-     * @param perk The starting perk
+     * @param perk    The starting perk
      */
     public void addStarterData(String pokemon, String perk) {
         playerData.addStarterData(pokemon, perk);
@@ -76,7 +79,9 @@ public class GameModel {
     }
 
     /**
-     * Adds a listener to the game state listeners which will be notified when the game state changes
+     * Adds a listener to the game state listeners which will be notified when the
+     * game state changes
+     * 
      * @param listener The listener to add
      */
     public void addGameStateListener(PropertyChangeListener listener) {
@@ -84,8 +89,11 @@ public class GameModel {
     }
 
     /**
-     * Adds a listener to the roster listener which will be notified when the roster changes
-     * We add a listener here since the player data does not exist when the game model is created
+     * Adds a listener to the roster listener which will be notified when the roster
+     * changes
+     * We add a listener here since the player data does not exist when the game
+     * model is created
+     * 
      * @param listener The listener to add
      */
     public void addRosterListener(PropertyChangeListener listener) {
@@ -94,7 +102,7 @@ public class GameModel {
 
     private void notifyGameStateListeners(GameState event) {
         for (PropertyChangeListener listener : gameStateListeners) {
-            
+
             // Pass the event to the listener
             listener.propertyChange(new PropertyChangeEvent(this, "gameState", null, event));
 
@@ -141,6 +149,7 @@ public class GameModel {
 
     /**
      * Starts a pokemon battle, depending on the type of pokemon chosen
+     * 
      * @param type The type of pokemon to battle
      */
     public void startPokemonBattle(String type) {
@@ -152,7 +161,7 @@ public class GameModel {
         }
 
         String pokemon[] = dataHandler.getPokemonNames();
-        
+
         // Get a random pokemon as a string
         String randomPokemonName = pokemon[(int) (Math.random() * pokemon.length)];
         Pokemon randomPokemon;
@@ -173,6 +182,4 @@ public class GameModel {
         battleHandler.startBattle(playerData, randomPokemon);
     }
 
-
-    
 }

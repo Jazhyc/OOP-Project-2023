@@ -8,25 +8,30 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- * A panel to display various details of the player's and enemy's pokemon
+ *         A panel to display various details of the player's and enemy's
+ *         pokemon
  */
 public class PokemonPanel extends JPanel {
 
-    // Display the pokemon differently depending on whether it is the player's or the enemy's
+    // Display the pokemon differently depending on whether it is the player's or
+    // the enemy's
     /**
-     * Constructor for the PokemonPanel class, consists of a StatsPanel and a SpritePanel
-     * @param type Whether the panel is for the player or the enemy
+     * Constructor for the PokemonPanel class, consists of a StatsPanel and a
+     * SpritePanel
+     * 
+     * @param type          Whether the panel is for the player or the enemy
      * @param battleHandler The battle handler
      */
     public PokemonPanel(DisplayType type, BattleHandler battleHandler) {
 
         // Use a grid bag layout
         setLayout(new GridBagLayout());
-        
+
         // Make this panel transparent
         setOpaque(false);
 
-        // Use a ternary operator to set the y position of the stats panel and sprite panel
+        // Use a ternary operator to set the y position of the stats panel and sprite
+        // panel
         int statsPanelY = (type == DisplayType.PLAYER) ? 0 : 1;
         int spritePanelY = (type == DisplayType.PLAYER) ? 1 : 0;
 
@@ -69,5 +74,4 @@ public class PokemonPanel extends JPanel {
 
     }
 
-    
 }

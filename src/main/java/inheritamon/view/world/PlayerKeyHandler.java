@@ -16,7 +16,6 @@ public class PlayerKeyHandler {
     private SoundHandler soundHandler;
     private CollisionChecker cChecker;
 
-    
     public PlayerKeyHandler(JComponent component, SidePanel sidePanel, CollisionChecker cChecker) {
         InputMap inputMap = component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = component.getActionMap();
@@ -75,7 +74,8 @@ public class PlayerKeyHandler {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    // Ignore if certain buttons are pressed to prevent two actions from occuring at once
+                    // Ignore if certain buttons are pressed to prevent two actions from occuring at
+                    // once
                     if (actionName.equals("escape") || actionName.equals("interact")) {
                         return;
                     }
@@ -84,33 +84,34 @@ public class PlayerKeyHandler {
                 }
             });
         }
-        
+
     }
 
-private void setKeyState(String actionName, boolean state) {
-    switch (actionName) {
-        case "up":
-            upPressed = state;
-            break;
-        case "down":
-            downPressed = state;
-            break;
-        case "left":
-            leftPressed = state;
-            break;
-        case "right":
-            rightPressed = state;
-            break;
-        case "escape":
-            sidePanel.setVisible(!sidePanel.isVisible());
-            sidePanel.hidePokemonDataPanel();
-            soundHandler.playSound("select");
-            break;
-        case "interact":
-            cChecker.checkPlayerInteraction();
-            break;
+    private void setKeyState(String actionName, boolean state) {
+        switch (actionName) {
+            case "up":
+                upPressed = state;
+                break;
+            case "down":
+                downPressed = state;
+                break;
+            case "left":
+                leftPressed = state;
+                break;
+            case "right":
+                rightPressed = state;
+                break;
+            case "escape":
+                sidePanel.setVisible(!sidePanel.isVisible());
+                sidePanel.hidePokemonDataPanel();
+                soundHandler.playSound("select");
+                break;
+            case "interact":
+                cChecker.checkPlayerInteraction();
+                break;
+        }
     }
-}
+
     public boolean isUpPressed() {
         return !sidePanel.isVisible() && upPressed;
     }

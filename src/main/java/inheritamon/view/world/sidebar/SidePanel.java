@@ -12,7 +12,8 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- * The SidePanel class is responsible for displaying the menu on the left side in game
+ *         The SidePanel class is responsible for displaying the menu on the
+ *         left side in game
  */
 public class SidePanel extends JPanel implements LanguageChangeListener {
 
@@ -25,7 +26,8 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
     /**
      * Constructor for the SidePanel class
-     * @param gameController The game controller
+     * 
+     * @param gameController   The game controller
      * @param pokemonDataPanel The panel that displays the pokemon data
      */
     public SidePanel(GameController gameController, JPanel pokemonDataPanel) {
@@ -39,7 +41,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
         options.addAll(Arrays.asList(config.getOptions("SidePanel")));
-        
+
         // Create a font for the menu
         Font font = new Font("Arial", Font.BOLD, 40);
 
@@ -79,7 +81,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         setBackground(Color.BLACK);
 
         addMouseMotionListener(new MouseMotionAdapter() {
-                
+
             @Override
             public void mouseMoved(MouseEvent e) {
 
@@ -105,7 +107,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         });
 
         addMouseListener(new MouseAdapter() {
-                
+
             // Add a check for mouse clicks
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -123,7 +125,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
                     // Check if the mouse is within the bounds of the button
                     if (bounds.contains(x, y)) {
-                        
+
                         handleButtonPress(i);
                         soundHandler.playSound("select");
 
@@ -135,46 +137,46 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
     }
 
     private void handleButtonPress(int i) {
-                // Use a switch statement to check which button was clicked
-                switch (i) {
-                    case 0:
-                        System.out.println("Demo Battle");
-                        gameController.beginRandomBattle();
-                    case 1:
-                        // Open the items menu
-                        System.out.println("Items");
-                        break;
-                    case 2:
-                        // Open the pokemon menu
-                        System.out.println("Pokemon");
-                        pokemonDataPanel.setVisible(!pokemonDataPanel.isVisible());
-                        break;
-                    case 3:
-                        // Save the game
-                        System.out.println("Save");
-                        gameController.saveGame();
-                        break;
-                    case 4:
-                        // Minimize the menu
-                        System.out.println("Minimize Menu");
-                        setVisible(false);
-                        pokemonDataPanel.setVisible(false);
-                        break;
-                    case 5:
-                        System.out.println("To Title");
-                        setVisible(false);
-                        pokemonDataPanel.setVisible(false);
-                        gameController.returnToMainMenu();
-                        break;
-                    case 6:
-                        // Exit the game
-                        System.out.println("Exit Game");
-                        gameController.saveGame();
-                        System.exit(0);
-                        break;
-                }
-            }
-    
+        // Use a switch statement to check which button was clicked
+        switch (i) {
+            case 0:
+                System.out.println("Demo Battle");
+                gameController.beginRandomBattle();
+            case 1:
+                // Open the items menu
+                System.out.println("Items");
+                break;
+            case 2:
+                // Open the pokemon menu
+                System.out.println("Pokemon");
+                pokemonDataPanel.setVisible(!pokemonDataPanel.isVisible());
+                break;
+            case 3:
+                // Save the game
+                System.out.println("Save");
+                gameController.saveGame();
+                break;
+            case 4:
+                // Minimize the menu
+                System.out.println("Minimize Menu");
+                setVisible(false);
+                pokemonDataPanel.setVisible(false);
+                break;
+            case 5:
+                System.out.println("To Title");
+                setVisible(false);
+                pokemonDataPanel.setVisible(false);
+                gameController.returnToMainMenu();
+                break;
+            case 6:
+                // Exit the game
+                System.out.println("Exit Game");
+                gameController.saveGame();
+                System.exit(0);
+                break;
+        }
+    }
+
     /**
      * Add a language change listener to the side panel
      */
@@ -183,7 +185,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
         config.addLanguageChangeListener(e -> {
             options.clear();
-            
+
             // Combine these two lines into one
             options.addAll(Arrays.asList(config.getOptions("SidePanel")));
 
@@ -201,5 +203,5 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
     public void hidePokemonDataPanel() {
         pokemonDataPanel.setVisible(false);
     }
-    
+
 }

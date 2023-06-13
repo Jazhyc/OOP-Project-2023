@@ -15,8 +15,9 @@ import java.awt.color.*;
 
 /**
  * @author Jeremias
- * The PokemonSelectionPanel class is responsible for displaying the pokemon in the player's roster
- * Allows the player to select a pokemon
+ *         The PokemonSelectionPanel class is responsible for displaying the
+ *         pokemon in the player's roster
+ *         Allows the player to select a pokemon
  */
 public class PokemonSelectionPanel extends JPanel {
 
@@ -26,7 +27,8 @@ public class PokemonSelectionPanel extends JPanel {
 
     /**
      * Constructor for the PokemonSelectionPanel class
-     * @param battleHandler The battle handler
+     * 
+     * @param battleHandler    The battle handler
      * @param battleController The battle controller
      */
     public PokemonSelectionPanel(BattleHandler battleHandler, GameController battleController) {
@@ -38,7 +40,7 @@ public class PokemonSelectionPanel extends JPanel {
 
         setUpListener(battleHandler, battleController);
         soundHandler = SoundHandler.getInstance();
-        
+
     }
 
     private void setUpListener(BattleHandler battleHandler, GameController battleController) {
@@ -73,7 +75,8 @@ public class PokemonSelectionPanel extends JPanel {
                 }
 
                 // Create a label with the image and increase the size
-                JLabel label = new JLabel(new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
+                JLabel label = new JLabel(
+                        new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
 
                 if (!playerPokemon[i].isFainted()) {
                     final int selectionIndex = i;
@@ -100,9 +103,10 @@ public class PokemonSelectionPanel extends JPanel {
     }
 
     private BufferedImage convertToGrayscale(BufferedImage imageToDisplay) {
-        
+
         // Make the image transparent
-        BufferedImage newImage = new BufferedImage(imageToDisplay.getWidth(), imageToDisplay.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage newImage = new BufferedImage(imageToDisplay.getWidth(), imageToDisplay.getHeight(),
+                BufferedImage.TYPE_INT_ARGB);
 
         // Create a color convert op
         ColorConvertOp colorConvertOp = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
@@ -115,5 +119,4 @@ public class PokemonSelectionPanel extends JPanel {
         return imageToDisplay;
     }
 
-    
 }

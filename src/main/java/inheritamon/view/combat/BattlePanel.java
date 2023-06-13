@@ -13,9 +13,9 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- * The main panel for the battle screen
+ *         The main panel for the battle screen
  */
-public class BattlePanel extends JPanel{
+public class BattlePanel extends JPanel {
 
     // Create variables for the panels that will be displayed
     private BattleDisplayPanel battleDisplayPanel;
@@ -27,9 +27,10 @@ public class BattlePanel extends JPanel{
 
     /**
      * Constructor for the BattlePanel class
+     * 
      * @param battleController The game controller
-     * @param battleHandler The battle handler
-     * @param gamePanel The game panel
+     * @param battleHandler    The battle handler
+     * @param gamePanel        The game panel
      */
     public BattlePanel(GameController battleController, BattleHandler battleHandler, GamePanel gamePanel) {
 
@@ -37,7 +38,7 @@ public class BattlePanel extends JPanel{
 
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
-        
+
         addPokemonDisplayPanel(battleHandler);
 
         addActionPanel(battleHandler, battleController);
@@ -54,7 +55,8 @@ public class BattlePanel extends JPanel{
 
     private void addDialoguePanel(BattleHandler battleHandler) {
         GridBagConstraints gbc;
-        // Put the dialogue Panel in between the Pokemon Display Panel and the Choice Panel
+        // Put the dialogue Panel in between the Pokemon Display Panel and the Choice
+        // Panel
         // Yellow
         dialoguePanel = new DialoguePanel(battleHandler);
         gbc = new GridBagConstraints();
@@ -122,12 +124,13 @@ public class BattlePanel extends JPanel{
             } else {
                 setUpGameView();
             }
-            
+
         });
     }
 
     /**
-     * Sets up the battle view by making the battle panel visible and the game panel invisible
+     * Sets up the battle view by making the battle panel visible and the game panel
+     * invisible
      */
     public void setUpBattleView() {
         soundHandler.playMusic("Battle");
@@ -136,12 +139,13 @@ public class BattlePanel extends JPanel{
     }
 
     /**
-     * Sets up the game view by making the battle panel invisible and the game panel visible
+     * Sets up the game view by making the battle panel invisible and the game panel
+     * visible
      */
     public void setUpGameView() {
         setVisible(false);
         gamePanel.setVisible(true);
         soundHandler.playMusic("StartMenu");
     }
-    
+
 }

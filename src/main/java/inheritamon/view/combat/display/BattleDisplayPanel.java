@@ -1,4 +1,5 @@
 package inheritamon.view.combat.display;
+
 import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
@@ -9,16 +10,20 @@ import java.awt.image.BufferedImage;
 
 /**
  * @author Jeremias
- * The BattleDisplayPanel class is responsible for displaying the pokemon during battle
- * It splits the screen into two halves, one for the player and one for the enemy
+ *         The BattleDisplayPanel class is responsible for displaying the
+ *         pokemon during battle
+ *         It splits the screen into two halves, one for the player and one for
+ *         the enemy
  */
 public class BattleDisplayPanel extends JPanel {
 
     private BufferedImage backgroundImage;
 
-    // Display the pokemon differently depending on whether it is the player's or the enemy's
+    // Display the pokemon differently depending on whether it is the player's or
+    // the enemy's
     /**
-     * The DisplayType enum is used to determine whether the pokemon is the player's or the enemy's
+     * The DisplayType enum is used to determine whether the pokemon is the player's
+     * or the enemy's
      * Used across the entire package
      */
     public static enum DisplayType {
@@ -27,10 +32,11 @@ public class BattleDisplayPanel extends JPanel {
 
     /**
      * Constructor for the BattleDisplayPanel class
+     * 
      * @param battleHandler The battle handler
      */
     public BattleDisplayPanel(BattleHandler battleHandler) {
-        
+
         // Use a 2x1 grid layout
         setLayout(new GridLayout(1, 2));
 
@@ -59,6 +65,7 @@ public class BattleDisplayPanel extends JPanel {
 
     /**
      * Set the background image of the panel
+     * 
      * @param backgroundName The name of the background image
      */
     public void setBackground(String backgroundName) {
@@ -67,6 +74,5 @@ public class BattleDisplayPanel extends JPanel {
         revalidate();
         repaint();
     }
-    
-    
+
 }

@@ -10,10 +10,10 @@ import java.lang.reflect.*;
 
 /**
  * @author Jeremias
- * Panel for displaying the HP and MP of the player and the enemy
+ *         Panel for displaying the HP and MP of the player and the enemy
  */
 public class StatsPanel extends JPanel {
-    
+
     // Set default values to represent a full bar
     private float HPRatio = 1;
     private float MPRatio = 1;
@@ -50,7 +50,8 @@ public class StatsPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(BORDER_THICKNESS));
         g.setColor(Color.BLACK);
-        g.drawRect(hpBarCenterX - BORDER_PADDING, centerY - BAR_HEIGHT + Y_OFFSET - BORDER_PADDING, barWidth + BORDER_PADDING, BAR_HEIGHT * 2 + BORDER_PADDING);
+        g.drawRect(hpBarCenterX - BORDER_PADDING, centerY - BAR_HEIGHT + Y_OFFSET - BORDER_PADDING,
+                barWidth + BORDER_PADDING, BAR_HEIGHT * 2 + BORDER_PADDING);
 
         // Draw the bars
         g.setColor(Color.GREEN);
@@ -70,15 +71,16 @@ public class StatsPanel extends JPanel {
 
         battleHandler.addListener("stat", e -> {
 
-            // Use a ternary operator to determine what the event name should be based on the type
+            // Use a ternary operator to determine what the event name should be based on
+            // the type
             String eventName = type == DisplayType.PLAYER ? "playerStats" : "enemyStats";
-            
+
             // Check if the event is for the right pokemon
             if (e.getPropertyName().equals(eventName)) {
 
                 // Convert e into and array of ints and get the values
                 int[] stats = (int[]) e.getNewValue();
-                
+
                 // Calculate the ratios, let the minimum be 0
                 float newHPRatio = Math.max((float) stats[0] / stats[1], 0);
                 float newMPRatio = Math.max((float) stats[2] / stats[3], 0);
@@ -98,10 +100,12 @@ public class StatsPanel extends JPanel {
 
     /**
      * Tween a value from one value to another over a duration
-     * @param oldValue The old value
-     * @param newValue The new value
-     * @param duration The duration of the tween
-     * @param attributeName The name of the attribute to tween, uses reflection for versatility
+     * 
+     * @param oldValue      The old value
+     * @param newValue      The new value
+     * @param duration      The duration of the tween
+     * @param attributeName The name of the attribute to tween, uses reflection for
+     *                      versatility
      */
     private void tweenValue(float oldValue, float newValue, int duration, String attributeName) {
         // Calculate the difference between the values

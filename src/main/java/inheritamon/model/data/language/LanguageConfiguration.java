@@ -1,6 +1,5 @@
 package inheritamon.model.data.language;
 
-
 import java.util.*;
 
 import java.beans.*;
@@ -8,8 +7,8 @@ import inheritamon.model.data.DataHandler;
 
 /**
  * @Author Jeremias
- * A class to handle the language configuration of the game
- * Uses the singleton pattern
+ *         A class to handle the language configuration of the game
+ *         Uses the singleton pattern
  */
 public class LanguageConfiguration {
 
@@ -18,6 +17,7 @@ public class LanguageConfiguration {
 
     /**
      * Returns the instance of the language configuration
+     * 
      * @return The instance of the language configuration
      */
     public static LanguageConfiguration getInstance() {
@@ -48,13 +48,15 @@ public class LanguageConfiguration {
         DataHandler dataHandler = DataHandler.getInstance();
         HashMap<String, HashMap<String, String>> languageData = dataHandler.getLanguageData();
 
-        // Loop over all keys in language data and put them in the appropriate hashmap based on the type column
-        // If the type is array, segment the string into an array and put it in the optionMap
+        // Loop over all keys in language data and put them in the appropriate hashmap
+        // based on the type column
+        // If the type is array, segment the string into an array and put it in the
+        // optionMap
         for (String key : languageData.keySet()) {
             HashMap<String, String> data = languageData.get(key);
             String type = data.get("Type");
             if (type.equals("Array")) {
-                
+
                 // Split the EN and NL strings into arrays
                 String[] en = data.get("EN").split(";");
                 String[] nl = data.get("NL").split(";");
@@ -90,10 +92,11 @@ public class LanguageConfiguration {
 
     /**
      * Adds a listener to the list of listeners
+     * 
      * @param listener The listener to add
      */
     public void addLanguageChangeListener(PropertyChangeListener listener) {
-        
+
         listeners.add(listener);
 
     }
@@ -106,6 +109,7 @@ public class LanguageConfiguration {
 
     /**
      * Used to get an array of options for menus with multiple strings to display
+     * 
      * @param key The key of the menu to get the options for
      * @return An array of options
      */
@@ -116,6 +120,7 @@ public class LanguageConfiguration {
 
     /**
      * Used to get a string to display
+     * 
      * @param key The key of the string to get
      * @return The string to display
      */
@@ -125,14 +130,15 @@ public class LanguageConfiguration {
 
     /**
      * Used to get the name of pokemon's move in the selected language
+     * 
      * @param moveName The name of the move
      * @return The name of the move in the selected language
      */
     public String getLocalMoveName(String moveName) {
-        
+
         HashMap<String, String> moveData = DataHandler.getInstance().getMoveData(moveName);
         return moveData.get(selectedLanguage.toString());
 
     }
-    
+
 }

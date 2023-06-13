@@ -6,17 +6,18 @@ import inheritamon.model.pokemon.types.PlayerPokemon;
 
 /**
  * @Author Jeremias
- * Controller for the general game state and battle
+ *         Controller for the general game state and battle
  */
 public class GameController {
 
     private BattleHandler battleHandler;
     private GameModel gameModel;
-    
+
     /**
      * Constructor for the GameController
+     * 
      * @param battleHandler The battle handler
-     * @param gameModel The game model
+     * @param gameModel     The game model
      */
     public GameController(BattleHandler battleHandler, GameModel gameModel) {
         this.battleHandler = battleHandler;
@@ -25,27 +26,31 @@ public class GameController {
 
     /**
      * Selects a move for the player and passes it to the battle handler
+     * 
      * @param move The move to select in the form of a string
      */
     public void selectMove(String move) {
-       
+
         PlayerPokemon playerPokemon = battleHandler.getActivePlayerPokemon();
         playerPokemon.selectMove(move);
 
     }
 
     /**
-     * Selects a pokemon for the player and passes it to the battle handler, used for switching pokemon
+     * Selects a pokemon for the player and passes it to the battle handler, used
+     * for switching pokemon
+     * 
      * @param index The index of the pokemon to switch to
      */
     public void selectPokemon(int index) {
-        
+
         PlayerPokemon playerPokemon = battleHandler.getActivePlayerPokemon();
         playerPokemon.selectMove("switch " + index);
     }
 
     /**
      * Selects an item for the player and passes it to the battle handler
+     * 
      * @param item The item to select in the form of a string
      */
     public void selectItem(Integer item) {
@@ -59,7 +64,7 @@ public class GameController {
      */
     public void beginRandomBattle() {
 
-        String types[] = {"random", "attrition", "reckless"};
+        String types[] = { "random", "attrition", "reckless" };
 
         // Get a random type
         gameModel.startPokemonBattle(types[(int) (Math.random() * types.length)]);

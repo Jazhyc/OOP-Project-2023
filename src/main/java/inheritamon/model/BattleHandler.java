@@ -14,7 +14,8 @@ import inheritamon.model.pokemon.types.*;
 
 /**
  * @author Jeremias
- * A class to handle battles, takes the player and the enemy pokemon as parameters
+ *         A class to handle battles, takes the player and the enemy pokemon as
+ *         parameters
  */
 public class BattleHandler {
 
@@ -41,7 +42,6 @@ public class BattleHandler {
     private PlayerRoster playerRoster;
     private Inventory playerInventory;
     private int turn;
-
 
     /**
      * The constructor for the battle handler
@@ -123,7 +123,7 @@ public class BattleHandler {
 
             // Check the damage for display purposes
             checkDamage(attacker, damageDealt);
-            
+
             notifyStatListener(playerPokemon, enemyPokemon);
             wait(WAIT_TIME);
 
@@ -172,7 +172,7 @@ public class BattleHandler {
         formattedString = String.format(config.getText("Fainted"), playerPokemon.getName());
         notifyDialogueListener(formattedString);
         wait(WAIT_TIME);
-        
+
         // Get the next pokemon if there is one
         if (!playerRoster.allFainted()) {
             getPokemonToSwitchTo(playerRoster, enemyPokemon, "switch" + playerRoster.getAlivePokemon());
@@ -186,7 +186,7 @@ public class BattleHandler {
 
         String formattedString;
         LanguageConfiguration config = LanguageConfiguration.getInstance();
-        
+
         String conclusion;
         if (enemyPokemon.getHP() <= 0) {
             formattedString = String.format(config.getText("Fainted"), enemyPokemon.getName());
@@ -271,7 +271,6 @@ public class BattleHandler {
 
     private void handleItemUse(String ability) {
 
-
         // Get the item index to use using regex
         int itemToUse = Integer.parseInt(ability.replaceAll("[^0-9]", ""));
 
@@ -320,8 +319,9 @@ public class BattleHandler {
 
     /**
      * Adds a listener to the battle for a certain parameter
+     * 
      * @param listenerType The type of listener to add
-     * @param listener The listener to add
+     * @param listener     The listener to add
      */
     public void addListener(String listenerType, PropertyChangeListener listener) {
         switch (listenerType) {
@@ -361,7 +361,7 @@ public class BattleHandler {
     }
 
     private void notifyMoveListener(Pokemon playerPokemon) {
-        
+
         // Create a string array of the moves
         String[] moves = new String[playerPokemon.getMoves().size()];
         for (int i = 0; i < playerPokemon.getMoves().size(); i++) {
@@ -389,6 +389,7 @@ public class BattleHandler {
 
         playerRosterListener.propertyChange(new PropertyChangeEvent(this, "playerInventory", null, playerRosterArray));
     }
+
     private void notifyInventoryListener() {
         // Create a copy of the player's inventory
         Inventory inventory = playerInventory;
@@ -401,9 +402,10 @@ public class BattleHandler {
             listener.propertyChange(new PropertyChangeEvent(this, "conclusion", null, conclusion));
         }
     }
-    
+
     /**
      * Gets the player's active pokemon
+     * 
      * @return The player's active pokemon
      */
     public PlayerPokemon getActivePlayerPokemon() {
@@ -420,10 +422,11 @@ public class BattleHandler {
 
     /**
      * Returns whether or not it is the player's turn
+     * 
      * @return Whether or not it is the player's turn
      */
     public boolean isPlayerTurn() {
-        
+
         return turn % 2 == 0;
 
     }

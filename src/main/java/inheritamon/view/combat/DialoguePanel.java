@@ -1,4 +1,5 @@
 package inheritamon.view.combat;
+
 import javax.swing.*;
 
 import inheritamon.model.BattleHandler;
@@ -7,7 +8,8 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- * This class is responsible for displaying the dialogue in the combat screen
+ *         This class is responsible for displaying the dialogue in the combat
+ *         screen
  */
 public class DialoguePanel extends JPanel {
 
@@ -15,6 +17,7 @@ public class DialoguePanel extends JPanel {
 
     /**
      * Constructor for the DialoguePanel class
+     * 
      * @param battleHandler The battle handler
      */
     public DialoguePanel(BattleHandler battleHandler) {
@@ -28,7 +31,7 @@ public class DialoguePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         // Create a border around the panel
         setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
 
@@ -36,7 +39,6 @@ public class DialoguePanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setPaint(new GradientPaint(0, 0, Color.WHITE, 0, getHeight(), Color.LIGHT_GRAY));
         g2.fillRect(0, 0, getWidth(), getHeight());
-        
 
         displayText(g);
 
@@ -49,7 +51,7 @@ public class DialoguePanel extends JPanel {
 
         // What font to use
         g.setFont(new Font("Lucida Sans Regular", Font.PLAIN, 28));
-        
+
         // Get the width and height of the text
         FontMetrics metrics = g.getFontMetrics();
         int textWidth = metrics.stringWidth(textToDisplay);
@@ -72,5 +74,5 @@ public class DialoguePanel extends JPanel {
         });
 
     }
-    
+
 }

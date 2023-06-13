@@ -4,7 +4,7 @@ import inheritamon.model.GameModel;
 
 /**
  * @author Jeremias
- * Controller for the main menu and starter selection menu
+ *         Controller for the main menu and starter selection menu
  */
 public class MenuController {
 
@@ -12,6 +12,7 @@ public class MenuController {
 
     /**
      * Constructor for the MenuController
+     * 
      * @param gameModel The game model
      */
     public MenuController(GameModel gameModel) {
@@ -27,8 +28,9 @@ public class MenuController {
 
     /**
      * Passes the selected starter pokemon and perk to the game model
+     * 
      * @param pokemon The selected pokemon
-     * @param perk The selected perk
+     * @param perk    The selected perk
      */
     public void handleStartingClass(String pokemon, String perk) {
         System.out.println("Starting class: " + pokemon + " " + perk);
@@ -41,5 +43,5 @@ public class MenuController {
     public void continueGame() {
         gameModel.continueGame();
     }
-    
+
 }

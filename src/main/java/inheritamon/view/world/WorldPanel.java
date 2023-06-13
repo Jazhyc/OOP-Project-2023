@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class WorldPanel extends JLayeredPane implements Runnable { // has all the function of the JPanel
 
-    //screen settings
+    // screen settings
     final int originalTileSize = 16; // 16x16 tile
     final int scale = 3;
 
@@ -18,7 +18,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
-    //WORLD SETTINGS
+    // WORLD SETTINGS
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
     public final int worldWidth = tileSize * maxWorldCol;
@@ -30,13 +30,13 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     Thread gameThread; // game time
     public CollisionChecker cChecker;
     public Player player;
-    //Default position of the player
+    // Default position of the player
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
 
     public WorldPanel(SidePanel sidePanel) {
-        
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true); // enabling this can improve game rendering performance
@@ -59,26 +59,26 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     @Override // when game thread is called it will automatically be run
     public void run() { // the core of the game
 
-        double drawInterval = 1000000000/FPS;
+        double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime; // returns the current value of the running time source
 
-        while(gameThread != null) {
+        while (gameThread != null) {
 
             currentTime = System.nanoTime();
 
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
 
-            if(delta >= 1){
+            if (delta >= 1) {
                 update(); // update information about the game
                 repaint(); // repaint the screen with the updated information
                 delta--;
             }
         }
     }
-    
+
     public void update() {
 
         player.update();

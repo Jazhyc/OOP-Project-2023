@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 
         // Use a layout that won't stretch the panels
         setLayout(new BorderLayout());
-        
+
         // Create a layered pane to hold the game panel and the side panel
         JLayeredPane layeredPane = new JLayeredPane();
 
@@ -36,7 +36,8 @@ public class GamePanel extends JPanel {
         sidePanel = new SidePanel(battleController, pokemonDataPanel);
         worldPanel = new WorldPanel(sidePanel);
 
-        // Add the panels to the layered pane and set the side panel to be 1/4 of the width of the game panel
+        // Add the panels to the layered pane and set the side panel to be 1/4 of the
+        // width of the game panel
         layeredPane.add(worldPanel, 0);
         layeredPane.add(sidePanel, 1);
         layeredPane.add(pokemonDataPanel, 1);
@@ -50,7 +51,8 @@ public class GamePanel extends JPanel {
         // This should be removed
         worldPanel.startGameThread();
 
-        // Set the layers of the panels so that the side panel is on top of the game panel
+        // Set the layers of the panels so that the side panel is on top of the game
+        // panel
         layeredPane.setLayer(worldPanel, 0);
         layeredPane.setLayer(sidePanel, 1);
         layeredPane.setLayer(pokemonDataPanel, 1);
@@ -58,7 +60,6 @@ public class GamePanel extends JPanel {
         // Make the side panel invisible
         sidePanel.setVisible(false);
         pokemonDataPanel.setVisible(false);
-
 
         // Add the layered pane to the game panel
         add(layeredPane);
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel {
     private void setUpListener(GameModel gameModel) {
 
         gameModel.addGameStateListener(e -> {
-        
+
             if (e.getNewValue() == GameState.GAME_START) {
                 setVisible(true);
             } else {
@@ -80,5 +81,5 @@ public class GamePanel extends JPanel {
         });
 
     }
-    
+
 }

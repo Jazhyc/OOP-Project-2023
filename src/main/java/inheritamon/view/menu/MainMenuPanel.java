@@ -10,10 +10,9 @@ import inheritamon.view.SoundHandler;
 import java.awt.*;
 import java.awt.event.*;
 
-
 /**
  * @author Jeremias
- * The main menu of the game
+ *         The main menu of the game
  */
 public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
@@ -24,8 +23,9 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
     /**
      * Constructor for the MainMenuPanel
+     * 
      * @param controller The menu controller
-     * @param model The game model
+     * @param model      The game model
      */
     public MainMenuPanel(MenuController controller, GameModel model) {
 
@@ -83,7 +83,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
     }
 
     private void addButtons(LanguageConfiguration config, MenuController controller) {
-        
+
         // Get the strings from config
         String[] buttonStrings = config.getOptions("MainMenu");
 
@@ -97,7 +97,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
         // Create the buttons and add them one after the other
         for (int i = 0; i < buttonStrings.length; i++) {
-            
+
             // Use JLabel instead of JButton
             buttons[i] = new JLabel(buttonStrings[i]);
 
@@ -172,7 +172,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
      */
     public void addLanguageListener() {
         LanguageConfiguration config = LanguageConfiguration.getInstance();
-        
+
         config.addLanguageChangeListener(e -> {
             System.out.println("Language changed");
             String[] buttonStrings = config.getOptions("MainMenu");
@@ -184,6 +184,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
     /**
      * Add a game state listener to the panel
+     * 
      * @param model The game model
      */
     public void addGameStateListener(GameModel model) {
@@ -196,5 +197,5 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
             }
         });
     }
-    
+
 }

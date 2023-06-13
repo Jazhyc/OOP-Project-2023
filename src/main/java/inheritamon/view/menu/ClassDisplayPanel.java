@@ -17,7 +17,7 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
 
         this.perk = perk;
 
-        setLayout(new GridLayout(4,1));
+        setLayout(new GridLayout(4, 1));
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -34,7 +34,7 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
         Font font = new Font("Arial", Font.BOLD, 20);
 
         // Create the labels with the font
-        
+
         JLabel pokemonLabel = new JLabel(pokemon);
         JLabel perkLabel = new JLabel(config.getText(perk));
         JLabel perkDescription = new JLabel(config.getText(perk + "Description"));
@@ -72,5 +72,5 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
         });
 
     }
-    
+
 }

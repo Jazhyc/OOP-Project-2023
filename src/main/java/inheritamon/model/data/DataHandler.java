@@ -15,9 +15,9 @@ import java.lang.NullPointerException;
 
 /**
  * @author Jeremias
- * A class to handle and load data with the appropriate exceptions
- * We use csv files to store certain data regarding the game
- * Singleton class
+ *         A class to handle and load data with the appropriate exceptions
+ *         We use csv files to store certain data regarding the game
+ *         Singleton class
  */
 public class DataHandler {
 
@@ -31,7 +31,8 @@ public class DataHandler {
     private HashMap<String, BufferedImage> characterTextures = new HashMap<String, BufferedImage>();
     private HashMap<String, HashMap<String, String>> languageData = new HashMap<String, HashMap<String, String>>();
     private HashMap<String, BufferedImage> inventorySprites = new HashMap<String, BufferedImage>();
-    // private HashMap<String, HashMap<Language, String[]>> dialogueData = new HashMap<String, HashMap<Language, String[]>>();
+    // private HashMap<String, HashMap<Language, String[]>> dialogueData = new
+    // HashMap<String, HashMap<Language, String[]>>();
 
     // Create a hashmap for sounds and music
     private HashMap<String, AudioInputStream> sounds = new HashMap<String, AudioInputStream>();
@@ -49,6 +50,7 @@ public class DataHandler {
 
     /**
      * Get an instance of the DataHandler class
+     * 
      * @return the DataHandler instance
      */
     public static DataHandler getInstance() {
@@ -58,14 +60,16 @@ public class DataHandler {
         return dataHandler;
     }
 
-    // Obtained from https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
+    // Obtained from
+    // https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
     /**
      * Check if a string is numeric
+     * 
      * @param str The string to check
      * @return Whether the string is numeric
      */
     public static boolean isNumeric(String str) {
-        return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+        return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional '-' and decimal.
     }
 
     private void loadAllData() {
@@ -87,12 +91,13 @@ public class DataHandler {
 
     private void loadData(HashMap<String, HashMap<String, String>> data, String fileName) {
 
-        ArrayList<String> attributes = new ArrayList<String>(); 
-        
+        ArrayList<String> attributes = new ArrayList<String>();
+
         // Try with resources to automatically close the scanner
         try (Scanner characterDataScanner = new Scanner(DataHandler.class.getResourceAsStream("/" + fileName))) {
 
-            // Read the first line of the file and put the attributes into the attributes ArrayList
+            // Read the first line of the file and put the attributes into the attributes
+            // ArrayList
             String firstLine = characterDataScanner.nextLine();
             String[] firstLineSplit = firstLine.split(",");
             for (String attribute : firstLineSplit) {
@@ -111,12 +116,11 @@ public class DataHandler {
             }
 
             characterDataScanner.close();
-            
+
         } catch (NullPointerException e) {
             System.out.println("File not found");
             Runtime.getRuntime().halt(0);
         }
-       
 
     }
 
@@ -127,14 +131,16 @@ public class DataHandler {
             // Go through all the keys in the characterData HashMap and load the images
             for (String characterName : characterData.keySet()) {
                 HashMap<String, BufferedImage> characterImagesEntry = new HashMap<String, BufferedImage>();
-                characterImagesEntry.put("front", ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + ".png")));
-                characterImagesEntry.put("back", ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + "Back.png")));
+                characterImagesEntry.put("front",
+                        ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + ".png")));
+                characterImagesEntry.put("back",
+                        ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + "Back.png")));
                 characterSprites.put(characterName, characterImagesEntry);
             }
         } catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
+            e.printStackTrace();
+            System.exit(-1);
+        }
 
     }
 
@@ -188,7 +194,8 @@ public class DataHandler {
 
     /**
      * Save the state of the game
-     * @param data The object to save
+     * 
+     * @param data     The object to save
      * @param fileName The name of the file to save to
      */
     public void saveState(Object data, String fileName) {
@@ -198,7 +205,7 @@ public class DataHandler {
             out.writeObject(data);
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved in " +  fileName + ".ser");
+            System.out.println("Serialized data is saved in " + fileName + ".ser");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -206,6 +213,7 @@ public class DataHandler {
 
     /**
      * Load the state of the game
+     * 
      * @param fileName The name of the file to load from
      * @return The object that was loaded
      */
@@ -220,14 +228,16 @@ public class DataHandler {
             System.out.println("Serialized data is loaded from " + fileName + ".ser");
             return data;
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println(fileName + "File is corrupted or does not exist");;
+            System.out.println(fileName + "File is corrupted or does not exist");
+            ;
         }
 
         return null;
-        
+
     }
 
-    private HashMap<String, String> getData(HashMap<String, HashMap<String, String>> dataMap, String dataName, String dataType) {
+    private HashMap<String, String> getData(HashMap<String, HashMap<String, String>> dataMap, String dataName,
+            String dataType) {
         try {
             return new HashMap<String, String>(dataMap.get(dataName));
         } catch (NullPointerException e) {
@@ -241,6 +251,7 @@ public class DataHandler {
 
     /**
      * Gets the data of a specific pokemon
+     * 
      * @param characterName The name of the pokemon
      * @return The data of the pokemon as a HashMap
      */
@@ -250,6 +261,7 @@ public class DataHandler {
 
     /**
      * The names of all the pokemon in the game
+     * 
      * @return The names of all the pokemon
      */
     public String[] getPokemonNames() {
@@ -258,6 +270,7 @@ public class DataHandler {
 
     /**
      * Gets the data of a specific move
+     * 
      * @param moveName The name of the move
      * @return The data of the move as a HashMap
      */
@@ -267,6 +280,7 @@ public class DataHandler {
 
     /**
      * Gets the data of a specific item
+     * 
      * @param itemName The name of the item
      * @return The data of the item as a HashMap
      */
@@ -276,6 +290,7 @@ public class DataHandler {
 
     /**
      * Get data of all items in the game
+     * 
      * @return The data of all items
      */
     public HashMap<String, HashMap<String, String>> getAllItems() {
@@ -284,6 +299,7 @@ public class DataHandler {
 
     /**
      * Gets the data of all language configurations of the menus
+     * 
      * @return The data of all menus
      */
     public HashMap<String, HashMap<String, String>> getLanguageData() {
@@ -292,23 +308,25 @@ public class DataHandler {
 
     /**
      * Converts the data of all the moves into an ArrayList of move objects
+     * 
      * @return The data of the moves as an Ability
      */
     public HashMap<String, NormalAbility> getAllAbilities() {
-            
-            HashMap<String, NormalAbility> abilities = new HashMap<String, NormalAbility>();
-    
-            for (String moveName : moveData.keySet()) {
-                HashMap<String, String> moveData = getMoveData(moveName);
-                NormalAbility ability = new NormalAbility(moveData);
-                abilities.put(moveName, ability);
-            }
-    
-            return new HashMap<String, NormalAbility>(abilities);
+
+        HashMap<String, NormalAbility> abilities = new HashMap<String, NormalAbility>();
+
+        for (String moveName : moveData.keySet()) {
+            HashMap<String, String> moveData = getMoveData(moveName);
+            NormalAbility ability = new NormalAbility(moveData);
+            abilities.put(moveName, ability);
+        }
+
+        return new HashMap<String, NormalAbility>(abilities);
     }
 
     /**
      * Gets the sprites of entities that are displayed on the map
+     * 
      * @return The sprites of entities that are displayed on the map
      */
     public HashMap<String, HashMap<String, BufferedImage>> getAllCharacterSprites() {
@@ -317,6 +335,7 @@ public class DataHandler {
 
     /**
      * Gets the two sprites of a specific pokemon
+     * 
      * @param pokemonName The name of the pokemon
      * @return The sprites of the pokemon
      */
@@ -326,11 +345,12 @@ public class DataHandler {
 
     /**
      * Converts a string of moves into an ArrayList of moves
+     * 
      * @param nonFormattedString
      * @return An ArrayList of moves
      */
     public static ArrayList<String> convertMoveSetToString(String nonFormattedString) {
-        
+
         ArrayList<String> moveSet = new ArrayList<String>(Arrays.asList(nonFormattedString.split(";")));
 
         return new ArrayList<String>(moveSet);
@@ -338,6 +358,7 @@ public class DataHandler {
 
     /**
      * Gets the icons of certain UI elements
+     * 
      * @return The icons of certain UI elements
      */
     public HashMap<String, BufferedImage> getIcons() {
@@ -354,6 +375,7 @@ public class DataHandler {
 
     /**
      * Gets the background of a specific battle
+     * 
      * @param backgroundName The name of the background
      * @return The background of the battle
      */
@@ -363,6 +385,7 @@ public class DataHandler {
 
     /**
      * Gets the image of a specific tile
+     * 
      * @param tileName The name of the tile
      * @return The image of the tile
      */
@@ -372,6 +395,7 @@ public class DataHandler {
 
     /**
      * Gets a specific texture of a character displayed on the map
+     * 
      * @param textureName The name of the texture
      * @return The texture of the character
      */
@@ -381,6 +405,7 @@ public class DataHandler {
 
     /**
      * Gets the sprite of a specific item
+     * 
      * @param spriteName The name of the item
      * @return The sprite of the item
      */
@@ -390,11 +415,12 @@ public class DataHandler {
 
     /**
      * Gets all audio files of a specific type
+     * 
      * @param audioType The type of audio files
      * @return All audio files of a specific type
      */
     public HashMap<String, AudioInputStream> getAudios(String audioType) {
-        
+
         if (audioType.equals("Music")) {
             return music;
         } else if (audioType.equals("Sounds")) {

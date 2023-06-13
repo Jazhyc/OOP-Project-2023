@@ -14,10 +14,10 @@ import java.awt.*;
  */
 public class ClassSelectionPanel extends JPanel {
 
-    private String[] startingPokemon = {"Charizard", "Blastoise", "Sceptile"};
-    private String[] startingPerks = {"Climber", "Swimmer", "Rich"};
+    private String[] startingPokemon = { "Charizard", "Blastoise", "Sceptile" };
+    private String[] startingPerks = { "Climber", "Swimmer", "Rich" };
 
-    private JPanel[] classPanels = new JPanel[3]; 
+    private JPanel[] classPanels = new JPanel[3];
 
     public ClassSelectionPanel(GameModel gameModel, MenuController controller) {
 
@@ -55,13 +55,13 @@ public class ClassSelectionPanel extends JPanel {
                 }
             });
         }
-        
+
     }
 
     private void setUpListener(GameModel gameModel) {
 
         gameModel.addGameStateListener(e -> {
-            
+
             if (e.getNewValue() == GameState.SELECT_STARTER) {
                 setVisible(true);
             }
