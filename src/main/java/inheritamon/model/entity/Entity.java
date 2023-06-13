@@ -12,6 +12,8 @@ public class Entity {
     public int spriteNum = 1;
     public Rectangle collisionArea;
     public boolean collisionOn = false;
+    public int solidAreaDefaultX;
+    public int solidAreaDefaultY;
 
     public String getDirection() {
         return direction;

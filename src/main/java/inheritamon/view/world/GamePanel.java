@@ -17,6 +17,8 @@ import inheritamon.view.world.sidebar.*;
  */
 public class GamePanel extends JPanel {
 
+    public Player player;
+    public int tileSize;
     WorldPanel worldPanel;
     SidePanel sidePanel;
     BattlePanel battlePanel;
@@ -25,6 +27,7 @@ public class GamePanel extends JPanel {
 //    ArrayList<PlayerData.TrainerAbility> abilities;
 
     public GamePanel(GameController battleController, GameModel gameModel) {
+
 
         int screenWidth = Main.SCREEN_WIDTH;
         int screenHeight = Main.SCREEN_HEIGHT;
@@ -69,7 +72,6 @@ public class GamePanel extends JPanel {
         add(layeredPane);
 
         setUpListener(gameModel);
-
     }
 
     private void setUpListener(GameModel gameModel) {

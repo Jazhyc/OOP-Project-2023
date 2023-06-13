@@ -13,6 +13,8 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
 
+    int hasKey = 0;
+
     public Player(WorldPanel gp, PlayerKeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
@@ -32,8 +34,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 16;
-        worldY = gp.tileSize * 11;
+        worldX = gp.tileSize * 20;
+        worldY = gp.tileSize * 35;
         speed = 4;
         direction = "down";
     }
@@ -76,6 +78,10 @@ public class Player extends Entity {
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            //Check object collision
+            int objectIndex = gp.cChecker.checkObject(this, true);
+            pickUpObject(objectIndex);
+
             // If collision is false, the player can move
             if (collisionOn == false) {
                 switch (direction) {
@@ -104,6 +110,26 @@ public class Player extends Entity {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+        }
+    }
+
+    public void pickUpObject(int i) {
+        if(i != 999) {
+
+            String objectName = gp.obj[i].name;
+
+            switch (objectName) {
+                case "Key":
+                    hasKey++;
+                    gp.obj[i] = null;
+                    break;
+                case "Door":
+                    if(hasKey > 0) {
+                        gp.obj[i] = null;
+                        hasKey--;
+                    }
+                    break;
             }
         }
     }

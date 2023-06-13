@@ -3,6 +3,8 @@ package inheritamon.view.world;
 import inheritamon.model.PlayerData;
 import inheritamon.model.tile.*;
 import inheritamon.view.world.sidebar.SidePanel;
+import inheritamon.model.assets.AssetSetter;
+import inheritamon.model.assets.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +23,8 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     public final int screenHeight = tileSize * maxScreenRow;
 
     // WORLD SETTINGS
-    public final int maxWorldCol = 50;
-    public final int maxWorldRow = 50;
+    public final int maxWorldCol = 150;
+    public final int maxWorldRow = 75;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
@@ -31,6 +33,9 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     PlayerKeyHandler keyH;
     Thread gameThread; // game time
     public CollisionChecker cChecker;
+    AssetSetter aSetter = new AssetSetter(this);
+    public SuperObject obj[] = new SuperObject[2];
+
     public Player player;
     // Default position of the player
     int playerX = 100;
@@ -46,10 +51,11 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         this.requestFocus();
 
         tileM = new TileManager(this);
-        cChecker = new CollisionChecker(tileM);
+        cChecker = new CollisionChecker(tileM,this);
         keyH = new PlayerKeyHandler(this, sidePanel, cChecker);
         player = new Player(this, keyH);
         cChecker.setPlayer(player);
+        aSetter.setObject();
 
     }
 
@@ -94,6 +100,12 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         Graphics2D g2 = (Graphics2D) g;
 
         tileM.draw(g2);
+
+        for(int i = 0; i < obj.length; i++) {
+            if(obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
 
         player.draw(g2);
 
