@@ -275,4 +275,12 @@ public abstract class Pokemon implements Serializable {
         return stringStats.get("Loot");
     }
 
+    /**
+     * Sets the hp of the pokemon to 0 and sets it to fainted
+     */
+    public void killPokemon() {
+        numericalStats.put("HP", 0);
+        hasFainted = true;
+    }
+
 }
