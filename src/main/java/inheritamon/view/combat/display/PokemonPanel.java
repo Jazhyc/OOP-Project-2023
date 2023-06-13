@@ -29,7 +29,6 @@ public class PokemonPanel extends JPanel {
         setOpaque(false);
 
         // Use a ternary operator to set the y position of the stats panel and sprite
-        // panel
         int statsPanelY = (type == DisplayType.PLAYER) ? 0 : 1;
         int spritePanelY = (type == DisplayType.PLAYER) ? 1 : 0;
 

@@ -16,10 +16,13 @@ import java.awt.event.*;
  */
 public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
+    private final int FONT_SIZE = 24;
+    private final int TITLE_SIZE = 36;
+    private final int NUMBER_OF_PANELS = 3;
     private JLabel titleLabel;
     private SoundHandler soundHandler;
 
-    private JLabel[] buttons = new JLabel[3];
+    private JLabel[] buttons = new JLabel[NUMBER_OF_PANELS];
 
     /**
      * Constructor for the MainMenuPanel
@@ -40,7 +43,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
         titleLabel = new JLabel("Inheritamon");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, TITLE_SIZE));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         addTitle();
 
@@ -102,7 +105,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
             buttons[i] = new JLabel(buttonStrings[i]);
 
             // Set the font
-            buttons[i].setFont(new Font("Arial", Font.BOLD, 24));
+            buttons[i].setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
 
             final int index = i;
 

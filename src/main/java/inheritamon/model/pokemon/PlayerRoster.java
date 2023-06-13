@@ -16,7 +16,6 @@ public class PlayerRoster implements Serializable {
     private ArrayList<PlayerPokemon> roster;
     public final static int MAX_POKEMON = 6;
 
-    // Constructor for a new game
     /**
      * Constructor for the PlayerRoster class
      */
@@ -24,7 +23,6 @@ public class PlayerRoster implements Serializable {
         roster = new ArrayList<PlayerPokemon>();
     }
 
-    // Function to add a pokemon to the roster
     /**
      * Adds a pokemon to the roster
      * 
@@ -43,7 +41,6 @@ public class PlayerRoster implements Serializable {
 
     }
 
-    // Function to get a pokemon from the roster
     /**
      * Get a pokemon from the roster
      * 
@@ -72,7 +69,6 @@ public class PlayerRoster implements Serializable {
         return roster.toArray(new PlayerPokemon[roster.size()]);
     }
 
-    // Function to revitalize all pokemon
     /**
      * Revitalize all pokemon in the roster, fully healing them
      */

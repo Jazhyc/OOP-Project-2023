@@ -16,6 +16,7 @@ import java.awt.*;
  */
 public class SpritePanel extends JPanel {
 
+    private final double SHADOW_SCALE = 0.8;
     private final double SHADOW_PLACEMENT = 0.85;
     private final double SPRITE_SCALE_FACTOR = 2.5;
     private final int SHADOW_SIZE = 40;
@@ -67,7 +68,7 @@ public class SpritePanel extends JPanel {
             // Draw an oval with a gradient
             g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_PLACEMENT), spriteSize, SHADOW_SIZE);
             g.setColor(new Color(0, 0, 0, 0));
-            g.fillOval(spriteX, (int) (spriteY + spriteSize * 0.8), spriteSize, SHADOW_SIZE);
+            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_SCALE), spriteSize, SHADOW_SIZE);
 
         }
 

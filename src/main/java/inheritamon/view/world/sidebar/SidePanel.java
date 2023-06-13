@@ -17,6 +17,8 @@ import java.awt.*;
  */
 public class SidePanel extends JPanel implements LanguageChangeListener {
 
+    private final int FONT_SIZE = 20;
+    private final int TITLE_SIZE = 40;
     private ArrayList<String> options = new ArrayList<String>();
     private ArrayList<JLabel> buttonLabels = new ArrayList<JLabel>();
 
@@ -43,7 +45,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         options.addAll(Arrays.asList(config.getOptions("SidePanel")));
 
         // Create a font for the menu
-        Font font = new Font("Arial", Font.BOLD, 40);
+        Font font = new Font("Arial", Font.BOLD, TITLE_SIZE);
 
         // Add The text "Menu" to the top of the panel
         JLabel menuLabel = new JLabel("Inheritamon");
@@ -54,7 +56,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         add(menuLabel);
 
         // Use a bold font
-        Font optionFont = new Font("Arial", Font.BOLD, 20);
+        Font optionFont = new Font("Arial", Font.BOLD, FONT_SIZE);
 
         addLabels(optionFont);
 

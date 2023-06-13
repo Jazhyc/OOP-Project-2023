@@ -13,6 +13,7 @@ import java.awt.*;
  */
 public class DialoguePanel extends JPanel {
 
+    private final int FONT_SIZE = 28;
     private String textToDisplay = "A wild Pokemon appeared!";
 
     /**
@@ -50,7 +51,7 @@ public class DialoguePanel extends JPanel {
         g.setColor(Color.BLACK);
 
         // What font to use
-        g.setFont(new Font("Lucida Sans Regular", Font.PLAIN, 28));
+        g.setFont(new Font("Lucida Sans Regular", Font.PLAIN, FONT_SIZE));
 
         // Get the width and height of the text
         FontMetrics metrics = g.getFontMetrics();

@@ -20,8 +20,10 @@ import java.util.*;
  */
 public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
-    JLabel labels[] = new JLabel[4];
-    JLabel icons[] = new JLabel[4];
+    private final int RUN_INDEX = 3;
+    private final int NUMBER_OF_LABELS = 4;
+    JLabel labels[] = new JLabel[NUMBER_OF_LABELS];
+    JLabel icons[] = new JLabel[NUMBER_OF_LABELS];
 
     private BufferedImage backgroundImage;
     private SoundHandler soundHandler;
@@ -61,7 +63,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
         buttonIcons = DataHandler.getInstance().getIcons();
 
         // Put 4 buttons in the array and make them occupy the whole width
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < NUMBER_OF_LABELS; i++) {
 
             labels[i] = new JLabel(buttonNames[i]);
             // Add the image before the button
@@ -86,7 +88,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                 // split the panel into 4 parts and change the color of the button depending on
                 // which part the mouse is in
                 // Use a loop
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < NUMBER_OF_LABELS; i++) {
                     // Get the bounds of the button, it contains both the label and the image
                     Rectangle bounds = labels[i].getBounds();
 
@@ -118,7 +120,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                 // split the panel into 4 parts and change the color of the button depending on
                 // which part the mouse is in
                 // Use a loop
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < NUMBER_OF_LABELS; i++) {
                     // Get the bounds of the button
                     Rectangle bounds = labels[i].getBounds();
                     Rectangle imageBounds = icons[i].getBounds();
@@ -129,7 +131,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
                         soundHandler.playSound("select");
 
                         // Only if i != 3
-                        if (i != 3) {
+                        if (i != RUN_INDEX) {
                             // Change the panel to the action panel
                             actionPanel.changePanelVisibilityTo(i);
                         } else {
@@ -204,7 +206,7 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
             // Get the new button names
             buttonNames = config.getOptions("ChoicePanel");
             // Change the text of the buttons
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < NUMBER_OF_LABELS; i++) {
                 labels[i].setText(buttonNames[i]);
             }
         });

@@ -17,9 +17,10 @@ import javax.swing.*;
  */
 public class MovePanel extends JPanel implements LanguageChangeListener {
 
+    private final int NUMBER_OF_MOVES = 4;
     // Create an arrayList for the buttons
     private ArrayList<JLabel> buttonLabels = new ArrayList<JLabel>();
-    private String[] moveList = new String[4];
+    private String[] moveList = new String[NUMBER_OF_MOVES];
 
     private SoundHandler soundHandler;
 

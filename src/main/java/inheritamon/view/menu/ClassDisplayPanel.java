@@ -9,6 +9,10 @@ import inheritamon.model.data.language.*;
 
 public class ClassDisplayPanel extends JPanel implements LanguageChangeListener {
 
+    private final int FONT_SIZE = 20;
+
+    private final int SPRITE_SIZE = 150;
+
     private JLabel[] labels = new JLabel[3];
 
     private String perk;
@@ -25,7 +29,7 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
         addLabels(pokemon, perk, config, dataHandler);
 
         // Set the font to use
-        Font font = new Font("Arial", Font.BOLD, 20);
+        Font font = new Font("Arial", Font.BOLD, FONT_SIZE);
 
         // Center the labels
         for (JLabel label : labels) {
@@ -43,7 +47,8 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
         BufferedImage pokemonImage = dataHandler.getPokemonSprite(pokemon).get("front");
 
         // Create the image label
-        JLabel imageLabel = new JLabel(new ImageIcon(pokemonImage.getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+        JLabel imageLabel = new JLabel(
+                new ImageIcon(pokemonImage.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
 
         // Center the image
         imageLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);

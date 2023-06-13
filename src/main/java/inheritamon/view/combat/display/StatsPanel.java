@@ -17,7 +17,7 @@ public class StatsPanel extends JPanel {
     private final int DURATION = 30;
     private final int BAR_OFFSET = 10;
     private final int REFRESH_RATE = 10;
-    
+
     private float HPRatio = 1;
     private float MPRatio = 1;
 
@@ -30,7 +30,8 @@ public class StatsPanel extends JPanel {
 
     /**
      * Constructor for the StatsPanel class
-     * @param type The type of the panel
+     * 
+     * @param type          The type of the panel
      * @param battleHandler The battle handler
      */
     public StatsPanel(DisplayType type, BattleHandler battleHandler) {

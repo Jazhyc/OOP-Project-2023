@@ -14,10 +14,11 @@ import java.awt.*;
  */
 public class ClassSelectionPanel extends JPanel {
 
+    private final int NUMBER_OF_PANELS = 3;
     private String[] startingPokemon = { "Charizard", "Blastoise", "Sceptile" };
     private String[] startingPerks = { "Climber", "Swimmer", "Rich" };
 
-    private JPanel[] classPanels = new JPanel[3];
+    private JPanel[] classPanels = new JPanel[NUMBER_OF_PANELS];
 
     /**
      * Constructor for the class selection panel
@@ -32,7 +33,7 @@ public class ClassSelectionPanel extends JPanel {
         // Use a 1 x 3 grid layout
         setLayout(new GridLayout(1, 3));
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUMBER_OF_PANELS; i++) {
             addPanel(controller, soundHandler, i);
         }
 

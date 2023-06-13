@@ -15,8 +15,10 @@ import java.awt.image.BufferedImage;
  */
 public class ActionPanel extends JPanel {
 
+    private final int NUMBER_OF_PANELS = 3;
+
     // Create an array for 3 panels to store the different actions
-    private JPanel[] panels = new JPanel[3];
+    private JPanel[] panels = new JPanel[NUMBER_OF_PANELS];
 
     private BufferedImage background;
 
