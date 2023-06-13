@@ -78,6 +78,10 @@ public class GameModel {
         notifyRosterListener();
     }
 
+    public ArrayList<PlayerData.TrainerAbility> getTrainerAbilities() {
+        return playerData.getAbilities();
+    }
+
     /**
      * Adds a listener to the game state listeners which will be notified when the
      * game state changes
