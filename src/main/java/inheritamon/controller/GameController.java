@@ -57,8 +57,12 @@ public class GameController {
     /**
      * Begins the battle
      */
-    public void beginBattle() {
-        gameModel.startBattle();
+    public void beginRandomBattle() {
+
+        String types[] = {"random", "attrition", "reckless"};
+
+        // Get a random type
+        gameModel.startPokemonBattle(types[(int) (Math.random() * types.length)]);
     }
 
     /**

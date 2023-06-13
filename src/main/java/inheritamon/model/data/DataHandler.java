@@ -9,6 +9,9 @@ import inheritamon.model.pokemon.moves.*;
 import java.awt.image.*;
 import java.io.*;
 import java.net.*;
+import java.lang.NullPointerException;
+
+// Import for null pointer exception
 
 /**
  * @author Jeremias
@@ -243,6 +246,14 @@ public class DataHandler {
      */
     public HashMap<String, String> getPokemonData(String characterName) {
         return getData(characterData, characterName, "Character");
+    }
+
+    /**
+     * The names of all the pokemon in the game
+     * @return The names of all the pokemon
+     */
+    public String[] getPokemonNames() {
+        return characterData.keySet().toArray(new String[characterData.size()]);
     }
 
     /**

@@ -42,8 +42,6 @@ public class BattleHandler {
     private Inventory playerInventory;
     private int turn;
 
-    // Variable to prevent multiple battles from starting at the same time
-    private boolean battleActive = false;
 
     /**
      * The constructor for the battle handler
@@ -56,14 +54,6 @@ public class BattleHandler {
      * A method to start the battle on a different thread
      */
     public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
-
-        // Check if the battle is already active
-        // This is necessary because the world code calls this method several times in a row
-        if (battleActive) {
-            return;
-        }
-
-        battleActive = true;
 
         // Create a new thread
         Thread battleThread = new Thread(new Runnable() {
@@ -153,7 +143,6 @@ public class BattleHandler {
 
         conclusion = determineConclusion(playerRoster, enemyPokemon);
         notifyBattleStateListener(conclusion);
-        battleActive = false;
     }
 
     private void setUpBattle(PlayerData playerData, Pokemon enemyPokemon, LanguageConfiguration config) {

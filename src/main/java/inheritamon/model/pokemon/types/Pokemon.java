@@ -100,6 +100,8 @@ public abstract class Pokemon implements Serializable {
         // If the pokemon has fainted, call the faint method
         if (numericalStats.get("HP") <= 0) {
             faint();
+            // Set the HP to 0
+            numericalStats.put("HP", 0);
         }
 
         // Return the damage taken

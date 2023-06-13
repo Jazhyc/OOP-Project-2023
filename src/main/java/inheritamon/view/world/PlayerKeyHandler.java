@@ -76,7 +76,7 @@ public class PlayerKeyHandler {
                 public void actionPerformed(ActionEvent e) {
 
                     // Ignore if certain buttons are pressed to prevent two actions from occuring at once
-                    if (actionName.equals("escape")) {
+                    if (actionName.equals("escape") || actionName.equals("interact")) {
                         return;
                     }
 

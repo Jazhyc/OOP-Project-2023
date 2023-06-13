@@ -39,7 +39,7 @@ public class PlayerData implements Serializable {
 
     /**
      * Returns the player inventory
-     * @return
+     * @return The player inventory
      */
     public Inventory getInventory() {
         return inventory;

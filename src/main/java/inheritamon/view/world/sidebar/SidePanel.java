@@ -139,7 +139,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                 switch (i) {
                     case 0:
                         System.out.println("Demo Battle");
-                        gameController.beginBattle();
+                        gameController.beginRandomBattle();
                     case 1:
                         // Open the items menu
                         System.out.println("Items");

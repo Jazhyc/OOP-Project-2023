@@ -14,18 +14,8 @@ import inheritamon.model.data.DataHandler;
  */
 public class GameModel {
 
-    // Emergency code to account for the world not adhering to the MVC pattern
-    // This should be removed in the future when the world refactor is complete
-    private static PlayerData playerData;
-    public static PlayerData getPlayerData() {
-        return playerData;
-    }
-
-    // Same for the battle handler
-    private static BattleHandler battleHandler;
-    public static BattleHandler getBattleHandler() {
-        return battleHandler;
-    }
+    private PlayerData playerData;
+    private BattleHandler battleHandler;
 
     /**
      * Enum to represent the states that the game can be in
@@ -75,21 +65,6 @@ public class GameModel {
     }
 
     /**
-     * Starts a battle with a random pokemon
-     */
-    public void startBattle() {
-        DataHandler dataHandler = DataHandler.getInstance();
-        Pokemon groudon = new RandomPokemon(dataHandler.getPokemonData("Groudon"));
-
-        if (playerData.getRoster().allFainted()) {
-            System.out.println("All pokemon fainted");
-            return;
-        }
-
-        battleHandler.startBattle(playerData, groudon);
-    }
-
-    /**
      * Adds the starting pokemon and perk to the player data
      * @param pokemon The starting pokemon
      * @param perk The starting perk
@@ -110,6 +85,7 @@ public class GameModel {
 
     /**
      * Adds a listener to the roster listener which will be notified when the roster changes
+     * We add a listener here since the player data does not exist when the game model is created
      * @param listener The listener to add
      */
     public void addRosterListener(PropertyChangeListener listener) {
@@ -154,5 +130,49 @@ public class GameModel {
 
         });
     }
+
+    /**
+     * Revitalizes all pokemon in the roster
+     */
+    public void revitalizePokemon() {
+        playerData.getRoster().revitalizeAll();
+        notifyRosterListener();
+    }
+
+    /**
+     * Starts a pokemon battle, depending on the type of pokemon chosen
+     * @param type The type of pokemon to battle
+     */
+    public void startPokemonBattle(String type) {
+        DataHandler dataHandler = DataHandler.getInstance();
+
+        if (playerData.getRoster().allFainted()) {
+            System.out.println("All pokemon fainted");
+            return;
+        }
+
+        String pokemon[] = dataHandler.getPokemonNames();
+        
+        // Get a random pokemon as a string
+        String randomPokemonName = pokemon[(int) (Math.random() * pokemon.length)];
+        Pokemon randomPokemon;
+
+        // Depending on the type, create a pokemon of that type
+        switch (type) {
+            case "attrition":
+                randomPokemon = new AttritionPokemon(dataHandler.getPokemonData(randomPokemonName));
+                break;
+            case "reckless":
+                randomPokemon = new RecklessPokemon(dataHandler.getPokemonData(randomPokemonName));
+                break;
+            default:
+                randomPokemon = new RandomPokemon(dataHandler.getPokemonData(randomPokemonName));
+                break;
+        }
+
+        battleHandler.startBattle(playerData, randomPokemon);
+    }
+
+
     
 }

@@ -2,10 +2,6 @@ package inheritamon.model.tile;
 
 import inheritamon.model.data.DataHandler;
 import inheritamon.view.world.WorldPanel;
-import inheritamon.model.BattleHandler;
-import inheritamon.model.GameModel;
-import inheritamon.model.PlayerData;
-import inheritamon.model.pokemon.types.*;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -17,9 +13,6 @@ public class TileManager {
     WorldPanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
-
-    private PlayerData playerData;
-    private BattleHandler battleHandler;
 
     public TileManager(WorldPanel gp) {
 
@@ -45,12 +38,7 @@ public class TileManager {
             public void interact() {
                 System.out.println("Interacting with Entity");
 
-                // Emergency fix
-                battleHandler = GameModel.getBattleHandler();
-                playerData = GameModel.getPlayerData();
-
-                Pokemon enemyPokemon = new RandomPokemon(DataHandler.getInstance().getPokemonData("Groudon"));
-                battleHandler.startBattle(playerData, enemyPokemon);
+                
 
             }
         };
