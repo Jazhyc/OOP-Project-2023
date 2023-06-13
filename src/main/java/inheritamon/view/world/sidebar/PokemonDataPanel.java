@@ -116,10 +116,10 @@ public class PokemonDataPanel extends JPanel {
 
     private void addHeaders(GridBagConstraints gbc) {
 
-        String[] additionalHeaders = new String[] { "Name", "HP", "MP" };
+        String[] additionalHeaders = new String[] { "HP", "MP" };
 
-        // We don't add a header for the image, so we start at 1
-        gbc.gridx = 1;
+        // We don't add a header for the image and name, so we start at 2
+        gbc.gridx = 2;
 
         // Add the additional headers
         for (int i = 0; i < additionalHeaders.length; i++) {

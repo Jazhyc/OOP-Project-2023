@@ -108,8 +108,17 @@ public class PlayerKeyHandler {
                 break;
             case "interact":
                 cChecker.checkPlayerInteraction();
+                resetBoolean();
                 break;
         }
+    }
+
+    private void resetBoolean() {
+        upPressed = false;
+        downPressed = false;
+        leftPressed = false;
+        rightPressed = false;
+        interactPressed = false;
     }
 
     public boolean isUpPressed() {
