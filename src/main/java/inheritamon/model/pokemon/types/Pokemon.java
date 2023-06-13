@@ -131,7 +131,7 @@ public abstract class Pokemon implements Serializable {
     /**
      * A method to gain MP, caps at max MP
      * 
-     * @param mp The amount of MP to gain
+     * @param hp The amount of HP to gain
      */
     public void gainHP(int hp) {
 
@@ -140,6 +140,18 @@ public abstract class Pokemon implements Serializable {
         numericalStats.put("HP", numericalStats.get("HP") + hp);
         if (numericalStats.get("HP") > numericalStats.get("MaxHP")) {
             numericalStats.put("HP", numericalStats.get("MaxHP"));
+        }
+    }
+
+    /**
+     * A method to lose HP, caps at 0
+     * 
+     * @param hp The amount of HP to lose
+     */
+    public void loseHP(int hp) {
+        numericalStats.put("HP", numericalStats.get("HP") - hp);
+        if (numericalStats.get("HP") < 0) {
+            numericalStats.put("HP", 0);
         }
     }
 
