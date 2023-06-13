@@ -11,6 +11,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 
+/**
+ * @author Jona Janssen
+ * Inventory panel to be used in the battle menu. User can see the items they are carrying and click them to use them
+ */
+
 public class ItemsPanel extends JPanel {
     private final int SPRITE_SIZE = 80;
     private Inventory inventory;
@@ -71,6 +76,7 @@ public class ItemsPanel extends JPanel {
                         public void mouseClicked(MouseEvent e) {
                             soundHandler.playSound("select");
                             battleController.selectItem(selectionIndex);
+
                         }
                     });
 
