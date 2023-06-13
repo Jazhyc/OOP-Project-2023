@@ -7,7 +7,6 @@ import inheritamon.Main;
 import inheritamon.controller.GameController;
 import inheritamon.model.GameModel;
 import inheritamon.model.GameModel.GameState;
-import inheritamon.model.PlayerData;
 import inheritamon.view.combat.BattlePanel;
 import inheritamon.view.world.sidebar.*;
 

@@ -1,5 +1,6 @@
 package inheritamon.model.tile;
 
+import inheritamon.model.GameModel;
 import inheritamon.model.data.DataHandler;
 import inheritamon.view.world.WorldPanel;
 
@@ -18,7 +19,7 @@ public class TileManager {
 
         this.gp = gp;
 
-        tile = new Tile[15];
+        tile = new Tile[14];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -28,6 +29,7 @@ public class TileManager {
     public void getTileImage() {
 
         DataHandler dh = DataHandler.getInstance();
+        GameModel gm = GameModel.getInstance();
 
         tile[0] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
 
@@ -53,16 +55,22 @@ public class TileManager {
 
         tile[11] = new Tile(dh.getTileImage("WallTile"), true, false, "opaque");
 
+        // 27 due to a problem with the map maker
+        tile[12] = new Tile(dh.getTileImage("Enemy"), true, true, "opaque") {
+            @Override
+            public void interact() {
+                gm.startPokemonBattle("random");
+            }
+        };
 
-//        tile[2] = new Tile(dh.getCharacterTexture("Front 1"), true, true) {
-//            @Override
-//            public void interact() {
-//                System.out.println("Interacting with Entity");
-//
-//
-//
-//            }
-//        };
+        tile[13] = new Tile(dh.getTileImage("RestoreCenter"), true, true, "classic") {
+            @Override
+            public void interact() {
+                gm.revitalizePokemon();;
+            }
+        };
+        
+
 
     }
 

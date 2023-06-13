@@ -1,6 +1,5 @@
 package inheritamon.view.world;
 
-import inheritamon.model.PlayerData;
 import inheritamon.model.tile.*;
 import inheritamon.view.world.sidebar.SidePanel;
 import inheritamon.model.assets.AssetSetter;

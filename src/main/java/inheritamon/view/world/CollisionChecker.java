@@ -4,20 +4,16 @@ import inheritamon.model.PlayerData;
 import inheritamon.model.entity.*;
 import inheritamon.model.tile.TileManager;
 
-import java.util.ArrayList;
-
 public class CollisionChecker {
 
     private WorldPanel gp;
     private TileManager tileM;
     private Player player;
-    private ArrayList <PlayerData.TrainerAbility> abilities;
     private int tileSize = 48;
 
     public CollisionChecker(TileManager tileM, WorldPanel gp) {
 
         this.tileM = tileM;
-
         this.gp = gp;
     }
 

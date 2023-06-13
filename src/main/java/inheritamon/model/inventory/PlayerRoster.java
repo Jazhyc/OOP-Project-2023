@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 import inheritamon.model.pokemon.types.PlayerPokemon;
-import inheritamon.model.data.DataHandler;
 
 /**
  * @author Jeremias

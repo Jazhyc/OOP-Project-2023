@@ -40,7 +40,8 @@ public class Main {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
         BattleHandler battleHandler = new BattleHandler();
-        GameModel gameModel = new GameModel(battleHandler);
+        GameModel gameModel = GameModel.getInstance();
+        gameModel.init(battleHandler);
         GameController battleController = new GameController(battleHandler, gameModel);
 
         // Create the game panel

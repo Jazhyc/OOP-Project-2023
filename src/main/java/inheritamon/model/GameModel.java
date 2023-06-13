@@ -11,8 +11,26 @@ import inheritamon.model.data.DataHandler;
 /**
  * @author Jeremias
  *         A class to represent the main logic of the game
+ *         Holds the player data and the battle handler
+ *         Also notifies the listeners when the game state changes
+ *         Singleton class due to the nature of the world panel
  */
 public class GameModel {
+
+    // Singleton instance
+    private static GameModel instance = null;
+
+    /**
+     * Returns the singleton instance of the game model
+     * 
+     * @return The singleton instance of the game model
+     */
+    public static GameModel getInstance() {
+        if (instance == null) {
+            instance = new GameModel();
+        }
+        return instance;
+    }
 
     private PlayerData playerData;
     private BattleHandler battleHandler;
@@ -28,11 +46,11 @@ public class GameModel {
     private PropertyChangeListener rosterListener;
 
     /**
-     * Creates a new game model
+     * Initializes the game model
      * 
      * @param battleHandlerObject The battle handler
      */
-    public GameModel(BattleHandler battleHandlerObject) {
+    public void init(BattleHandler battleHandlerObject) {
         battleHandler = battleHandlerObject;
         setUpBattleStateListener();
     }
