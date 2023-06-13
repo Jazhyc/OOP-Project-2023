@@ -52,7 +52,7 @@ public class Item implements Serializable {
         if (itemType.equals("Pokeball")) {
             // check if succeeds (enemy has taken damage)
             DataHandler dh = DataHandler.getInstance();
-            if (enemyPokemon.getHP() < enemyPokemon.getNumericalStat("MaxHp")) {
+            if (enemyPokemon.getHP() < enemyPokemon.getNumericalStat("MaxHP")) {
                 // add pokemon to player roster
                 PlayerPokemon newPokemon = new PlayerPokemon(dh.getPokemonData(enemyPokemon.getName()));
                 playerRoster.addPokemon(newPokemon);

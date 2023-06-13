@@ -23,8 +23,10 @@ public class Inventory implements Serializable {
         
         Item potion = new Item(dataHandler.getItemData("Potion"));
         Item inheritaball = new Item(dataHandler.getItemData("Inheritaball"));
+        Item inheritaball2 = new Item(dataHandler.getItemData("Inheritaball"));
         addItem(potion);
         addItem(inheritaball);
+        addItem(inheritaball2);
 
     }
 

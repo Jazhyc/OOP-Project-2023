@@ -269,6 +269,7 @@ public class BattleHandler {
 
     }
 
+    // Code authored by Jona Janssen
     private void handleItemUse(String ability) {
 
         // Get the item index to use using regex
@@ -277,24 +278,27 @@ public class BattleHandler {
         // Get the item
         Item item = playerInventory.getItem(itemToUse);
 
-        // Use the item
-        if (item.useItem(enemyPokemon, playerPokemon, playerRoster) == true) {
-            // End the battle
-            enemyPokemon.killPokemon();
-        }
-
         // Remove the item from the inventory
         playerInventory.removeItem(itemToUse);
-
-        // Notify the listeners
-        notifyInventoryListener();
-        notifyStatListener(playerPokemon, enemyPokemon);
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
         String formattedString = String.format(config.getText("Item"), item.getItemName());
         notifyDialogueListener(formattedString);
         notifyInventoryListener();
         wait(WAIT_TIME);
+
+        // Use the item
+        if (item.useItem(enemyPokemon, playerPokemon, playerRoster)) {
+            // End the battle
+            enemyPokemon.killPokemon();
+            formattedString = String.format(config.getText("Capture"), enemyPokemon.getName());
+            notifyDialogueListener(formattedString);
+            wait(WAIT_TIME);
+        }
+
+        // Notify the listeners
+        notifyInventoryListener();
+        notifyStatListener(playerPokemon, enemyPokemon);
 
         // Skip the rest of the turn
         turn++;

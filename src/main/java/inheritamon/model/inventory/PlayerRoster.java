@@ -22,13 +22,6 @@ public class PlayerRoster implements Serializable {
      */
     public PlayerRoster() {
         roster = new ArrayList<PlayerPokemon>();
-
-        // Add groudon to the roster, will replace this once pokemon selection is
-        // implemented
-        DataHandler dataHandler = DataHandler.getInstance();
-        PlayerPokemon groudon = new PlayerPokemon(dataHandler.getPokemonData("Groudon"));
-        addPokemon(groudon);
-
     }
 
     // Function to add a pokemon to the roster
