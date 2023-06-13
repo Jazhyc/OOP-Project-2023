@@ -15,7 +15,6 @@ public class CollisionChecker {
 
     public CollisionChecker(TileManager tileM) {
         this.tileM = tileM;
-        this.abilities = abilities;
     }
 
     public void setPlayer(Player player) {
