@@ -13,7 +13,7 @@ public class CollisionChecker {
     private ArrayList <PlayerData.TrainerAbility> abilities;
     private int tileSize = 48;
 
-    public CollisionChecker(TileManager tileM, ArrayList <PlayerData.TrainerAbility> abilities) {
+    public CollisionChecker(TileManager tileM) {
         this.tileM = tileM;
         this.abilities = abilities;
     }

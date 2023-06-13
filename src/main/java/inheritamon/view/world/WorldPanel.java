@@ -37,7 +37,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     int playerY = 100;
     int playerSpeed = 4;
 
-    public WorldPanel(SidePanel sidePanel, ArrayList<PlayerData.TrainerAbility> abilities) {
+    public WorldPanel(SidePanel sidePanel) {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -46,7 +46,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         this.requestFocus();
 
         tileM = new TileManager(this);
-        cChecker = new CollisionChecker(tileM, abilities);
+        cChecker = new CollisionChecker(tileM);
         keyH = new PlayerKeyHandler(this, sidePanel, cChecker);
         player = new Player(this, keyH);
         cChecker.setPlayer(player);
