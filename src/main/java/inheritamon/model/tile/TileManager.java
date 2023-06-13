@@ -29,29 +29,29 @@ public class TileManager {
 
         DataHandler dh = DataHandler.getInstance();
 
-        tile[0] = new Tile(dh.getTileImage("GrassTile"), false, false);
+        tile[0] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
 
-        tile[1] = new Tile(dh.getTileImage("ShallowWaterTile"), false, false);
+        tile[1] = new Tile(dh.getTileImage("ShallowWaterTile"), true, false, "water");
 
-        tile[2] = new Tile(dh.getTileImage("RockTile"), false, false);
+        tile[2] = new Tile(dh.getTileImage("RockTile"), true, false, "rock");
 
-        tile[3] = new Tile(dh.getTileImage("SandTile"), false, false);
+        tile[3] = new Tile(dh.getTileImage("SandTile"), false, false, "classic");
 
-        tile[4] = new Tile(dh.getTileImage("TreeTile"), true, false);
+        tile[4] = new Tile(dh.getTileImage("TreeTile"), true, false, "opaque");
 
-        tile[5] = new Tile(dh.getTileImage("GrassTile"), false, false);
+        tile[5] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
 
-        tile[6] = new Tile(dh.getTileImage("GrassTile"), false, false);
+        tile[6] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
 
-        tile[7] = new Tile(dh.getTileImage("GrassTile"), false, false);
+        tile[7] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
 
-        tile[8] = new Tile(dh.getTileImage("WaterTile2"), false, false);
+        tile[8] = new Tile(dh.getTileImage("WaterTile2"), true, false, "water");
 
-        tile[9] = new Tile(dh.getTileImage("WorldBorder"), true, false);
+        tile[9] = new Tile(dh.getTileImage("WorldBorder"), true, false, "opaque");
 
-        tile[10] = new Tile(dh.getTileImage("FloorTile"), false, false);
+        tile[10] = new Tile(dh.getTileImage("FloorTile"), false, false, "classic");
 
-        tile[11] = new Tile(dh.getTileImage("WallTile"), true, false);
+        tile[11] = new Tile(dh.getTileImage("WallTile"), true, false, "opaque");
 
 
 //        tile[2] = new Tile(dh.getCharacterTexture("Front 1"), true, true) {

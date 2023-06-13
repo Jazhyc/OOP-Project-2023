@@ -2,7 +2,6 @@ package inheritamon.view.world;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 import inheritamon.Main;
 import inheritamon.controller.GameController;
@@ -14,6 +13,8 @@ import inheritamon.view.world.sidebar.*;
 
 /**
  * @author Jeremias
+ *         A class to represent the game panel
+ *         This panel will hold the world panel and the side panel
  */
 public class GamePanel extends JPanel {
 
@@ -24,10 +25,9 @@ public class GamePanel extends JPanel {
     BattlePanel battlePanel;
     PokemonDataPanel pokemonDataPanel;
 
-//    ArrayList<PlayerData.TrainerAbility> abilities;
+    // ArrayList<PlayerData.TrainerAbility> abilities;
 
     public GamePanel(GameController battleController, GameModel gameModel) {
-
 
         int screenWidth = Main.SCREEN_WIDTH;
         int screenHeight = Main.SCREEN_HEIGHT;

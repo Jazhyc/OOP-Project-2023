@@ -9,11 +9,13 @@ public class Tile {
     public BufferedImage image;
     public boolean collision = false;
     public boolean canInteract = false;
+    private String type;
 
-    public Tile(BufferedImage image, boolean collision, boolean canInteract) {
+    public Tile(BufferedImage image, boolean collision, boolean canInteract, String type) {
         this.image = image;
         this.collision = collision;
         this.canInteract = canInteract;
+        this.type = type;
     }
 
     // This should be overridden

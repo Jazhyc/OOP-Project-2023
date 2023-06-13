@@ -8,7 +8,6 @@ import inheritamon.model.assets.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class WorldPanel extends JLayeredPane implements Runnable { // has all the function of the JPanel
 

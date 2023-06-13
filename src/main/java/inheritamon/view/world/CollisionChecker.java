@@ -3,7 +3,6 @@ package inheritamon.view.world;
 import inheritamon.model.PlayerData;
 import inheritamon.model.entity.*;
 import inheritamon.model.tile.TileManager;
-import inheritamon.view.world.WorldPanel;
 
 import java.util.ArrayList;
 
