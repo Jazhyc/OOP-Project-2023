@@ -19,6 +19,11 @@ public class ClassSelectionPanel extends JPanel {
 
     private JPanel[] classPanels = new JPanel[3];
 
+    /**
+     * Constructor for the class selection panel
+     * @param gameModel The game model
+     * @param controller The menu controller
+     */
     public ClassSelectionPanel(GameModel gameModel, MenuController controller) {
 
         setUpListener(gameModel);
@@ -28,34 +33,38 @@ public class ClassSelectionPanel extends JPanel {
         setLayout(new GridLayout(1, 3));
 
         for (int i = 0; i < 3; i++) {
-            classPanels[i] = new ClassDisplayPanel(startingPokemon[i], startingPerks[i]);
-            add(classPanels[i]);
-
-            final int selectionIndex = i;
-
-            // Add a mouse adapter to each panel
-            classPanels[i].addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent evt) {
-                    controller.handleStartingClass(startingPokemon[selectionIndex], startingPerks[selectionIndex]);
-                    soundHandler.playSound("select");
-                    setVisible(false);
-                }
-
-                // Create a border around the panel when the mouse hovers over it
-                @Override
-                public void mouseEntered(MouseEvent evt) {
-                    classPanels[selectionIndex].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                }
-
-                // Remove the border when the mouse leaves the panel
-                @Override
-                public void mouseExited(MouseEvent evt) {
-                    classPanels[selectionIndex].setBorder(BorderFactory.createEmptyBorder());
-                }
-            });
+            addPanel(controller, soundHandler, i);
         }
 
+    }
+
+    private void addPanel(MenuController controller, SoundHandler soundHandler, int i) {
+        classPanels[i] = new ClassDisplayPanel(startingPokemon[i], startingPerks[i]);
+        add(classPanels[i]);
+
+        final int selectionIndex = i;
+
+        // Add a mouse adapter to each panel
+        classPanels[i].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                controller.handleStartingClass(startingPokemon[selectionIndex], startingPerks[selectionIndex]);
+                soundHandler.playSound("select");
+                setVisible(false);
+            }
+
+            // Create a border around the panel when the mouse hovers over it
+            @Override
+            public void mouseEntered(MouseEvent evt) {
+                classPanels[selectionIndex].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            }
+
+            // Remove the border when the mouse leaves the panel
+            @Override
+            public void mouseExited(MouseEvent evt) {
+                classPanels[selectionIndex].setBorder(BorderFactory.createEmptyBorder());
+            }
+        });
     }
 
     private void setUpListener(GameModel gameModel) {

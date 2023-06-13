@@ -36,6 +36,18 @@ public class Main {
         // Create a frame to display the game
         JFrame frame = new JFrame("Inheritamon");
 
+        setUpMVC(frame);
+
+        // Prevent the user from resizing the window
+        // Panel shows up after everything is loaded
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        frame.setVisible(true);
+
+    }
+
+    private static void setUpMVC(JFrame frame) {
         // Use a border layout
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -61,13 +73,5 @@ public class Main {
         BattlePanel battlePanel = new BattlePanel(battleController, battleHandler, gamePanel);
         frame.add(battlePanel);
         battlePanel.setVisible(false);
-
-        // Prevent the user from resizing the window
-        // Panel shows up after everything is loaded
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        frame.setVisible(true);
-
     }
 }

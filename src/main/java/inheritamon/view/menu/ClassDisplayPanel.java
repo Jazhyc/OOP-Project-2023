@@ -22,6 +22,24 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
         DataHandler dataHandler = DataHandler.getInstance();
+        addLabels(pokemon, perk, config, dataHandler);
+
+        // Set the font to use
+        Font font = new Font("Arial", Font.BOLD, 20);
+
+        // Center the labels
+        for (JLabel label : labels) {
+            label.setHorizontalAlignment(JLabel.CENTER);
+            label.setFont(font);
+            label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        }
+
+        addLanguageListener();
+
+    }
+
+    private void addLabels(String pokemon, String perk, LanguageConfiguration config,
+            DataHandler dataHandler) {
         BufferedImage pokemonImage = dataHandler.getPokemonSprite(pokemon).get("front");
 
         // Create the image label
@@ -29,9 +47,6 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
 
         // Center the image
         imageLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-
-        // Set the font to use
-        Font font = new Font("Arial", Font.BOLD, 20);
 
         // Create the labels with the font
 
@@ -48,16 +63,6 @@ public class ClassDisplayPanel extends JPanel implements LanguageChangeListener 
         add(pokemonLabel);
         add(perkLabel);
         add(perkDescription);
-
-        // Center the labels
-        for (JLabel label : labels) {
-            label.setHorizontalAlignment(JLabel.CENTER);
-            label.setFont(font);
-            label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        }
-
-        addLanguageListener();
-
     }
 
     @Override

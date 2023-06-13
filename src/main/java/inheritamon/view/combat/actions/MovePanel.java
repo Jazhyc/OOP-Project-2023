@@ -61,38 +61,7 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
                 // Print the moves
                 for (String move : moveList) {
 
-                    String moveName = LanguageConfiguration.getInstance().getLocalMoveName(move);
-                    JLabel button = new JLabel(moveName);
-
-                    buttonLabels.add(button);
-
-                    // Center the button and increase font size
-                    button.setHorizontalAlignment(JLabel.CENTER);
-                    button.setFont(new Font("Arial", Font.BOLD, 20));
-                    button.setForeground(Color.WHITE);
-
-                    // Add a mouse listener to the button
-                    button.addMouseListener(new MouseAdapter() {
-
-                        @Override
-                        public void mouseEntered(MouseEvent e) {
-                            button.setForeground(Color.YELLOW);
-                        }
-
-                        @Override
-                        public void mouseExited(MouseEvent e) {
-                            button.setForeground(Color.WHITE);
-                        }
-
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            battleController.selectMove(move);
-                            soundHandler.playSound("select");
-                        }
-
-                    });
-
-                    add(button);
+                    addButton(battleController, move);
                 }
 
                 revalidate();
@@ -102,6 +71,41 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
 
         });
 
+    }
+
+    private void addButton(GameController battleController, String move) {
+        String moveName = LanguageConfiguration.getInstance().getLocalMoveName(move);
+        JLabel button = new JLabel(moveName);
+
+        buttonLabels.add(button);
+
+        // Center the button and increase font size
+        button.setHorizontalAlignment(JLabel.CENTER);
+        button.setFont(new Font("Arial", Font.BOLD, 20));
+        button.setForeground(Color.WHITE);
+
+        // Add a mouse listener to the button
+        button.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setForeground(Color.YELLOW);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setForeground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                battleController.selectMove(move);
+                soundHandler.playSound("select");
+            }
+
+        });
+
+        add(button);
     }
 
     /**

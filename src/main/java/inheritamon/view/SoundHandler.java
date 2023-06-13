@@ -14,7 +14,7 @@ import inheritamon.model.data.DataHandler;
  */
 public class SoundHandler {
 
-    // Singleton instance for now at least
+    // Singleton instance
     private static SoundHandler soundHandler;
 
     private HashMap<String, Clip> soundClips = new HashMap<String, Clip>();
@@ -70,6 +70,7 @@ public class SoundHandler {
 
     /**
      * Plays the music with the given key
+     * Will stop the current music if there is one playing
      * 
      * @param key The name of the music to play
      */

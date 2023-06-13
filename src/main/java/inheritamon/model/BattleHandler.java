@@ -114,14 +114,7 @@ public class BattleHandler {
             notifyDialogueListener(formattedString);
             wait(WAIT_TIME);
 
-            // Use the ability
-            Integer damageDealt = moveData.get(ability).executeMove(defender, attacker);
-
-            // Check the damage for display purposes
-            checkDamage(attacker, damageDealt);
-
-            notifyStatListener(playerPokemon, enemyPokemon);
-            wait(WAIT_TIME);
+            reportDamage(enemyPokemon, ability, attacker, defender);
 
             // If the player pokemon fainted, notify the listeners
             if (playerPokemon.isFainted()) {
@@ -139,6 +132,18 @@ public class BattleHandler {
 
         conclusion = determineConclusion(playerRoster, enemyPokemon);
         notifyBattleStateListener(conclusion);
+    }
+
+    private Integer reportDamage(Pokemon enemyPokemon, String ability, Pokemon attacker, Pokemon defender) {
+        // Use the ability
+        Integer damageDealt = moveData.get(ability).executeMove(defender, attacker);
+
+        // Check the damage for display purposes
+        checkDamage(attacker, damageDealt);
+
+        notifyStatListener(playerPokemon, enemyPokemon);
+        wait(WAIT_TIME);
+        return damageDealt;
     }
 
     private void handleRun(LanguageConfiguration config) {

@@ -19,8 +19,6 @@ public class BattleDisplayPanel extends JPanel {
 
     private BufferedImage backgroundImage;
 
-    // Display the pokemon differently depending on whether it is the player's or
-    // the enemy's
     /**
      * The DisplayType enum is used to determine whether the pokemon is the player's
      * or the enemy's

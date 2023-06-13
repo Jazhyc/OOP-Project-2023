@@ -61,29 +61,33 @@ public class ItemsPanel extends JPanel {
                 // Get the sprite from the data handler
                 BufferedImage imageToDisplay = dataHandler.getItemSprite(spriteName);
 
-                // Skip if i is greater than the length of the array
-                if (i < inventory.getSize()) {
-
-                    // Add the label with the sprite
-                    JLabel label = new JLabel(new ImageIcon(
-                            imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
-                    add(label);
-
-                    final int selectionIndex = i;
-
-                    label.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            soundHandler.playSound("select");
-                            battleController.selectItem(selectionIndex);
-                        }
-                    });
-
-                }
+                addButton(battleController, i, imageToDisplay);
 
             }
         });
 
+    }
+
+    private void addButton(GameController battleController, int i, BufferedImage imageToDisplay) {
+        // Skip if i is greater than the length of the array
+        if (i < inventory.getSize()) {
+
+            // Add the label with the sprite
+            JLabel label = new JLabel(new ImageIcon(
+                    imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
+            add(label);
+
+            final int selectionIndex = i;
+
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    soundHandler.playSound("select");
+                    battleController.selectItem(selectionIndex);
+                }
+            });
+
+        }
     }
 
 }

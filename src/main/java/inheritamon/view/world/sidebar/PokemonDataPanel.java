@@ -52,38 +52,42 @@ public class PokemonDataPanel extends JPanel {
             // Loop over each pokemon and get the image of their species and their name
             for (int i = 0; i < roster.length; i++) {
 
-                PlayerPokemon pokemon = roster[i];
-
-                System.out.println(pokemon.getName());
-
-                gbc.gridy = i + 1;
-
-                gbc.gridx = 0;
-                BufferedImage pokemonImage = pokemon.getSpeciesImage();
-                Integer spriteSize = 100;
-                JLabel imageLabel = new JLabel(
-                        new ImageIcon(pokemonImage.getScaledInstance(spriteSize, spriteSize, Image.SCALE_DEFAULT)));
-                add(imageLabel, gbc);
-
-                // Configure the name
-                gbc.gridx = 1;
-                addPokemonName(pokemon, gbc);
-
-                // Create a ratio of HP to MaxHP
-                addHPRatio(pokemon, gbc);
-
-                // Create a ratio of MP to MaxMP
-                addMPRatio(pokemon, gbc);
-
-                // Add the stats
-                for (int j = 0; j < statNames.length; j++) {
-                    gbc.gridx = j + 4;
-                    addStat(j + 4, gbc, pokemon.getNumericalStat(statNames[j]));
-                }
+                addPokemonToPanel(roster, gbc, i);
 
             }
 
         });
+    }
+
+    private void addPokemonToPanel(PlayerPokemon[] roster, GridBagConstraints gbc, int i) {
+        PlayerPokemon pokemon = roster[i];
+
+        System.out.println(pokemon.getName());
+
+        gbc.gridy = i + 1;
+
+        gbc.gridx = 0;
+        BufferedImage pokemonImage = pokemon.getSpeciesImage();
+        Integer spriteSize = 100;
+        JLabel imageLabel = new JLabel(
+                new ImageIcon(pokemonImage.getScaledInstance(spriteSize, spriteSize, Image.SCALE_DEFAULT)));
+        add(imageLabel, gbc);
+
+        // Configure the name
+        gbc.gridx = 1;
+        addPokemonName(pokemon, gbc);
+
+        // Create a ratio of HP to MaxHP
+        addHPRatio(pokemon, gbc);
+
+        // Create a ratio of MP to MaxMP
+        addMPRatio(pokemon, gbc);
+
+        // Add the stats
+        for (int j = 0; j < statNames.length; j++) {
+            gbc.gridx = j + 4;
+            addStat(j + 4, gbc, pokemon.getNumericalStat(statNames[j]));
+        }
     }
 
     private void addPokemonName(PlayerPokemon pokemon, GridBagConstraints gbc) {

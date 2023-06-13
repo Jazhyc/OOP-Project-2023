@@ -65,34 +65,13 @@ public class PokemonSelectionPanel extends JPanel {
                     continue;
                 }
 
-                BufferedImage imageToDisplay = dataHandler.getPokemonSprite(playerPokemon[i].getName()).get("front");
-
-                // If the pokemon fainted, make the image black and white. Use colorConvertOp
-                if (playerPokemon[i].isFainted()) {
-
-                    imageToDisplay = convertToGrayscale(imageToDisplay);
-
-                }
+                BufferedImage imageToDisplay = getImageToDisplay(dataHandler, i);
 
                 // Create a label with the image and increase the size
                 JLabel label = new JLabel(
                         new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
 
-                if (!playerPokemon[i].isFainted()) {
-                    final int selectionIndex = i;
-
-                    // Add a mouse adapter to the label
-                    label.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-
-                            // Swap the pokemon
-                            battleController.selectPokemon(selectionIndex);
-                            soundHandler.playSound("select");
-
-                        }
-                    });
-                }
+                addInteraction(battleController, i, label);
 
                 // Add the button to the panel
                 add(label);
@@ -100,6 +79,36 @@ public class PokemonSelectionPanel extends JPanel {
             }
         });
 
+    }
+
+    private void addInteraction(GameController battleController, int i, JLabel label) {
+        if (!playerPokemon[i].isFainted()) {
+            final int selectionIndex = i;
+
+            // Add a mouse adapter to the label
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                    // Swap the pokemon
+                    battleController.selectPokemon(selectionIndex);
+                    soundHandler.playSound("select");
+
+                }
+            });
+        }
+    }
+
+    private BufferedImage getImageToDisplay(DataHandler dataHandler, int i) {
+        BufferedImage imageToDisplay = dataHandler.getPokemonSprite(playerPokemon[i].getName()).get("front");
+
+        // If the pokemon fainted, make the image black and white. Use colorConvertOp
+        if (playerPokemon[i].isFainted()) {
+
+            imageToDisplay = convertToGrayscale(imageToDisplay);
+
+        }
+        return imageToDisplay;
     }
 
     private BufferedImage convertToGrayscale(BufferedImage imageToDisplay) {

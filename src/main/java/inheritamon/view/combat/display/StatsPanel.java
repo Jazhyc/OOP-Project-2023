@@ -25,6 +25,11 @@ public class StatsPanel extends JPanel {
     private final int LABEL_OFFSET = 18;
     private DisplayType type;
 
+    /**
+     * Constructor for the StatsPanel class
+     * @param type The type of the panel
+     * @param battleHandler The battle handler
+     */
     public StatsPanel(DisplayType type, BattleHandler battleHandler) {
         this.type = type;
         setUp(battleHandler);

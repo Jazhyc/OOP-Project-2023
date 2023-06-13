@@ -13,8 +13,6 @@ import java.awt.*;
  */
 public class PokemonPanel extends JPanel {
 
-    // Display the pokemon differently depending on whether it is the player's or
-    // the enemy's
     /**
      * Constructor for the PokemonPanel class, consists of a StatsPanel and a
      * SpritePanel

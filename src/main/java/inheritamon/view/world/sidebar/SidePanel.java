@@ -56,6 +56,17 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         // Use a bold font
         Font optionFont = new Font("Arial", Font.BOLD, 20);
 
+        addLabels(optionFont);
+
+        // Use a black background
+        setBackground(Color.BLACK);
+
+        addMotionListener();
+
+        addClickListener();
+    }
+
+    private void addLabels(Font optionFont) {
         // Create a JLabel for each option
         for (String option : options) {
 
@@ -76,36 +87,9 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
             buttonLabels.add(label);
 
         }
+    }
 
-        // Use a black background
-        setBackground(Color.BLACK);
-
-        addMouseMotionListener(new MouseMotionAdapter() {
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-                int x = e.getX();
-                int y = e.getY();
-
-                // Use a for loop to check if the mouse is within the bounds of a button
-                for (int i = 0; i < buttonLabels.size(); i++) {
-
-                    JLabel button = buttonLabels.get(i);
-
-                    // Get the bounds of the button
-                    Rectangle bounds = button.getBounds();
-
-                    // Check if the mouse is within the bounds of the button
-                    if (bounds.contains(x, y)) {
-                        button.setForeground(Color.YELLOW);
-                    } else {
-                        button.setForeground(Color.WHITE);
-                    }
-                }
-            }
-        });
-
+    private void addClickListener() {
         addMouseListener(new MouseAdapter() {
 
             // Add a check for mouse clicks
@@ -133,6 +117,34 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                 }
             }
 
+        });
+    }
+
+    private void addMotionListener() {
+        addMouseMotionListener(new MouseMotionAdapter() {
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+                int x = e.getX();
+                int y = e.getY();
+
+                // Use a for loop to check if the mouse is within the bounds of a button
+                for (int i = 0; i < buttonLabels.size(); i++) {
+
+                    JLabel button = buttonLabels.get(i);
+
+                    // Get the bounds of the button
+                    Rectangle bounds = button.getBounds();
+
+                    // Check if the mouse is within the bounds of the button
+                    if (bounds.contains(x, y)) {
+                        button.setForeground(Color.YELLOW);
+                    } else {
+                        button.setForeground(Color.WHITE);
+                    }
+                }
+            }
         });
     }
 

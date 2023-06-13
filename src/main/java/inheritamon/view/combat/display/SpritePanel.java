@@ -75,7 +75,6 @@ public class SpritePanel extends JPanel {
 
     }
 
-    // Useful for the player since they can switch pokemon
     private void setRequiredImage(String pokemon) {
 
         // If the type is enemy, simply get the front image.
