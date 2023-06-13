@@ -1,9 +1,10 @@
 package inheritamon.model.pokemon;
 
 import java.util.ArrayList;
-import java.io.Serializable;
 
 import inheritamon.model.pokemon.types.PlayerPokemon;
+
+import java.io.Serializable;
 
 /**
  * @author Jeremias

@@ -1,12 +1,11 @@
 package inheritamon.model;
 
-import inheritamon.model.pokemon.types.*;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import inheritamon.model.data.DataHandler;
+import inheritamon.model.pokemon.types.*;
 
 /**
  * @author Jeremias

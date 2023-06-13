@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 
 import inheritamon.model.pokemon.moves.*;
+
 import java.awt.image.*;
 import java.io.*;
 import java.net.*;

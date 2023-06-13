@@ -2,7 +2,6 @@ package inheritamon.model.pokemon.moves;
 
 import java.util.HashMap;
 import inheritamon.model.data.DataHandler;
-
 import inheritamon.model.pokemon.types.Pokemon;
 
 /**
