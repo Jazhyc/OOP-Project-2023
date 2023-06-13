@@ -2,9 +2,6 @@ package inheritamon.model.world.assets;
 
 import inheritamon.model.data.DataHandler;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-
 public class ObjectKey extends SuperObject{
     public ObjectKey() {
         name = "Key";

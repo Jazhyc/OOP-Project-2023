@@ -41,10 +41,6 @@ public class Inventory implements Serializable {
         return size;
     }
 
-    private void setSize(int newSize) {
-        size = newSize;
-    }
-
     public void addItem(Item item) {
         inventory.add(item);
     }

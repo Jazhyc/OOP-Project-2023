@@ -1,5 +1,4 @@
 package inheritamon.model.world.assets;
-import inheritamon.view.world.GamePanel;
 import inheritamon.view.world.WorldPanel;
 
 import java.awt.*;
