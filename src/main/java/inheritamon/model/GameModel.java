@@ -80,6 +80,7 @@ public class GameModel {
         }
 
         notifyGameStateListeners(GameState.GAME_START);
+        notifyRosterListener();
 
         // Load world later
     }

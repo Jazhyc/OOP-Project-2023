@@ -31,42 +31,42 @@ public class TileManager {
         DataHandler dh = DataHandler.getInstance();
         GameModel gm = GameModel.getInstance();
 
-        tile[0] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
+        tile[0] = new Tile(dh.getTileImage("GrassTile"), false, false, "PASS");
 
         tile[1] = new Tile(dh.getTileImage("ShallowWaterTile"), true, false, "SWIMMER");
 
         tile[2] = new Tile(dh.getTileImage("RockTile"), true, false, "CLIMBER");
 
-        tile[3] = new Tile(dh.getTileImage("SandTile"), false, false, "classic");
+        tile[3] = new Tile(dh.getTileImage("SandTile"), false, false, "PASS");
 
-        tile[4] = new Tile(dh.getTileImage("TreeTile"), true, false, "opaque");
+        tile[4] = new Tile(dh.getTileImage("TreeTile"), true, false, "NotPass");
 
-        tile[5] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
+        tile[5] = new Tile(dh.getTileImage("GrassTile"), false, false, "PASS");
 
-        tile[6] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
+        tile[6] = new Tile(dh.getTileImage("GrassTile"), false, false, "PASS");
 
-        tile[7] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
+        tile[7] = new Tile(dh.getTileImage("GrassTile"), false, false, "PASS");
 
         tile[8] = new Tile(dh.getTileImage("WaterTile2"), true, false, "SWIMMER");
 
-        tile[9] = new Tile(dh.getTileImage("WorldBorder"), true, false, "opaque");
+        tile[9] = new Tile(dh.getTileImage("WorldBorder"), true, false, "NotPass");
 
-        tile[10] = new Tile(dh.getTileImage("FloorTile"), false, false, "classic");
+        tile[10] = new Tile(dh.getTileImage("FloorTile"), false, false, "PASS");
 
-        tile[11] = new Tile(dh.getTileImage("WallTile"), true, false, "opaque");
+        tile[11] = new Tile(dh.getTileImage("WallTile"), true, false, "NotPass");
 
         // 27 due to a problem with the map maker
-        tile[12] = new Tile(dh.getTileImage("Enemy"), true, true, "opaque") {
+        tile[12] = new Tile(dh.getTileImage("Enemy"), true, true, "NotPass") {
             @Override
             public void interact() {
                 gm.startPokemonBattle("random");
             }
         };
 
-        tile[13] = new Tile(dh.getTileImage("RestoreCenter"), true, true, "classic") {
+        tile[13] = new Tile(dh.getTileImage("RestoreCenter"), true, true, "NotPass") {
             @Override
             public void interact() {
-                gm.revitalizePokemon();;
+                gm.revitalizePokemon();
             }
         };
         
