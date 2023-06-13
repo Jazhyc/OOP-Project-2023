@@ -27,4 +27,8 @@ public class Tile {
         return canInteract;
     }
 
+    public String getType() {
+        return type;
+    }
+
 }
