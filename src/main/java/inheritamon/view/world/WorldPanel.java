@@ -1,10 +1,12 @@
 package inheritamon.view.world;
 
+import inheritamon.model.PlayerData;
 import inheritamon.model.tile.*;
 import inheritamon.view.world.sidebar.SidePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class WorldPanel extends JLayeredPane implements Runnable { // has all the function of the JPanel
 
@@ -35,7 +37,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     int playerY = 100;
     int playerSpeed = 4;
 
-    public WorldPanel(SidePanel sidePanel) {
+    public WorldPanel(SidePanel sidePanel, ArrayList<PlayerData.TrainerAbility> abilities) {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -44,7 +46,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         this.requestFocus();
 
         tileM = new TileManager(this);
-        cChecker = new CollisionChecker(tileM);
+        cChecker = new CollisionChecker(tileM, abilities);
         keyH = new PlayerKeyHandler(this, sidePanel, cChecker);
         player = new Player(this, keyH);
         cChecker.setPlayer(player);
