@@ -1,5 +1,7 @@
 Name,MaxHP,MaxMP,Atk,Def,Agi,Acc,M.Atk,M.Def,Level,EXP,MoveSet,Loot,Coins
-Groudon,40,10,120,20,8,600,50,15,5,500,Punch;Kick;Heal;Earth Quake,Inheritaball,200
+Groudon,60,10,60,20,8,600,40,15,5,500,Punch;Kick;Heal;Earth Quake,Inheritaball,200
 Charizard,20,10,12,12,8,6,9,8,5,500,Punch;Kick;Heal;Burn,Potion,50
 Blastoise,20,10,12,10,8,6,9,10,5,500,Punch;Kick;Heal;Squirt,Potion,50
 Sceptile,15,10,12,5,20,6,9,3,5,500,Punch;Kick;Heal;Razor Leaf,Inheritaball,50
+Kyogre,40,30,40,15,8,600,100,20,5,500,Punch;Kick;Heal;Tsunami,Inheritaball,200
+Mewtwo,200,50,70,30,8,600,70,30,5,500,Punch;Kick;Heal;Obliterate,Inheritaball,200
