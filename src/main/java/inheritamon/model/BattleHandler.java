@@ -278,7 +278,10 @@ public class BattleHandler {
         Item item = playerInventory.getItem(itemToUse);
 
         // Use the item
-        item.useItem(enemyPokemon, playerPokemon);
+        if (item.useItem(enemyPokemon, playerPokemon, playerRoster) == true) {
+            // End the battle
+            enemyPokemon.killPokemon;
+        }
 
         // Remove the item from the inventory
         playerInventory.removeItem(itemToUse);

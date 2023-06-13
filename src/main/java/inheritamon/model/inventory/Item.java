@@ -2,6 +2,8 @@ package inheritamon.model.inventory;
 
 import java.util.HashMap;
 import java.io.Serializable;
+
+import inheritamon.model.data.DataHandler;
 import inheritamon.model.pokemon.types.*;
 
 /**
@@ -23,20 +25,40 @@ public class Item implements Serializable {
         return itemSprite;
     }
 
+    private String itemType;
+
+    private int itemAmount;
+
     public Item(HashMap<String, String> itemData) {
         itemName = itemData.get("Name");
         itemDescription = itemData.get("Description");
         itemSprite = itemData.get("Sprite");
+        itemType = itemData.get("Type");
+        itemAmount = Integer.parseInt(itemData.get("Amount"));
     }
 
     /**
      * Method that uses an item on a pokemon
+     *
      * @param enemyPokemon
      * @param playerPokemon
+     * @param playerRoster
      * @return
      */
-    public int useItem(Pokemon enemyPokemon, Pokemon playerPokemon) {
-        return 0;
+    public boolean useItem(Pokemon enemyPokemon, Pokemon playerPokemon, PlayerRoster playerRoster) {
+        if (itemType.equals("Healing")) {
+            playerPokemon.gainHP(itemAmount);
+        }
+        if (itemType.equals("Pokeball")) {
+            // check if succeeds (enemy has taken damage)
+            DataHandler dh = DataHandler.getInstance();
+            if (enemyPokemon.getHP() < enemyPokemon.getNumericalStat("MaxHp")) {
+                // add pokemon to player roster
+                PlayerPokemon newPokemon = new PlayerPokemon(dh.getPokemonData(enemyPokemon.getName()));
+                playerRoster.addPokemon(newPokemon);
+                return true;
+            }
+        }
+        return false;
     }
-
 }

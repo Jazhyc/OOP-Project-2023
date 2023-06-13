@@ -76,7 +76,6 @@ public class ItemsPanel extends JPanel {
                         public void mouseClicked(MouseEvent e) {
                             soundHandler.playSound("select");
                             battleController.selectItem(selectionIndex);
-
                         }
                     });
 
