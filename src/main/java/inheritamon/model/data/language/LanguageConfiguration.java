@@ -30,7 +30,7 @@ public class LanguageConfiguration {
     /**
      * Enum to represent the languages that the game can be in
      */
-    public enum Language {
+    public static enum Language {
         EN, NL
     }
 
