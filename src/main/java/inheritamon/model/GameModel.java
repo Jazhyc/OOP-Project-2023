@@ -96,10 +96,6 @@ public class GameModel {
         notifyRosterListener();
     }
 
-    public ArrayList<PlayerData.TrainerAbility> getTrainerAbilities() {
-        return playerData.getAbilities();
-    }
-
     /**
      * Adds a listener to the game state listeners which will be notified when the
      * game state changes
@@ -155,7 +151,6 @@ public class GameModel {
     private void setUpBattleStateListener() {
         battleHandler.addListener("battleState", e -> {
 
-            // Implement more functionality later
             notifyRosterListener();
 
         });
@@ -188,7 +183,6 @@ public class GameModel {
         String randomPokemonName = pokemon[(int) (Math.random() * pokemon.length)];
         Pokemon randomPokemon;
 
-        // Depending on the type, create a pokemon of that type
         switch (type) {
             case "attrition":
                 randomPokemon = new AttritionPokemon(dataHandler.getPokemonData(randomPokemonName));
