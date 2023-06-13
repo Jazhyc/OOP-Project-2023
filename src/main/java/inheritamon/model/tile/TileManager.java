@@ -33,9 +33,9 @@ public class TileManager {
 
         tile[0] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
 
-        tile[1] = new Tile(dh.getTileImage("ShallowWaterTile"), true, false, "water");
+        tile[1] = new Tile(dh.getTileImage("ShallowWaterTile"), true, false, "SWIMMER");
 
-        tile[2] = new Tile(dh.getTileImage("RockTile"), true, false, "rock");
+        tile[2] = new Tile(dh.getTileImage("RockTile"), true, false, "CLIMBER");
 
         tile[3] = new Tile(dh.getTileImage("SandTile"), false, false, "classic");
 
@@ -47,7 +47,7 @@ public class TileManager {
 
         tile[7] = new Tile(dh.getTileImage("GrassTile"), false, false, "classic");
 
-        tile[8] = new Tile(dh.getTileImage("WaterTile2"), true, false, "water");
+        tile[8] = new Tile(dh.getTileImage("WaterTile2"), true, false, "SWIMMER");
 
         tile[9] = new Tile(dh.getTileImage("WorldBorder"), true, false, "opaque");
 

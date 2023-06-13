@@ -1,8 +1,11 @@
 package inheritamon.view.world;
 
-import inheritamon.model.PlayerData;
+import java.util.ArrayList;
+
+import inheritamon.model.GameModel;
 import inheritamon.model.entity.*;
 import inheritamon.model.tile.TileManager;
+import inheritamon.model.PlayerData;
 
 public class CollisionChecker {
 
@@ -12,7 +15,6 @@ public class CollisionChecker {
     private int tileSize = 48;
 
     public CollisionChecker(TileManager tileM, WorldPanel gp) {
-
         this.tileM = tileM;
         this.gp = gp;
     }
@@ -89,6 +91,9 @@ public class CollisionChecker {
 
     public void checkTile(Entity entity){
 
+        PlayerData playerData = GameModel.getInstance().getPlayerData();
+        ArrayList<PlayerData.TrainerAbility> abilities = playerData.getAbilities();
+
         int entityLeftWorldX = entity.worldX + entity.collisionArea.x;
         int entityRightWorldX = entity.worldX + entity.collisionArea.x + entity.collisionArea.width;
         int entityTopWorldY = entity.worldY + entity.collisionArea.y;
@@ -107,7 +112,14 @@ public class CollisionChecker {
                 tileNum1 = tileM.mapTileNum[entityLeftCol][entityTopRow];
                 tileNum2 = tileM.mapTileNum[entityRightCol][entityTopRow];
                 if(tileM.tile[tileNum1].collision == true || tileM.tile[tileNum2].collision == true) {
-                    entity.collisionOn = true;
+
+                    // Set collision to true unless the player has the required ability
+                    if (tileM.tile[tileNum1].canPass(abilities) || tileM.tile[tileNum2].canPass(abilities)) {
+                        entity.collisionOn = false;
+                    } else {
+                        entity.collisionOn = true;
+                    }
+
                 }
                 break;
             case "down":
@@ -115,7 +127,11 @@ public class CollisionChecker {
                 tileNum1 = tileM.mapTileNum[entityLeftCol][entityBottomRow];
                 tileNum2 = tileM.mapTileNum[entityRightCol][entityBottomRow];
                 if(tileM.tile[tileNum1].collision == true || tileM.tile[tileNum2].collision == true) {
-                    entity.collisionOn = true;
+                    if (tileM.tile[tileNum1].canPass(abilities) || tileM.tile[tileNum2].canPass(abilities)) {
+                        entity.collisionOn = false;
+                    } else {
+                        entity.collisionOn = true;
+                    }
                 }
                 break;
             case "left":
@@ -123,7 +139,11 @@ public class CollisionChecker {
                 tileNum1 = tileM.mapTileNum[entityLeftCol][entityTopRow];
                 tileNum2 = tileM.mapTileNum[entityLeftCol][entityBottomRow];
                 if(tileM.tile[tileNum1].collision == true || tileM.tile[tileNum2].collision == true) {
-                    entity.collisionOn = true;
+                    if (tileM.tile[tileNum1].canPass(abilities) || tileM.tile[tileNum2].canPass(abilities)) {
+                        entity.collisionOn = false;
+                    } else {
+                        entity.collisionOn = true;
+                    }
                 }
                 break;
             case "right":
@@ -131,7 +151,11 @@ public class CollisionChecker {
                 tileNum1 = tileM.mapTileNum[entityRightCol][entityTopRow];
                 tileNum2 = tileM.mapTileNum[entityRightCol][entityBottomRow];
                 if(tileM.tile[tileNum1].collision == true || tileM.tile[tileNum2].collision == true) {
-                    entity.collisionOn = true;
+                    if (tileM.tile[tileNum1].canPass(abilities) || tileM.tile[tileNum2].canPass(abilities)) {
+                        entity.collisionOn = false;
+                    } else {
+                        entity.collisionOn = true;
+                    }
                 }
                 break;
         }

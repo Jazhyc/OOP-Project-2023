@@ -94,4 +94,14 @@ public class PlayerData implements Serializable {
 
     }
 
+    /**
+     * Checks if the player has a certain ability
+     * 
+     * @param ability The ability to check
+     * @return True if the player has the ability, false otherwise
+     */
+    public boolean hasAbility(TrainerAbility ability) {
+        return abilities.contains(ability);
+    }
+
 }

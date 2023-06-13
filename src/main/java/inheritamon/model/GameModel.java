@@ -204,4 +204,13 @@ public class GameModel {
         battleHandler.startBattle(playerData, randomPokemon);
     }
 
+    /**
+     * Returns the player data
+     * 
+     * @return The player data
+     */
+    public PlayerData getPlayerData() {
+        return playerData;
+    }
+
 }

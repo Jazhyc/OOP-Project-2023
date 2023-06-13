@@ -1,6 +1,9 @@
 package inheritamon.model.tile;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import inheritamon.model.PlayerData.TrainerAbility;
 
 // This needs to be encapsulated in a class
 // No publics attributes
@@ -29,6 +32,19 @@ public class Tile {
 
     public String getType() {
         return type;
+    }
+
+    public boolean canPass(ArrayList<TrainerAbility> abilities) {
+        
+        // Check if the ability matches the tile type
+        for (TrainerAbility ability : abilities) {
+            if (ability.toString().equals(type)) {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
 }
