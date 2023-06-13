@@ -280,7 +280,7 @@ public class BattleHandler {
         // Use the item
         if (item.useItem(enemyPokemon, playerPokemon, playerRoster) == true) {
             // End the battle
-            enemyPokemon.killPokemon;
+            enemyPokemon.killPokemon();
         }
 
         // Remove the item from the inventory
