@@ -1,8 +1,8 @@
 Name,Modifier,Description,Type,Cost,EN,NL
 Punch,1,A basic punch,Physical,0,Punch,Stoot
-Kick,1,A basic kick,Physical,0,Kick,Schop
+Kick,2,A basic kick,Physical,2,Kick,Schop
 Heal,1,Heal yourself,Healing,3,Heal,Genees
-Burn,2,Burn your opponent,Magical,5,Burn,Brand
-Squirt,2,Squirt water at your opponent,Magical,5,Squirt,Spuit
-Razor Leaf,2,Attack your opponent with leaves,Magical,5,Razor Leaf,Razierblad
-Earth Quake,3,Attack your opponent with an earthquake,Magical,5,Earth Quake,Aardbeving
+Burn,2,Burn your opponent,Magical,3,Burn,Brand
+Squirt,2,Squirt water at your opponent,Magical,3,Squirt,Spuit
+Razor Leaf,2,Attack your opponent with leaves,Magical,3,Razor Leaf,Razierblad
+Earth Quake,3,Attack your opponent with an earthquake,Magical,3,Earth Quake,Aardbeving
