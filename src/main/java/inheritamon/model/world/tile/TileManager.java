@@ -1,4 +1,4 @@
-package inheritamon.model.tile;
+package inheritamon.model.world.tile;
 
 import inheritamon.model.GameModel;
 import inheritamon.model.data.DataHandler;

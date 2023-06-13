@@ -1,4 +1,4 @@
-package inheritamon.model.tile;
+package inheritamon.model.world.tile;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

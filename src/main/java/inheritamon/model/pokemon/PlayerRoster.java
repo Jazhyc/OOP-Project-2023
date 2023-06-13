@@ -1,4 +1,4 @@
-package inheritamon.model.inventory;
+package inheritamon.model.pokemon;
 
 import java.util.ArrayList;
 import java.io.Serializable;

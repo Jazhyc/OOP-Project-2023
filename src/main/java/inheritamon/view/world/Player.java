@@ -1,7 +1,8 @@
 package inheritamon.view.world;
 
-import inheritamon.model.entity.Entity;
 import inheritamon.model.data.DataHandler;
+import inheritamon.model.world.entity.Entity;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

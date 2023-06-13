@@ -1,9 +1,8 @@
 package inheritamon.view.world;
 
-import inheritamon.model.tile.*;
+import inheritamon.model.world.assets.*;
+import inheritamon.model.world.tile.*;
 import inheritamon.view.world.sidebar.SidePanel;
-import inheritamon.model.assets.AssetSetter;
-import inheritamon.model.assets.*;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package inheritamon.model.assets;
+package inheritamon.model.world.assets;
 
 import inheritamon.model.data.DataHandler;
 

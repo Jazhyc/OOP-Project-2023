@@ -3,8 +3,8 @@ package inheritamon.view.world;
 import java.util.ArrayList;
 
 import inheritamon.model.GameModel;
-import inheritamon.model.entity.*;
-import inheritamon.model.tile.TileManager;
+import inheritamon.model.world.entity.*;
+import inheritamon.model.world.tile.TileManager;
 import inheritamon.model.PlayerData;
 
 public class CollisionChecker {

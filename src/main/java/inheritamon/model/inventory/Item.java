@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.io.Serializable;
 
 import inheritamon.model.data.DataHandler;
+import inheritamon.model.pokemon.PlayerRoster;
 import inheritamon.model.pokemon.types.*;
 
 /**

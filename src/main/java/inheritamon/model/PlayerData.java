@@ -2,6 +2,7 @@ package inheritamon.model;
 
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.inventory.*;
+import inheritamon.model.pokemon.PlayerRoster;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 
 import java.io.Serializable;

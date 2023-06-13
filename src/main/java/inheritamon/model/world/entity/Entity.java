@@ -1,4 +1,4 @@
-package inheritamon.model.entity;
+package inheritamon.model.world.entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

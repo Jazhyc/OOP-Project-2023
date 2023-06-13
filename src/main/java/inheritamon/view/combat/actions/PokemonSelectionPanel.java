@@ -3,7 +3,7 @@ package inheritamon.view.combat.actions;
 import inheritamon.controller.*;
 import inheritamon.model.*;
 import inheritamon.model.data.DataHandler;
-import inheritamon.model.inventory.PlayerRoster;
+import inheritamon.model.pokemon.PlayerRoster;
 import inheritamon.model.pokemon.types.*;
 import inheritamon.view.SoundHandler;
 
