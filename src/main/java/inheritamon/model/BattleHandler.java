@@ -93,10 +93,7 @@ public class BattleHandler {
 
             // Check if the ability is Run
             if (ability.equals("Run")) {
-                formattedString = String.format(config.getText("Run"));
-                notifyDialogueListener(formattedString);
-                wait(WAIT_TIME);
-                notifyBattleStateListener("Draw");
+                handleRun(config);
                 return;
             }
 
@@ -108,7 +105,6 @@ public class BattleHandler {
 
             // Checked if the ability returned starts with switch
             if (ability.startsWith("switch")) {
-
                 getPokemonToSwitchTo(playerRoster, enemyPokemon, ability);
                 continue;
             }
@@ -143,6 +139,14 @@ public class BattleHandler {
 
         conclusion = determineConclusion(playerRoster, enemyPokemon);
         notifyBattleStateListener(conclusion);
+    }
+
+    private void handleRun(LanguageConfiguration config) {
+        String formattedString;
+        formattedString = String.format(config.getText("Run"));
+        notifyDialogueListener(formattedString);
+        wait(WAIT_TIME);
+        notifyBattleStateListener("Draw");
     }
 
     private void setUpBattle(PlayerData playerData, Pokemon enemyPokemon, LanguageConfiguration config) {

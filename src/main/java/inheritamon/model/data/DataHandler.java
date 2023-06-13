@@ -129,6 +129,8 @@ public class DataHandler {
     // Images are obtained from Pokemon
     private void loadCharacterImages() {
 
+        System.out.println(characterData.keySet());
+
         try {
             // Go through all the keys in the characterData HashMap and load the images
             for (String characterName : characterData.keySet()) {
