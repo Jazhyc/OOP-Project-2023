@@ -14,7 +14,10 @@ import java.lang.reflect.*;
  */
 public class StatsPanel extends JPanel {
 
-    // Set default values to represent a full bar
+    private final int DURATION = 30;
+    private final int BAR_OFFSET = 10;
+    private final int REFRESH_RATE = 10;
+    
     private float HPRatio = 1;
     private float MPRatio = 1;
 
@@ -67,8 +70,8 @@ public class StatsPanel extends JPanel {
         // Add labels HP and MP to the bars
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("HP", hpBarCenterX + 10, centerY - BAR_HEIGHT + Y_OFFSET + LABEL_OFFSET);
-        g.drawString("MP", mpBarCenterX + 10, centerY + Y_OFFSET + LABEL_OFFSET);
+        g.drawString("HP", hpBarCenterX + BAR_OFFSET, centerY - BAR_HEIGHT + Y_OFFSET + LABEL_OFFSET);
+        g.drawString("MP", mpBarCenterX + BAR_OFFSET, centerY + Y_OFFSET + LABEL_OFFSET);
 
     }
 
@@ -91,8 +94,8 @@ public class StatsPanel extends JPanel {
                 float newMPRatio = Math.max((float) stats[2] / stats[3], 0);
 
                 // Tween the values
-                tweenValue(HPRatio, newHPRatio, 30, "HPRatio");
-                tweenValue(MPRatio, newMPRatio, 30, "MPRatio");
+                tweenValue(HPRatio, newHPRatio, DURATION, "HPRatio");
+                tweenValue(MPRatio, newMPRatio, DURATION, "MPRatio");
 
                 // Repaint the panel
                 revalidate();
@@ -120,7 +123,7 @@ public class StatsPanel extends JPanel {
         float changePerMoment = difference / duration;
 
         // Create a new timer to tween the value
-        Timer timer = new Timer(1, null);
+        Timer timer = new Timer(REFRESH_RATE, null);
         timer.addActionListener(new ActionListener() {
             float incrementValue = oldValue;
             int elapsed = 0;
