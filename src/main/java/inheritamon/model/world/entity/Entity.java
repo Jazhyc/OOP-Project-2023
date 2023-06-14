@@ -3,6 +3,9 @@ package inheritamon.model.world.entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Stanislav
+ */
 public class Entity {
     public int worldX, worldY;
     public int speed;

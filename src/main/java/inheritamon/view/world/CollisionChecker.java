@@ -7,6 +7,9 @@ import inheritamon.model.world.entity.*;
 import inheritamon.model.world.tile.TileManager;
 import inheritamon.model.PlayerData;
 
+/**
+ * @author Stanislav
+ */
 public class CollisionChecker {
 
     private WorldPanel gp;

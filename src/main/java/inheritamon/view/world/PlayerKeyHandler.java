@@ -8,6 +8,10 @@ import inheritamon.view.world.sidebar.SidePanel;
 import java.awt.event.*;
 import java.util.*;
 
+/**
+ * @author Jeremias
+ * This class is responsible for handling the key presses of the player.
+ */
 public class PlayerKeyHandler {
 
     private boolean upPressed;
@@ -19,6 +23,12 @@ public class PlayerKeyHandler {
     private SoundHandler soundHandler;
     private CollisionChecker cChecker;
 
+    /**
+     * Constructor for the PlayerKeyHandler
+     * @param component The component to which the key handler is added
+     * @param sidePanel The side panel
+     * @param cChecker The collision checker
+     */
     public PlayerKeyHandler(JComponent component, SidePanel sidePanel, CollisionChecker cChecker) {
         InputMap inputMap = component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = component.getActionMap();

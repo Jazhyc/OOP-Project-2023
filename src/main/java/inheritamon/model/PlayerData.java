@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
+ * @author Jeremias, Bernard
  * Class that holds all the data of the player
  * Will either be loaded from a save file or created from scratch
  */

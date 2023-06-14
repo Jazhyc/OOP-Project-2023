@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 import inheritamon.model.PlayerData.TrainerAbility;
 
-// This needs to be encapsulated in a class
-// No publics attributes
+/**
+ * @author Stanislav
+ */
 public class Tile {
 
     public BufferedImage image;

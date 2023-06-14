@@ -7,6 +7,9 @@ import java.awt.image.*;
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.data.language.*;
 
+/**
+ * @author Bernard
+ */
 public class ClassDisplayPanel extends JPanel
         implements LanguageChangeListener {
 

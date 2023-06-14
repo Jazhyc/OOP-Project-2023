@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 /**
+ * @author Bernard
  * Class that splits into 3 panels for the player to choose their starter
  */
 public class ClassSelectionPanel extends JPanel {

@@ -7,6 +7,9 @@ import inheritamon.view.world.sidebar.SidePanel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Stanislav
+ */
 public class WorldPanel extends JLayeredPane implements Runnable { // has all the function of the JPanel
 
     // screen settings

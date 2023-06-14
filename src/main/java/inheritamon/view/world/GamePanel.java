@@ -21,8 +21,11 @@ public class GamePanel extends JPanel {
     SidePanel sidePanel;
     PokemonDataPanel pokemonDataPanel;
 
-    // ArrayList<PlayerData.TrainerAbility> abilities;
-
+    /**
+     * Constructor for the GamePanel class
+     * @param battleController The battle controller
+     * @param gameModel The game model
+     */
     public GamePanel(GameController battleController, GameModel gameModel) {
 
         int screenWidth = Main.SCREEN_WIDTH;

@@ -2,6 +2,9 @@ package inheritamon.model.world.assets;
 
 import inheritamon.model.data.DataHandler;
 
+/**
+ * @author Stanislav
+ */
 public class ObjectDoor extends SuperObject {
 
     public ObjectDoor() {

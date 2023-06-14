@@ -4,6 +4,9 @@ import inheritamon.view.world.WorldPanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Stanislav
+ */
 public class SuperObject {
     public BufferedImage image;
     public String name;

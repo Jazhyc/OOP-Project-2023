@@ -2,7 +2,9 @@ package inheritamon.model.world.assets;
 
 import inheritamon.view.world.WorldPanel;
 
-
+/**
+ * @author Stanislav
+ */
 public class AssetSetter {
     WorldPanel gp;
 
