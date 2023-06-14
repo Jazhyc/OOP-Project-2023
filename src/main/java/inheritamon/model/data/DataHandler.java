@@ -1,15 +1,25 @@
 package inheritamon.model.data;
 
-import java.util.*;
+import inheritamon.model.pokemon.moves.NormalAbility;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.*;
-
-import inheritamon.model.pokemon.moves.*;
-
-import java.awt.image.*;
-import java.io.*;
-import java.net.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * @author Jeremias
@@ -19,84 +29,69 @@ import java.net.*;
  */
 public final class DataHandler {
 
+    // Singleton pattern
+    private static DataHandler dataHandler;
     /**
      * Details regarding the parameters of each character like defense, attack, etc.
      */
     private final HashMap<String, HashMap<String, String>> characterData =
-            new HashMap<String, HashMap<String, String>>();
-
+            new HashMap<>();
     /**
      * Details regarding the parameters of each move like modifier, cost, etc.
      */
     private final HashMap<String, HashMap<String, String>> moveData =
-            new HashMap<String, HashMap<String, String>>();
-
+            new HashMap<>();
     /**
      * Details regarding the parameters of each item like type, effectiveness, etc.
      */
     private final HashMap<String, HashMap<String, String>> itemData =
-            new HashMap<String, HashMap<String, String>>();
-
+            new HashMap<>();
     /**
      * The sprites for each pokemon, front and back.
      */
     private final HashMap<String, HashMap<String, BufferedImage>>
-            characterSprites =
-            new HashMap<String, HashMap<String, BufferedImage>>();
-
+            characterSprites = new HashMap<>();
     /**
      * Icons used in the menu.
      */
-    private final HashMap<String, BufferedImage> icons =
-            new HashMap<String, BufferedImage>();
-
+    private final HashMap<String, BufferedImage> icons = new HashMap<>();
     /**
      * The background images for the battles.
      */
     private final HashMap<String, BufferedImage> battleBackgrounds =
-            new HashMap<String, BufferedImage>();
-
+            new HashMap<>();
     /**
      * The tiles used in the map.
      */
-    private final HashMap<String, BufferedImage> tiles =
-            new HashMap<String, BufferedImage>();
-
+    private final HashMap<String, BufferedImage> tiles = new HashMap<>();
     /**
      * The textures for the player.
      */
     private final HashMap<String, BufferedImage> characterTextures =
-            new HashMap<String, BufferedImage>();
-
+            new HashMap<>();
     /**
      * The descriptions in each language for menu elements.
      */
     private final HashMap<String, HashMap<String, String>> languageData =
-            new HashMap<String, HashMap<String, String>>();
-
+            new HashMap<>();
     /**
      * The sprites for each item.
      */
     private final HashMap<String, BufferedImage> inventorySprites =
-            new HashMap<String, BufferedImage>();
-
+            new HashMap<>();
     /**
      * The sprites for each object on the map.
      */
     private final HashMap<String, BufferedImage> objectSprites =
-            new HashMap<String, BufferedImage>();
-
+            new HashMap<>();
     /**
      * The sounds that are played in the game.
      */
-    private final HashMap<String, AudioInputStream> sounds =
-            new HashMap<String, AudioInputStream>();
-
+    private final HashMap<String, AudioInputStream> sounds = new HashMap<>();
     /**
      * The music that is played in the game.
      */
-    private final HashMap<String, AudioInputStream> music =
-            new HashMap<String, AudioInputStream>();
+    private final HashMap<String, AudioInputStream> music = new HashMap<>();
 
     /**
      * The constructor for the DataHandler class.
@@ -104,9 +99,6 @@ public final class DataHandler {
     private DataHandler() {
         loadAllData();
     }
-
-    // Singleton pattern
-    private static DataHandler dataHandler;
 
     /**
      * Get an instance of the DataHandler class.
@@ -134,6 +126,21 @@ public final class DataHandler {
                 "-?\\d+(\\.\\d+)?"); // match a number with optional '-' and decimal.
     }
 
+    /**
+     * Converts a string of moves into an ArrayList of moves
+     *
+     * @param nonFormattedString The string of moves
+     * @return An ArrayList of moves
+     */
+    public static ArrayList<String> convertMoveSetToString(
+            String nonFormattedString) {
+
+        ArrayList<String> moveSet =
+                new ArrayList<>(Arrays.asList(nonFormattedString.split(";")));
+
+        return new ArrayList<>(moveSet);
+    }
+
     private void loadAllData() {
 
         loadData(characterData, "monster_stats.csv");
@@ -155,13 +162,11 @@ public final class DataHandler {
     private void loadData(HashMap<String, HashMap<String, String>> data,
                           String fileName) {
 
-        ArrayList<String> attributes = new ArrayList<String>();
+        ArrayList<String> attributes = new ArrayList<>();
 
         // Try with resources to automatically close the scanner
-        try (Scanner characterDataScanner = new Scanner(
-                Objects.requireNonNull(
-                        DataHandler.class.getResourceAsStream(
-                                "/" + fileName)))) {
+        try (Scanner characterDataScanner = new Scanner(Objects.requireNonNull(
+                DataHandler.class.getResourceAsStream("/" + fileName)))) {
 
             // Read the first line of the file and put the attributes into the attributes
             // ArrayList
@@ -173,8 +178,7 @@ public final class DataHandler {
             while (characterDataScanner.hasNextLine()) {
                 String line = characterDataScanner.nextLine();
                 String[] lineSplit = line.split(",");
-                HashMap<String, String> characterDataEntry =
-                        new HashMap<String, String>();
+                HashMap<String, String> characterDataEntry = new HashMap<>();
                 for (int i = 0; i < lineSplit.length; i++) {
                     characterDataEntry.put(attributes.get(i), lineSplit[i]);
                 }
@@ -198,17 +202,14 @@ public final class DataHandler {
             // Go through all the keys in the characterData HashMap and load the images
             for (String characterName : characterData.keySet()) {
                 HashMap<String, BufferedImage> characterImagesEntry =
-                        new HashMap<String, BufferedImage>();
-                characterImagesEntry.put("front",
-                        ImageIO.read(Objects.requireNonNull(
-                                DataHandler.class.getResource(
-                                        "/battleSprites/" + characterName +
-                                                ".png"))));
-                characterImagesEntry.put("back",
-                        ImageIO.read(Objects.requireNonNull(
-                                DataHandler.class.getResource(
-                                        "/battleSprites/" + characterName +
-                                                "Back.png"))));
+                        new HashMap<>();
+                characterImagesEntry.put("front", ImageIO.read(
+                        Objects.requireNonNull(DataHandler.class.getResource(
+                                "/battleSprites/" + characterName + ".png"))));
+                characterImagesEntry.put("back", ImageIO.read(
+                        Objects.requireNonNull(DataHandler.class.getResource(
+                                "/battleSprites/" + characterName +
+                                        "Back.png"))));
                 characterSprites.put(characterName, characterImagesEntry);
             }
         } catch (IOException e) {
@@ -223,10 +224,9 @@ public final class DataHandler {
 
         try {
             // Get all file names in the icons folder using File
-            File iconsFolder = new File(
-                    Objects.requireNonNull(DataHandler.class.getResource(
-                                    "/" + folderName + "/"))
-                            .toURI());
+            File iconsFolder = new File(Objects.requireNonNull(
+                            DataHandler.class.getResource("/" + folderName + "/"))
+                    .toURI());
             File[] iconFiles = iconsFolder.listFiles();
 
             // Load each icon into the icons hashmap
@@ -326,7 +326,7 @@ public final class DataHandler {
             HashMap<String, HashMap<String, String>> dataMap, String dataName,
             String dataType) {
         try {
-            return new HashMap<String, String>(dataMap.get(dataName));
+            return new HashMap<>(dataMap.get(dataName));
         } catch (NullPointerException e) {
             System.out.println(dataType + " not found");
 
@@ -381,7 +381,7 @@ public final class DataHandler {
      * @return The data of all menus
      */
     public HashMap<String, HashMap<String, String>> getLanguageData() {
-        return new HashMap<String, HashMap<String, String>>(languageData);
+        return new HashMap<>(languageData);
     }
 
     /**
@@ -391,8 +391,7 @@ public final class DataHandler {
      */
     public HashMap<String, NormalAbility> getAllAbilities() {
 
-        HashMap<String, NormalAbility> abilities =
-                new HashMap<String, NormalAbility>();
+        HashMap<String, NormalAbility> abilities = new HashMap<>();
 
         for (String moveName : moveData.keySet()) {
             HashMap<String, String> moveData = getMoveData(moveName);
@@ -400,7 +399,7 @@ public final class DataHandler {
             abilities.put(moveName, ability);
         }
 
-        return new HashMap<String, NormalAbility>(abilities);
+        return new HashMap<>(abilities);
     }
 
     /**
@@ -420,21 +419,6 @@ public final class DataHandler {
      */
     public HashMap<String, BufferedImage> getPokemonSprite(String pokemonName) {
         return characterSprites.get(pokemonName);
-    }
-
-    /**
-     * Converts a string of moves into an ArrayList of moves
-     *
-     * @param nonFormattedString The string of moves
-     * @return An ArrayList of moves
-     */
-    public static ArrayList<String> convertMoveSetToString(
-            String nonFormattedString) {
-
-        ArrayList<String> moveSet = new ArrayList<String>(
-                Arrays.asList(nonFormattedString.split(";")));
-
-        return new ArrayList<String>(moveSet);
     }
 
     /**
@@ -498,6 +482,7 @@ public final class DataHandler {
 
     /**
      * Gets the sprite of a specific object
+     *
      * @param spriteName The name of the object
      * @return The sprite of the object
      */

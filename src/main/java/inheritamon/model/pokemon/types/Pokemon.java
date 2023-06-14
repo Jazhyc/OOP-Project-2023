@@ -1,11 +1,11 @@
 package inheritamon.model.pokemon.types;
 
-import java.util.*;
-import java.awt.image.*;
-
-import java.io.Serializable;
-
 import inheritamon.model.data.DataHandler;
+
+import java.awt.image.BufferedImage;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Jeremias
@@ -34,6 +34,15 @@ public abstract class Pokemon implements Serializable {
      * Whether the pokemon has fainted or not.
      */
     private boolean hasFainted = false;
+
+    /**
+     * Constructor for the Pokemon class
+     *
+     * @param pokemonData The data of the pokemon
+     */
+    public Pokemon(HashMap<String, String> pokemonData) {
+        setUp(pokemonData);
+    }
 
     /**
      * The attack method, which takes a target as a parameter, returns a random move
@@ -72,15 +81,6 @@ public abstract class Pokemon implements Serializable {
         numericalStats.put("MP", numericalStats.get("MaxMP"));
         stringStats.put("Species", stringStats.get("Name"));
 
-    }
-
-    /**
-     * Constructor for the Pokemon class
-     *
-     * @param pokemonData The data of the pokemon
-     */
-    public Pokemon(HashMap<String, String> pokemonData) {
-        setUp(pokemonData);
     }
 
     /**
@@ -160,33 +160,6 @@ public abstract class Pokemon implements Serializable {
         numericalStats.put("HP", numericalStats.get("HP") + hp);
         if (numericalStats.get("HP") > numericalStats.get("MaxHP")) {
             numericalStats.put("HP", numericalStats.get("MaxHP"));
-        }
-    }
-
-    /**
-     * A method to lose HP, caps at 0
-     *
-     * @param hp The amount of HP to lose
-     */
-    public void loseHP(int hp) {
-        numericalStats.put("HP", numericalStats.get("HP") - hp);
-        if (numericalStats.get("HP") < 0) {
-            numericalStats.put("HP", 0);
-        }
-    }
-
-    /**
-     * A method to gain MP, caps at max MP
-     *
-     * @param mp The amount of MP to gain
-     */
-    public void gainMP(int mp) {
-
-        System.out.println(stringStats.get("Name") + " gained " + mp + " MP!");
-
-        numericalStats.put("MP", numericalStats.get("MP") + mp);
-        if (numericalStats.get("MP") > numericalStats.get("MaxMP")) {
-            numericalStats.put("MP", numericalStats.get("MaxMP"));
         }
     }
 
