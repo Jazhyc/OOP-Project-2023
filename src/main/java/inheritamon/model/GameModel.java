@@ -37,12 +37,15 @@ public class GameModel {
     /**
      * Enum to represent the states that the game can be in
      */
-    public static enum GameState {
-        SELECT_STARTER, GAME_START, BATTLE, MAIN_MENU
+    public enum GameState {
+        SELECT_STARTER, GAME_START, MAIN_MENU
     }
 
-    private ArrayList<PropertyChangeListener> gameStateListeners =
-            new ArrayList<PropertyChangeListener>();
+    /**
+     * Listeners for the current game state
+     */
+    private final ArrayList<PropertyChangeListener> gameStateListeners =
+            new ArrayList<>();
     private PropertyChangeListener rosterListener;
 
     /**
@@ -56,7 +59,7 @@ public class GameModel {
     }
 
     /**
-     * Creates a a new player and notifies the listeners that the game state has
+     * Creates a new player and notifies the listeners that the game state has
      * changed
      */
     public void startNewGame() {
@@ -153,11 +156,7 @@ public class GameModel {
     }
 
     private void setUpBattleStateListener() {
-        battleHandler.addListener("battleState", e -> {
-
-            notifyRosterListener();
-
-        });
+        battleHandler.addListener("battleState", e -> notifyRosterListener());
     }
 
     /**
@@ -181,27 +180,19 @@ public class GameModel {
             return;
         }
 
-        String pokemon[] = dataHandler.getPokemonNames();
+        String[] pokemon = dataHandler.getPokemonNames();
 
         // Get a random pokemon as a string
         String randomPokemonName =
                 pokemon[(int) (Math.random() * pokemon.length)];
-        Pokemon randomPokemon;
-
-        switch (type) {
-            case "attrition":
-                randomPokemon = new AttritionPokemon(
-                        dataHandler.getPokemonData(randomPokemonName));
-                break;
-            case "reckless":
-                randomPokemon = new RecklessPokemon(
-                        dataHandler.getPokemonData(randomPokemonName));
-                break;
-            default:
-                randomPokemon = new RandomPokemon(
-                        dataHandler.getPokemonData(randomPokemonName));
-                break;
-        }
+        Pokemon randomPokemon = switch (type) {
+            case "attrition" -> new AttritionPokemon(
+                    dataHandler.getPokemonData(randomPokemonName));
+            case "reckless" -> new RecklessPokemon(
+                    dataHandler.getPokemonData(randomPokemonName));
+            default -> new RandomPokemon(
+                    dataHandler.getPokemonData(randomPokemonName));
+        };
 
         battleHandler.startBattle(playerData, randomPokemon);
     }

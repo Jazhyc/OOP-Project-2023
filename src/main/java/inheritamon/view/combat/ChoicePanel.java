@@ -22,19 +22,21 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
     private final int RUN_INDEX = 3;
     private final int NUMBER_OF_LABELS = 4;
-    JLabel labels[] = new JLabel[NUMBER_OF_LABELS];
-    JLabel icons[] = new JLabel[NUMBER_OF_LABELS];
+    JLabel[] labels = new JLabel[NUMBER_OF_LABELS];
+    JLabel[] icons = new JLabel[NUMBER_OF_LABELS];
 
-    private BufferedImage backgroundImage;
-    private SoundHandler soundHandler;
+    /**
+     * The background image of the menu
+     */
+    private final BufferedImage backgroundImage;
+
+    /**
+     * The sound handler for playing sounds
+     */
+    private final SoundHandler soundHandler;
 
     // Create an array for storing the name of the buttons
-    String buttonNames[];
-    private final int BUTTON_WIDTH = 40;
-
-    private String[] buttonIconNames = {"Fight", "Items", "Pokemon", "Run"};
-    private HashMap<String, BufferedImage> buttonIcons =
-            new HashMap<String, BufferedImage>();
+    String[] buttonNames;
 
     // Icons obtained from
     // <a href="https://www.flaticon.com/free-icons/fight" title="fight icons">Fight
@@ -61,7 +63,8 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
 
         // Use a grid bag layout for maximum customization
         setLayout(new GridBagLayout());
-        buttonIcons = DataHandler.getInstance().getIcons();
+        HashMap<String, BufferedImage> buttonIcons =
+                DataHandler.getInstance().getIcons();
 
         // Put 4 buttons in the array and make them occupy the whole width
         for (int i = 0; i < NUMBER_OF_LABELS; i++) {
@@ -69,9 +72,11 @@ public class ChoicePanel extends JPanel implements LanguageChangeListener {
             labels[i] = new JLabel(buttonNames[i]);
             // Add the image before the button
             // Resize the image to 50x50
+            String[] buttonIconNames = {"Fight", "Items", "Pokemon", "Run"};
             BufferedImage icon = buttonIcons.get(buttonIconNames[i]);
+            int buttonSize = 40;
             Image scaledIcon =
-                    icon.getScaledInstance(BUTTON_WIDTH, BUTTON_WIDTH,
+                    icon.getScaledInstance(buttonSize, buttonSize,
                             Image.SCALE_SMOOTH);
 
             addJLabel(i);

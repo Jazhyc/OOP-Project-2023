@@ -19,25 +19,37 @@ import inheritamon.model.pokemon.types.*;
  */
 public class BattleHandler {
 
-    private HashMap<String, NormalAbility> moveData;
+    /**
+     * An Hashmap of all the moves as ability objects
+     */
+    private final HashMap<String, NormalAbility> moveData;
 
     private PropertyChangeListener moveListener;
     private PropertyChangeListener dialogueListener;
     private PropertyChangeListener playerRosterListener;
     private PropertyChangeListener inventoryListener;
+
+    /**
+     * The time to wait between each turn
+     */
     private final int WAIT_TIME = 1000;
 
-    // Create an array of 2 for the statListeners
-    // We use a constant size to distinguish between the player and enemy pokemon
-    private PropertyChangeListener[] statListeners =
+    /**
+     * Listeners for notifying the player and enemy pokemon of changes to their stats in the view
+     */
+    private final PropertyChangeListener[] statListeners =
             new PropertyChangeListener[2];
 
-    // Same for the sprites
-    private PropertyChangeListener[] spriteListeners =
+    /**
+     * Listeners for notifying the player and enemy pokemon of changes to their sprites in the view
+     */
+    private final PropertyChangeListener[] spriteListeners =
             new PropertyChangeListener[2];
 
-    // Same for the battle state, one for the view and another for the model
-    private PropertyChangeListener[] battleStateListeners =
+    /**
+     * Listeners for notifying the game model and the view of changes to the battle state
+     */
+    private final PropertyChangeListener[] battleStateListeners =
             new PropertyChangeListener[2];
 
     private PlayerPokemon playerPokemon;
@@ -59,12 +71,8 @@ public class BattleHandler {
     public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
 
         // Create a new thread
-        Thread battleThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                battleLoop(playerData, enemyPokemon);
-            }
-        });
+        Thread battleThread = new Thread(
+                () -> battleLoop(playerData, enemyPokemon));
 
         // Start the thread
         battleThread.start();
@@ -140,8 +148,8 @@ public class BattleHandler {
         notifyBattleStateListener(conclusion);
     }
 
-    private Integer reportDamage(Pokemon enemyPokemon, String ability,
-                                 Pokemon attacker, Pokemon defender) {
+    private void reportDamage(Pokemon enemyPokemon, String ability,
+                              Pokemon attacker, Pokemon defender) {
         // Use the ability
         Integer damageDealt =
                 moveData.get(ability).executeMove(defender, attacker);
@@ -151,7 +159,6 @@ public class BattleHandler {
 
         notifyStatListener(playerPokemon, enemyPokemon);
         wait(WAIT_TIME);
-        return damageDealt;
     }
 
     private void handleRun(LanguageConfiguration config) {
@@ -371,30 +378,15 @@ public class BattleHandler {
     public void addListener(String listenerType,
                             PropertyChangeListener listener) {
         switch (listenerType) {
-            case "pokemonSprite":
-                addListener(spriteListeners, listener);
-                break;
-            case "stat":
-                addListener(statListeners, listener);
-                break;
-            case "playerRoster":
-                this.playerRosterListener = listener;
-                break;
-            case "inventory":
-                this.inventoryListener = listener;
-                break;
-            case "battleState":
-                addListener(battleStateListeners, listener);
-                break;
-            case "dialogue":
-                this.dialogueListener = listener;
-                break;
-            case "moves":
-                this.moveListener = listener;
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Invalid listener type: " + listenerType);
+            case "pokemonSprite" -> addListener(spriteListeners, listener);
+            case "stat" -> addListener(statListeners, listener);
+            case "playerRoster" -> this.playerRosterListener = listener;
+            case "inventory" -> this.inventoryListener = listener;
+            case "battleState" -> addListener(battleStateListeners, listener);
+            case "dialogue" -> this.dialogueListener = listener;
+            case "moves" -> this.moveListener = listener;
+            default -> throw new IllegalArgumentException(
+                    "Invalid listener type: " + listenerType);
         }
     }
 
@@ -472,7 +464,7 @@ public class BattleHandler {
      * @return The player's active pokemon
      */
     public PlayerPokemon getActivePlayerPokemon() {
-        return (PlayerPokemon) playerPokemon;
+        return playerPokemon;
     }
 
     private void wait(int time) {
@@ -481,17 +473,6 @@ public class BattleHandler {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Returns whether or not it is the player's turn
-     *
-     * @return Whether or not it is the player's turn
-     */
-    public boolean isPlayerTurn() {
-
-        return turn % 2 == 0;
-
     }
 
 }

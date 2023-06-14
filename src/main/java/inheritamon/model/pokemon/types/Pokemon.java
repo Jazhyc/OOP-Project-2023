@@ -13,14 +13,27 @@ import inheritamon.model.data.DataHandler;
  */
 public abstract class Pokemon implements Serializable {
 
+    /**
+     * The stats of the pokemon which are numerical.
+     */
     protected HashMap<String, Integer> numericalStats =
-            new HashMap<String, Integer>();
-    protected HashMap<String, String> stringStats =
-            new HashMap<String, String>();
-    protected ArrayList<String> moves = new ArrayList<String>();
-    private boolean hasFainted = false;
+            new HashMap<>();
 
-    private final int BASE_DODGE_CHANCE = 20;
+    /**
+     * The stats of the pokemon which are strings.
+     */
+    protected HashMap<String, String> stringStats =
+            new HashMap<>();
+
+    /**
+     * The moves of the pokemon.
+     */
+    protected ArrayList<String> moves = new ArrayList<>();
+
+    /**
+     * Whether the pokemon has fainted or not.
+     */
+    private boolean hasFainted = false;
 
     /**
      * The attack method, which takes a target as a parameter, returns a random move
@@ -64,7 +77,7 @@ public abstract class Pokemon implements Serializable {
     /**
      * Constructor for the Pokemon class
      *
-     * @param pokemonData
+     * @param pokemonData The data of the pokemon
      */
     public Pokemon(HashMap<String, String> pokemonData) {
         setUp(pokemonData);
@@ -81,8 +94,9 @@ public abstract class Pokemon implements Serializable {
     public int takeDamage(int damage, int enemyAccuracy) {
 
         // Calculate the chance to dodge, simple addition
+        int baseDodgeChance = 20;
         int chanceToDodge =
-                numericalStats.get("Agi") - enemyAccuracy + BASE_DODGE_CHANCE;
+                numericalStats.get("Agi") - enemyAccuracy + baseDodgeChance;
         System.out.println(stringStats.get("Name") + " has a " + chanceToDodge +
                 "% chance to dodge");
 
@@ -249,7 +263,7 @@ public abstract class Pokemon implements Serializable {
      */
     public HashMap<String, Integer> getAllNumericalStats() {
 
-        return new HashMap<String, Integer>(numericalStats);
+        return new HashMap<>(numericalStats);
     }
 
     /**
@@ -259,10 +273,8 @@ public abstract class Pokemon implements Serializable {
      */
     public BufferedImage getSpeciesImage() {
         DataHandler dataHandler = DataHandler.getInstance();
-        BufferedImage speciesImage =
-                dataHandler.getPokemonSprite(stringStats.get("Species"))
-                        .get("front");
-        return speciesImage;
+        return dataHandler.getPokemonSprite(stringStats.get("Species"))
+                .get("front");
     }
 
     /**

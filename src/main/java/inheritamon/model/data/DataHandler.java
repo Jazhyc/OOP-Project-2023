@@ -10,7 +10,6 @@ import inheritamon.model.pokemon.moves.*;
 import java.awt.image.*;
 import java.io.*;
 import java.net.*;
-import java.lang.NullPointerException;
 
 /**
  * @author Jeremias
@@ -18,41 +17,89 @@ import java.lang.NullPointerException;
  * We use csv files to store certain data regarding the game
  * Singleton class
  */
-public class DataHandler {
+public final class DataHandler {
 
-    private HashMap<String, HashMap<String, String>> characterData =
+    /**
+     * Details regarding the parameters of each character like defense, attack, etc.
+     */
+    private final HashMap<String, HashMap<String, String>> characterData =
             new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, String>> moveData =
+
+    /**
+     * Details regarding the parameters of each move like modifier, cost, etc.
+     */
+    private final HashMap<String, HashMap<String, String>> moveData =
             new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, String>> itemData =
+
+    /**
+     * Details regarding the parameters of each item like type, effectiveness, etc.
+     */
+    private final HashMap<String, HashMap<String, String>> itemData =
             new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, BufferedImage>> characterSprites =
+
+    /**
+     * The sprites for each pokemon, front and back.
+     */
+    private final HashMap<String, HashMap<String, BufferedImage>>
+            characterSprites =
             new HashMap<String, HashMap<String, BufferedImage>>();
-    private HashMap<String, BufferedImage> icons =
-            new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> battleBackgrounds =
-            new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> tiles =
-            new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> characterTextures =
-            new HashMap<String, BufferedImage>();
-    private HashMap<String, HashMap<String, String>> languageData =
-            new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, BufferedImage> inventorySprites =
-            new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> objectSprites =
-            new HashMap<String, BufferedImage>();
-    // private HashMap<String, HashMap<Language, String[]>> dialogueData = new
-    // HashMap<String, HashMap<Language, String[]>>();
 
-    // Create a hashmap for sounds and music
-    private HashMap<String, AudioInputStream> sounds =
-            new HashMap<String, AudioInputStream>();
-    private HashMap<String, AudioInputStream> music =
+    /**
+     * Icons used in the menu.
+     */
+    private final HashMap<String, BufferedImage> icons =
+            new HashMap<String, BufferedImage>();
+
+    /**
+     * The background images for the battles.
+     */
+    private final HashMap<String, BufferedImage> battleBackgrounds =
+            new HashMap<String, BufferedImage>();
+
+    /**
+     * The tiles used in the map.
+     */
+    private final HashMap<String, BufferedImage> tiles =
+            new HashMap<String, BufferedImage>();
+
+    /**
+     * The textures for the player.
+     */
+    private final HashMap<String, BufferedImage> characterTextures =
+            new HashMap<String, BufferedImage>();
+
+    /**
+     * The descriptions in each language for menu elements.
+     */
+    private final HashMap<String, HashMap<String, String>> languageData =
+            new HashMap<String, HashMap<String, String>>();
+
+    /**
+     * The sprites for each item.
+     */
+    private final HashMap<String, BufferedImage> inventorySprites =
+            new HashMap<String, BufferedImage>();
+
+    /**
+     * The sprites for each object on the map.
+     */
+    private final HashMap<String, BufferedImage> objectSprites =
+            new HashMap<String, BufferedImage>();
+
+    /**
+     * The sounds that are played in the game.
+     */
+    private final HashMap<String, AudioInputStream> sounds =
             new HashMap<String, AudioInputStream>();
 
     /**
-     * The constructor for the DataHandler class
+     * The music that is played in the game.
+     */
+    private final HashMap<String, AudioInputStream> music =
+            new HashMap<String, AudioInputStream>();
+
+    /**
+     * The constructor for the DataHandler class.
      */
     private DataHandler() {
         loadAllData();
@@ -62,7 +109,7 @@ public class DataHandler {
     private static DataHandler dataHandler;
 
     /**
-     * Get an instance of the DataHandler class
+     * Get an instance of the DataHandler class.
      *
      * @return the DataHandler instance
      */
@@ -77,7 +124,7 @@ public class DataHandler {
     // https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
 
     /**
-     * Check if a string is numeric
+     * Check if a string is numeric.
      *
      * @param str The string to check
      * @return Whether the string is numeric
@@ -112,15 +159,15 @@ public class DataHandler {
 
         // Try with resources to automatically close the scanner
         try (Scanner characterDataScanner = new Scanner(
-                DataHandler.class.getResourceAsStream("/" + fileName))) {
+                Objects.requireNonNull(
+                        DataHandler.class.getResourceAsStream(
+                                "/" + fileName)))) {
 
             // Read the first line of the file and put the attributes into the attributes
             // ArrayList
             String firstLine = characterDataScanner.nextLine();
             String[] firstLineSplit = firstLine.split(",");
-            for (String attribute : firstLineSplit) {
-                attributes.add(attribute);
-            }
+            attributes.addAll(Arrays.asList(firstLineSplit));
 
             // Loop through the rest of the file and put the data into the correct HashMap
             while (characterDataScanner.hasNextLine()) {
@@ -134,7 +181,6 @@ public class DataHandler {
                 data.put(lineSplit[0], characterDataEntry);
             }
 
-            characterDataScanner.close();
 
         } catch (NullPointerException e) {
             System.out.println("File not found");
@@ -154,12 +200,15 @@ public class DataHandler {
                 HashMap<String, BufferedImage> characterImagesEntry =
                         new HashMap<String, BufferedImage>();
                 characterImagesEntry.put("front",
-                        ImageIO.read(DataHandler.class.getResource(
-                                "/battleSprites/" + characterName + ".png")));
+                        ImageIO.read(Objects.requireNonNull(
+                                DataHandler.class.getResource(
+                                        "/battleSprites/" + characterName +
+                                                ".png"))));
                 characterImagesEntry.put("back",
-                        ImageIO.read(DataHandler.class.getResource(
-                                "/battleSprites/" + characterName +
-                                        "Back.png")));
+                        ImageIO.read(Objects.requireNonNull(
+                                DataHandler.class.getResource(
+                                        "/battleSprites/" + characterName +
+                                                "Back.png"))));
                 characterSprites.put(characterName, characterImagesEntry);
             }
         } catch (IOException e) {
@@ -175,11 +224,13 @@ public class DataHandler {
         try {
             // Get all file names in the icons folder using File
             File iconsFolder = new File(
-                    DataHandler.class.getResource("/" + folderName + "/")
+                    Objects.requireNonNull(DataHandler.class.getResource(
+                                    "/" + folderName + "/"))
                             .toURI());
             File[] iconFiles = iconsFolder.listFiles();
 
             // Load each icon into the icons hashmap
+            assert iconFiles != null;
             for (File iconFile : iconFiles) {
                 String iconName = iconFile.getName().replace(".png", "");
                 BufferedImage iconImage = ImageIO.read(iconFile);
@@ -198,12 +249,14 @@ public class DataHandler {
             URL folderUrl = getClass().getResource("/" + folderName + "/");
 
             // Create a file object from the folder URL
+            assert folderUrl != null;
             File folder = new File(folderUrl.toURI());
 
             // Get a list of all the files in the folder
             File[] files = folder.listFiles();
 
             // Load each audio file into the HashMap
+            assert files != null;
             for (File file : files) {
                 if (file.isFile() && file.getName().endsWith(".wav")) {
                     // Get the name of the audio file without the extension
@@ -263,7 +316,6 @@ public class DataHandler {
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(
                     fileName + "File is corrupted or does not exist");
-            ;
         }
 
         return null;
@@ -300,7 +352,7 @@ public class DataHandler {
      * @return The names of all the pokemon
      */
     public String[] getPokemonNames() {
-        return characterData.keySet().toArray(new String[characterData.size()]);
+        return characterData.keySet().toArray(new String[0]);
     }
 
     /**
@@ -321,15 +373,6 @@ public class DataHandler {
      */
     public HashMap<String, String> getItemData(String itemName) {
         return getData(itemData, itemName, "Item");
-    }
-
-    /**
-     * Get data of all items in the game
-     *
-     * @return The data of all items
-     */
-    public HashMap<String, HashMap<String, String>> getAllItems() {
-        return new HashMap<String, HashMap<String, String>>(itemData);
     }
 
     /**
@@ -382,7 +425,7 @@ public class DataHandler {
     /**
      * Converts a string of moves into an ArrayList of moves
      *
-     * @param nonFormattedString
+     * @param nonFormattedString The string of moves
      * @return An ArrayList of moves
      */
     public static ArrayList<String> convertMoveSetToString(
@@ -453,6 +496,11 @@ public class DataHandler {
         return getImage(inventorySprites, spriteName, "Inventory Sprite");
     }
 
+    /**
+     * Gets the sprite of a specific object
+     * @param spriteName The name of the object
+     * @return The sprite of the object
+     */
     public BufferedImage getObjectSprite(String spriteName) {
         return getImage(objectSprites, spriteName, "Object Sprite");
     }

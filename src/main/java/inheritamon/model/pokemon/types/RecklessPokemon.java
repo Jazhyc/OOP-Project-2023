@@ -31,7 +31,7 @@ public class RecklessPokemon extends Pokemon {
         String move = "";
 
         // Get the highest modifier
-        Integer highestModifier = 0;
+        int highestModifier = 0;
         DataHandler dataHandler = DataHandler.getInstance();
 
         for (String moveName : this.moves) {
@@ -39,7 +39,7 @@ public class RecklessPokemon extends Pokemon {
             HashMap<String, String> moveData =
                     dataHandler.getMoveData(moveName);
 
-            Integer modifier = Integer.parseInt(moveData.get("Modifier"));
+            int modifier = Integer.parseInt(moveData.get("Modifier"));
 
             if (modifier > highestModifier &&
                     !moveData.get("Type").equals("Healing")) {

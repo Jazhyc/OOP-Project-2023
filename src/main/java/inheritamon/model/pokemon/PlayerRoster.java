@@ -12,19 +12,25 @@ import java.io.Serializable;
  */
 public class PlayerRoster implements Serializable {
 
-    // Define an arraylist of pokemon
-    private ArrayList<PlayerPokemon> roster;
-    public final static int MAX_POKEMON = 6;
+    /**
+     * The pokemons of the player.
+     */
+    private final ArrayList<PlayerPokemon> roster;
 
     /**
-     * Constructor for the PlayerRoster class
+     * The maximum number of pokemon in the roster.
+     */
+    public static final int MAX_POKEMON = 6;
+
+    /**
+     * Constructor for the PlayerRoster class.
      */
     public PlayerRoster() {
-        roster = new ArrayList<PlayerPokemon>();
+        roster = new ArrayList<>();
     }
 
     /**
-     * Adds a pokemon to the roster
+     * Adds a pokemon to the roster.
      *
      * @param pokemon The pokemon to add
      */
@@ -42,7 +48,7 @@ public class PlayerRoster implements Serializable {
     }
 
     /**
-     * Get a pokemon from the roster
+     * Get a pokemon from the roster.
      *
      * @param index The index of the pokemon
      * @return The pokemon at the index
@@ -61,16 +67,16 @@ public class PlayerRoster implements Serializable {
     }
 
     /**
-     * Get the roster as an array
+     * Get the roster as an array.
      *
      * @return The roster as an array
      */
     public PlayerPokemon[] getArray() {
-        return roster.toArray(new PlayerPokemon[roster.size()]);
+        return roster.toArray(new PlayerPokemon[0]);
     }
 
     /**
-     * Revitalize all pokemon in the roster, fully healing them
+     * Revitalize all pokemon in the roster, fully healing them.
      */
     public void revitalizeAll() {
 
@@ -85,7 +91,7 @@ public class PlayerRoster implements Serializable {
     }
 
     /**
-     * Check if all pokemon in the roster are fainted
+     * Check if all pokemon in the roster are fainted.
      *
      * @return True if all pokemon are fainted, false otherwise
      */
@@ -108,7 +114,7 @@ public class PlayerRoster implements Serializable {
     /**
      * Get the index of the first alive pokemon
      *
-     * @return
+     * @return The index of the first alive pokemon, -1 if all pokemon are fainted
      */
     public int getAlivePokemon() {
 

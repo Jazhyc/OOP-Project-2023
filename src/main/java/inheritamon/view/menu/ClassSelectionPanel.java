@@ -14,11 +14,25 @@ import java.awt.*;
  */
 public class ClassSelectionPanel extends JPanel {
 
+    /**
+     * The number of panels, one for each class
+     */
     private final int NUMBER_OF_PANELS = 3;
-    private String[] startingPokemon = {"Charizard", "Blastoise", "Sceptile"};
-    private String[] startingPerks = {"Climber", "Swimmer", "Rich"};
 
-    private JPanel[] classPanels = new JPanel[NUMBER_OF_PANELS];
+    /**
+     * The starting pokemon for each class
+     */
+    private final String[] startingPokemon = {"Charizard", "Blastoise", "Sceptile"};
+
+    /**
+     * The starting perks for each class
+     */
+    private final String[] startingPerks = {"Climber", "Swimmer", "Rich"};
+
+    /**
+     * The panels for each class
+     */
+    private final JPanel[] classPanels = new JPanel[NUMBER_OF_PANELS];
 
     /**
      * Constructor for the class selection panel

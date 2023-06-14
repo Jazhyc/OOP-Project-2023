@@ -24,7 +24,7 @@ public class BattleDisplayPanel extends JPanel {
      * or the enemy's
      * Used across the entire package
      */
-    public static enum DisplayType {
+    public enum DisplayType {
         PLAYER, ENEMY
     }
 

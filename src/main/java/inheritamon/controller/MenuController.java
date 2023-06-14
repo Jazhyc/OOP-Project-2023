@@ -8,7 +8,10 @@ import inheritamon.model.GameModel;
  */
 public class MenuController {
 
-    private GameModel gameModel;
+    /**
+     * The game model, used to start or continue the game
+     */
+    private final GameModel gameModel;
 
     /**
      * Constructor for the MenuController

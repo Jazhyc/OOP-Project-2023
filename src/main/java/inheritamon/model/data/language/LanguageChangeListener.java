@@ -7,6 +7,10 @@ package inheritamon.model.data.language;
  */
 public interface LanguageChangeListener {
 
+    /**
+     * Adds a language change listener to the language configuration
+     * which will be notified when the language changes
+     */
     void addLanguageListener();
 
 }

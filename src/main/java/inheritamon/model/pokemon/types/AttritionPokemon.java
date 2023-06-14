@@ -39,7 +39,7 @@ public class AttritionPokemon extends Pokemon {
                         dataHandler.getMoveData(moveName);
 
                 // Get the mp cost and current mp
-                Integer mpCost = Integer.parseInt(moveData.get("Cost"));
+                int mpCost = Integer.parseInt(moveData.get("Cost"));
                 Integer currentMP = this.numericalStats.get("MP");
 
                 if (moveData.get("Type").equals("Healing") &&
@@ -52,8 +52,7 @@ public class AttritionPokemon extends Pokemon {
         }
 
         // Otherwise, return a random move from the moves ArrayList
-        String move = moves.get((int) (Math.random() * moves.size()));
-        return move;
+        return moves.get((int) (Math.random() * moves.size()));
 
     }
 

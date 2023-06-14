@@ -19,7 +19,11 @@ import java.awt.image.*;
 public class ItemsPanel extends JPanel {
     private final int SPRITE_SIZE = 80;
     private Inventory inventory;
-    private SoundHandler soundHandler;
+
+    /**
+     * The sound handler for sound effects
+     */
+    private final SoundHandler soundHandler;
 
     public ItemsPanel(BattleHandler battleHandler,
                       GameController battleController) {

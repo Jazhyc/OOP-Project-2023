@@ -16,8 +16,15 @@ public class SoundHandler {
     // Singleton instance
     private static SoundHandler soundHandler;
 
-    private HashMap<String, Clip> soundClips = new HashMap<String, Clip>();
-    private HashMap<String, Clip> musicClips = new HashMap<String, Clip>();
+    /**
+     * The sound effects in the game as clips
+     */
+    private final HashMap<String, Clip> soundClips = new HashMap<>();
+
+    /**
+     * The music in the game as clips
+     */
+    private final HashMap<String, Clip> musicClips = new HashMap<>();
 
     private Clip currentMusic;
 

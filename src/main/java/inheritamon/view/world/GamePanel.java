@@ -7,7 +7,6 @@ import inheritamon.Main;
 import inheritamon.controller.GameController;
 import inheritamon.model.GameModel;
 import inheritamon.model.GameModel.GameState;
-import inheritamon.view.combat.BattlePanel;
 import inheritamon.view.world.sidebar.*;
 
 /**
@@ -18,10 +17,8 @@ import inheritamon.view.world.sidebar.*;
 public class GamePanel extends JPanel {
 
     public Player player;
-    public int tileSize;
     WorldPanel worldPanel;
     SidePanel sidePanel;
-    BattlePanel battlePanel;
     PokemonDataPanel pokemonDataPanel;
 
     // ArrayList<PlayerData.TrainerAbility> abilities;
@@ -76,15 +73,8 @@ public class GamePanel extends JPanel {
 
     private void setUpListener(GameModel gameModel) {
 
-        gameModel.addGameStateListener(e -> {
-
-            if (e.getNewValue() == GameState.GAME_START) {
-                setVisible(true);
-            } else {
-                setVisible(false);
-            }
-
-        });
+        gameModel.addGameStateListener(
+                e -> setVisible(e.getNewValue() == GameState.GAME_START));
 
     }
 

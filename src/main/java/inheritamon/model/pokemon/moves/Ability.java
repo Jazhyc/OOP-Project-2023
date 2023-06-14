@@ -7,17 +7,24 @@ import inheritamon.model.pokemon.types.Pokemon;
 
 /**
  * @author Jeremias
- * An abstract class for all moves
+ * An abstract class for all moves.
  */
 public abstract class Ability {
 
+    /**
+     * The stats of the move which are numerical.
+     */
     protected HashMap<String, Integer> numericalStats =
-            new HashMap<String, Integer>();
-    protected HashMap<String, String> stringStats =
-            new HashMap<String, String>();
+            new HashMap<>();
 
     /**
-     * The method to use the move
+     * The stats of the move which are strings.
+     */
+    protected HashMap<String, String> stringStats =
+            new HashMap<>();
+
+    /**
+     * The method to use the move.
      *
      * @param target The target of the move
      * @param user   The user of the move
@@ -45,7 +52,7 @@ public abstract class Ability {
     }
 
     /**
-     * The constructor for the Move class
+     * The constructor for the Move class.
      *
      * @param moveData The data of the move
      */

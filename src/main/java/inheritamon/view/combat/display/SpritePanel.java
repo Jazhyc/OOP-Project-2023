@@ -16,17 +16,17 @@ import java.awt.*;
  */
 public class SpritePanel extends JPanel {
 
-    private final double SHADOW_SCALE = 0.8;
-    private final double SHADOW_PLACEMENT = 0.85;
-    private final double SPRITE_SCALE_FACTOR = 2.5;
-    private final int SHADOW_SIZE = 40;
     private BufferedImage imageToDisplay;
-    private DisplayType type;
-    private final int Y_OFFSET = 25;
 
-    // Reference to the data handler
-    private HashMap<String, HashMap<String, BufferedImage>> pokemonImages =
-            new HashMap<String, HashMap<String, BufferedImage>>();
+    /**
+     * The DisplayType enum is used to determine whether the pokemon is the player's.
+     */
+    private final DisplayType type;
+
+    /**
+     * The pokemonImages HashMap contains all the pokemon sprites
+     */
+    private final HashMap<String, HashMap<String, BufferedImage>> pokemonImages;
 
     /**
      * Constructor for the SpritePanel class
@@ -51,7 +51,8 @@ public class SpritePanel extends JPanel {
         super.paintComponent(g);
 
         // Calculate sprite size based on window width
-        int spriteSize = (int) (getWidth() / SPRITE_SCALE_FACTOR);
+        double spriteScaleFactor = 2.5;
+        int spriteSize = (int) (getWidth() / spriteScaleFactor);
 
         // Calculate the x and y coordinates to center the image
         int spriteX = (getWidth() - spriteSize) / 2;
@@ -67,15 +68,19 @@ public class SpritePanel extends JPanel {
             g.setColor(Color.BLACK);
 
             // Draw an oval with a gradient
-            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_PLACEMENT),
-                    spriteSize, SHADOW_SIZE);
+            int shadowSize = 40;
+            double shadowPlacement = 0.85;
+            g.fillOval(spriteX, (int) (spriteY + spriteSize * shadowPlacement),
+                    spriteSize, shadowSize);
             g.setColor(new Color(0, 0, 0, 0));
-            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_SCALE),
-                    spriteSize, SHADOW_SIZE);
+            double shadowScale = 0.8;
+            g.fillOval(spriteX, (int) (spriteY + spriteSize * shadowScale),
+                    spriteSize, shadowSize);
 
         }
 
-        g.drawImage(imageToDisplay, spriteX, spriteY + Y_OFFSET, spriteSize,
+        int yOffset = 25;
+        g.drawImage(imageToDisplay, spriteX, spriteY + yOffset, spriteSize,
                 spriteSize, null);
 
     }

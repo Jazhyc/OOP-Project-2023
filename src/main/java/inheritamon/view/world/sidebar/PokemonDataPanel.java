@@ -8,12 +8,15 @@ import java.awt.*;
 import java.awt.image.*;
 
 /**
- * @Author Jeremias
+ * @author Jeremias
  * Panel for displaying certain stats of the player's pokemon data
  */
 public class PokemonDataPanel extends JPanel {
 
-    private String[] statNames =
+    /**
+     * The stat names to display
+     */
+    private final String[] statNames =
             new String[] {"Atk", "Def", "Agi", "Acc", "M.Atk", "M.Def"};
 
     /**
@@ -70,7 +73,7 @@ public class PokemonDataPanel extends JPanel {
 
         gbc.gridx = 0;
         BufferedImage pokemonImage = pokemon.getSpeciesImage();
-        Integer spriteSize = 100;
+        int spriteSize = 100;
         JLabel imageLabel = new JLabel(
                 new ImageIcon(
                         pokemonImage.getScaledInstance(spriteSize, spriteSize,
@@ -132,17 +135,14 @@ public class PokemonDataPanel extends JPanel {
         gbc.gridx = 2;
 
         // Add the additional headers
-        for (int i = 0; i < additionalHeaders.length; i++) {
-            JLabel header = new JLabel(additionalHeaders[i]);
-            header.setHorizontalAlignment(JLabel.CENTER);
-            header.setForeground(Color.WHITE);
-            header.setFont(new Font("Arial", Font.BOLD, 20));
-            add(header, gbc);
-            gbc.gridx++;
-        }
+        addLabels(gbc, additionalHeaders);
 
-        for (int i = 0; i < statNames.length; i++) {
-            JLabel statName = new JLabel(statNames[i]);
+        addLabels(gbc, statNames);
+    }
+
+    private void addLabels(GridBagConstraints gbc, String[] statNames) {
+        for (String name : statNames) {
+            JLabel statName = new JLabel(name);
             statName.setHorizontalAlignment(JLabel.CENTER);
             statName.setForeground(Color.WHITE);
             statName.setFont(new Font("Arial", Font.BOLD, 20));

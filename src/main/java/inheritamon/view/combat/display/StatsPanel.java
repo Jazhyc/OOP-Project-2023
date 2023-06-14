@@ -14,19 +14,18 @@ import java.lang.reflect.*;
  */
 public class StatsPanel extends JPanel {
 
+    /**
+     * The duration of the HP and MP bar animations
+     */
     private final int DURATION = 30;
-    private final int BAR_OFFSET = 10;
-    private final int REFRESH_RATE = 10;
 
     private float HPRatio = 1;
     private float MPRatio = 1;
 
-    private final int Y_OFFSET = 10;
-    private final int BAR_HEIGHT = 20;
-    private final int BORDER_PADDING = 1;
-    private final float BORDER_THICKNESS = 3;
-    private final int LABEL_OFFSET = 18;
-    private DisplayType type;
+    /**
+     * The type of the panel, whether it is for the player or the enemy
+     */
+    private final DisplayType type;
 
     /**
      * Constructor for the StatsPanel class
@@ -57,27 +56,33 @@ public class StatsPanel extends JPanel {
 
         // Add a border around the bars
         Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(BORDER_THICKNESS));
+        float borderThickness = 3;
+        g2.setStroke(new BasicStroke(borderThickness));
         g.setColor(Color.BLACK);
-        g.drawRect(hpBarCenterX - BORDER_PADDING,
-                centerY - BAR_HEIGHT + Y_OFFSET - BORDER_PADDING,
-                barWidth + BORDER_PADDING, BAR_HEIGHT * 2 + BORDER_PADDING);
+        int borderPadding = 1;
+        int barHeight = 20;
+        int yOffset = 10;
+        g.drawRect(hpBarCenterX - borderPadding,
+                centerY - barHeight + yOffset - borderPadding,
+                barWidth + borderPadding, barHeight * 2 + borderPadding);
 
         // Draw the bars
         g.setColor(Color.GREEN);
-        g.fillRect(hpBarCenterX, centerY - BAR_HEIGHT + Y_OFFSET,
-                (int) (barWidth * HPRatio), BAR_HEIGHT);
+        g.fillRect(hpBarCenterX, centerY - barHeight + yOffset,
+                (int) (barWidth * HPRatio), barHeight);
         g.setColor(Color.BLUE);
-        g.fillRect(mpBarCenterX, centerY + Y_OFFSET, (int) (barWidth * MPRatio),
-                (BAR_HEIGHT));
+        g.fillRect(mpBarCenterX, centerY + yOffset, (int) (barWidth * MPRatio),
+                (barHeight));
 
         // Add labels HP and MP to the bars
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("HP", hpBarCenterX + BAR_OFFSET,
-                centerY - BAR_HEIGHT + Y_OFFSET + LABEL_OFFSET);
-        g.drawString("MP", mpBarCenterX + BAR_OFFSET,
-                centerY + Y_OFFSET + LABEL_OFFSET);
+        int labelOffset = 18;
+        int barOffset = 10;
+        g.drawString("HP", hpBarCenterX + barOffset,
+                centerY - barHeight + yOffset + labelOffset);
+        g.drawString("MP", mpBarCenterX + barOffset,
+                centerY + yOffset + labelOffset);
 
     }
 
@@ -101,8 +106,8 @@ public class StatsPanel extends JPanel {
                 float newMPRatio = Math.max((float) stats[2] / stats[3], 0);
 
                 // Tween the values
-                tweenValue(HPRatio, newHPRatio, DURATION, "HPRatio");
-                tweenValue(MPRatio, newMPRatio, DURATION, "MPRatio");
+                tweenValue(HPRatio, newHPRatio, "HPRatio");
+                tweenValue(MPRatio, newMPRatio, "MPRatio");
 
                 // Repaint the panel
                 revalidate();
@@ -118,23 +123,23 @@ public class StatsPanel extends JPanel {
      *
      * @param oldValue      The old value
      * @param newValue      The new value
-     * @param duration      The duration of the tween
      * @param attributeName The name of the attribute to tween, uses reflection for
      *                      versatility
      */
-    private void tweenValue(float oldValue, float newValue, int duration,
+    private void tweenValue(float oldValue, float newValue,
                             String attributeName) {
         // Calculate the difference between the values
         float difference = newValue - oldValue;
 
         // Calculate the amount to change the value by each frame
-        float changePerMoment = difference / duration;
+        float changePerMoment = difference / DURATION;
 
         // Create a new timer to tween the value
-        Timer timer = new Timer(REFRESH_RATE, null);
+        int refreshRate = 10;
+        Timer timer = new Timer(refreshRate, null);
         timer.addActionListener(new ActionListener() {
-            float incrementValue = oldValue;
-            int elapsed = 0;
+            private float incrementValue = oldValue;
+            private int elapsed = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -159,7 +164,7 @@ public class StatsPanel extends JPanel {
                 elapsed++;
 
                 // Stop the timer if the duration has elapsed
-                if (elapsed >= duration) {
+                if (elapsed >= DURATION) {
                     timer.stop();
                 }
             }

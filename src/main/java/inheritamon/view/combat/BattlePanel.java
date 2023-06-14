@@ -10,6 +10,7 @@ import inheritamon.view.world.GamePanel;
 import inheritamon.view.combat.display.BattleDisplayPanel;
 
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * @author Jeremias
@@ -17,13 +18,17 @@ import java.awt.*;
  */
 public class BattlePanel extends JPanel {
 
-    // Create variables for the panels that will be displayed
-    private BattleDisplayPanel battleDisplayPanel;
-    private ChoicePanel choicePanel;
     private ActionPanel actionPanel;
-    private DialoguePanel dialoguePanel;
-    private GamePanel gamePanel;
-    private SoundHandler soundHandler;
+
+    /**
+     * The game panel which contains elements of the game world.
+     */
+    private final GamePanel gamePanel;
+
+    /**
+     * The sound handler for sound effects.
+     */
+    private final SoundHandler soundHandler;
 
     /**
      * Constructor for the BattlePanel class
@@ -59,7 +64,7 @@ public class BattlePanel extends JPanel {
         // Put the dialogue Panel in between the Pokemon Display Panel and the Choice
         // Panel
         // Yellow
-        dialoguePanel = new DialoguePanel(battleHandler);
+        DialoguePanel dialoguePanel = new DialoguePanel(battleHandler);
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -90,7 +95,8 @@ public class BattlePanel extends JPanel {
         GridBagConstraints gbc;
         // Put the Choice Panel in the bottom left of the screen
         // Blue
-        choicePanel = new ChoicePanel(battleController, actionPanel);
+        ChoicePanel choicePanel =
+                new ChoicePanel(battleController, actionPanel);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -104,7 +110,9 @@ public class BattlePanel extends JPanel {
     private void addPokemonDisplayPanel(BattleHandler battleHandler) {
         // Put the Pokemon Display Panel in the top half of the screen
         // Red
-        battleDisplayPanel = new BattleDisplayPanel(battleHandler);
+        // Create variables for the panels that will be displayed
+        BattleDisplayPanel battleDisplayPanel =
+                new BattleDisplayPanel(battleHandler);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -122,7 +130,7 @@ public class BattlePanel extends JPanel {
             // Get the value of e
             String battleState = (String) e.getNewValue();
 
-            if (battleState == "Start") {
+            if (Objects.equals(battleState, "Start")) {
                 setUpBattleView();
             } else {
                 setUpGameView();

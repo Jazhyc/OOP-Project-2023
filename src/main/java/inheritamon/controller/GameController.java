@@ -5,13 +5,22 @@ import inheritamon.model.GameModel;
 import inheritamon.model.pokemon.types.PlayerPokemon;
 
 /**
- * @Author Jeremias
+ * @author Jeremias
  * Controller for the general game state and battle.
  */
 public class GameController {
 
-    private BattleHandler battleHandler;
-    private GameModel gameModel;
+    /**
+     * The battle handler which can be used to get information about the battle.
+     * Used to pass information to the battle handler like player moves.
+     */
+    private final BattleHandler battleHandler;
+
+    /**
+     * The game model which can be used to get information about the game
+     * state. Used to pass information to the game model like starting a battle.
+     */
+    private final GameModel gameModel;
 
     /**
      * Constructor for the GameController
@@ -64,7 +73,7 @@ public class GameController {
      */
     public void beginRandomBattle() {
 
-        String types[] = {"random", "attrition", "reckless"};
+        String[] types = {"random", "attrition", "reckless"};
 
         // Get a random type
         gameModel.startPokemonBattle(

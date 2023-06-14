@@ -50,22 +50,23 @@ public class NormalAbility extends Ability {
         // healing
         int damage = (atk + (mAtk * 2)) / 2 * modifier;
 
-        if (type.equals("Physical")) {
-            damage = atk * modifier;
-            System.out.println("Physical raw damage: " + damage);
-        } else if (type.equals("Magical")) {
-            damage = mAtk * modifier;
-            System.out.println("Magical raw damage: " + damage);
-        } else if (type.equals("Healing")) {
-            user.gainHP(damage);
-            return -damage;
-        } else {
-            System.out.println("Unknown type!");
+        switch (type) {
+            case "Physical" -> {
+                damage = atk * modifier;
+                System.out.println("Physical raw damage: " + damage);
+            }
+            case "Magical" -> {
+                damage = mAtk * modifier;
+                System.out.println("Magical raw damage: " + damage);
+            }
+            case "Healing" -> {
+                user.gainHP(damage);
+                return -damage;
+            }
+            default -> System.out.println("Unknown type!");
         }
 
-        Integer calculatedDamage = enemy.takeDamage(damage, accuracy);
-
-        return calculatedDamage;
+        return enemy.takeDamage(damage, accuracy);
 
     }
 

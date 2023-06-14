@@ -16,13 +16,25 @@ import java.awt.event.*;
  */
 public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
-    private final int FONT_SIZE = 24;
-    private final int TITLE_SIZE = 36;
+    /**
+     * The number of options on the main menu
+     */
     private final int NUMBER_OF_PANELS = 3;
-    private JLabel titleLabel;
-    private SoundHandler soundHandler;
 
-    private JLabel[] buttons = new JLabel[NUMBER_OF_PANELS];
+    /**
+     * The title of the game
+     */
+    private final JLabel titleLabel;
+
+    /**
+     * The sound handler for playing sounds
+     */
+    private final SoundHandler soundHandler;
+
+    /**
+     * The buttons on the main menu
+     */
+    private final JLabel[] buttons = new JLabel[NUMBER_OF_PANELS];
 
     /**
      * Constructor for the MainMenuPanel
@@ -43,7 +55,8 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
         titleLabel = new JLabel("Inheritamon");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, TITLE_SIZE));
+        int titleSize = 36;
+        titleLabel.setFont(new Font("Arial", Font.BOLD, titleSize));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         addTitle();
 
@@ -54,21 +67,18 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
         // Add a button to the top right that switches between the words EN and NL
         JButton languageButton = new JButton("EN");
-        languageButton.addActionListener(new ActionListener() {
-            @Override
-            // Add more code for implementing the language switch
-            public void actionPerformed(ActionEvent e) {
-                config.switchLanguage();
+        // Add more code for implementing the language switch
+        languageButton.addActionListener(e -> {
+            config.switchLanguage();
 
-                // Switch the text of the button
-                String buttonText = languageButton.getText();
-                if (buttonText.equals("EN")) {
-                    languageButton.setText("NL");
-                } else {
-                    languageButton.setText("EN");
-                }
-                soundHandler.playSound("select");
+            // Switch the text of the button
+            String buttonText = languageButton.getText();
+            if (buttonText.equals("EN")) {
+                languageButton.setText("NL");
+            } else {
+                languageButton.setText("EN");
             }
+            soundHandler.playSound("select");
         });
 
         addLanguageSwitch(languageButton);
@@ -106,7 +116,8 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
             buttons[i] = new JLabel(buttonStrings[i]);
 
             // Set the font
-            buttons[i].setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
+            int fontSize = 24;
+            buttons[i].setFont(new Font("Arial", Font.BOLD, fontSize));
 
             final int index = i;
 
@@ -141,22 +152,18 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
         soundHandler.playSound("select");
 
         switch (index) {
-            case 0:
+            case 0 ->
                 // Start game
-                controller.startGame();
-                break;
-            case 1:
+                    controller.startGame();
+            case 1 ->
                 // Continue game
-                controller.continueGame();
-                break;
-            case 2:
+                    controller.continueGame();
+            case 2 -> {
                 // Exit game
                 System.out.println("Exit game");
                 System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid button");
-                break;
+            }
+            default -> System.out.println("Invalid button");
         }
     }
 
@@ -193,13 +200,8 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
      */
     public void addGameStateListener(GameModel model) {
 
-        model.addGameStateListener(e -> {
-            if (e.getNewValue() == GameModel.GameState.MAIN_MENU) {
-                setVisible(true);
-            } else {
-                setVisible(false);
-            }
-        });
+        model.addGameStateListener(e -> setVisible(
+                e.getNewValue() == GameModel.GameState.MAIN_MENU));
     }
 
 }

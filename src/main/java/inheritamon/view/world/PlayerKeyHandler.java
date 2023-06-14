@@ -10,7 +10,10 @@ import java.util.*;
 
 public class PlayerKeyHandler {
 
-    private boolean upPressed, downPressed, leftPressed, rightPressed, interactPressed;
+    private boolean upPressed;
+    private boolean downPressed;
+    private boolean leftPressed;
+    private boolean rightPressed;
 
     private SidePanel sidePanel;
     private SoundHandler soundHandler;
@@ -97,27 +100,19 @@ public class PlayerKeyHandler {
 
     private void setKeyState(String actionName, boolean state) {
         switch (actionName) {
-            case "up":
-                upPressed = state;
-                break;
-            case "down":
-                downPressed = state;
-                break;
-            case "left":
-                leftPressed = state;
-                break;
-            case "right":
-                rightPressed = state;
-                break;
-            case "escape":
+            case "up" -> upPressed = state;
+            case "down" -> downPressed = state;
+            case "left" -> leftPressed = state;
+            case "right" -> rightPressed = state;
+            case "escape" -> {
                 sidePanel.setVisible(!sidePanel.isVisible());
                 sidePanel.hidePokemonDataPanel();
                 soundHandler.playSound("select");
-                break;
-            case "interact":
+            }
+            case "interact" -> {
                 cChecker.checkPlayerInteraction();
                 resetBoolean();
-                break;
+            }
         }
     }
 
@@ -126,7 +121,6 @@ public class PlayerKeyHandler {
         downPressed = false;
         leftPressed = false;
         rightPressed = false;
-        interactPressed = false;
     }
 
     /**
@@ -161,11 +155,4 @@ public class PlayerKeyHandler {
         return !sidePanel.isVisible() && rightPressed;
     }
 
-    /**
-     * Returns true if the interact key is pressed
-     * @return true if the interact key is pressed
-     */
-    public boolean isInteractPressed() {
-        return !sidePanel.isVisible() && interactPressed;
-    }
 }

@@ -7,7 +7,7 @@ import java.beans.*;
 import inheritamon.model.data.DataHandler;
 
 /**
- * @Author Jeremias
+ * @author Jeremias
  * A class to handle the language configuration of the game
  * Uses the singleton pattern
  */
@@ -31,20 +31,31 @@ public class LanguageConfiguration {
     /**
      * Enum to represent the languages that the game can be in
      */
-    public static enum Language {
+    public enum Language {
         EN, NL
     }
 
     private Language selectedLanguage;
 
-    // Arraylist of listeners
-    private ArrayList<PropertyChangeListener> listeners =
-            new ArrayList<PropertyChangeListener>();
+    /**
+     * Listeners which notify menu panels when the language is changed
+     */
+    private final ArrayList<PropertyChangeListener> listeners =
+            new ArrayList<>();
 
-    private HashMap<String, HashMap<String, String>> stringMap =
-            new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, String[]>> optionMap =
-            new HashMap<String, HashMap<String, String[]>>();
+    /**
+     * A mapping of string keys to string values
+     * Mainly used by the battle handler and some menu panels which require a single string
+     */
+    private final HashMap<String, HashMap<String, String>> stringMap =
+            new HashMap<>();
+
+    /**
+     * A mapping of string keys to string arrays
+     * Used by the menu panels which require a list of options
+     */
+    private final HashMap<String, HashMap<String, String[]>> optionMap =
+            new HashMap<>();
 
     private LanguageConfiguration() {
         selectedLanguage = Language.EN;
@@ -68,7 +79,7 @@ public class LanguageConfiguration {
 
                 // Create a hashmap to store the arrays
                 HashMap<String, String[]> optionMapData =
-                        new HashMap<String, String[]>();
+                        new HashMap<>();
                 optionMapData.put("EN", en);
                 optionMapData.put("NL", nl);
                 optionMap.put(key, optionMapData);

@@ -17,10 +17,8 @@ import java.awt.*;
  */
 public class SidePanel extends JPanel implements LanguageChangeListener {
 
-    private final int FONT_SIZE = 20;
-    private final int TITLE_SIZE = 40;
-    private ArrayList<String> options = new ArrayList<String>();
-    private ArrayList<JLabel> buttonLabels = new ArrayList<JLabel>();
+    private ArrayList<String> options = new ArrayList<>();
+    private ArrayList<JLabel> buttonLabels = new ArrayList<>();
 
     private SoundHandler soundHandler;
     private JPanel pokemonDataPanel;
@@ -45,7 +43,8 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         options.addAll(Arrays.asList(config.getOptions("SidePanel")));
 
         // Create a font for the menu
-        Font font = new Font("Arial", Font.BOLD, TITLE_SIZE);
+        int titleSize = 40;
+        Font font = new Font("Arial", Font.BOLD, titleSize);
 
         // Add The text "Menu" to the top of the panel
         JLabel menuLabel = new JLabel("Inheritamon");
@@ -56,7 +55,8 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         add(menuLabel);
 
         // Use a bold font
-        Font optionFont = new Font("Arial", Font.BOLD, FONT_SIZE);
+        int fontSize = 20;
+        Font optionFont = new Font("Arial", Font.BOLD, fontSize);
 
         addLabels(optionFont);
 
@@ -72,7 +72,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
         // Create a JLabel for each option
         for (String option : options) {
 
-            // Center the labels and and add them to the panel
+            // Center the labels and add them to the panel
             JLabel label = new JLabel(option);
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -132,9 +132,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                 int y = e.getY();
 
                 // Use a for loop to check if the mouse is within the bounds of a button
-                for (int i = 0; i < buttonLabels.size(); i++) {
-
-                    JLabel button = buttonLabels.get(i);
+                for (JLabel button : buttonLabels) {
 
                     // Get the bounds of the button
                     Rectangle bounds = button.getBounds();

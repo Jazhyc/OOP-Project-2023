@@ -17,14 +17,14 @@ public class PlayerData implements Serializable {
     /**
      * Enum for the trainer abilities
      */
-    public static enum TrainerAbility {
-        CLIMBER, SWIMMER, RICH;
+    public enum TrainerAbility {
+        CLIMBER, SWIMMER, RICH
     }
 
     private PlayerRoster roster;
     private Inventory inventory;
     private ArrayList<TrainerAbility> abilities =
-            new ArrayList<TrainerAbility>();
+            new ArrayList<>();
 
     /**
      * Constructor for the PlayerData
@@ -54,6 +54,8 @@ public class PlayerData implements Serializable {
 
     /**
      * Returns the player abilities
+     *
+     * @return The player abilities
      */
     public ArrayList<TrainerAbility> getAbilities() {
         return abilities;
@@ -76,8 +78,8 @@ public class PlayerData implements Serializable {
     /**
      * Adds starter data to the player like a starter pokemon and a perk
      *
-     * @param pokemon
-     * @param perk
+     * @param pokemon The starter pokemon
+     * @param perk   The starter perk
      */
     public void addStarterData(String pokemon, String perk) {
 
@@ -98,16 +100,6 @@ public class PlayerData implements Serializable {
 
         System.out.println("Added starter data");
 
-    }
-
-    /**
-     * Checks if the player has a certain ability
-     *
-     * @param ability The ability to check
-     * @return True if the player has the ability, false otherwise
-     */
-    public boolean hasAbility(TrainerAbility ability) {
-        return abilities.contains(ability);
     }
 
 }
