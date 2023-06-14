@@ -72,5 +72,5 @@ target
 
 # Custom files
 *.ser
-google_checks.xml
+check.xml
 out/
