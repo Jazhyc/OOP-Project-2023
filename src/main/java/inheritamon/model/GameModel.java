@@ -9,10 +9,10 @@ import inheritamon.model.pokemon.types.*;
 
 /**
  * @author Jeremias
- *         A class to represent the main logic of the game
- *         Holds the player data and the battle handler
- *         Also notifies the listeners when the game state changes
- *         Singleton class due to the nature of the world panel
+ * A class to represent the main logic of the game
+ * Holds the player data and the battle handler
+ * Also notifies the listeners when the game state changes
+ * Singleton class due to the nature of the world panel
  */
 public class GameModel {
 
@@ -21,7 +21,7 @@ public class GameModel {
 
     /**
      * Returns the singleton instance of the game model
-     * 
+     *
      * @return The singleton instance of the game model
      */
     public static GameModel getInstance() {
@@ -41,12 +41,13 @@ public class GameModel {
         SELECT_STARTER, GAME_START, BATTLE, MAIN_MENU
     }
 
-    private ArrayList<PropertyChangeListener> gameStateListeners = new ArrayList<PropertyChangeListener>();
+    private ArrayList<PropertyChangeListener> gameStateListeners =
+            new ArrayList<PropertyChangeListener>();
     private PropertyChangeListener rosterListener;
 
     /**
      * Initializes the game model
-     * 
+     *
      * @param battleHandlerObject The battle handler
      */
     public void init(BattleHandler battleHandlerObject) {
@@ -86,7 +87,7 @@ public class GameModel {
 
     /**
      * Adds the starting pokemon and perk to the player data
-     * 
+     *
      * @param pokemon The starting pokemon
      * @param perk    The starting perk
      */
@@ -99,7 +100,7 @@ public class GameModel {
     /**
      * Adds a listener to the game state listeners which will be notified when the
      * game state changes
-     * 
+     *
      * @param listener The listener to add
      */
     public void addGameStateListener(PropertyChangeListener listener) {
@@ -111,7 +112,7 @@ public class GameModel {
      * changes
      * We add a listener here since the player data does not exist when the game
      * model is created
-     * 
+     *
      * @param listener The listener to add
      */
     public void addRosterListener(PropertyChangeListener listener) {
@@ -122,13 +123,16 @@ public class GameModel {
         for (PropertyChangeListener listener : gameStateListeners) {
 
             // Pass the event to the listener
-            listener.propertyChange(new PropertyChangeEvent(this, "gameState", null, event));
+            listener.propertyChange(
+                    new PropertyChangeEvent(this, "gameState", null, event));
 
         }
     }
 
     private void notifyRosterListener() {
-        rosterListener.propertyChange(new PropertyChangeEvent(this, "roster", null, playerData.getRoster().getArray()));
+        rosterListener.propertyChange(
+                new PropertyChangeEvent(this, "roster", null,
+                        playerData.getRoster().getArray()));
     }
 
     /**
@@ -166,7 +170,7 @@ public class GameModel {
 
     /**
      * Starts a pokemon battle, depending on the type of pokemon chosen
-     * 
+     *
      * @param type The type of pokemon to battle
      */
     public void startPokemonBattle(String type) {
@@ -180,18 +184,22 @@ public class GameModel {
         String pokemon[] = dataHandler.getPokemonNames();
 
         // Get a random pokemon as a string
-        String randomPokemonName = pokemon[(int) (Math.random() * pokemon.length)];
+        String randomPokemonName =
+                pokemon[(int) (Math.random() * pokemon.length)];
         Pokemon randomPokemon;
 
         switch (type) {
             case "attrition":
-                randomPokemon = new AttritionPokemon(dataHandler.getPokemonData(randomPokemonName));
+                randomPokemon = new AttritionPokemon(
+                        dataHandler.getPokemonData(randomPokemonName));
                 break;
             case "reckless":
-                randomPokemon = new RecklessPokemon(dataHandler.getPokemonData(randomPokemonName));
+                randomPokemon = new RecklessPokemon(
+                        dataHandler.getPokemonData(randomPokemonName));
                 break;
             default:
-                randomPokemon = new RandomPokemon(dataHandler.getPokemonData(randomPokemonName));
+                randomPokemon = new RandomPokemon(
+                        dataHandler.getPokemonData(randomPokemonName));
                 break;
         }
 
@@ -200,7 +208,7 @@ public class GameModel {
 
     /**
      * Returns the player data
-     * 
+     *
      * @return The player data
      */
     public PlayerData getPlayerData() {

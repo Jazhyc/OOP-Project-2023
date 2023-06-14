@@ -12,8 +12,8 @@ import javax.swing.*;
 
 /**
  * @author Jeremias
- *         The MovePanel class is responsible for displaying the moves of the
- *         current pokemon
+ * The MovePanel class is responsible for displaying the moves of the
+ * current pokemon
  */
 public class MovePanel extends JPanel implements LanguageChangeListener {
 
@@ -26,11 +26,12 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
 
     /**
      * Constructor for the MovePanel class
-     * 
+     *
      * @param battleHandler    The battle handler
      * @param battleController The battle controller
      */
-    public MovePanel(BattleHandler battleHandler, GameController battleController) {
+    public MovePanel(BattleHandler battleHandler,
+                     GameController battleController) {
 
         // Use a grid layout with a scroll pane
         setLayout(new GridLayout(4, 1));
@@ -39,9 +40,12 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
         soundHandler = SoundHandler.getInstance();
 
         addLanguageListener();
-    };
+    }
 
-    private void setUp(BattleHandler battleHandler, GameController battleController) {
+    ;
+
+    private void setUp(BattleHandler battleHandler,
+                       GameController battleController) {
 
         // Add a move listener to the battle handler
         battleHandler.addListener("moves", e -> {
@@ -75,7 +79,8 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
     }
 
     private void addButton(GameController battleController, String move) {
-        String moveName = LanguageConfiguration.getInstance().getLocalMoveName(move);
+        String moveName =
+                LanguageConfiguration.getInstance().getLocalMoveName(move);
         JLabel button = new JLabel(moveName);
 
         buttonLabels.add(button);
@@ -119,7 +124,8 @@ public class MovePanel extends JPanel implements LanguageChangeListener {
 
             // Loop through the buttons and change the text
             for (int i = 0; i < buttonLabels.size(); i++) {
-                buttonLabels.get(i).setText(config.getLocalMoveName(moveList[i]));
+                buttonLabels.get(i)
+                        .setText(config.getLocalMoveName(moveList[i]));
             }
 
         });

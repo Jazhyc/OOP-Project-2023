@@ -8,8 +8,8 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- *         This class is responsible for displaying the dialogue in the combat
- *         screen
+ * This class is responsible for displaying the dialogue in the combat
+ * screen
  */
 public class DialoguePanel extends JPanel {
 
@@ -18,7 +18,7 @@ public class DialoguePanel extends JPanel {
 
     /**
      * Constructor for the DialoguePanel class
-     * 
+     *
      * @param battleHandler The battle handler
      */
     public DialoguePanel(BattleHandler battleHandler) {
@@ -38,7 +38,8 @@ public class DialoguePanel extends JPanel {
 
         // Add a gradient background
         Graphics2D g2 = (Graphics2D) g;
-        g2.setPaint(new GradientPaint(0, 0, Color.WHITE, 0, getHeight(), Color.LIGHT_GRAY));
+        g2.setPaint(new GradientPaint(0, 0, Color.WHITE, 0, getHeight(),
+                Color.LIGHT_GRAY));
         g2.fillRect(0, 0, getWidth(), getHeight());
 
         displayText(g);

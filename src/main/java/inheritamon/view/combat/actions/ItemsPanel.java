@@ -21,7 +21,8 @@ public class ItemsPanel extends JPanel {
     private Inventory inventory;
     private SoundHandler soundHandler;
 
-    public ItemsPanel(BattleHandler battleHandler, GameController battleController) {
+    public ItemsPanel(BattleHandler battleHandler,
+                      GameController battleController) {
 
         GridLayout gridLayout = new GridLayout(2, 3);
         setLayout(gridLayout);
@@ -31,7 +32,8 @@ public class ItemsPanel extends JPanel {
 
     }
 
-    private void setUpListener(BattleHandler battleHandler, GameController battleController) {
+    private void setUpListener(BattleHandler battleHandler,
+                               GameController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
 
@@ -59,7 +61,8 @@ public class ItemsPanel extends JPanel {
                 String spriteName = item.getItemSprite();
 
                 // Get the sprite from the data handler
-                BufferedImage imageToDisplay = dataHandler.getItemSprite(spriteName);
+                BufferedImage imageToDisplay =
+                        dataHandler.getItemSprite(spriteName);
 
                 addButton(battleController, i, imageToDisplay);
 
@@ -68,13 +71,15 @@ public class ItemsPanel extends JPanel {
 
     }
 
-    private void addButton(GameController battleController, int i, BufferedImage imageToDisplay) {
+    private void addButton(GameController battleController, int i,
+                           BufferedImage imageToDisplay) {
         // Skip if i is greater than the length of the array
         if (i < inventory.getSize()) {
 
             // Add the label with the sprite
             JLabel label = new JLabel(new ImageIcon(
-                    imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
+                    imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE,
+                            Image.SCALE_DEFAULT)));
             add(label);
 
             final int selectionIndex = i;

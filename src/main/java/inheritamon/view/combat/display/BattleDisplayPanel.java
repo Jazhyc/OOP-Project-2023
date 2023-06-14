@@ -10,10 +10,10 @@ import java.awt.image.BufferedImage;
 
 /**
  * @author Jeremias
- *         The BattleDisplayPanel class is responsible for displaying the
- *         pokemon during battle
- *         It splits the screen into two halves, one for the player and one for
- *         the enemy
+ * The BattleDisplayPanel class is responsible for displaying the
+ * pokemon during battle
+ * It splits the screen into two halves, one for the player and one for
+ * the enemy
  */
 public class BattleDisplayPanel extends JPanel {
 
@@ -30,7 +30,7 @@ public class BattleDisplayPanel extends JPanel {
 
     /**
      * Constructor for the BattleDisplayPanel class
-     * 
+     *
      * @param battleHandler The battle handler
      */
     public BattleDisplayPanel(BattleHandler battleHandler) {
@@ -39,8 +39,10 @@ public class BattleDisplayPanel extends JPanel {
         setLayout(new GridLayout(1, 2));
 
         // Two pokemon display panels
-        PokemonPanel playerPanel = new PokemonPanel(DisplayType.PLAYER, battleHandler);
-        PokemonPanel enemyPanel = new PokemonPanel(DisplayType.ENEMY, battleHandler);
+        PokemonPanel playerPanel =
+                new PokemonPanel(DisplayType.PLAYER, battleHandler);
+        PokemonPanel enemyPanel =
+                new PokemonPanel(DisplayType.ENEMY, battleHandler);
 
         // Add the panels to the display panel
         add(playerPanel);
@@ -63,7 +65,7 @@ public class BattleDisplayPanel extends JPanel {
 
     /**
      * Set the background image of the panel
-     * 
+     *
      * @param backgroundName The name of the background image
      */
     public void setBackground(String backgroundName) {

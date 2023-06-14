@@ -8,15 +8,15 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- *         A panel to display various details of the player's and enemy's
- *         pokemon
+ * A panel to display various details of the player's and enemy's
+ * pokemon
  */
 public class PokemonPanel extends JPanel {
 
     /**
      * Constructor for the PokemonPanel class, consists of a StatsPanel and a
      * SpritePanel
-     * 
+     *
      * @param type          Whether the panel is for the player or the enemy
      * @param battleHandler The battle handler
      */
@@ -38,7 +38,8 @@ public class PokemonPanel extends JPanel {
 
     }
 
-    private void addStatsPanel(int yPosition, DisplayType type, BattleHandler battleHandler) {
+    private void addStatsPanel(int yPosition, DisplayType type,
+                               BattleHandler battleHandler) {
 
         StatsPanel statsPanel = new StatsPanel(type, battleHandler);
 
@@ -54,7 +55,8 @@ public class PokemonPanel extends JPanel {
 
     }
 
-    private void addSpritePanel(int yPosition, DisplayType type, BattleHandler battleHandler) {
+    private void addSpritePanel(int yPosition, DisplayType type,
+                                BattleHandler battleHandler) {
 
         SpritePanel spritePanel = new SpritePanel(battleHandler, type);
 

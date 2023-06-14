@@ -10,7 +10,7 @@ import java.lang.reflect.*;
 
 /**
  * @author Jeremias
- *         Panel for displaying the HP and MP of the player and the enemy
+ * Panel for displaying the HP and MP of the player and the enemy
  */
 public class StatsPanel extends JPanel {
 
@@ -30,7 +30,7 @@ public class StatsPanel extends JPanel {
 
     /**
      * Constructor for the StatsPanel class
-     * 
+     *
      * @param type          The type of the panel
      * @param battleHandler The battle handler
      */
@@ -59,20 +59,25 @@ public class StatsPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(BORDER_THICKNESS));
         g.setColor(Color.BLACK);
-        g.drawRect(hpBarCenterX - BORDER_PADDING, centerY - BAR_HEIGHT + Y_OFFSET - BORDER_PADDING,
+        g.drawRect(hpBarCenterX - BORDER_PADDING,
+                centerY - BAR_HEIGHT + Y_OFFSET - BORDER_PADDING,
                 barWidth + BORDER_PADDING, BAR_HEIGHT * 2 + BORDER_PADDING);
 
         // Draw the bars
         g.setColor(Color.GREEN);
-        g.fillRect(hpBarCenterX, centerY - BAR_HEIGHT + Y_OFFSET, (int) (barWidth * HPRatio), BAR_HEIGHT);
+        g.fillRect(hpBarCenterX, centerY - BAR_HEIGHT + Y_OFFSET,
+                (int) (barWidth * HPRatio), BAR_HEIGHT);
         g.setColor(Color.BLUE);
-        g.fillRect(mpBarCenterX, centerY + Y_OFFSET, (int) (barWidth * MPRatio), (BAR_HEIGHT));
+        g.fillRect(mpBarCenterX, centerY + Y_OFFSET, (int) (barWidth * MPRatio),
+                (BAR_HEIGHT));
 
         // Add labels HP and MP to the bars
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("HP", hpBarCenterX + BAR_OFFSET, centerY - BAR_HEIGHT + Y_OFFSET + LABEL_OFFSET);
-        g.drawString("MP", mpBarCenterX + BAR_OFFSET, centerY + Y_OFFSET + LABEL_OFFSET);
+        g.drawString("HP", hpBarCenterX + BAR_OFFSET,
+                centerY - BAR_HEIGHT + Y_OFFSET + LABEL_OFFSET);
+        g.drawString("MP", mpBarCenterX + BAR_OFFSET,
+                centerY + Y_OFFSET + LABEL_OFFSET);
 
     }
 
@@ -82,7 +87,8 @@ public class StatsPanel extends JPanel {
 
             // Use a ternary operator to determine what the event name should be based on
             // the type
-            String eventName = type == DisplayType.PLAYER ? "playerStats" : "enemyStats";
+            String eventName =
+                    type == DisplayType.PLAYER ? "playerStats" : "enemyStats";
 
             // Check if the event is for the right pokemon
             if (e.getPropertyName().equals(eventName)) {
@@ -109,14 +115,15 @@ public class StatsPanel extends JPanel {
 
     /**
      * Tween a value from one value to another over a duration
-     * 
+     *
      * @param oldValue      The old value
      * @param newValue      The new value
      * @param duration      The duration of the tween
      * @param attributeName The name of the attribute to tween, uses reflection for
      *                      versatility
      */
-    private void tweenValue(float oldValue, float newValue, int duration, String attributeName) {
+    private void tweenValue(float oldValue, float newValue, int duration,
+                            String attributeName) {
         // Calculate the difference between the values
         float difference = newValue - oldValue;
 
@@ -136,7 +143,8 @@ public class StatsPanel extends JPanel {
 
                 // Set the attribute value using reflection
                 try {
-                    Field field = StatsPanel.this.getClass().getDeclaredField(attributeName);
+                    Field field = StatsPanel.this.getClass()
+                            .getDeclaredField(attributeName);
                     field.setAccessible(true);
                     field.set(StatsPanel.this, incrementValue);
                 } catch (NoSuchFieldException | IllegalAccessException ex) {

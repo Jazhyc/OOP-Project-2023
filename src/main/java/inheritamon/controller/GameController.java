@@ -6,7 +6,7 @@ import inheritamon.model.pokemon.types.PlayerPokemon;
 
 /**
  * @Author Jeremias
- *         Controller for the general game state and battle
+ * Controller for the general game state and battle.
  */
 public class GameController {
 
@@ -15,7 +15,7 @@ public class GameController {
 
     /**
      * Constructor for the GameController
-     * 
+     *
      * @param battleHandler The battle handler
      * @param gameModel     The game model
      */
@@ -26,7 +26,7 @@ public class GameController {
 
     /**
      * Selects a move for the player and passes it to the battle handler
-     * 
+     *
      * @param move The move to select in the form of a string
      */
     public void selectMove(String move) {
@@ -39,7 +39,7 @@ public class GameController {
     /**
      * Selects a pokemon for the player and passes it to the battle handler, used
      * for switching pokemon
-     * 
+     *
      * @param index The index of the pokemon to switch to
      */
     public void selectPokemon(int index) {
@@ -50,7 +50,7 @@ public class GameController {
 
     /**
      * Selects an item for the player and passes it to the battle handler
-     * 
+     *
      * @param item The item to select in the form of a string
      */
     public void selectItem(Integer item) {
@@ -64,10 +64,11 @@ public class GameController {
      */
     public void beginRandomBattle() {
 
-        String types[] = { "random", "attrition", "reckless" };
+        String types[] = {"random", "attrition", "reckless"};
 
         // Get a random type
-        gameModel.startPokemonBattle(types[(int) (Math.random() * types.length)]);
+        gameModel.startPokemonBattle(
+                types[(int) (Math.random() * types.length)]);
     }
 
     /**

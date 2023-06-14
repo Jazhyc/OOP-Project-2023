@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * @author Jeremias
- *         The panel for the different actions
+ * The panel for the different actions
  */
 public class ActionPanel extends JPanel {
 
@@ -24,11 +24,12 @@ public class ActionPanel extends JPanel {
 
     /**
      * Constructor for the ActionPanel class
-     * 
+     *
      * @param battleHandler    The battle handler
      * @param battleController The battle controller
      */
-    public ActionPanel(BattleHandler battleHandler, GameController battleController) {
+    public ActionPanel(BattleHandler battleHandler,
+                       GameController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
         background = dataHandler.getBackground("greenPanel");
@@ -69,7 +70,7 @@ public class ActionPanel extends JPanel {
     /**
      * Change the panel visibility to the given index and make all other panels
      * invisible
-     * 
+     *
      * @param index The index of the panel to make visible
      */
     public void changePanelVisibilityTo(int index) {

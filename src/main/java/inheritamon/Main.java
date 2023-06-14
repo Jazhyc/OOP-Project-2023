@@ -9,26 +9,26 @@ import inheritamon.view.SoundHandler;
 
 import javax.swing.*;
 
-public class Main {
+public final class Main {
 
     /**
-     * The width of the screen
+     * The width of the screen.
      * Used for frame size by the main method and for the game panel
      */
     public static final int SCREEN_WIDTH = 1366;
 
     /**
-     * The height of the screen
+     * The height of the screen.
      * Used for frame size by the main method and for the game panel
      */
     public static final int SCREEN_HEIGHT = 768;
 
     /**
-     * The main method which starts the game
-     * 
-     * @param args
+     * The main method which starts the game.
+     *
+     * @param args The command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         SoundHandler soundHandler = SoundHandler.getInstance();
         soundHandler.playMusic("StartMenu");
@@ -47,14 +47,17 @@ public class Main {
 
     }
 
-    private static void setUpMVC(JFrame frame) {
+    private static void setUpMVC(final JFrame frame) {
         // Use a border layout
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.setLayout(new BoxLayout(frame.getContentPane(),
+                BoxLayout.Y_AXIS));
 
         BattleHandler battleHandler = new BattleHandler();
         GameModel gameModel = GameModel.getInstance();
         gameModel.init(battleHandler);
-        GameController battleController = new GameController(battleHandler, gameModel);
+        GameController battleController = new GameController(
+                battleHandler, gameModel
+        );
 
         // Create the game panel
         GamePanel gamePanel = new GamePanel(battleController, gameModel);
@@ -65,13 +68,21 @@ public class Main {
         MainMenuPanel mainMenu = new MainMenuPanel(menuController, gameModel);
         frame.add(mainMenu);
 
-        ClassSelectionPanel classSelectionPanel = new ClassSelectionPanel(gameModel, menuController);
+        ClassSelectionPanel classSelectionPanel = new ClassSelectionPanel(
+                gameModel, menuController
+        );
         frame.add(classSelectionPanel);
         classSelectionPanel.setVisible(false);
 
         // Create a Panel for the combat screen
-        BattlePanel battlePanel = new BattlePanel(battleController, battleHandler, gamePanel);
+        BattlePanel battlePanel = new BattlePanel(
+                battleController, battleHandler, gamePanel
+        );
         frame.add(battlePanel);
         battlePanel.setVisible(false);
+    }
+
+    private Main() {
+        throw new IllegalStateException("Utility class");
     }
 }

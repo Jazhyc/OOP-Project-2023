@@ -13,7 +13,7 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- *         The main panel for the battle screen
+ * The main panel for the battle screen
  */
 public class BattlePanel extends JPanel {
 
@@ -27,12 +27,13 @@ public class BattlePanel extends JPanel {
 
     /**
      * Constructor for the BattlePanel class
-     * 
+     *
      * @param battleController The game controller
      * @param battleHandler    The battle handler
      * @param gamePanel        The game panel
      */
-    public BattlePanel(GameController battleController, BattleHandler battleHandler, GamePanel gamePanel) {
+    public BattlePanel(GameController battleController,
+                       BattleHandler battleHandler, GamePanel gamePanel) {
 
         this.gamePanel = gamePanel;
 
@@ -69,7 +70,8 @@ public class BattlePanel extends JPanel {
         add(dialoguePanel, gbc);
     }
 
-    private void addActionPanel(BattleHandler battleHandler, GameController battleController) {
+    private void addActionPanel(BattleHandler battleHandler,
+                                GameController battleController) {
         GridBagConstraints gbc;
         // Put the Action Panel in the bottom right of the screen
         // Black
@@ -83,7 +85,8 @@ public class BattlePanel extends JPanel {
         add(actionPanel, gbc);
     }
 
-    private void addChoicePanel(GameController battleController, ActionPanel actionPanel) {
+    private void addChoicePanel(GameController battleController,
+                                ActionPanel actionPanel) {
         GridBagConstraints gbc;
         // Put the Choice Panel in the bottom left of the screen
         // Blue

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * @author Jeremias
- *         A class to represent the player's pokemon roster
+ * A class to represent the player's pokemon roster
  */
 public class PlayerRoster implements Serializable {
 
@@ -25,7 +25,7 @@ public class PlayerRoster implements Serializable {
 
     /**
      * Adds a pokemon to the roster
-     * 
+     *
      * @param pokemon The pokemon to add
      */
     public void addPokemon(PlayerPokemon pokemon) {
@@ -43,7 +43,7 @@ public class PlayerRoster implements Serializable {
 
     /**
      * Get a pokemon from the roster
-     * 
+     *
      * @param index The index of the pokemon
      * @return The pokemon at the index
      */
@@ -62,7 +62,7 @@ public class PlayerRoster implements Serializable {
 
     /**
      * Get the roster as an array
-     * 
+     *
      * @return The roster as an array
      */
     public PlayerPokemon[] getArray() {
@@ -86,7 +86,7 @@ public class PlayerRoster implements Serializable {
 
     /**
      * Check if all pokemon in the roster are fainted
-     * 
+     *
      * @return True if all pokemon are fainted, false otherwise
      */
     public boolean allFainted() {
@@ -107,7 +107,7 @@ public class PlayerRoster implements Serializable {
 
     /**
      * Get the index of the first alive pokemon
-     * 
+     *
      * @return
      */
     public int getAlivePokemon() {

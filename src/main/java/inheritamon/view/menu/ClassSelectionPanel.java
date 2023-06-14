@@ -15,14 +15,15 @@ import java.awt.*;
 public class ClassSelectionPanel extends JPanel {
 
     private final int NUMBER_OF_PANELS = 3;
-    private String[] startingPokemon = { "Charizard", "Blastoise", "Sceptile" };
-    private String[] startingPerks = { "Climber", "Swimmer", "Rich" };
+    private String[] startingPokemon = {"Charizard", "Blastoise", "Sceptile"};
+    private String[] startingPerks = {"Climber", "Swimmer", "Rich"};
 
     private JPanel[] classPanels = new JPanel[NUMBER_OF_PANELS];
 
     /**
      * Constructor for the class selection panel
-     * @param gameModel The game model
+     *
+     * @param gameModel  The game model
      * @param controller The menu controller
      */
     public ClassSelectionPanel(GameModel gameModel, MenuController controller) {
@@ -39,8 +40,10 @@ public class ClassSelectionPanel extends JPanel {
 
     }
 
-    private void addPanel(MenuController controller, SoundHandler soundHandler, int i) {
-        classPanels[i] = new ClassDisplayPanel(startingPokemon[i], startingPerks[i]);
+    private void addPanel(MenuController controller, SoundHandler soundHandler,
+                          int i) {
+        classPanels[i] =
+                new ClassDisplayPanel(startingPokemon[i], startingPerks[i]);
         add(classPanels[i]);
 
         final int selectionIndex = i;
@@ -49,7 +52,8 @@ public class ClassSelectionPanel extends JPanel {
         classPanels[i].addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                controller.handleStartingClass(startingPokemon[selectionIndex], startingPerks[selectionIndex]);
+                controller.handleStartingClass(startingPokemon[selectionIndex],
+                        startingPerks[selectionIndex]);
                 soundHandler.playSound("select");
                 setVisible(false);
             }
@@ -57,13 +61,15 @@ public class ClassSelectionPanel extends JPanel {
             // Create a border around the panel when the mouse hovers over it
             @Override
             public void mouseEntered(MouseEvent evt) {
-                classPanels[selectionIndex].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                classPanels[selectionIndex].setBorder(
+                        BorderFactory.createLineBorder(Color.BLACK));
             }
 
             // Remove the border when the mouse leaves the panel
             @Override
             public void mouseExited(MouseEvent evt) {
-                classPanels[selectionIndex].setBorder(BorderFactory.createEmptyBorder());
+                classPanels[selectionIndex].setBorder(
+                        BorderFactory.createEmptyBorder());
             }
         });
     }

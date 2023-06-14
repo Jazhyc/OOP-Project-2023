@@ -9,15 +9,16 @@ import java.awt.image.*;
 
 /**
  * @Author Jeremias
- *         Panel for displaying certain stats of the player's pokemon data
+ * Panel for displaying certain stats of the player's pokemon data
  */
 public class PokemonDataPanel extends JPanel {
 
-    private String[] statNames = new String[] { "Atk", "Def", "Agi", "Acc", "M.Atk", "M.Def" };
+    private String[] statNames =
+            new String[] {"Atk", "Def", "Agi", "Acc", "M.Atk", "M.Def"};
 
     /**
      * Constructor for the PokemonDataPanel
-     * 
+     *
      * @param gameModel The game model
      */
     public PokemonDataPanel(GameModel gameModel) {
@@ -59,7 +60,8 @@ public class PokemonDataPanel extends JPanel {
         });
     }
 
-    private void addPokemonToPanel(PlayerPokemon[] roster, GridBagConstraints gbc, int i) {
+    private void addPokemonToPanel(PlayerPokemon[] roster,
+                                   GridBagConstraints gbc, int i) {
         PlayerPokemon pokemon = roster[i];
 
         System.out.println(pokemon.getName());
@@ -70,7 +72,9 @@ public class PokemonDataPanel extends JPanel {
         BufferedImage pokemonImage = pokemon.getSpeciesImage();
         Integer spriteSize = 100;
         JLabel imageLabel = new JLabel(
-                new ImageIcon(pokemonImage.getScaledInstance(spriteSize, spriteSize, Image.SCALE_DEFAULT)));
+                new ImageIcon(
+                        pokemonImage.getScaledInstance(spriteSize, spriteSize,
+                                Image.SCALE_DEFAULT)));
         add(imageLabel, gbc);
 
         // Configure the name
@@ -102,7 +106,8 @@ public class PokemonDataPanel extends JPanel {
         gbc.gridx = 2;
         Integer pokemonHP = pokemon.getHP();
         Integer pokemonMaxHP = pokemon.getNumericalStat("MaxHP");
-        JLabel hpString = new JLabel(pokemonHP.toString() + "/" + pokemonMaxHP.toString());
+        JLabel hpString = new JLabel(
+                pokemonHP.toString() + "/" + pokemonMaxHP.toString());
         add(hpString, gbc);
         hpString.setForeground(Color.GREEN);
         hpString.setFont(new Font("Arial", Font.BOLD, 20));
@@ -112,7 +117,8 @@ public class PokemonDataPanel extends JPanel {
         gbc.gridx = 3;
         Integer pokemonMP = pokemon.getMP();
         Integer pokemonMaxMP = pokemon.getNumericalStat("MaxMP");
-        JLabel mpString = new JLabel(pokemonMP.toString() + "/" + pokemonMaxMP.toString());
+        JLabel mpString = new JLabel(
+                pokemonMP.toString() + "/" + pokemonMaxMP.toString());
         add(mpString, gbc);
         mpString.setForeground(Color.BLUE);
         mpString.setFont(new Font("Arial", Font.BOLD, 20));
@@ -120,7 +126,7 @@ public class PokemonDataPanel extends JPanel {
 
     private void addHeaders(GridBagConstraints gbc) {
 
-        String[] additionalHeaders = new String[] { "HP", "MP" };
+        String[] additionalHeaders = new String[] {"HP", "MP"};
 
         // We don't add a header for the image and name, so we start at 2
         gbc.gridx = 2;
@@ -145,7 +151,8 @@ public class PokemonDataPanel extends JPanel {
         }
     }
 
-    private void addStat(Integer placementIndex, GridBagConstraints gbc, Integer stat) {
+    private void addStat(Integer placementIndex, GridBagConstraints gbc,
+                         Integer stat) {
         gbc.gridx = placementIndex;
         JLabel statLabel = new JLabel(stat.toString());
         statLabel.setHorizontalAlignment(JLabel.CENTER);

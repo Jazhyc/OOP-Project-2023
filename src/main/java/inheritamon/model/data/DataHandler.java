@@ -12,33 +12,44 @@ import java.io.*;
 import java.net.*;
 import java.lang.NullPointerException;
 
-// Import for null pointer exception
-
 /**
  * @author Jeremias
- *         A class to handle and load data with the appropriate exceptions
- *         We use csv files to store certain data regarding the game
- *         Singleton class
+ * A class to handle and load data with the appropriate exceptions
+ * We use csv files to store certain data regarding the game
+ * Singleton class
  */
 public class DataHandler {
 
-    private HashMap<String, HashMap<String, String>> characterData = new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, String>> moveData = new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, String>> itemData = new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, BufferedImage>> characterSprites = new HashMap<String, HashMap<String, BufferedImage>>();
-    private HashMap<String, BufferedImage> icons = new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> battleBackgrounds = new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> tiles = new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> characterTextures = new HashMap<String, BufferedImage>();
-    private HashMap<String, HashMap<String, String>> languageData = new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, BufferedImage> inventorySprites = new HashMap<String, BufferedImage>();
-    private HashMap<String, BufferedImage> objectSprites = new HashMap<String, BufferedImage>();
+    private HashMap<String, HashMap<String, String>> characterData =
+            new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, HashMap<String, String>> moveData =
+            new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, HashMap<String, String>> itemData =
+            new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, HashMap<String, BufferedImage>> characterSprites =
+            new HashMap<String, HashMap<String, BufferedImage>>();
+    private HashMap<String, BufferedImage> icons =
+            new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> battleBackgrounds =
+            new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> tiles =
+            new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> characterTextures =
+            new HashMap<String, BufferedImage>();
+    private HashMap<String, HashMap<String, String>> languageData =
+            new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, BufferedImage> inventorySprites =
+            new HashMap<String, BufferedImage>();
+    private HashMap<String, BufferedImage> objectSprites =
+            new HashMap<String, BufferedImage>();
     // private HashMap<String, HashMap<Language, String[]>> dialogueData = new
     // HashMap<String, HashMap<Language, String[]>>();
 
     // Create a hashmap for sounds and music
-    private HashMap<String, AudioInputStream> sounds = new HashMap<String, AudioInputStream>();
-    private HashMap<String, AudioInputStream> music = new HashMap<String, AudioInputStream>();
+    private HashMap<String, AudioInputStream> sounds =
+            new HashMap<String, AudioInputStream>();
+    private HashMap<String, AudioInputStream> music =
+            new HashMap<String, AudioInputStream>();
 
     /**
      * The constructor for the DataHandler class
@@ -52,7 +63,7 @@ public class DataHandler {
 
     /**
      * Get an instance of the DataHandler class
-     * 
+     *
      * @return the DataHandler instance
      */
     public static DataHandler getInstance() {
@@ -64,14 +75,16 @@ public class DataHandler {
 
     // Obtained from
     // https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
+
     /**
      * Check if a string is numeric
-     * 
+     *
      * @param str The string to check
      * @return Whether the string is numeric
      */
     public static boolean isNumeric(String str) {
-        return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional '-' and decimal.
+        return str.matches(
+                "-?\\d+(\\.\\d+)?"); // match a number with optional '-' and decimal.
     }
 
     private void loadAllData() {
@@ -92,12 +105,14 @@ public class DataHandler {
 
     }
 
-    private void loadData(HashMap<String, HashMap<String, String>> data, String fileName) {
+    private void loadData(HashMap<String, HashMap<String, String>> data,
+                          String fileName) {
 
         ArrayList<String> attributes = new ArrayList<String>();
 
         // Try with resources to automatically close the scanner
-        try (Scanner characterDataScanner = new Scanner(DataHandler.class.getResourceAsStream("/" + fileName))) {
+        try (Scanner characterDataScanner = new Scanner(
+                DataHandler.class.getResourceAsStream("/" + fileName))) {
 
             // Read the first line of the file and put the attributes into the attributes
             // ArrayList
@@ -111,7 +126,8 @@ public class DataHandler {
             while (characterDataScanner.hasNextLine()) {
                 String line = characterDataScanner.nextLine();
                 String[] lineSplit = line.split(",");
-                HashMap<String, String> characterDataEntry = new HashMap<String, String>();
+                HashMap<String, String> characterDataEntry =
+                        new HashMap<String, String>();
                 for (int i = 0; i < lineSplit.length; i++) {
                     characterDataEntry.put(attributes.get(i), lineSplit[i]);
                 }
@@ -135,11 +151,15 @@ public class DataHandler {
         try {
             // Go through all the keys in the characterData HashMap and load the images
             for (String characterName : characterData.keySet()) {
-                HashMap<String, BufferedImage> characterImagesEntry = new HashMap<String, BufferedImage>();
+                HashMap<String, BufferedImage> characterImagesEntry =
+                        new HashMap<String, BufferedImage>();
                 characterImagesEntry.put("front",
-                        ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + ".png")));
+                        ImageIO.read(DataHandler.class.getResource(
+                                "/battleSprites/" + characterName + ".png")));
                 characterImagesEntry.put("back",
-                        ImageIO.read(DataHandler.class.getResource("/battleSprites/" + characterName + "Back.png")));
+                        ImageIO.read(DataHandler.class.getResource(
+                                "/battleSprites/" + characterName +
+                                        "Back.png")));
                 characterSprites.put(characterName, characterImagesEntry);
             }
         } catch (IOException e) {
@@ -149,11 +169,14 @@ public class DataHandler {
 
     }
 
-    private void loadGeneralImages(HashMap<String, BufferedImage> images, String folderName) {
+    private void loadGeneralImages(HashMap<String, BufferedImage> images,
+                                   String folderName) {
 
         try {
             // Get all file names in the icons folder using File
-            File iconsFolder = new File(DataHandler.class.getResource("/" + folderName + "/").toURI());
+            File iconsFolder = new File(
+                    DataHandler.class.getResource("/" + folderName + "/")
+                            .toURI());
             File[] iconFiles = iconsFolder.listFiles();
 
             // Load each icon into the icons hashmap
@@ -168,7 +191,8 @@ public class DataHandler {
         }
     }
 
-    private void loadAudio(HashMap<String, AudioInputStream> audios, String folderName) {
+    private void loadAudio(HashMap<String, AudioInputStream> audios,
+                           String folderName) {
         try {
             // Get the URL of the folder containing the audio files
             URL folderUrl = getClass().getResource("/" + folderName + "/");
@@ -183,10 +207,12 @@ public class DataHandler {
             for (File file : files) {
                 if (file.isFile() && file.getName().endsWith(".wav")) {
                     // Get the name of the audio file without the extension
-                    String name = file.getName().substring(0, file.getName().lastIndexOf("."));
+                    String name = file.getName()
+                            .substring(0, file.getName().lastIndexOf("."));
 
                     // Load the audio file into an AudioInputStream
-                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+                    AudioInputStream audioStream =
+                            AudioSystem.getAudioInputStream(file);
 
                     // Add the audio stream to the HashMap
                     audios.put(name, audioStream);
@@ -199,7 +225,7 @@ public class DataHandler {
 
     /**
      * Save the state of the game
-     * 
+     *
      * @param data     The object to save
      * @param fileName The name of the file to save to
      */
@@ -210,7 +236,8 @@ public class DataHandler {
             out.writeObject(data);
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved in " + fileName + ".ser");
+            System.out.println(
+                    "Serialized data is saved in " + fileName + ".ser");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -218,7 +245,7 @@ public class DataHandler {
 
     /**
      * Load the state of the game
-     * 
+     *
      * @param fileName The name of the file to load from
      * @return The object that was loaded
      */
@@ -230,10 +257,12 @@ public class DataHandler {
             Object data = in.readObject();
             in.close();
             fileIn.close();
-            System.out.println("Serialized data is loaded from " + fileName + ".ser");
+            System.out.println(
+                    "Serialized data is loaded from " + fileName + ".ser");
             return data;
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println(fileName + "File is corrupted or does not exist");
+            System.out.println(
+                    fileName + "File is corrupted or does not exist");
             ;
         }
 
@@ -241,7 +270,8 @@ public class DataHandler {
 
     }
 
-    private HashMap<String, String> getData(HashMap<String, HashMap<String, String>> dataMap, String dataName,
+    private HashMap<String, String> getData(
+            HashMap<String, HashMap<String, String>> dataMap, String dataName,
             String dataType) {
         try {
             return new HashMap<String, String>(dataMap.get(dataName));
@@ -256,7 +286,7 @@ public class DataHandler {
 
     /**
      * Gets the data of a specific pokemon
-     * 
+     *
      * @param characterName The name of the pokemon
      * @return The data of the pokemon as a HashMap
      */
@@ -266,7 +296,7 @@ public class DataHandler {
 
     /**
      * The names of all the pokemon in the game
-     * 
+     *
      * @return The names of all the pokemon
      */
     public String[] getPokemonNames() {
@@ -275,7 +305,7 @@ public class DataHandler {
 
     /**
      * Gets the data of a specific move
-     * 
+     *
      * @param moveName The name of the move
      * @return The data of the move as a HashMap
      */
@@ -285,7 +315,7 @@ public class DataHandler {
 
     /**
      * Gets the data of a specific item
-     * 
+     *
      * @param itemName The name of the item
      * @return The data of the item as a HashMap
      */
@@ -295,7 +325,7 @@ public class DataHandler {
 
     /**
      * Get data of all items in the game
-     * 
+     *
      * @return The data of all items
      */
     public HashMap<String, HashMap<String, String>> getAllItems() {
@@ -304,7 +334,7 @@ public class DataHandler {
 
     /**
      * Gets the data of all language configurations of the menus
-     * 
+     *
      * @return The data of all menus
      */
     public HashMap<String, HashMap<String, String>> getLanguageData() {
@@ -313,12 +343,13 @@ public class DataHandler {
 
     /**
      * Converts the data of all the moves into an ArrayList of move objects
-     * 
+     *
      * @return The data of the moves as an Ability
      */
     public HashMap<String, NormalAbility> getAllAbilities() {
 
-        HashMap<String, NormalAbility> abilities = new HashMap<String, NormalAbility>();
+        HashMap<String, NormalAbility> abilities =
+                new HashMap<String, NormalAbility>();
 
         for (String moveName : moveData.keySet()) {
             HashMap<String, String> moveData = getMoveData(moveName);
@@ -331,7 +362,7 @@ public class DataHandler {
 
     /**
      * Gets the sprites of entities that are displayed on the map
-     * 
+     *
      * @return The sprites of entities that are displayed on the map
      */
     public HashMap<String, HashMap<String, BufferedImage>> getAllCharacterSprites() {
@@ -340,7 +371,7 @@ public class DataHandler {
 
     /**
      * Gets the two sprites of a specific pokemon
-     * 
+     *
      * @param pokemonName The name of the pokemon
      * @return The sprites of the pokemon
      */
@@ -350,37 +381,41 @@ public class DataHandler {
 
     /**
      * Converts a string of moves into an ArrayList of moves
-     * 
+     *
      * @param nonFormattedString
      * @return An ArrayList of moves
      */
-    public static ArrayList<String> convertMoveSetToString(String nonFormattedString) {
+    public static ArrayList<String> convertMoveSetToString(
+            String nonFormattedString) {
 
-        ArrayList<String> moveSet = new ArrayList<String>(Arrays.asList(nonFormattedString.split(";")));
+        ArrayList<String> moveSet = new ArrayList<String>(
+                Arrays.asList(nonFormattedString.split(";")));
 
         return new ArrayList<String>(moveSet);
     }
 
     /**
      * Gets the icons of certain UI elements
-     * 
+     *
      * @return The icons of certain UI elements
      */
     public HashMap<String, BufferedImage> getIcons() {
         return icons;
     }
 
-    private <T> T getImage(Map<String, T> imageMap, String imageName, String imageType) {
+    private <T> T getImage(Map<String, T> imageMap, String imageName,
+                           String imageType) {
         T image = imageMap.get(imageName);
         if (image == null) {
-            throw new IllegalArgumentException(imageType + " not found: " + imageName);
+            throw new IllegalArgumentException(
+                    imageType + " not found: " + imageName);
         }
         return image;
     }
 
     /**
      * Gets the background of a specific battle
-     * 
+     *
      * @param backgroundName The name of the background
      * @return The background of the battle
      */
@@ -390,7 +425,7 @@ public class DataHandler {
 
     /**
      * Gets the image of a specific tile
-     * 
+     *
      * @param tileName The name of the tile
      * @return The image of the tile
      */
@@ -400,7 +435,7 @@ public class DataHandler {
 
     /**
      * Gets a specific texture of a character displayed on the map
-     * 
+     *
      * @param textureName The name of the texture
      * @return The texture of the character
      */
@@ -410,7 +445,7 @@ public class DataHandler {
 
     /**
      * Gets the sprite of a specific item
-     * 
+     *
      * @param spriteName The name of the item
      * @return The sprite of the item
      */
@@ -424,7 +459,7 @@ public class DataHandler {
 
     /**
      * Gets all audio files of a specific type
-     * 
+     *
      * @param audioType The type of audio files
      * @return All audio files of a specific type
      */
@@ -435,7 +470,8 @@ public class DataHandler {
         } else if (audioType.equals("Sounds")) {
             return sounds;
         } else {
-            throw new IllegalArgumentException("Audio type not found: " + audioType);
+            throw new IllegalArgumentException(
+                    "Audio type not found: " + audioType);
         }
 
     }

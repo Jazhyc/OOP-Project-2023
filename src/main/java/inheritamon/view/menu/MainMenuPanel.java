@@ -12,7 +12,7 @@ import java.awt.event.*;
 
 /**
  * @author Jeremias
- *         The main menu of the game
+ * The main menu of the game
  */
 public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
@@ -26,7 +26,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
     /**
      * Constructor for the MainMenuPanel
-     * 
+     *
      * @param controller The menu controller
      * @param model      The game model
      */
@@ -85,7 +85,8 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
         add(languageButton, gbc);
     }
 
-    private void addButtons(LanguageConfiguration config, MenuController controller) {
+    private void addButtons(LanguageConfiguration config,
+                            MenuController controller) {
 
         // Get the strings from config
         String[] buttonStrings = config.getOptions("MainMenu");
@@ -187,7 +188,7 @@ public class MainMenuPanel extends JPanel implements LanguageChangeListener {
 
     /**
      * Add a game state listener to the panel
-     * 
+     *
      * @param model The game model
      */
     public void addGameStateListener(GameModel model) {

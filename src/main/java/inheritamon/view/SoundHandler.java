@@ -7,10 +7,9 @@ import inheritamon.model.data.DataHandler;
 
 /**
  * @author Jeremias
- *         The SoundHandler class is responsible for loading and playing all the
- *         sounds
- *         and music in the game.
- *         It is a singleton class.
+ * The SoundHandler class is responsible for loading and playing all the
+ * sounds and music in the game.
+ * It is a singleton class.
  */
 public class SoundHandler {
 
@@ -29,8 +28,10 @@ public class SoundHandler {
 
         DataHandler dataHandler = DataHandler.getInstance();
 
-        HashMap<String, AudioInputStream> musicInput = dataHandler.getAudios("Music");
-        HashMap<String, AudioInputStream> soundInput = dataHandler.getAudios("Sounds");
+        HashMap<String, AudioInputStream> musicInput =
+                dataHandler.getAudios("Music");
+        HashMap<String, AudioInputStream> soundInput =
+                dataHandler.getAudios("Sounds");
 
         // Create the music clips
         for (String key : musicInput.keySet()) {
@@ -58,7 +59,7 @@ public class SoundHandler {
 
     /**
      * Returns the instance of the SoundHandler
-     * 
+     *
      * @return The instance of the SoundHandler
      */
     public static SoundHandler getInstance() {
@@ -71,7 +72,7 @@ public class SoundHandler {
     /**
      * Plays the music with the given key
      * Will stop the current music if there is one playing
-     * 
+     *
      * @param key The name of the music to play
      */
     public void playMusic(String key) {
@@ -82,7 +83,8 @@ public class SoundHandler {
         currentMusic.setFramePosition(0);
 
         // Lower volume
-        FloatControl gainControl = (FloatControl) currentMusic.getControl(FloatControl.Type.MASTER_GAIN);
+        FloatControl gainControl = (FloatControl) currentMusic.getControl(
+                FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(-10.0f);
 
         currentMusic.loop(Clip.LOOP_CONTINUOUSLY);
@@ -90,7 +92,7 @@ public class SoundHandler {
 
     /**
      * Plays the sound effect with the given key
-     * 
+     *
      * @param key The name of the sound effect to play
      */
     public void playSound(String key) {
@@ -98,7 +100,8 @@ public class SoundHandler {
         clip.setFramePosition(0);
 
         // Lower volume
-        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        FloatControl gainControl =
+                (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(-10.0f);
         clip.start();
     }

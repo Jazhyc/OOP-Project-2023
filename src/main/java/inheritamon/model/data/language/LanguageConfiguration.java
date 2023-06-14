@@ -3,12 +3,13 @@ package inheritamon.model.data.language;
 import java.util.*;
 
 import java.beans.*;
+
 import inheritamon.model.data.DataHandler;
 
 /**
  * @Author Jeremias
- *         A class to handle the language configuration of the game
- *         Uses the singleton pattern
+ * A class to handle the language configuration of the game
+ * Uses the singleton pattern
  */
 public class LanguageConfiguration {
 
@@ -17,7 +18,7 @@ public class LanguageConfiguration {
 
     /**
      * Returns the instance of the language configuration
-     * 
+     *
      * @return The instance of the language configuration
      */
     public static LanguageConfiguration getInstance() {
@@ -37,16 +38,20 @@ public class LanguageConfiguration {
     private Language selectedLanguage;
 
     // Arraylist of listeners
-    private ArrayList<PropertyChangeListener> listeners = new ArrayList<PropertyChangeListener>();
+    private ArrayList<PropertyChangeListener> listeners =
+            new ArrayList<PropertyChangeListener>();
 
-    private HashMap<String, HashMap<String, String>> stringMap = new HashMap<String, HashMap<String, String>>();
-    private HashMap<String, HashMap<String, String[]>> optionMap = new HashMap<String, HashMap<String, String[]>>();
+    private HashMap<String, HashMap<String, String>> stringMap =
+            new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, HashMap<String, String[]>> optionMap =
+            new HashMap<String, HashMap<String, String[]>>();
 
     private LanguageConfiguration() {
         selectedLanguage = Language.EN;
 
         DataHandler dataHandler = DataHandler.getInstance();
-        HashMap<String, HashMap<String, String>> languageData = dataHandler.getLanguageData();
+        HashMap<String, HashMap<String, String>> languageData =
+                dataHandler.getLanguageData();
 
         // Loop over all keys in language data and put them in the appropriate hashmap
         // based on the type column
@@ -62,7 +67,8 @@ public class LanguageConfiguration {
                 String[] nl = data.get("NL").split(";");
 
                 // Create a hashmap to store the arrays
-                HashMap<String, String[]> optionMapData = new HashMap<String, String[]>();
+                HashMap<String, String[]> optionMapData =
+                        new HashMap<String, String[]>();
                 optionMapData.put("EN", en);
                 optionMapData.put("NL", nl);
                 optionMap.put(key, optionMapData);
@@ -86,13 +92,14 @@ public class LanguageConfiguration {
             selectedLanguage = Language.EN;
         }
 
-        notifyListeners(new PropertyChangeEvent(this, "Language", null, selectedLanguage.toString()));
+        notifyListeners(new PropertyChangeEvent(this, "Language", null,
+                selectedLanguage.toString()));
 
     }
 
     /**
      * Adds a listener to the list of listeners
-     * 
+     *
      * @param listener The listener to add
      */
     public void addLanguageChangeListener(PropertyChangeListener listener) {
@@ -109,7 +116,7 @@ public class LanguageConfiguration {
 
     /**
      * Used to get an array of options for menus with multiple strings to display
-     * 
+     *
      * @param key The key of the menu to get the options for
      * @return An array of options
      */
@@ -120,7 +127,7 @@ public class LanguageConfiguration {
 
     /**
      * Used to get a string to display
-     * 
+     *
      * @param key The key of the string to get
      * @return The string to display
      */
@@ -130,13 +137,14 @@ public class LanguageConfiguration {
 
     /**
      * Used to get the name of pokemon's move in the selected language
-     * 
+     *
      * @param moveName The name of the move
      * @return The name of the move in the selected language
      */
     public String getLocalMoveName(String moveName) {
 
-        HashMap<String, String> moveData = DataHandler.getInstance().getMoveData(moveName);
+        HashMap<String, String> moveData =
+                DataHandler.getInstance().getMoveData(moveName);
         return moveData.get(selectedLanguage.toString());
 
     }

@@ -4,8 +4,8 @@ import java.util.*;
 
 /**
  * @author Jeremias
- *         A class to represent the player's pokemon, awaits input from the
- *         player
+ * A class to represent the player's pokemon, awaits input from the
+ * player
  */
 public class PlayerPokemon extends Pokemon {
 
@@ -15,7 +15,7 @@ public class PlayerPokemon extends Pokemon {
 
     /**
      * Constructor for the PlayerPokemon class
-     * 
+     *
      * @param data The data of the pokemon
      */
     public PlayerPokemon(HashMap<String, String> data) {
@@ -45,7 +45,7 @@ public class PlayerPokemon extends Pokemon {
 
     /**
      * Selects a move for the pokemon, called by the GUI
-     * 
+     *
      * @param move The move to select
      */
     public void selectMove(String move) {

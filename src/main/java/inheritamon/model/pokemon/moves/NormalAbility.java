@@ -6,18 +6,18 @@ import inheritamon.model.pokemon.types.Pokemon;
 
 /**
  * @author Jeremias
- *         A normal ability that deals damage based on the user's attack and
- *         magic attack
+ * A normal ability that deals damage based on the user's attack and
+ * magic attack
  */
 public class NormalAbility extends Ability {
 
     /**
-     * Executes the move depending on the type of the move
-     * 
+     * Executes the move depending on the type of the move.
+     *
      * @param enemy The enemy pokemon
      * @param user  The user pokemon
      * @return The damage dealt for regular moves, the amount healed for healing
-     *         moves, -1 if the move was not used
+     * moves, -1 if the move was not used
      */
     public int executeMove(Pokemon enemy, Pokemon user) {
 
@@ -71,7 +71,7 @@ public class NormalAbility extends Ability {
 
     /**
      * Constructor for the NormalAbility class
-     * 
+     *
      * @param moveData The data of the move
      */
     public NormalAbility(HashMap<String, String> moveData) {

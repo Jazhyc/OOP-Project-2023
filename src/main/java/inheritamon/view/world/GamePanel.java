@@ -12,8 +12,8 @@ import inheritamon.view.world.sidebar.*;
 
 /**
  * @author Jeremias
- *         A class to represent the game panel
- *         This panel will hold the world panel and the side panel
+ * A class to represent the game panel
+ * This panel will hold the world panel and the side panel
  */
 public class GamePanel extends JPanel {
 
@@ -50,7 +50,8 @@ public class GamePanel extends JPanel {
 
         int sidePanelWidth = screenWidth / 4;
         sidePanel.setBounds(0, 0, sidePanelWidth, screenHeight);
-        pokemonDataPanel.setBounds(sidePanelWidth, 0, screenWidth - sidePanelWidth, screenHeight);
+        pokemonDataPanel.setBounds(sidePanelWidth, 0,
+                screenWidth - sidePanelWidth, screenHeight);
 
         worldPanel.setBounds(0, 0, screenWidth, screenHeight);
 

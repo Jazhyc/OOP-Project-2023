@@ -11,8 +11,8 @@ import java.awt.*;
 
 /**
  * @author Jeremias
- *         The SpritePanel class is responsible for displaying the sprites of
- *         the pokemon during battle
+ * The SpritePanel class is responsible for displaying the sprites of
+ * the pokemon during battle
  */
 public class SpritePanel extends JPanel {
 
@@ -25,11 +25,12 @@ public class SpritePanel extends JPanel {
     private final int Y_OFFSET = 25;
 
     // Reference to the data handler
-    private HashMap<String, HashMap<String, BufferedImage>> pokemonImages = new HashMap<String, HashMap<String, BufferedImage>>();
+    private HashMap<String, HashMap<String, BufferedImage>> pokemonImages =
+            new HashMap<String, HashMap<String, BufferedImage>>();
 
     /**
      * Constructor for the SpritePanel class
-     * 
+     *
      * @param battleHandler The battle handler
      * @param type          Whether the panel is for the player or the enemy
      */
@@ -66,13 +67,16 @@ public class SpritePanel extends JPanel {
             g.setColor(Color.BLACK);
 
             // Draw an oval with a gradient
-            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_PLACEMENT), spriteSize, SHADOW_SIZE);
+            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_PLACEMENT),
+                    spriteSize, SHADOW_SIZE);
             g.setColor(new Color(0, 0, 0, 0));
-            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_SCALE), spriteSize, SHADOW_SIZE);
+            g.fillOval(spriteX, (int) (spriteY + spriteSize * SHADOW_SCALE),
+                    spriteSize, SHADOW_SIZE);
 
         }
 
-        g.drawImage(imageToDisplay, spriteX, spriteY + Y_OFFSET, spriteSize, spriteSize, null);
+        g.drawImage(imageToDisplay, spriteX, spriteY + Y_OFFSET, spriteSize,
+                spriteSize, null);
 
     }
 
@@ -96,7 +100,8 @@ public class SpritePanel extends JPanel {
 
             // Use a ternary operator to determine what the event name should be based on
             // the type
-            String eventName = type == DisplayType.PLAYER ? "playerSprite" : "enemySprite";
+            String eventName =
+                    type == DisplayType.PLAYER ? "playerSprite" : "enemySprite";
 
             // Check if the event is for the right pokemon
             if (e.getPropertyName().equals(eventName)) {

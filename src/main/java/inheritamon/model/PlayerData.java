@@ -23,7 +23,8 @@ public class PlayerData implements Serializable {
 
     private PlayerRoster roster;
     private Inventory inventory;
-    private ArrayList<TrainerAbility> abilities = new ArrayList<TrainerAbility>();
+    private ArrayList<TrainerAbility> abilities =
+            new ArrayList<TrainerAbility>();
 
     /**
      * Constructor for the PlayerData
@@ -35,7 +36,7 @@ public class PlayerData implements Serializable {
 
     /**
      * Returns the player roster
-     * 
+     *
      * @return The player roster
      */
     public PlayerRoster getRoster() {
@@ -44,7 +45,7 @@ public class PlayerData implements Serializable {
 
     /**
      * Returns the player inventory
-     * 
+     *
      * @return The player inventory
      */
     public Inventory getInventory() {
@@ -60,7 +61,7 @@ public class PlayerData implements Serializable {
 
     /**
      * Adds an ability to the player
-     * 
+     *
      * @param ability The ability to add
      */
     public void addAbility(TrainerAbility ability) {
@@ -74,7 +75,7 @@ public class PlayerData implements Serializable {
 
     /**
      * Adds starter data to the player like a starter pokemon and a perk
-     * 
+     *
      * @param pokemon
      * @param perk
      */
@@ -82,7 +83,8 @@ public class PlayerData implements Serializable {
 
         DataHandler dataHandler = DataHandler.getInstance();
 
-        roster.addPokemon(new PlayerPokemon(dataHandler.getPokemonData(pokemon)));
+        roster.addPokemon(
+                new PlayerPokemon(dataHandler.getPokemonData(pokemon)));
 
         // Convert the perk into a trainer ability
         TrainerAbility ability = TrainerAbility.valueOf(perk.toUpperCase());
@@ -100,7 +102,7 @@ public class PlayerData implements Serializable {
 
     /**
      * Checks if the player has a certain ability
-     * 
+     *
      * @param ability The ability to check
      * @return True if the player has the ability, false otherwise
      */

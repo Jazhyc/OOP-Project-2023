@@ -15,9 +15,9 @@ import java.awt.color.*;
 
 /**
  * @author Jeremias
- *         The PokemonSelectionPanel class is responsible for displaying the
- *         pokemon in the player's roster
- *         Allows the player to select a pokemon
+ * The PokemonSelectionPanel class is responsible for displaying the
+ * pokemon in the player's roster
+ * Allows the player to select a pokemon
  */
 public class PokemonSelectionPanel extends JPanel {
 
@@ -27,11 +27,12 @@ public class PokemonSelectionPanel extends JPanel {
 
     /**
      * Constructor for the PokemonSelectionPanel class
-     * 
+     *
      * @param battleHandler    The battle handler
      * @param battleController The battle controller
      */
-    public PokemonSelectionPanel(BattleHandler battleHandler, GameController battleController) {
+    public PokemonSelectionPanel(BattleHandler battleHandler,
+                                 GameController battleController) {
 
         // Use a grid layout
         // Create a variable first
@@ -43,7 +44,8 @@ public class PokemonSelectionPanel extends JPanel {
 
     }
 
-    private void setUpListener(BattleHandler battleHandler, GameController battleController) {
+    private void setUpListener(BattleHandler battleHandler,
+                               GameController battleController) {
 
         DataHandler dataHandler = DataHandler.getInstance();
 
@@ -65,11 +67,14 @@ public class PokemonSelectionPanel extends JPanel {
                     continue;
                 }
 
-                BufferedImage imageToDisplay = getImageToDisplay(dataHandler, i);
+                BufferedImage imageToDisplay =
+                        getImageToDisplay(dataHandler, i);
 
                 // Create a label with the image and increase the size
                 JLabel label = new JLabel(
-                        new ImageIcon(imageToDisplay.getScaledInstance(SPRITE_SIZE, SPRITE_SIZE, Image.SCALE_DEFAULT)));
+                        new ImageIcon(
+                                imageToDisplay.getScaledInstance(SPRITE_SIZE,
+                                        SPRITE_SIZE, Image.SCALE_DEFAULT)));
 
                 addInteraction(battleController, i, label);
 
@@ -81,7 +86,8 @@ public class PokemonSelectionPanel extends JPanel {
 
     }
 
-    private void addInteraction(GameController battleController, int i, JLabel label) {
+    private void addInteraction(GameController battleController, int i,
+                                JLabel label) {
         if (!playerPokemon[i].isFainted()) {
             final int selectionIndex = i;
 
@@ -100,7 +106,9 @@ public class PokemonSelectionPanel extends JPanel {
     }
 
     private BufferedImage getImageToDisplay(DataHandler dataHandler, int i) {
-        BufferedImage imageToDisplay = dataHandler.getPokemonSprite(playerPokemon[i].getName()).get("front");
+        BufferedImage imageToDisplay =
+                dataHandler.getPokemonSprite(playerPokemon[i].getName())
+                        .get("front");
 
         // If the pokemon fainted, make the image black and white. Use colorConvertOp
         if (playerPokemon[i].isFainted()) {
@@ -114,11 +122,14 @@ public class PokemonSelectionPanel extends JPanel {
     private BufferedImage convertToGrayscale(BufferedImage imageToDisplay) {
 
         // Make the image transparent
-        BufferedImage newImage = new BufferedImage(imageToDisplay.getWidth(), imageToDisplay.getHeight(),
+        BufferedImage newImage = new BufferedImage(imageToDisplay.getWidth(),
+                imageToDisplay.getHeight(),
                 BufferedImage.TYPE_INT_ARGB);
 
         // Create a color convert op
-        ColorConvertOp colorConvertOp = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+        ColorConvertOp colorConvertOp =
+                new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY),
+                        null);
 
         // Use the filter to convert the image
         colorConvertOp.filter(imageToDisplay, newImage);
