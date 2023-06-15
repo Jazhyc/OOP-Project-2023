@@ -72,5 +72,6 @@ target
 
 # Custom files
 *.ser
+playerData.ser
 check.xml
 out/
