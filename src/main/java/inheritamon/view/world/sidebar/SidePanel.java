@@ -1,14 +1,23 @@
 package inheritamon.view.world.sidebar;
 
-import javax.swing.*;
-
 import inheritamon.controller.GameController;
-import inheritamon.model.data.language.*;
+import inheritamon.model.data.language.LanguageChangeListener;
+import inheritamon.model.data.language.LanguageConfiguration;
 import inheritamon.view.SoundHandler;
 
-import java.awt.event.*;
-import java.util.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Jeremias
@@ -216,10 +225,11 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
     }
 
     /**
-     * Hide the pokemon data panel.
+     * Hide the panels that are displayed to the right of the side panel.
      */
-    public void hidePokemonDataPanel() {
+    public void hideDataPanels() {
         pokemonDataPanel.setVisible(false);
+        inventoryPanel.setVisible(false);
     }
 
 }

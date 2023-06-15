@@ -1,17 +1,19 @@
 package inheritamon.view.world.sidebar;
-import inheritamon.controller.GameController;
-import inheritamon.model.BattleHandler;
-import inheritamon.model.GameModel;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+
 import inheritamon.model.GameModel;
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.inventory.Inventory;
 import inheritamon.model.inventory.Item;
-import inheritamon.model.npcs.types.Pokemon;
 
-import java.awt.image.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 /**
  * @author Jona Janssen
@@ -62,13 +64,10 @@ public class InventoryPanel extends JPanel {
 
                 // Skip if i is greater than the length of the array
                 if (i >= inventory.getSize()) {
-
-                    addItemToPanel(inventory, gbc, i);
-                    
                     continue;
                 }
 
-
+                addItemToPanel(inventory, gbc, i);
 
             }
         });
@@ -89,13 +88,17 @@ public class InventoryPanel extends JPanel {
         gbc.gridy = i + 1;
 
         gbc.gridx = 0;
+
+        DataHandler dataHandler = DataHandler.getInstance();
+        String spriteName = dataHandler.getItemData(item.getItemName()).get("Sprite");
+        BufferedImage itemImage = dataHandler.getItemSprite(spriteName);
         
         int spriteSize = 100;
-//        JLabel imageLabel = new JLabel(
-//                new ImageIcon(
-//                        itemImage.getScaledInstance(spriteSize, spriteSize,
-//                                Image.SCALE_DEFAULT)));
-//        add(imageLabel, gbc);
+        JLabel imageLabel = new JLabel(
+                new ImageIcon(
+                        itemImage.getScaledInstance(spriteSize, spriteSize,
+                                Image.SCALE_DEFAULT)));
+        add(imageLabel, gbc);
 
         // Configure the name
         gbc.gridx = 1;

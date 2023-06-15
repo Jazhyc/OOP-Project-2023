@@ -1,13 +1,16 @@
 package inheritamon.view.world;
 
-import javax.swing.*;
-import java.awt.*;
-
 import inheritamon.Main;
 import inheritamon.controller.GameController;
 import inheritamon.model.GameModel;
 import inheritamon.model.GameModel.GameState;
-import inheritamon.view.world.sidebar.*;
+import inheritamon.view.world.sidebar.InventoryPanel;
+import inheritamon.view.world.sidebar.PokemonDataPanel;
+import inheritamon.view.world.sidebar.SidePanel;
+
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
 
 /**
  * @author Jeremias
@@ -50,10 +53,13 @@ public class GamePanel extends JPanel {
         layeredPane.add(worldPanel, 0);
         layeredPane.add(sidePanel, 1);
         layeredPane.add(pokemonDataPanel, 1);
+        layeredPane.add(inventoryPanel, 1);
 
         int sidePanelWidth = screenWidth / 4;
         sidePanel.setBounds(0, 0, sidePanelWidth, screenHeight);
         pokemonDataPanel.setBounds(sidePanelWidth, 0,
+                screenWidth - sidePanelWidth, screenHeight);
+        inventoryPanel.setBounds(sidePanelWidth, 0,
                 screenWidth - sidePanelWidth, screenHeight);
 
         worldPanel.setBounds(0, 0, screenWidth, screenHeight);
@@ -70,6 +76,7 @@ public class GamePanel extends JPanel {
         // Make the side panel invisible
         sidePanel.setVisible(false);
         pokemonDataPanel.setVisible(false);
+        inventoryPanel.setVisible(false);
 
         // Add the layered pane to the game panel
         add(layeredPane);

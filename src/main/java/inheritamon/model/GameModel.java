@@ -1,12 +1,15 @@
 package inheritamon.model;
 
+import inheritamon.model.data.DataHandler;
+import inheritamon.model.npcs.types.AttritionPokemon;
+import inheritamon.model.npcs.types.Pokemon;
+import inheritamon.model.npcs.types.RandomPokemon;
+import inheritamon.model.npcs.types.RecklessPokemon;
+import inheritamon.model.player.PlayerData;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-
-import inheritamon.model.data.DataHandler;
-import inheritamon.model.npcs.types.*;
-import inheritamon.model.player.PlayerData;
 
 /**
  * @author Jeremias
@@ -19,6 +22,15 @@ public class GameModel {
 
     // Singleton instance
     private static GameModel instance = null;
+    /**
+     * Listeners for the current game state
+     */
+    private final ArrayList<PropertyChangeListener> gameStateListeners =
+            new ArrayList<>();
+    private PlayerData playerData;
+    private BattleHandler battleHandler;
+    private PropertyChangeListener rosterListener;
+    private PropertyChangeListener itemListener;
 
     /**
      * Returns the singleton instance of the game model
@@ -31,25 +43,6 @@ public class GameModel {
         }
         return instance;
     }
-
-    private PlayerData playerData;
-    private BattleHandler battleHandler;
-
-    /**
-     * Enum to represent the states that the game can be in
-     */
-    public enum GameState {
-        SELECT_STARTER, GAME_START, MAIN_MENU
-    }
-
-    /**
-     * Listeners for the current game state
-     */
-    private final ArrayList<PropertyChangeListener> gameStateListeners =
-            new ArrayList<>();
-    private PropertyChangeListener rosterListener;
-
-    private PropertyChangeListener itemListener;
 
     /**
      * Initializes the game model
@@ -68,6 +61,7 @@ public class GameModel {
     public void startNewGame() {
         playerData = new PlayerData();
         notifyGameStateListeners(GameState.SELECT_STARTER);
+        notifyItemListener();
     }
 
     /**
@@ -87,8 +81,7 @@ public class GameModel {
 
         notifyGameStateListeners(GameState.GAME_START);
         notifyRosterListener();
-
-        // Load world later
+        notifyItemListener();
     }
 
     /**
@@ -145,6 +138,12 @@ public class GameModel {
                         playerData.getRoster().getArray()));
     }
 
+    private void notifyItemListener() {
+        itemListener.propertyChange(
+                new PropertyChangeEvent(this, "items", null,
+                        playerData.getInventory()));
+    }
+
     /**
      * Saves the player data and world data
      */
@@ -163,7 +162,10 @@ public class GameModel {
     }
 
     private void setUpBattleStateListener() {
-        battleHandler.addListener("battleState", e -> notifyRosterListener());
+        battleHandler.addListener("battleState", e -> {
+            notifyRosterListener();
+            notifyItemListener();
+        });
     }
 
     /**
@@ -211,6 +213,13 @@ public class GameModel {
      */
     public PlayerData getPlayerData() {
         return playerData;
+    }
+
+    /**
+     * Enum to represent the states that the game can be in
+     */
+    public enum GameState {
+        SELECT_STARTER, GAME_START, MAIN_MENU
     }
 
 }

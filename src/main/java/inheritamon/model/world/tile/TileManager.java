@@ -2,9 +2,10 @@ package inheritamon.model.world.tile;
 
 import inheritamon.model.GameModel;
 import inheritamon.model.data.DataHandler;
+import inheritamon.view.SoundHandler;
 import inheritamon.view.world.WorldPanel;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,9 +15,9 @@ import java.io.InputStreamReader;
  */
 public class TileManager {
 
-    WorldPanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
+    WorldPanel gp;
 
     public TileManager(WorldPanel gp) {
 
@@ -33,6 +34,7 @@ public class TileManager {
 
         DataHandler dh = DataHandler.getInstance();
         GameModel gm = GameModel.getInstance();
+        SoundHandler sh = SoundHandler.getInstance();
 
         tile[0] = new Tile(dh.getTileImage("GrassTile"), false, false, "PASS");
 
@@ -75,6 +77,7 @@ public class TileManager {
             @Override
             public void interact() {
                 gm.revitalizePokemon();
+                sh.playSound("select");
             }
         };
 

@@ -1,15 +1,21 @@
 package inheritamon.view.world;
 
-import javax.swing.*;
-
 import inheritamon.view.SoundHandler;
 import inheritamon.view.world.sidebar.SidePanel;
 
-import java.awt.event.*;
-import java.util.*;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * @author Stanislav, modified by Jeremias
+ * @author Stanislav
  * This class is responsible for handling the key presses of the player.
  * We place it in the view because it does not influence the game
  * model or battle handler in any way
@@ -118,7 +124,7 @@ public class PlayerKeyHandler {
             case "right" -> rightPressed = state;
             case "escape" -> {
                 sidePanel.setVisible(!sidePanel.isVisible());
-                sidePanel.hidePokemonDataPanel();
+                sidePanel.hideDataPanels();
                 soundHandler.playSound("select");
             }
             case "interact" -> {
