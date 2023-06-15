@@ -94,4 +94,8 @@ public class GameController {
         gameModel.returnToMainMenu();
     }
 
+    public void removePokemon(int index) {
+        gameModel.removePokemon(index);
+    }
+
 }

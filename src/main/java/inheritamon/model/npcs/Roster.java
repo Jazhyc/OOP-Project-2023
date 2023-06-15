@@ -51,6 +51,30 @@ public class Roster implements Serializable {
     }
 
     /**
+     * Removes a pokemon from the roster.
+     * Does nothing if the roster only has 1 pokemon.
+     * @param index The index of the pokemon to remove
+     */
+    public void removePokemon(int index) {
+
+        // If only 1 pokemon is left, don't remove it
+        if (roster.size() == 1) {
+            System.out.println("You can't remove your last pokemon!");
+            return;
+        }
+
+        // Check if the index is valid
+        if (index < 0 || index >= roster.size()) {
+            System.out.println("Invalid index!");
+            return;
+        }
+
+        // Remove the pokemon at the index
+        roster.remove(index);
+
+    }
+
+    /**
      * Get a pokemon from the roster.
      *
      * @param index The index of the pokemon

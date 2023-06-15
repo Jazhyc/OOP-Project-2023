@@ -222,4 +222,13 @@ public class GameModel {
         SELECT_STARTER, GAME_START, MAIN_MENU
     }
 
+    /**
+     * Removes a pokemon from the roster.
+     * @param index The index of the pokemon to remove
+     */
+    public void removePokemon(int index) {
+        playerData.getRoster().removePokemon(index);
+        notifyRosterListener();
+    }
+
 }

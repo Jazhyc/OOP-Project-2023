@@ -1,15 +1,18 @@
 package inheritamon.view.world.sidebar;
 
+import inheritamon.controller.GameController;
 import inheritamon.model.GameModel;
 import inheritamon.model.npcs.types.Pokemon;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
+import java.awt.event.*;
 
 /**
  * @author Jeremias
  * Panel for displaying certain stats of the player's pokemon data
+ * Also allows the player to remove pokemon from their roster
  */
 public class PokemonDataPanel extends JPanel {
 
@@ -18,17 +21,24 @@ public class PokemonDataPanel extends JPanel {
      */
     private final String[] statNames =
             new String[] {"Atk", "Def", "Agi", "Acc", "M.Atk", "M.Def"};
+        
+    /**
+     * The game controller for removing pokemon
+     */
+    private final GameController gameController;
 
     /**
      * Constructor for the PokemonDataPanel
      *
      * @param gameModel The game model
      */
-    public PokemonDataPanel(GameModel gameModel) {
+    public PokemonDataPanel(GameModel gameModel, GameController gameController) {
 
         // Make the background black
         setBackground(Color.BLACK);
         setUpListener(gameModel);
+
+        this.gameController = gameController;
 
         // Use a grid bag layout
         setLayout(new GridBagLayout());
@@ -90,10 +100,11 @@ public class PokemonDataPanel extends JPanel {
         // Create a ratio of MP to MaxMP
         addMPRatio(pokemon, gbc);
 
-        // Add the stats
+        // Add the stats and the remove button
         for (int j = 0; j < statNames.length; j++) {
             gbc.gridx = j + 4;
             addStat(j + 4, gbc, pokemon.getNumericalStat(statNames[j]));
+            addRemoveButton(gbc, i);
         }
     }
 
@@ -159,6 +170,32 @@ public class PokemonDataPanel extends JPanel {
         add(statLabel, gbc);
         statLabel.setForeground(Color.WHITE);
         statLabel.setFont(new Font("Arial", Font.BOLD, 20));
+    }
+
+    private void addRemoveButton(GridBagConstraints gbc, int i) {
+        // We set gridx to 10 because we want the remove button to be the last
+        gbc.gridx = 10;
+
+        // Use a JLabel to improve the look of the button
+        JLabel removeButton = new JLabel("X");
+        removeButton.setForeground(Color.RED);
+        removeButton.setFont(new Font("Arial", Font.BOLD, 20));
+        
+        removeButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                gameController.removePokemon(i);
+            }
+
+            public void mouseEntered(MouseEvent evt) {
+                removeButton.setForeground(Color.WHITE);
+            }
+
+            public void mouseExited(MouseEvent evt) {
+                removeButton.setForeground(Color.RED);
+            }
+        });
+
+        add(removeButton, gbc);
     }
 
 }

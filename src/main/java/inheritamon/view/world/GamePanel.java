@@ -28,10 +28,10 @@ public class GamePanel extends JPanel {
 
     /**
      * Constructor for the GamePanel class
-     * @param battleController The battle controller
+     * @param gameController The battle controller
      * @param gameModel The game model
      */
-    public GamePanel(GameController battleController, GameModel gameModel) {
+    public GamePanel(GameController gameController, GameModel gameModel) {
 
         int screenWidth = Main.SCREEN_WIDTH;
         int screenHeight = Main.SCREEN_HEIGHT;
@@ -43,9 +43,9 @@ public class GamePanel extends JPanel {
         JLayeredPane layeredPane = new JLayeredPane();
 
         // Add the panels to the layered pane
-        pokemonDataPanel = new PokemonDataPanel(gameModel);
+        pokemonDataPanel = new PokemonDataPanel(gameModel, gameController);
         inventoryPanel = new InventoryPanel(gameModel);
-        sidePanel = new SidePanel(battleController, pokemonDataPanel, inventoryPanel);
+        sidePanel = new SidePanel(gameController, pokemonDataPanel, inventoryPanel);
         worldPanel = new WorldPanel(sidePanel);
 
         // Add the panels to the layered pane and set the side panel to be 1/4 of the
