@@ -3,9 +3,9 @@ package inheritamon.view.world;
 import java.util.ArrayList;
 
 import inheritamon.model.GameModel;
+import inheritamon.model.player.PlayerData;
 import inheritamon.model.world.entity.*;
 import inheritamon.model.world.tile.TileManager;
-import inheritamon.model.PlayerData;
 
 /**
  * @author Stanislav

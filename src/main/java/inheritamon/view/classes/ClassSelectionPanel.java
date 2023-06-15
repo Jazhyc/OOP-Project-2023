@@ -1,4 +1,4 @@
-package inheritamon.view.menu;
+package inheritamon.view.classes;
 
 import inheritamon.controller.MenuController;
 import inheritamon.model.GameModel;

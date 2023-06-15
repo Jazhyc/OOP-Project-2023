@@ -1,21 +1,24 @@
-package inheritamon.model.pokemon;
+package inheritamon.model.npcs;
 
 import java.util.ArrayList;
 
-import inheritamon.model.pokemon.types.PlayerPokemon;
+import inheritamon.model.npcs.types.Pokemon;
 
 import java.io.Serializable;
 
 /**
  * @author Jeremias
- * A class to represent the player's pokemon roster
+ * A class to represent the roster of a trainer.
+ * 
+ * The only trainer in the game is the player. 
+ * However, this class is designed to be used for other trainers as well.
  */
-public class PlayerRoster implements Serializable {
+public class Roster implements Serializable {
 
     /**
      * The pokemons of the player.
      */
-    private final ArrayList<PlayerPokemon> roster;
+    private final ArrayList<Pokemon> roster;
 
     /**
      * The maximum number of pokemon in the roster.
@@ -25,7 +28,7 @@ public class PlayerRoster implements Serializable {
     /**
      * Constructor for the PlayerRoster class.
      */
-    public PlayerRoster() {
+    public Roster() {
         roster = new ArrayList<>();
     }
 
@@ -34,7 +37,7 @@ public class PlayerRoster implements Serializable {
      *
      * @param pokemon The pokemon to add
      */
-    public void addPokemon(PlayerPokemon pokemon) {
+    public void addPokemon(Pokemon pokemon) {
 
         // Check if the roster is full
         if (roster.size() >= MAX_POKEMON) {
@@ -53,7 +56,7 @@ public class PlayerRoster implements Serializable {
      * @param index The index of the pokemon
      * @return The pokemon at the index
      */
-    public PlayerPokemon getPokemon(int index) {
+    public Pokemon getPokemon(int index) {
 
         // Check if the index is valid
         if (index < 0 || index >= roster.size()) {
@@ -71,8 +74,8 @@ public class PlayerRoster implements Serializable {
      *
      * @return The roster as an array
      */
-    public PlayerPokemon[] getArray() {
-        return roster.toArray(new PlayerPokemon[0]);
+    public Pokemon[] getArray() {
+        return roster.toArray(new Pokemon[0]);
     }
 
     /**
@@ -81,7 +84,7 @@ public class PlayerRoster implements Serializable {
     public void revitalizeAll() {
 
         // Loop over the roster
-        for (PlayerPokemon pokemon : roster) {
+        for (Pokemon pokemon : roster) {
 
             // Revitalize the pokemon
             pokemon.revitalize();
@@ -98,7 +101,7 @@ public class PlayerRoster implements Serializable {
     public boolean allFainted() {
 
         // Loop over the roster
-        for (PlayerPokemon pokemon : roster) {
+        for (Pokemon pokemon : roster) {
 
             // Check if the pokemon is fainted
             if (!pokemon.isFainted()) {

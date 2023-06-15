@@ -1,9 +1,9 @@
-package inheritamon.model.pokemon.moves;
+package inheritamon.model.npcs.moves;
 
 import java.util.HashMap;
 
 import inheritamon.model.data.DataHandler;
-import inheritamon.model.pokemon.types.Pokemon;
+import inheritamon.model.npcs.types.Pokemon;
 
 /**
  * @author Jeremias

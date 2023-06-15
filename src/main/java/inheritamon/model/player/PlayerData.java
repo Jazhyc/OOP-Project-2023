@@ -1,16 +1,17 @@
-package inheritamon.model;
+package inheritamon.model.player;
 
 import inheritamon.model.data.DataHandler;
 import inheritamon.model.inventory.*;
-import inheritamon.model.pokemon.PlayerRoster;
-import inheritamon.model.pokemon.types.PlayerPokemon;
+import inheritamon.model.npcs.Roster;
+import inheritamon.model.npcs.types.PlayerPokemon;
 
 import java.io.Serializable;
 import java.util.*;
 
 /**
- * @author Jeremias, Bernard
- * Class that holds all the data of the player
+ * @author Bernard, Jeremias
+ * Class that holds all the data of the player.
+ * Initially created for player abilities but expanded to hold the player roster and inventory as well.
  * Will either be loaded from a save file or created from scratch
  */
 public class PlayerData implements Serializable {
@@ -22,7 +23,7 @@ public class PlayerData implements Serializable {
         CLIMBER, SWIMMER, RICH
     }
 
-    private PlayerRoster roster;
+    private Roster roster;
     private Inventory inventory;
     private ArrayList<TrainerAbility> abilities =
             new ArrayList<>();
@@ -31,7 +32,7 @@ public class PlayerData implements Serializable {
      * Constructor for the PlayerData
      */
     public PlayerData() {
-        roster = new PlayerRoster();
+        roster = new Roster();
         inventory = new Inventory();
     }
 
@@ -40,7 +41,7 @@ public class PlayerData implements Serializable {
      *
      * @return The player roster
      */
-    public PlayerRoster getRoster() {
+    public Roster getRoster() {
         return roster;
     }
 

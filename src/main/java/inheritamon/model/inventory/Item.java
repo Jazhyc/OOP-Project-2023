@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.io.Serializable;
 
 import inheritamon.model.data.DataHandler;
-import inheritamon.model.pokemon.PlayerRoster;
-import inheritamon.model.pokemon.types.*;
+import inheritamon.model.npcs.Roster;
+import inheritamon.model.npcs.types.*;
 
 /**
  * @author Jona Janssen
@@ -46,7 +46,7 @@ public class Item implements Serializable {
      * @param playerRoster
      * @return
      */
-    public boolean useItem(Pokemon enemyPokemon, Pokemon playerPokemon, PlayerRoster playerRoster) {
+    public boolean useItem(Pokemon enemyPokemon, Pokemon playerPokemon, Roster playerRoster) {
         if (itemType.equals("Healing")) {
             playerPokemon.gainHP(itemAmount);
         }

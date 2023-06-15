@@ -1,10 +1,11 @@
 package inheritamon.model.data;
 
-import inheritamon.model.pokemon.moves.NormalAbility;
-
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+
+import inheritamon.model.npcs.moves.NormalAbility;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,7 +1,7 @@
 package inheritamon.view.world.sidebar;
 
 import inheritamon.model.GameModel;
-import inheritamon.model.pokemon.types.PlayerPokemon;
+import inheritamon.model.npcs.types.Pokemon;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class PokemonDataPanel extends JPanel {
 
         gameModel.addRosterListener(e -> {
 
-            PlayerPokemon[] roster = (PlayerPokemon[]) e.getNewValue();
+            Pokemon[] roster = (Pokemon[]) e.getNewValue();
 
             // Remove all the components from the panel
             removeAll();
@@ -63,9 +63,9 @@ public class PokemonDataPanel extends JPanel {
         });
     }
 
-    private void addPokemonToPanel(PlayerPokemon[] roster,
+    private void addPokemonToPanel(Pokemon[] roster,
                                    GridBagConstraints gbc, int i) {
-        PlayerPokemon pokemon = roster[i];
+        Pokemon pokemon = roster[i];
 
         System.out.println(pokemon.getName());
 
@@ -97,7 +97,7 @@ public class PokemonDataPanel extends JPanel {
         }
     }
 
-    private void addPokemonName(PlayerPokemon pokemon, GridBagConstraints gbc) {
+    private void addPokemonName(Pokemon pokemon, GridBagConstraints gbc) {
         JLabel pokemonName = new JLabel(pokemon.getName());
         pokemonName.setForeground(Color.WHITE);
         pokemonName.setHorizontalAlignment(JLabel.CENTER);
@@ -105,7 +105,7 @@ public class PokemonDataPanel extends JPanel {
         add(pokemonName, gbc);
     }
 
-    private void addHPRatio(PlayerPokemon pokemon, GridBagConstraints gbc) {
+    private void addHPRatio(Pokemon pokemon, GridBagConstraints gbc) {
         gbc.gridx = 2;
         Integer pokemonHP = pokemon.getHP();
         Integer pokemonMaxHP = pokemon.getNumericalStat("MaxHP");
@@ -116,7 +116,7 @@ public class PokemonDataPanel extends JPanel {
         hpString.setFont(new Font("Arial", Font.BOLD, 20));
     }
 
-    private void addMPRatio(PlayerPokemon pokemon, GridBagConstraints gbc) {
+    private void addMPRatio(Pokemon pokemon, GridBagConstraints gbc) {
         gbc.gridx = 3;
         Integer pokemonMP = pokemon.getMP();
         Integer pokemonMaxMP = pokemon.getNumericalStat("MaxMP");

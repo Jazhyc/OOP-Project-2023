@@ -3,7 +3,7 @@ package inheritamon.model.world.tile;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import inheritamon.model.PlayerData.TrainerAbility;
+import inheritamon.model.player.PlayerData.TrainerAbility;
 
 /**
  * @author Stanislav

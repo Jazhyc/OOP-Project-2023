@@ -8,9 +8,10 @@ import inheritamon.model.data.DataHandler;
 import inheritamon.model.data.language.LanguageConfiguration;
 import inheritamon.model.inventory.Inventory;
 import inheritamon.model.inventory.Item;
-import inheritamon.model.pokemon.PlayerRoster;
-import inheritamon.model.pokemon.moves.NormalAbility;
-import inheritamon.model.pokemon.types.*;
+import inheritamon.model.npcs.Roster;
+import inheritamon.model.npcs.moves.NormalAbility;
+import inheritamon.model.npcs.types.*;
+import inheritamon.model.player.PlayerData;
 
 /**
  * @author Jeremias
@@ -54,7 +55,7 @@ public class BattleHandler {
 
     private PlayerPokemon playerPokemon;
     private Pokemon enemyPokemon;
-    private PlayerRoster playerRoster;
+    private Roster playerRoster;
     private Inventory playerInventory;
     private int turn;
 
@@ -174,7 +175,7 @@ public class BattleHandler {
         this.playerRoster = playerData.getRoster();
 
         int playerPokemonIndex = playerRoster.getAlivePokemon();
-        playerPokemon = playerRoster.getPokemon(playerPokemonIndex);
+        playerPokemon = (PlayerPokemon) playerRoster.getPokemon(playerPokemonIndex);
         this.enemyPokemon = enemyPokemon;
         this.playerInventory = playerData.getInventory();
 
@@ -193,7 +194,7 @@ public class BattleHandler {
         wait(WAIT_TIME);
     }
 
-    private void handleFaint(PlayerRoster playerRoster, Pokemon enemyPokemon,
+    private void handleFaint(Roster playerRoster, Pokemon enemyPokemon,
                              LanguageConfiguration config) {
         String formattedString;
         formattedString = String.format(config.getText("Fainted"),
@@ -211,7 +212,7 @@ public class BattleHandler {
         notifyPlayerRosterListener();
     }
 
-    private String determineConclusion(PlayerRoster playerRoster,
+    private String determineConclusion(Roster playerRoster,
                                        Pokemon enemyPokemon) {
 
         String formattedString;
@@ -260,14 +261,14 @@ public class BattleHandler {
 
     }
 
-    private void getPokemonToSwitchTo(PlayerRoster playerRoster,
+    private void getPokemonToSwitchTo(Roster playerRoster,
                                       Pokemon enemyPokemon, String ability) {
         System.out.println(ability);
 
         // Get the pokemon index to switch to using regex
         int pokemonToSwitchTo =
                 Integer.parseInt(ability.replaceAll("[^0-9]", ""));
-        playerPokemon = playerRoster.getPokemon(pokemonToSwitchTo);
+        playerPokemon = (PlayerPokemon) playerRoster.getPokemon(pokemonToSwitchTo);
 
         // Notify the listeners
         notifyMoveListener(playerPokemon);

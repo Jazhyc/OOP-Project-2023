@@ -1,4 +1,4 @@
-package inheritamon.view.menu;
+package inheritamon.view.classes;
 
 import javax.swing.*;
 import java.awt.*;

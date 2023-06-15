@@ -2,7 +2,7 @@ package inheritamon.controller;
 
 import inheritamon.model.BattleHandler;
 import inheritamon.model.GameModel;
-import inheritamon.model.pokemon.types.PlayerPokemon;
+import inheritamon.model.npcs.types.PlayerPokemon;
 
 /**
  * @author Jeremias

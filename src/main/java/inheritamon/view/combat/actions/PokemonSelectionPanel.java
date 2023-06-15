@@ -3,8 +3,8 @@ package inheritamon.view.combat.actions;
 import inheritamon.controller.*;
 import inheritamon.model.*;
 import inheritamon.model.data.DataHandler;
-import inheritamon.model.pokemon.PlayerRoster;
-import inheritamon.model.pokemon.types.*;
+import inheritamon.model.npcs.Roster;
+import inheritamon.model.npcs.types.*;
 import inheritamon.view.SoundHandler;
 
 import javax.swing.*;
@@ -50,13 +50,13 @@ public class PokemonSelectionPanel extends JPanel {
         DataHandler dataHandler = DataHandler.getInstance();
 
         battleHandler.addListener("playerRoster", e -> {
-            playerPokemon = (PlayerPokemon[]) e.getNewValue();
+            playerPokemon = (Pokemon[]) e.getNewValue();
 
             // Remove all components
             removeAll();
 
             // Loop over the array using index
-            for (int i = 0; i < PlayerRoster.MAX_POKEMON; i++) {
+            for (int i = 0; i < Roster.MAX_POKEMON; i++) {
 
                 // Skip if i is greater than the length of the array
                 if (i >= playerPokemon.length) {

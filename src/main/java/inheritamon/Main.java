@@ -6,6 +6,7 @@ import inheritamon.view.menu.*;
 import inheritamon.controller.*;
 import inheritamon.view.world.*;
 import inheritamon.view.SoundHandler;
+import inheritamon.view.classes.ClassSelectionPanel;
 
 import javax.swing.*;
 

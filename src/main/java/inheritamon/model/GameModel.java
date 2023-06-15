@@ -5,7 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import inheritamon.model.data.DataHandler;
-import inheritamon.model.pokemon.types.*;
+import inheritamon.model.npcs.types.*;
+import inheritamon.model.player.PlayerData;
 
 /**
  * @author Jeremias

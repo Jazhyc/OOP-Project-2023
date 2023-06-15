@@ -1,4 +1,4 @@
-package inheritamon.model.pokemon.types;
+package inheritamon.model.npcs.types;
 
 import inheritamon.model.data.DataHandler;
 

@@ -9,8 +9,10 @@ import java.awt.event.*;
 import java.util.*;
 
 /**
- * @author Jeremias
+ * @author Stanislav, modified by Jeremias
  * This class is responsible for handling the key presses of the player.
+ * We place it in the view because it does not influence the game
+ * model or battle handler in any way
  */
 public class PlayerKeyHandler {
 
