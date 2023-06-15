@@ -49,6 +49,8 @@ public class GameModel {
             new ArrayList<>();
     private PropertyChangeListener rosterListener;
 
+    private PropertyChangeListener itemListener;
+
     /**
      * Initializes the game model
      *
@@ -121,6 +123,10 @@ public class GameModel {
      */
     public void addRosterListener(PropertyChangeListener listener) {
         rosterListener = listener;
+    }
+
+    public void addItemListener(PropertyChangeListener listener) {
+        itemListener = listener;
     }
 
     private void notifyGameStateListeners(GameState event) {

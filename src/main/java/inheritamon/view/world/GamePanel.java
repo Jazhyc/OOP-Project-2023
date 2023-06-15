@@ -21,6 +21,8 @@ public class GamePanel extends JPanel {
     SidePanel sidePanel;
     PokemonDataPanel pokemonDataPanel;
 
+    InventoryPanel inventoryPanel;
+
     /**
      * Constructor for the GamePanel class
      * @param battleController The battle controller
@@ -39,7 +41,8 @@ public class GamePanel extends JPanel {
 
         // Add the panels to the layered pane
         pokemonDataPanel = new PokemonDataPanel(gameModel);
-        sidePanel = new SidePanel(battleController, pokemonDataPanel);
+        inventoryPanel = new InventoryPanel(gameModel);
+        sidePanel = new SidePanel(battleController, pokemonDataPanel, inventoryPanel);
         worldPanel = new WorldPanel(sidePanel);
 
         // Add the panels to the layered pane and set the side panel to be 1/4 of the

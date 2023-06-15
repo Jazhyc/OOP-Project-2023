@@ -22,6 +22,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
 
     private SoundHandler soundHandler;
     private JPanel pokemonDataPanel;
+    private JPanel inventoryPanel;
     private GameController gameController;
 
     /**
@@ -29,12 +30,14 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
      *
      * @param gameController   The game controller
      * @param pokemonDataPanel The panel that displays the pokemon data
+     * @param inventoryPanel The panel that displays inventory data
      */
-    public SidePanel(GameController gameController, JPanel pokemonDataPanel) {
+    public SidePanel(GameController gameController, JPanel pokemonDataPanel, JPanel inventoryPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addLanguageListener();
 
         soundHandler = SoundHandler.getInstance();
+        this.inventoryPanel = inventoryPanel;
         this.pokemonDataPanel = pokemonDataPanel;
         this.gameController = gameController;
 
@@ -157,6 +160,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
             case 1:
                 // Open the items menu
                 System.out.println("Items");
+                inventoryPanel.setVisible(!inventoryPanel.isVisible());
                 break;
             case 2:
                 // Open the pokemon menu
@@ -173,11 +177,13 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                 System.out.println("Minimize Menu");
                 setVisible(false);
                 pokemonDataPanel.setVisible(false);
+                inventoryPanel.setVisible(false);
                 break;
             case 5:
                 System.out.println("To Title");
                 setVisible(false);
                 pokemonDataPanel.setVisible(false);
+                inventoryPanel.setVisible(false);
                 gameController.returnToMainMenu();
                 break;
             case 6:

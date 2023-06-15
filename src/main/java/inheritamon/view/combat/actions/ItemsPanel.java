@@ -36,6 +36,11 @@ public class ItemsPanel extends JPanel {
 
     }
 
+    /**
+     * Sets up the listeners for the GUI panel
+     * @param battleHandler
+     * @param battleController
+     */
     private void setUpListener(BattleHandler battleHandler,
                                GameController battleController) {
 
@@ -75,6 +80,12 @@ public class ItemsPanel extends JPanel {
 
     }
 
+    /**
+     * Adds button to the GUI panel
+     * @param battleController
+     * @param i
+     * @param imageToDisplay
+     */
     private void addButton(GameController battleController, int i,
                            BufferedImage imageToDisplay) {
         // Skip if i is greater than the length of the array

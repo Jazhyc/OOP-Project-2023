@@ -13,15 +13,30 @@ import inheritamon.model.npcs.types.*;
  */
 public class Item implements Serializable {
     String itemName = new String();
+
+    /**
+     * Returns item name
+     * @return
+     */
     public String getItemName() {
         return itemName;
     }
     String itemDescription = new String();
+
+    /**
+     * Returns item description
+     * @return
+     */
     public String getItemDescription() {
         return itemDescription;
     }
 
     private String itemSprite;
+
+    /**
+     * Returns item sprite
+     * @return
+     */
     public String getItemSprite() {
         return itemSprite;
     }
@@ -39,7 +54,8 @@ public class Item implements Serializable {
     }
 
     /**
-     * Method that uses an item on a pokemon
+     * According to the type of item, give some effect (Use an item). Returns true if a pokemon was caught with this action,
+     * returns false otherwise
      *
      * @param enemyPokemon
      * @param playerPokemon

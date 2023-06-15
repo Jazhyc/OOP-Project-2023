@@ -20,7 +20,7 @@ public class Inventory implements Serializable {
     public Inventory() {
 
         DataHandler dataHandler = DataHandler.getInstance();
-        
+        // Starting items
         Item potion = new Item(dataHandler.getItemData("Potion"));
         Item inheritaball = new Item(dataHandler.getItemData("Inheritaball"));
         Item inheritaball2 = new Item(dataHandler.getItemData("Inheritaball"));
@@ -30,6 +30,10 @@ public class Inventory implements Serializable {
 
     }
 
+    /**
+     * Returns current inventory size
+     * @return
+     */
     public int getSize() {
         
         // Return the number of items in the arraylist
@@ -37,14 +41,26 @@ public class Inventory implements Serializable {
 
     }
 
+    /**
+     * Returns maximum inventory size
+     * @return
+     */
     public int getMaxSize() {
         return size;
     }
 
+    /**
+     * Adds item (see item class) to the inventory
+     * @param item
+     */
     public void addItem(Item item) {
         inventory.add(item);
     }
 
+    /**
+     * Removes item at an index from the inventory
+     * @param index
+     */
     public void removeItem(int index) {
         if (inventory.get(index) == null) {
             return;
@@ -53,10 +69,18 @@ public class Inventory implements Serializable {
         }
     }
 
+    /**
+     * Returns the item at a certain index in the inventory
+     * @param index
+     * @return
+     */
     public Item getItem(int index) {
         return inventory.get(index);
     }
 
+    /**
+     * Print the inventory in text (for debugging)
+     */
     public void printInventory() {
         System.out.println("Inventory: ");
         for (int i = 0; i < inventory.size(); i++) {
@@ -65,10 +89,18 @@ public class Inventory implements Serializable {
         }
     }
 
+    /**
+     * Adds an amount of coins to the inventory
+     * @param amount
+     */
     public void addCoins(int amount) {
         coins += amount;
     }
 
+    /**
+     * Removes an amount of coins from the inventory
+     * @param amount
+     */
     public void removeCoins(int amount) {
         
         // Only remove coins if the player has enough coins
@@ -78,6 +110,10 @@ public class Inventory implements Serializable {
 
     }
 
+    /**
+     * Returns the amount of coins currently in the inventory
+     * @return
+     */
     public int getCoins() {
         return coins;
     }
