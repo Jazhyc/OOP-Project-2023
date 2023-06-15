@@ -43,9 +43,7 @@ public class InventoryPanel extends JPanel {
      * @param gameModel
      */
     private void setUpListener(GameModel gameModel) {
-
-        DataHandler dataHandler = DataHandler.getInstance();
-
+        
         gameModel.addItemListener(e -> {
             inventory = (Inventory) e.getNewValue();
 
