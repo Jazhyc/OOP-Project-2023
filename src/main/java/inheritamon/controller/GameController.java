@@ -94,6 +94,10 @@ public class GameController {
         gameModel.returnToMainMenu();
     }
 
+    /**
+     * Requests the model to remove a pokemon from the player's party.
+     * @param index The index of the pokemon to remove
+     */
     public void removePokemon(int index) {
         gameModel.removePokemon(index);
     }
