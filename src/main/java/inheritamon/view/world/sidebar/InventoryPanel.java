@@ -106,6 +106,14 @@ public class InventoryPanel extends JPanel {
         itemName.setFont(new Font("Arial", Font.BOLD, 20));
         add(itemName, gbc);
 
+        // Configure the description
+        gbc.gridx = 2;
+        JLabel itemDescription = new JLabel(item.getItemDescription());
+        itemDescription.setForeground(Color.WHITE);
+        itemDescription.setHorizontalAlignment(JLabel.CENTER);
+        itemDescription.setFont(new Font("Arial", Font.BOLD, 20));
+        add(itemDescription, gbc);
+
     }
 }
 
