@@ -177,6 +177,7 @@ public class SidePanel extends JPanel implements LanguageChangeListener {
                 // Open the pokemon menu
                 System.out.println("Pokemon");
                 pokemonDataPanel.setVisible(!pokemonDataPanel.isVisible());
+                inventoryPanel.setVisible(false);
                 break;
             case 3:
                 // Save the game
