@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 /**
  * @author Stanislav
  */
-public class Player extends Entity {
+public class PlayerAvatar extends Entity {
 
     WorldPanel gp;
     PlayerKeyHandler keyH;
@@ -19,7 +19,7 @@ public class Player extends Entity {
 
     int hasKey = 0;
 
-    public Player(WorldPanel gp, PlayerKeyHandler keyH) {
+    public PlayerAvatar(WorldPanel gp, PlayerKeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
 

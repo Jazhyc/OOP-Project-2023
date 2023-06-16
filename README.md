@@ -10,22 +10,22 @@ Your RPG should have the features listed below. Each team member takes responsib
 - Inventory
 	- The game should have an inventory system. This could represent a bag of items, a party of team members,  conversation topics, or clues obtained in the game world.
 	- It should be possible to add and remove elements from the inventory system.
-	- The player should be able to interact with elements of the inventory system. For example, they should be able to inspect objects, rearrange team members, or combine clues.
+	- The playerAvatar should be able to interact with elements of the inventory system. For example, they should be able to inspect objects, rearrange team members, or combine clues.
 - Locations
 	- The game should feature distinct locations.
 	- Players should be able to move between locations.
 	- It must be possible to add conditions to movement. For example, movement across water is only possible by boat, or movement into a subway system is only possible in exchange for a subway token.
-- Non-player characters (NPCs)
+- Non-playerAvatar characters (NPCs)
 	- The game should include NPCs that exist independently from locations and inventory.
 	- Players must be able to interact with NPCs. For example, you could allow players to fight monsters, talk to suspects, or bribe bouncers.
 	- It must be possible for interaction with NPCs to have lasting effects on the game world outside of the NPCs themselves. For example, interacting with NPCs may unlock locations, or add items to the inventory system.
 - Player classes
-	- Players must have a free choice among several player classes. 
+	- Players must have a free choice among several playerAvatar classes. 
 	- Player classes should meaningfully change the game. For example, you may implement warriors that deal high damage at short range and archers that deal lower damage at long range. Alternatively, you could implement traits such as charisma or intelligence, which may change what conversation options are open to users ay key points in the game.
 
 In addition, there are some general requirements that every team member should implement for their own feature:
-- The player should be able to save and restore their game state at any time.
-- The game logic itself should be independent of the way it is presented to the player. That is, your game should follow the guidelines of the Model-View-Controller pattern. Note, however, that you are free to choose whether the game has a text-based interface, a GUI, or even some other way of connecting the player to the game. The game should be playable on the university computers without additional hardware or software.
+- The playerAvatar should be able to save and restore their game state at any time.
+- The game logic itself should be independent of the way it is presented to the playerAvatar. That is, your game should follow the guidelines of the Model-View-Controller pattern. Note, however, that you are free to choose whether the game has a text-based interface, a GUI, or even some other way of connecting the playerAvatar to the game. The game should be playable on the university computers without additional hardware or software.
 - The program makes proper use of exceptions. That is, exceptions are added where appropriate, without abusing the exception mechanism.
 - The game should completely playable in at least two languages, one of them being English.
 - Each feature should be implemented in its own package. 
