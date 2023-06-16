@@ -5,7 +5,7 @@ import inheritamon.model.npcs.types.AttritionPokemon;
 import inheritamon.model.npcs.types.Pokemon;
 import inheritamon.model.npcs.types.RandomPokemon;
 import inheritamon.model.npcs.types.RecklessPokemon;
-import inheritamon.model.player.PlayerData;
+import inheritamon.model.player.Player;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -27,7 +27,7 @@ public class GameModel {
      */
     private final ArrayList<PropertyChangeListener> gameStateListeners =
             new ArrayList<>();
-    private PlayerData playerData;
+    private Player playerData;
     private BattleHandler battleHandler;
     private PropertyChangeListener rosterListener;
     private PropertyChangeListener itemListener;
@@ -59,7 +59,7 @@ public class GameModel {
      * changed
      */
     public void startNewGame() {
-        playerData = new PlayerData();
+        playerData = new Player();
         notifyGameStateListeners(GameState.SELECT_STARTER);
         notifyItemListener();
     }
@@ -70,7 +70,7 @@ public class GameModel {
      */
     public void continueGame() {
         DataHandler dataHandler = DataHandler.getInstance();
-        playerData = (PlayerData) dataHandler.loadState("playerData");
+        playerData = (Player) dataHandler.loadState("playerData");
 
         // Check if player data is null
         if (playerData == null) {
@@ -211,7 +211,7 @@ public class GameModel {
      *
      * @return The player data
      */
-    public PlayerData getPlayerData() {
+    public Player getPlayerData() {
         return playerData;
     }
 

@@ -36,7 +36,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     AssetSetter aSetter = new AssetSetter(this);
     public SuperObject obj[] = new SuperObject[2];
 
-    public Player player;
+    public PlayerAvatar playerAvatar;
     // Default position of the player
     int playerX = 100;
     int playerY = 100;
@@ -53,8 +53,8 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         tileM = new TileManager(this);
         cChecker = new CollisionChecker(tileM,this);
         keyH = new PlayerKeyHandler(this, sidePanel, cChecker);
-        player = new Player(this, keyH);
-        cChecker.setPlayer(player);
+        playerAvatar = new PlayerAvatar(this, keyH);
+        cChecker.setPlayer(playerAvatar);
         aSetter.setObject();
 
     }
@@ -89,7 +89,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
 
     public void update() {
 
-        player.update();
+        playerAvatar.update();
     }
 
     @Override
@@ -107,7 +107,7 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
             }
         }
 
-        player.draw(g2);
+        playerAvatar.draw(g2);
 
     }
 }

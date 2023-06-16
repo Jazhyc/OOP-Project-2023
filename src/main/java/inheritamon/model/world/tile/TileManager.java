@@ -124,17 +124,17 @@ public class TileManager {
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
-            int screenX = worldX - gp.player.worldX + gp.player.screenX;
-            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+            int screenX = worldX - gp.playerAvatar.worldX + gp.playerAvatar.screenX;
+            int screenY = worldY - gp.playerAvatar.worldY + gp.playerAvatar.screenY;
 
             // Improve game performance
-            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+            if (worldX + gp.tileSize > gp.playerAvatar.worldX - gp.playerAvatar.screenX &&
                     worldX - gp.tileSize <
-                            gp.player.worldX + gp.player.screenX &&
+                            gp.playerAvatar.worldX + gp.playerAvatar.screenX &&
                     worldY + gp.tileSize >
-                            gp.player.worldY - gp.player.screenY &&
+                            gp.playerAvatar.worldY - gp.playerAvatar.screenY &&
                     worldY - gp.tileSize <
-                            gp.player.worldY + gp.player.screenY) {
+                            gp.playerAvatar.worldY + gp.playerAvatar.screenY) {
             }
 
             g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize,

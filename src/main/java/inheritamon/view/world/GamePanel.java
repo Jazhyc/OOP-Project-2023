@@ -19,7 +19,7 @@ import java.awt.BorderLayout;
  */
 public class GamePanel extends JPanel {
 
-    public Player player;
+    public PlayerAvatar playerAvatar;
     WorldPanel worldPanel;
     SidePanel sidePanel;
     PokemonDataPanel pokemonDataPanel;

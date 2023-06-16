@@ -11,7 +11,7 @@ import inheritamon.model.inventory.Item;
 import inheritamon.model.npcs.Roster;
 import inheritamon.model.npcs.moves.NormalAbility;
 import inheritamon.model.npcs.types.*;
-import inheritamon.model.player.PlayerData;
+import inheritamon.model.player.Player;
 
 /**
  * @author Jeremias
@@ -69,7 +69,7 @@ public class BattleHandler {
     /**
      * A method to start the battle on a different thread
      */
-    public void startBattle(PlayerData playerData, Pokemon enemyPokemon) {
+    public void startBattle(Player playerData, Pokemon enemyPokemon) {
 
         // Create a new thread
         Thread battleThread = new Thread(
@@ -80,7 +80,7 @@ public class BattleHandler {
 
     }
 
-    private void battleLoop(PlayerData playerData, Pokemon enemyPokemon) {
+    private void battleLoop(Player playerData, Pokemon enemyPokemon) {
 
         LanguageConfiguration config = LanguageConfiguration.getInstance();
 
@@ -170,7 +170,7 @@ public class BattleHandler {
         notifyBattleStateListener("Draw");
     }
 
-    private void setUpBattle(PlayerData playerData, Pokemon enemyPokemon,
+    private void setUpBattle(Player playerData, Pokemon enemyPokemon,
                              LanguageConfiguration config) {
         this.playerRoster = playerData.getRoster();
 

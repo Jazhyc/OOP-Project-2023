@@ -3,7 +3,7 @@ package inheritamon.view.world;
 import java.util.ArrayList;
 
 import inheritamon.model.GameModel;
-import inheritamon.model.player.PlayerData;
+import inheritamon.model.player.Player;
 import inheritamon.model.world.entity.*;
 import inheritamon.model.world.tile.TileManager;
 
@@ -14,7 +14,7 @@ public class CollisionChecker {
 
     private WorldPanel gp;
     private TileManager tileM;
-    private Player player;
+    private PlayerAvatar playerAvatar;
     private int tileSize = 48;
 
     public CollisionChecker(TileManager tileM, WorldPanel gp) {
@@ -22,16 +22,16 @@ public class CollisionChecker {
         this.gp = gp;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayer(PlayerAvatar playerAvatar) {
+        this.playerAvatar = playerAvatar;
     }
 
     public void checkPlayerInteraction() {
 
-        int entityLeftWorldX = player.worldX + player.collisionArea.x;
-        int entityRightWorldX = player.worldX + player.collisionArea.x + player.collisionArea.width;
-        int entityTopWorldY = player.worldY + player.collisionArea.y;
-        int entityBottomWorldY = player.worldY + player.collisionArea.y + player.collisionArea.height;
+        int entityLeftWorldX = playerAvatar.worldX + playerAvatar.collisionArea.x;
+        int entityRightWorldX = playerAvatar.worldX + playerAvatar.collisionArea.x + playerAvatar.collisionArea.width;
+        int entityTopWorldY = playerAvatar.worldY + playerAvatar.collisionArea.y;
+        int entityBottomWorldY = playerAvatar.worldY + playerAvatar.collisionArea.y + playerAvatar.collisionArea.height;
 
         int entityLeftCol = entityLeftWorldX/tileSize;
         int entityRightCol = entityRightWorldX/tileSize;
@@ -40,12 +40,12 @@ public class CollisionChecker {
 
         int tileNum1;
 
-        switch (player.direction) {
+        switch (playerAvatar.direction) {
             case "up":
-                entityTopRow = (entityTopWorldY - player.speed)/tileSize;
+                entityTopRow = (entityTopWorldY - playerAvatar.speed)/tileSize;
                 tileNum1 = tileM.mapTileNum[entityLeftCol][entityTopRow];
                 if(tileM.tile[tileNum1].canInteract()) {
-                    player.collisionOn = true;
+                    playerAvatar.collisionOn = true;
                     
                     // Call the interact method of the tile
                     tileM.tile[tileNum1].interact();
@@ -54,10 +54,10 @@ public class CollisionChecker {
                 }
                 break;
             case "down":
-                entityBottomRow = (entityBottomWorldY + player.speed)/tileSize;
+                entityBottomRow = (entityBottomWorldY + playerAvatar.speed)/tileSize;
                 tileNum1 = tileM.mapTileNum[entityLeftCol][entityBottomRow];
                 if(tileM.tile[tileNum1].canInteract()) {
-                    player.collisionOn = true;
+                    playerAvatar.collisionOn = true;
 
                     // Call the interact method of the tile
                     tileM.tile[tileNum1].interact();
@@ -66,10 +66,10 @@ public class CollisionChecker {
                 }
                 break;
             case "left":
-                entityLeftCol = (entityLeftWorldX - player.speed)/tileSize;
+                entityLeftCol = (entityLeftWorldX - playerAvatar.speed)/tileSize;
                 tileNum1 = tileM.mapTileNum[entityLeftCol][entityTopRow];
                 if(tileM.tile[tileNum1].canInteract()) {
-                    player.collisionOn = true;
+                    playerAvatar.collisionOn = true;
 
                     // Call the interact method of the tile
                     tileM.tile[tileNum1].interact();
@@ -77,10 +77,10 @@ public class CollisionChecker {
                 }
                 break;
             case "right":
-                entityRightCol = (entityRightWorldX + player.speed)/tileSize;
+                entityRightCol = (entityRightWorldX + playerAvatar.speed)/tileSize;
                 tileNum1 = tileM.mapTileNum[entityRightCol][entityTopRow];
                 if(tileM.tile[tileNum1].canInteract()) {
-                    player.collisionOn = true;
+                    playerAvatar.collisionOn = true;
 
                     // Call the interact method of the tile
                     tileM.tile[tileNum1].interact();
@@ -94,8 +94,8 @@ public class CollisionChecker {
 
     public void checkTile(Entity entity){
 
-        PlayerData playerData = GameModel.getInstance().getPlayerData();
-        ArrayList<PlayerData.TrainerAbility> abilities = playerData.getAbilities();
+        Player playerData = GameModel.getInstance().getPlayerData();
+        ArrayList<Player.TrainerAbility> abilities = playerData.getAbilities();
 
         int entityLeftWorldX = entity.worldX + entity.collisionArea.x;
         int entityRightWorldX = entity.worldX + entity.collisionArea.x + entity.collisionArea.width;

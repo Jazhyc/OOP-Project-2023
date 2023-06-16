@@ -14,7 +14,7 @@ import java.util.*;
  * Initially created for player abilities but expanded to hold the player roster and inventory as well.
  * Will either be loaded from a save file or created from scratch
  */
-public class PlayerData implements Serializable {
+public class Player implements Serializable {
 
     /**
      * Enum for the trainer abilities
@@ -31,7 +31,7 @@ public class PlayerData implements Serializable {
     /**
      * Constructor for the PlayerData
      */
-    public PlayerData() {
+    public Player() {
         roster = new Roster();
         inventory = new Inventory();
     }
