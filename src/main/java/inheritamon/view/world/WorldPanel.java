@@ -110,4 +110,8 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         playerAvatar.draw(g2);
 
     }
+
+    public void setPlayerAvatar(PlayerAvatar playerAvatar) {
+        this.playerAvatar = playerAvatar;
+    }
 }
