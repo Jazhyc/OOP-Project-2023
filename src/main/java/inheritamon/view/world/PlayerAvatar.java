@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * @author Stanislav
+ * A class to represent the player avatar
  */
 public class PlayerAvatar extends Entity {
 
@@ -19,6 +20,11 @@ public class PlayerAvatar extends Entity {
 
     int hasKey = 0;
 
+    /**
+     * Constructor for the player avatar
+     * @param gp the world panel
+     * @param keyH the key handler
+     */
     public PlayerAvatar(WorldPanel gp, PlayerKeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
@@ -37,6 +43,9 @@ public class PlayerAvatar extends Entity {
         getPlayerImage();
     }
 
+    /**
+     * Sets the default values for the player avatar
+     */
     public void setDefaultValues() {
         worldX = gp.tileSize * 20;
         worldY = gp.tileSize * 35;
@@ -44,6 +53,9 @@ public class PlayerAvatar extends Entity {
         direction = "down";
     }
 
+    /**
+     * Gets the player image
+     */
     public void getPlayerImage() {
 
         DataHandler dh = DataHandler.getInstance();
@@ -60,6 +72,9 @@ public class PlayerAvatar extends Entity {
 
     }
 
+    /**
+     * Updates the position of the player avatar
+     */
     public void update() {
 
         boolean upPressed = keyH.isUpPressed();
@@ -118,6 +133,10 @@ public class PlayerAvatar extends Entity {
         }
     }
 
+    /**
+     * Picks up an object
+     * @param i the index of the object
+     */
     public void pickUpObject(int i) {
         if(i != 999) {
 
@@ -138,6 +157,10 @@ public class PlayerAvatar extends Entity {
         }
     }
 
+    /**
+     * Draws the player avatar
+     * @param g2
+     */
     public void draw(Graphics2D g2) {
         // g2.setColor(Color.white);
         // g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);

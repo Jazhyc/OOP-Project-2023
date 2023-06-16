@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 
 /**
  * @author Stanislav
+ * A class to manage the tiles in the world
  */
 public class TileManager {
 
@@ -19,6 +20,10 @@ public class TileManager {
     public int mapTileNum[][];
     WorldPanel gp;
 
+    /**
+     * Constructor for the TileManager
+     * @param gp The world panel
+     */
     public TileManager(WorldPanel gp) {
 
         this.gp = gp;
@@ -30,6 +35,9 @@ public class TileManager {
         loadMap("/maps/Map.csv");
     }
 
+    /**
+     * Adds the tiles to the world with their images
+     */
     public void getTileImage() {
 
         DataHandler dh = DataHandler.getInstance();
@@ -84,6 +92,10 @@ public class TileManager {
 
     }
 
+    /**
+     * Loads the map from a file
+     * @param filePath The path to the file
+     */
     public void loadMap(String filePath) {
         try {
             InputStream is = getClass().getResourceAsStream(filePath);
@@ -112,7 +124,11 @@ public class TileManager {
 
         }
     }
-
+    
+    /**
+     * Draws the tiles
+     * @param g2 The graphics object
+     */
     public void draw(Graphics2D g2) {
         //2.drawImage(tile[0].image, 0, 0, gp.tileSize, gp.tileSize, null);
         int worldCol = 0;

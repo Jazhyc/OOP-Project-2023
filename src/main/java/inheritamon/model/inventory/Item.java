@@ -16,7 +16,7 @@ public class Item implements Serializable {
 
     /**
      * Returns item name
-     * @return
+     * @return Item name
      */
     public String getItemName() {
         return itemName;
@@ -25,7 +25,7 @@ public class Item implements Serializable {
 
     /**
      * Returns item description
-     * @return
+     * @return Item description
      */
     public String getItemDescription() {
         return itemDescription;
@@ -35,7 +35,7 @@ public class Item implements Serializable {
 
     /**
      * Returns item sprite
-     * @return
+     * @return Name of the sprite
      */
     public String getItemSprite() {
         return itemSprite;
@@ -48,7 +48,7 @@ public class Item implements Serializable {
 
     /**
      * Constructs item with data from items.csv
-     * @param itemData
+     * @param itemData HashMap containing item data
      */
     public Item(HashMap<String, String> itemData) {
         itemName = itemData.get("Name");
@@ -62,9 +62,9 @@ public class Item implements Serializable {
      * Use item to give some effect. Returns true if a pokemon was caught with this action,
      * returns false otherwise
      *
-     * @param enemyPokemon
-     * @param playerPokemon
-     * @param playerRoster
+     * @param enemyPokemon the pokemon that is being fought
+     * @param playerPokemon the player's pokemon 
+     * @param playerRoster the player's roster
      * @return true if pokemon was caught, false otherwise
      */
     public boolean useItem(Pokemon enemyPokemon, Pokemon playerPokemon, Roster playerRoster) {

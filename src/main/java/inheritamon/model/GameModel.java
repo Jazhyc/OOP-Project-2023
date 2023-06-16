@@ -118,6 +118,10 @@ public class GameModel {
         rosterListener = listener;
     }
 
+    /**
+     * Adds a listener to the item listener which will be notified when the items change
+     * @param listener The listener to add
+     */
     public void addItemListener(PropertyChangeListener listener) {
         itemListener = listener;
     }

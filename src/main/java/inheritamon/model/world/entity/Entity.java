@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * @author Stanislav
+ * A class to represent the entities in the world
  */
 public class Entity {
     public int worldX, worldY;

@@ -17,6 +17,9 @@ public class Inventory implements Serializable {
     ArrayList <Item> inventory = new ArrayList<Item>();
     private int coins = 0;
 
+    /**
+     * Constructor for the inventory
+     */
     public Inventory() {
 
         DataHandler dataHandler = DataHandler.getInstance();

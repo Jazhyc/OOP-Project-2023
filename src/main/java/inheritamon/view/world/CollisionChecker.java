@@ -9,6 +9,7 @@ import inheritamon.model.world.tile.TileManager;
 
 /**
  * @author Stanislav
+ * A class to check for collisions
  */
 public class CollisionChecker {
 
@@ -17,15 +18,27 @@ public class CollisionChecker {
     private PlayerAvatar playerAvatar;
     private int tileSize = 48;
 
+    /**
+     * Constructor for the collision checker
+     * @param tileM The tile manager
+     * @param gp The world panel
+     */
     public CollisionChecker(TileManager tileM, WorldPanel gp) {
         this.tileM = tileM;
         this.gp = gp;
     }
 
+    /**
+     * Setter for the player
+     * @param playerAvatar The player
+     */
     public void setPlayer(PlayerAvatar playerAvatar) {
         this.playerAvatar = playerAvatar;
     }
 
+    /**
+     * Checks for interactions with the player
+     */
     public void checkPlayerInteraction() {
 
         int entityLeftWorldX = playerAvatar.worldX + playerAvatar.collisionArea.x;
@@ -92,6 +105,10 @@ public class CollisionChecker {
         
     }
 
+    /**
+     * Checks for collisions with the player
+     * @param entity The entity to check for collisions with
+     */
     public void checkTile(Entity entity){
 
         Player playerData = GameModel.getInstance().getPlayerData();
@@ -164,6 +181,12 @@ public class CollisionChecker {
         }
     }
 
+    /**
+     * Checks for collisions with objects
+     * @param entity The entity to check for collisions with
+     * @param player Whether the entity is the player or not
+     * @return The index of the object collided with
+     */
     public int checkObject(Entity entity, boolean player) {
 
         int index = 999;

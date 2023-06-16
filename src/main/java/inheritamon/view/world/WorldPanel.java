@@ -9,6 +9,7 @@ import java.awt.*;
 
 /**
  * @author Stanislav
+ * The panel that contains the world
  */
 public class WorldPanel extends JLayeredPane implements Runnable { // has all the function of the JPanel
 
@@ -42,6 +43,10 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
     int playerY = 100;
     int playerSpeed = 4;
 
+    /**
+     * Constructor for the world panel
+     * @param sidePanel the side panel
+     */
     public WorldPanel(SidePanel sidePanel) {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -59,6 +64,9 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
 
     }
 
+    /**
+     * Starts the game thread
+     */
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
@@ -87,6 +95,9 @@ public class WorldPanel extends JLayeredPane implements Runnable { // has all th
         }
     }
 
+    /**
+     * Updates the game
+     */
     public void update() {
 
         playerAvatar.update();

@@ -9,6 +9,7 @@ import inheritamon.model.data.language.*;
 
 /**
  * @author Bernard
+ * Panel that displays the details of a class
  */
 public class ClassDisplayPanel extends JPanel
         implements LanguageChangeListener {
@@ -23,6 +24,11 @@ public class ClassDisplayPanel extends JPanel
      */
     private final String perk;
 
+    /**
+     * Constructor for the class display panel
+     * @param pokemon The pokemon of the class
+     * @param perk The perk of the class
+     */
     public ClassDisplayPanel(String pokemon, String perk) {
 
         this.perk = perk;
