@@ -11,14 +11,15 @@ import inheritamon.view.world.sidebar.SidePanel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.io.Serializable;
 
 /**
  * @author Jeremias
  * A class to represent the game panel
  * This panel will hold the world panel and the side panel
  */
-public class GamePanel extends JPanel implements Serializable {
+public class GamePanel extends JPanel {
+
+    public PlayerAvatar playerAvatar;
     WorldPanel worldPanel;
     SidePanel sidePanel;
     PokemonDataPanel pokemonDataPanel;
