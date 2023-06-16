@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * @author Jona Janssen
- * Panel that displays the current inventory
+ * Panel that displays the current inventory when walking in the world
  */
 public class InventoryPanel extends JPanel {
 
@@ -25,7 +25,6 @@ public class InventoryPanel extends JPanel {
 
     /**
      * Constructor for the InventoryPanel
-     *
      * @param gameModel The game model
      */
     public InventoryPanel(GameModel gameModel) {

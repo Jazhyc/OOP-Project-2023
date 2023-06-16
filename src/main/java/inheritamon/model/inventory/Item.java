@@ -45,6 +45,11 @@ public class Item implements Serializable {
 
     private int itemAmount;
 
+
+    /**
+     * Constructs item with data from items.csv
+     * @param itemData
+     */
     public Item(HashMap<String, String> itemData) {
         itemName = itemData.get("Name");
         itemDescription = itemData.get("Description");
@@ -54,13 +59,13 @@ public class Item implements Serializable {
     }
 
     /**
-     * According to the type of item, give some effect (Use an item). Returns true if a pokemon was caught with this action,
+     * Use item to give some effect. Returns true if a pokemon was caught with this action,
      * returns false otherwise
      *
      * @param enemyPokemon
      * @param playerPokemon
      * @param playerRoster
-     * @return
+     * @return true if pokemon was caught, false otherwise
      */
     public boolean useItem(Pokemon enemyPokemon, Pokemon playerPokemon, Roster playerRoster) {
         if (itemType.equals("Healing")) {

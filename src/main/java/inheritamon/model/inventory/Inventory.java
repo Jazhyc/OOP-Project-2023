@@ -31,8 +31,7 @@ public class Inventory implements Serializable {
     }
 
     /**
-     * Returns current inventory size
-     * @return
+     * @return current inventory size
      */
     public int getSize() {
         
@@ -42,8 +41,7 @@ public class Inventory implements Serializable {
     }
 
     /**
-     * Returns maximum inventory size
-     * @return
+     * @return maximum inventory size
      */
     public int getMaxSize() {
         return size;
@@ -70,9 +68,8 @@ public class Inventory implements Serializable {
     }
 
     /**
-     * Returns the item at a certain index in the inventory
+     * @return the item at a certain index in the inventory
      * @param index
-     * @return
      */
     public Item getItem(int index) {
         return inventory.get(index);
@@ -111,8 +108,7 @@ public class Inventory implements Serializable {
     }
 
     /**
-     * Returns the amount of coins currently in the inventory
-     * @return
+     * @return the amount of coins currently in the inventory
      */
     public int getCoins() {
         return coins;
