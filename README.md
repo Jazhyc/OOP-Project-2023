@@ -6,4 +6,18 @@ Welcome to the Pokemon Java Project, the culmination of our efforts in the RUG's
 
 ## Video Demonstration
 
+Click on the image below to view a demo of the game on Youtube:
+
 [![Video Demonstration](https://img.youtube.com/vi/HqR-egPEa3o/maxresdefault.jpg)](https://www.youtube.com/watch?v=HqR-egPEa3o)
+
+## Technologies Used
+
+<p align="left">
+    <a href="https://www.java.com/en/" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/117201156-9a724800-adec-11eb-9a9d-3cd0f67da4bc.png" alt="React" width="40" height="40"/> </a>
+    <a href="https://maven.apache.org/" target="_blank" rel="noreferrer"> <img src="https://user-images.githubusercontent.com/25181517/117207242-07d5a700-adf4-11eb-975e-be04e62b984b.png" alt="Tailwind" width="40" height="40"/> </a>
+</p>
+
+Our project is built using the following technologies:
+
+- [Java](https://www.java.com/en/)   (Programming Language)
+- [Maven](https://maven.apache.org/) (Project Manager)
