@@ -1,33 +1,5 @@
-# Role Playing Game
+# Pokemon Recreation in Java
 
-For the final project of Object Oriented Programming, your team should create an RPG game. While there are some requirements to the outcome, which are listed below, you are mostly free in how you give shape to this project. For example, you may choose to have your RPG reflect an epic quest in a fantasy setting, an anxious protagonist buying groceries from a list, or fireside conversations among friends camping in the wild.
+## Description
 
-To take full advantage of object oriented programming, each member of the team should be responsible for different aspects of the game. Unlike most assignments, where you are expected to work together for every step on the assignment, this final project explicitly asks you to divide responsibilities among your team members. To facilitate this process, there are four sets of requirements outlined below. Each team member is responsible for one of these sets. Of course, you should still discuss, cooperate, and help one another out to create a whole from its parts. 
-
-Below are the requirements for your RPG game. Assessment focuses on the design choices you have made while making the game. This includes your use of interfaces and abstract classes, proper encapsulation, design patterns, as well as how easy it is for a third party to understand the game logic and expand it with new variations and features. In addition, we look at programming style (indentation, variable naming, etc) and the level of ambition. That is, if your final program meets all the requirements below, but only just barely, it may not result in a sufficient grade.
-
-Your RPG should have the features listed below. Each team member takes responsibility for one of these features, which determines most of their grade. For example, the team member taking responsibility for the inventory system will not be graded on the quality of the location system. The features to implement are:
-- Inventory
-	- The game should have an inventory system. This could represent a bag of items, a party of team members,  conversation topics, or clues obtained in the game world.
-	- It should be possible to add and remove elements from the inventory system.
-	- The playerAvatar should be able to interact with elements of the inventory system. For example, they should be able to inspect objects, rearrange team members, or combine clues.
-- Locations
-	- The game should feature distinct locations.
-	- Players should be able to move between locations.
-	- It must be possible to add conditions to movement. For example, movement across water is only possible by boat, or movement into a subway system is only possible in exchange for a subway token.
-- Non-playerAvatar characters (NPCs)
-	- The game should include NPCs that exist independently from locations and inventory.
-	- Players must be able to interact with NPCs. For example, you could allow players to fight monsters, talk to suspects, or bribe bouncers.
-	- It must be possible for interaction with NPCs to have lasting effects on the game world outside of the NPCs themselves. For example, interacting with NPCs may unlock locations, or add items to the inventory system.
-- Player classes
-	- Players must have a free choice among several playerAvatar classes. 
-	- Player classes should meaningfully change the game. For example, you may implement warriors that deal high damage at short range and archers that deal lower damage at long range. Alternatively, you could implement traits such as charisma or intelligence, which may change what conversation options are open to users ay key points in the game.
-
-In addition, there are some general requirements that every team member should implement for their own feature:
-- The playerAvatar should be able to save and restore their game state at any time.
-- The game logic itself should be independent of the way it is presented to the playerAvatar. That is, your game should follow the guidelines of the Model-View-Controller pattern. Note, however, that you are free to choose whether the game has a text-based interface, a GUI, or even some other way of connecting the playerAvatar to the game. The game should be playable on the university computers without additional hardware or software.
-- The program makes proper use of exceptions. That is, exceptions are added where appropriate, without abusing the exception mechanism.
-- The game should completely playable in at least two languages, one of them being English.
-- Each feature should be implemented in its own package. 
-- Each class should contain the `@author` Javadoc tag to indicate the main author. During the demo, questions about that class will be asked to the listed `@author`. Additionally, the progamming style and internal design choices of a class contribute only to the grade of the listed `@author`.
-
+Welcome to the Pokemon Java Project, the culmination of our efforts in the RUG's Object Oriented Programming (AI) course 2023! We (@Jazhyc, @servantOfTheMostHigh, @StanIvanov1235, @JonaJanssen) attempted to recreate the popular video game in Java while following the OOP principles that we learned during the course. As a result, the game is quite expansive and includes many of the features that you would expect from a Pokemon game. Our adherence to design patterns also means that the game is mostly free of bugs (although there are still quite a few). For me personally, the creation of this project taught me considerably about working on semi-large-scale projects and creating well-written software. I hope you enjoy playing the game as much as we enjoyed making it!
