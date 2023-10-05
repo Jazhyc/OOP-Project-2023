@@ -4,6 +4,14 @@
 
 Welcome to the Pokemon Java Project, the culmination of our efforts in the RUG's Object Oriented Programming (AI) course 2023! We (@Jazhyc, @servantOfTheMostHigh, @StanIvanov1235, @JonaJanssen) attempted to recreate the popular video game in Java while following the OOP principles that we learned during the course. As a result, the game is quite expansive and includes many of the features that you would expect from a Pokemon game. Our adherence to design patterns also means that the game is mostly free of bugs (although there are still quite a few). For me personally, the creation of this project taught me considerably about working on semi-large-scale projects and creating well-written software. I hope you enjoy playing the game as much as we enjoyed making it!
 
+## Features
+
+- A class selection system which determines your starter pokemon and ability
+- A pixel art world which you can explore and interact with
+- A fully functioning battle system which allows you to fight 6 kinds of wild pokemon
+- An inventory system which allows you to use items in battle to heal your pokemon or catch wild pokemon
+- Catch all 6 pokemon and become the best trainer in the world! (You are the only player after all)
+
 ## Video Demonstration
 
 Click on the image below to view a demo of the game on Youtube:
