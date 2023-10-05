@@ -6,4 +6,4 @@ Welcome to the Pokemon Java Project, the culmination of our efforts in the RUG's
 
 ## Video Demonstration
 
-![Video Demonstration](https://www.youtube.com/watch?v=HqR-egPEa3o)
+[![Video Demonstration](https://img.youtube.com/vi/HqR-egPEa3o/maxresdefault.jpg)](https://www.youtube.com/watch?v=HqR-egPEa3o)
