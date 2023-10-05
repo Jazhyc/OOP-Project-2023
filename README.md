@@ -8,9 +8,11 @@ Welcome to the Pokemon Java Project, the culmination of our efforts in the RUG's
 
 - A class selection system which determines your starter pokemon and ability
 - A pixel art world which you can explore and interact with
-- A fully functioning battle system which allows you to fight 6 kinds of wild pokemon
+- A fully functioning battle system which allows you to fight 6 kinds of wild pokemon with different kinds of enemy AI
 - An inventory system which allows you to use items in battle to heal your pokemon or catch wild pokemon
 - Catch all 6 pokemon and become the best trainer in the world! (You are the only player after all)
+- A save system that allows you to save your progress towards becoming the very best!
+- Localization in English and Dutch so that you can play the game in your native language
 
 ## Video Demonstration
 
